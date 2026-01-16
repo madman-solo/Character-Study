@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+model Character {
+  id          Int      @id @default(autoincrement()) // 主键id，自增，唯一
+  name        String   // 人物名称
+  avatar      String   // 人物形象
+  category    String   @default("原创") // 角色分类
+  description String?  // 人物描述，? 表示该字段【可选】，可以不传
+  tags        String   @default("[]") // 人物标签，必传
+  popularity  Int      @default(0) // 人气值
+  createdAt   DateTime @default(now()) // 自动生成创建时间，不用手动传
+
+  // 关系
+  userCharacters UserCharacter[]
+  userFavorites  UserFavorite[]
+}
+
+// 用户的角色（我的角色）
+model UserCharacter {
+  id          Int      @id @default(autoincrement())
+  userId      String   // 用户ID
+  characterId Int      // 角色ID
+  isDefault   Boolean  @default(false) // 是否为默认角色（首页显示）
+  addedAt     DateTime @default(now()) // 添加时间
+
+  character   Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, characterId]) // 同一用户不能重复添加同一角色
+}
+
+// 用户的收藏
+model UserFavorite {
+  id          Int      @id @default(autoincrement())
+  userId      String   // 用户ID
+  characterId Int      // 角色ID
+  favoritedAt DateTime @default(now()) // 收藏时间
+
+  character   Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, characterId]) // 同一用户不能重复收藏同一角色
+}

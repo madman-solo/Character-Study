@@ -1,0 +1,203 @@
+.my-favorites-container {
+  margin-top: 70px;
+  padding: 2rem;
+  min-height: calc(100vh - 70px);
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.back-button {
+  padding: 0.8rem 1.5rem;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 2rem;
+}
+
+.back-button:hover {
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.page-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.empty-icon {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+}
+
+.empty-text {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.browse-button {
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, #ff9800 0%, #ff5722 100%);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.browse-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
+}
+
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.favorite-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid transparent;
+}
+
+.favorite-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border-color: #ff9800;
+}
+
+.character-avatar {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.character-avatar:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.character-name {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.character-description {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.character-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.tag {
+  padding: 0.3rem 0.8rem;
+  background: #fff3e0;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  color: #ff9800;
+}
+
+.character-actions {
+  display: flex;
+  gap: 0.8rem;
+  width: 100%;
+  margin-top: auto;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 0.7rem 1rem;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.action-btn.add {
+  background: #e3f2fd;
+  color: #2196f3;
+}
+
+.action-btn.add:hover {
+  background: #2196f3;
+  color: white;
+}
+
+.action-btn.unfavorite {
+  background: #fce4ec;
+  color: #e91e63;
+}
+
+.action-btn.unfavorite:hover {
+  background: #e91e63;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .my-favorites-container {
+    padding: 1rem;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .favorites-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .favorite-card {
+    padding: 1.5rem;
+  }
+}

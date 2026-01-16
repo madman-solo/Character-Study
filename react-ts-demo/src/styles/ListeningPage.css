@@ -1,0 +1,370 @@
+/* ListeningPage.css */
+.listening-page {
+  display: flex;
+  height: calc(100vh - 60px);
+  background: #f5f7fa;
+}
+
+/* 左侧导航栏 */
+.listening-sidebar {
+  width: 250px;
+  background: white;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 10;
+}
+
+.listening-sidebar.collapsed {
+  width: 60px;
+}
+
+.listening-sidebar .sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.listening-sidebar .sidebar-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.listening-sidebar .collapse-button {
+  background: #667eea;
+  color: white;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.listening-sidebar .collapse-button:hover {
+  background: #5568d3;
+  transform: scale(1.1);
+}
+
+.sidebar-tabs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 10px;
+  gap: 10px;
+  overflow-y: auto;
+}
+
+.tab-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  font-weight: 500;
+  color: #555;
+}
+
+.tab-button:hover {
+  background: #e9ecef;
+  transform: translateX(5px);
+}
+
+.tab-button.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.tab-icon {
+  font-size: 24px;
+}
+
+.listening-sidebar .back-home-button {
+  margin: 20px;
+  padding: 12px 20px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.listening-sidebar .back-home-button:hover {
+  background: #5568d3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+/* 右侧内容区 */
+.listening-content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+/* 泛听部分 */
+.extensive-section {
+  max-width: 1000px;
+  margin: 50px auto;
+}
+
+.search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  background: white;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.search-button {
+  padding: 12px 24px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.search-button:hover {
+  background: #5568d3;
+  transform: scale(1.05);
+}
+
+.materials-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.material-card {
+  display: flex;
+  gap: 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.material-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.material-thumbnail {
+  width: 120px;
+  height: 80px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.play-icon {
+  font-size: 32px;
+  color: white;
+}
+
+.material-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.material-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 10px 0;
+}
+
+.material-meta {
+  display: flex;
+  gap: 15px;
+  font-size: 14px;
+  color: #666;
+}
+
+.material-duration,
+.material-level {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.material-level {
+  background: #f0f0f0;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+/* 精听部分 */
+.intensive-section {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.intensive-header {
+  margin-bottom: 30px;
+}
+
+.header-image {
+  width: 100%;
+  height: 250px;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  margin-top: 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.header-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mode-selector {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.mode-button {
+  padding: 12px 30px;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mode-button:hover {
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.mode-button.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.material-card.intensive {
+  position: relative;
+}
+
+.material-mode-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .listening-page {
+    flex-direction: column;
+  }
+
+  .listening-sidebar {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+  }
+
+  .listening-sidebar.collapsed {
+    height: 60px;
+    max-height: 60px;
+  }
+
+  .sidebar-tabs {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .tab-button {
+    flex-direction: column;
+    min-width: 80px;
+    padding: 10px;
+    gap: 5px;
+  }
+
+  .listening-content {
+    padding: 20px 15px;
+  }
+
+  .material-card {
+    flex-direction: column;
+  }
+
+  .material-thumbnail {
+    width: 100%;
+    height: 150px;
+  }
+
+  .header-image {
+    height: 180px;
+  }
+
+  .mode-selector {
+    flex-direction: column;
+  }
+
+  .mode-button {
+    width: 100%;
+  }
+}

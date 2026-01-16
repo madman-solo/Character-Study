@@ -1,0 +1,74 @@
+/* LearningModeModal.css */
+.learning-mode-modal {
+  max-width: 600px;
+}
+
+.modes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.mode-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.mode-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(240, 147, 251, 0.4);
+}
+
+.mode-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.mode-label {
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.mode-description {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .learning-mode-modal {
+    max-width: 95%;
+  }
+
+  .modes-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .mode-card {
+    padding: 25px 15px;
+  }
+
+  .mode-icon {
+    font-size: 40px;
+  }
+
+  .mode-label {
+    font-size: 18px;
+  }
+
+  .mode-description {
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,81 @@
+/* VocabularyModal.css */
+.vocabulary-modal {
+  max-width: 700px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.vocabulary-books {
+  padding: 20px 0;
+}
+
+.book-category {
+  margin-bottom: 30px;
+}
+
+.category-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 15px;
+}
+
+.book-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 15px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.book-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.book-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .vocabulary-modal {
+    max-width: 95%;
+  }
+
+  .books-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+  }
+
+  .book-card {
+    padding: 15px 10px;
+  }
+
+  .book-icon {
+    font-size: 28px;
+  }
+
+  .book-name {
+    font-size: 12px;
+  }
+}

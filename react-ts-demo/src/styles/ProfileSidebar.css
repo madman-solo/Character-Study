@@ -1,0 +1,165 @@
+/* ProfileSidebar.css */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1999;
+  animation: fadeIn 0.3s ease;
+}
+
+.profile-sidebar {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100vh;
+  background: white;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 2000;
+  transition: right 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.profile-sidebar.open {
+  right: 0;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.sidebar-header .close-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.sidebar-header .close-button:hover {
+  color: #333;
+}
+
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.user-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 15px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+}
+
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: 600;
+  color: white;
+}
+
+.user-name {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.sidebar-menu {
+  flex: 1;
+  padding: 10px 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 16px 25px;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.menu-item:hover {
+  background: #f8f9fa;
+  padding-left: 30px;
+}
+
+.menu-icon {
+  font-size: 24px;
+  margin-right: 15px;
+  width: 30px;
+  text-align: center;
+}
+
+.menu-label {
+  flex: 1;
+  font-size: 16px;
+  color: #333;
+  font-weight: 500;
+}
+
+.menu-arrow {
+  font-size: 20px;
+  color: #999;
+}
+
+.sidebar-footer {
+  padding: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.logout-button {
+  width: 100%;
+  padding: 12px;
+  background: #ff4757;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.logout-button:hover {
+  background: #ee3344;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 71, 87, 0.4);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .profile-sidebar {
+    width: 100%;
+    right: -100%;
+  }
+
+  .profile-sidebar.open {
+    right: 0;
+  }
+}

@@ -1,0 +1,152 @@
+.character-detail-container {
+  margin-top: 70px;
+  padding: 2rem;
+  min-height: calc(100vh - 70px);
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.back-button {
+  padding: 0.8rem 1.5rem;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 0.2rem;
+}
+
+.back-button:hover {
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.character-info {
+  text-align: center;
+  background: white;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.character-avatar-large {
+  font-size: 6rem;
+  margin-bottom: 1rem;
+}
+
+.character-name-large {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.character-description {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.character-tags-detail {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.tag-detail {
+  padding: 0.5rem 1.2rem;
+  background: #f0f0f0;
+  border-radius: 20px;
+  font-size: 1rem;
+  color: #667eea;
+}
+
+.character-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.action-button {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  border: 2px solid #667eea;
+  border-radius: 25px;
+  background: white;
+  color: #667eea;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.action-button:hover:not(:disabled) {
+  background: #667eea;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.action-button.added {
+  background: #e8f5e9;
+  border-color: #4caf50;
+  color: #4caf50;
+  cursor: not-allowed;
+}
+
+.action-button.favorite.favorited {
+  background: #fff3e0;
+  border-color: #ff9800;
+  color: #ff9800;
+}
+
+.action-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.chat-section {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.messages-area-detail {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* 移动端响应式 */
+@media (max-width: 768px) {
+  .character-detail-container {
+    padding: 1rem;
+  }
+
+  .character-avatar-large {
+    font-size: 4rem;
+  }
+
+  .character-name-large {
+    font-size: 1.5rem;
+  }
+
+  .chat-section {
+    height: 400px;
+  }
+
+  .messages-area-detail {
+    padding: 1rem;
+  }
+}

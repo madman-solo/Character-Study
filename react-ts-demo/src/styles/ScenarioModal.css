@@ -1,0 +1,220 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.modal-header h2 {
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #999;
+  transition: color 0.3s;
+}
+
+.close-button:hover {
+  color: #333;
+}
+
+.scenarios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+}
+
+.scenario-card {
+  background: #f8f9fa;
+  border-radius: 15px;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.scenario-card:hover {
+  background: #667eea;
+  color: white;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.scenario-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.scenario-name {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.scenario-description {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* 难度选择 */
+.level-selection {
+  animation: slideUp 0.3s ease;
+}
+
+.back-button {
+  background: #f8f9fa;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s;
+  color: #667eea;
+  font-weight: 500;
+}
+
+.back-button:hover {
+  background: #e9ecef;
+  transform: translateX(-5px);
+}
+
+.levels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+}
+
+.level-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 15px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.level-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(102, 126, 234, 0.5);
+}
+
+.level-label {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.level-description {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* 提示内容 */
+.tip-content {
+  text-align: center;
+  padding: 2rem;
+  animation: slideUp 0.3s ease;
+}
+
+.tip-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+.tip-text {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.confirm-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 1rem 3rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.confirm-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+/* 移动端响应式 */
+@media (max-width: 768px) {
+  .modal-content {
+    padding: 1.5rem;
+  }
+
+  .modal-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .scenarios-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .levels-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}

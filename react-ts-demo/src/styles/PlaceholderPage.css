@@ -1,0 +1,110 @@
+/* PlaceholderPage.css */
+.placeholder-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder-container {
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+}
+
+.placeholder-container .back-button {
+  position: absolute;
+  top: -60px;
+  left: 0;
+  padding: 10px 20px;
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid white;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  backdrop-filter: blur(10px);
+}
+
+.placeholder-container .back-button:hover {
+  background: white;
+  color: #667eea;
+}
+
+.placeholder-content {
+  background: white;
+  border-radius: 20px;
+  padding: 60px 40px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.placeholder-icon {
+  font-size: 100px;
+  margin-bottom: 30px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.placeholder-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 20px 0;
+}
+
+.placeholder-description {
+  font-size: 18px;
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .placeholder-container .back-button {
+    top: -50px;
+  }
+
+  .placeholder-content {
+    padding: 40px 20px;
+  }
+
+  .placeholder-icon {
+    font-size: 80px;
+  }
+
+  .placeholder-title {
+    font-size: 24px;
+  }
+
+  .placeholder-description {
+    font-size: 16px;
+  }
+}

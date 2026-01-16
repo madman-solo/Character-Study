@@ -1,0 +1,372 @@
+/* SpeakingPage.css */
+.speaking-page {
+  display: flex;
+  height: calc(100vh - 60px);
+  background: #f5f7fa;
+}
+
+/* 左侧：角色显示区 */
+.character-display {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  margin-top: 80px;
+}
+
+.character-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.character-placeholder {
+  text-align: center;
+  color: white;
+}
+
+.character-avatar {
+  font-size: 120px;
+  margin-bottom: 20px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.character-name {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.speaking-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.record-button {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.record-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+.record-button.recording {
+  background: #ff4757;
+  color: white;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.record-icon {
+  font-size: 40px;
+}
+
+.record-text {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.recording-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.pulse {
+  width: 12px;
+  height: 12px;
+  background: #ff4757;
+  border-radius: 50%;
+  animation: pulse-dot 1s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+.character-display .back-button {
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid white;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.character-display .back-button:hover {
+  background: white;
+  color: #667eea;
+  transform: translateY(-2px);
+}
+
+/* 右侧：对话记录区 */
+.transcript-panel {
+  width: 450px;
+  background: white;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.transcript-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.transcript-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.toggle-transcript-button {
+  padding: 8px 20px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggle-transcript-button:hover {
+  background: #5568d3;
+  transform: scale(1.05);
+}
+
+.transcript-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.message {
+  padding: 15px;
+  border-radius: 12px;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.user-message {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  align-self: flex-end;
+  max-width: 80%;
+}
+
+.character-message {
+  background: #f8f9fa;
+  color: #333;
+  align-self: flex-start;
+  max-width: 80%;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+.speaker-name {
+  font-weight: 600;
+}
+
+.user-message .speaker-name {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.character-message .speaker-name {
+  color: #667eea;
+}
+
+.message-time {
+  opacity: 0.7;
+  font-size: 11px;
+}
+
+.message-text {
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.message-words {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.character-message .message-words {
+  border-top-color: #e0e0e0;
+}
+
+.words-label {
+  font-size: 12px;
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+.word-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.character-message .word-tag {
+  background: #e9ecef;
+  color: #555;
+}
+
+.transcript-placeholder {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 16px;
+  padding: 40px;
+  text-align: center;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+  .speaking-page {
+    flex-direction: column;
+  }
+
+  .character-display {
+    height: 60vh;
+  }
+
+  .transcript-panel {
+    width: 100%;
+    height: 40vh;
+  }
+
+  .character-avatar {
+    font-size: 80px;
+  }
+
+  .character-name {
+    font-size: 20px;
+  }
+
+  .record-button {
+    width: 100px;
+    height: 100px;
+  }
+
+  .record-icon {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .character-display {
+    padding: 20px;
+  }
+
+  .record-button {
+    width: 90px;
+    height: 90px;
+  }
+
+  .record-icon {
+    font-size: 28px;
+  }
+
+  .record-text {
+    font-size: 12px;
+  }
+
+  .transcript-content {
+    padding: 15px;
+  }
+
+  .message {
+    max-width: 90% !important;
+  }
+}

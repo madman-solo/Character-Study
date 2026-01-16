@@ -1,0 +1,64 @@
+/* EnglishLearningModeModal.css */
+.english-mode-modal {
+  max-width: 700px;
+}
+
+.english-modes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.english-mode-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.english-mode-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(102, 126, 234, 0.5);
+}
+
+.english-mode-card .mode-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.english-mode-card .mode-label {
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+}
+
+.english-mode-card .mode-description {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  line-height: 1.4;
+}
+
+/* 移动端响应式 */
+@media (max-width: 768px) {
+  .english-modes-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .english-mode-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .english-mode-card .mode-icon {
+    font-size: 3rem;
+  }
+
+  .english-mode-card .mode-label {
+    font-size: 1.1rem;
+  }
+}

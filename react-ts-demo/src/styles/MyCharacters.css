@@ -1,0 +1,213 @@
+.my-characters-container {
+  margin-top: 70px;
+  padding: 2rem;
+  min-height: calc(100vh - 70px);
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.back-button {
+  padding: 0.8rem 1.5rem;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 2rem;
+}
+
+.back-button:hover {
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.page-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.empty-icon {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+}
+
+.empty-text {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.browse-button {
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.browse-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.characters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.character-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.character-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.character-avatar {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.character-avatar:hover {
+  transform: scale(1.1);
+}
+
+.character-name {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.character-description {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.character-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.tag {
+  padding: 0.3rem 0.8rem;
+  background: #f0f0f0;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  color: #667eea;
+}
+
+.default-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.4rem 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.character-actions {
+  display: flex;
+  gap: 0.8rem;
+  width: 100%;
+  margin-top: auto;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 0.7rem 1rem;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.action-btn.set-default {
+  background: #e3f2fd;
+  color: #2196f3;
+}
+
+.action-btn.set-default:hover {
+  background: #2196f3;
+  color: white;
+}
+
+.action-btn.remove {
+  background: #ffebee;
+  color: #f44336;
+}
+
+.action-btn.remove:hover {
+  background: #f44336;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .my-characters-container {
+    padding: 1rem;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .characters-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .character-card {
+    padding: 1.5rem;
+  }
+}
