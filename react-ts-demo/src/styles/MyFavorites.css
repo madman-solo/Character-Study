@@ -100,6 +100,9 @@
 }
 
 .character-avatar {
+  position: absolute;
+  bottom: 40px;
+  right: 60px;
   font-size: 5rem;
   margin-bottom: 1rem;
   cursor: pointer;

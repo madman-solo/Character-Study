@@ -6,7 +6,7 @@
 }
 
 /* 左侧：角色显示区 */
-.character-display {
+.speaking-page .character-display {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -32,8 +32,10 @@
 }
 
 .character-avatar {
+  position: relative;
+  /* top: 122px; */
+  /* left: 360px; */
   font-size: 120px;
-  margin-bottom: 20px;
   animation: float 3s ease-in-out infinite;
 }
 
@@ -136,7 +138,7 @@
   }
 }
 
-.character-display .back-button {
+.speaking-page .character-display .back-button {
   padding: 12px 24px;
   background: rgba(255, 255, 255, 0.2);
   color: white;
@@ -149,7 +151,7 @@
   backdrop-filter: blur(10px);
 }
 
-.character-display .back-button:hover {
+.speaking-page .character-display .back-button:hover {
   background: white;
   color: #667eea;
   transform: translateY(-2px);
@@ -317,7 +319,7 @@
     flex-direction: column;
   }
 
-  .character-display {
+  .speaking-page .character-display {
     height: 60vh;
   }
 
@@ -345,7 +347,7 @@
 }
 
 @media (max-width: 768px) {
-  .character-display {
+  .speaking-page .character-display {
     padding: 20px;
   }
 

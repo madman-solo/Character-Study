@@ -1,0 +1,328 @@
+/* WritingPage.css */
+.writing-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.writing-container {
+  width: 100%;
+  max-width: 1200px;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 头部 */
+.writing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 55px;
+}
+
+.back-button {
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #667eea;
+  border: 2px solid #667eea;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.back-button:hover {
+  background: white;
+  color: #667eea;
+  transform: translateX(-5px);
+}
+
+.writing-title {
+  font-size: 2.5rem;
+  color: white;
+  font-weight: 700;
+  margin: 0;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+}
+
+.correction-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid white;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.correction-toggle:hover {
+  background: white;
+  color: #667eea;
+}
+
+.correction-toggle input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+/* 写作内容区域 */
+.writing-content {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.writing-editor {
+  flex: 1;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.writing-textarea {
+  width: 100%;
+  height: 100%;
+  min-height: 450px;
+  padding: 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 16px;
+  line-height: 1.8;
+  resize: none;
+  outline: none;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.writing-textarea:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.writing-textarea::placeholder {
+  color: #999;
+}
+
+/* AI菜单 */
+.ai-menu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 10;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -40%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.ai-menu-btn {
+  padding: 12px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  background: white;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.ai-menu-btn:hover {
+  border-color: #667eea;
+  background: #f8f9ff;
+  color: #667eea;
+  transform: translateY(-2px);
+}
+
+/* 工具栏 */
+.writing-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  border-top: 2px solid #f0f0f0;
+}
+
+.toolbar-left,
+.toolbar-right {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.word-count {
+  font-size: 14px;
+  color: #999;
+  font-weight: 500;
+}
+
+.tool-btn {
+  padding: 10px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  background: white;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tool-btn:hover {
+  border-color: #667eea;
+  background: #f8f9ff;
+  color: #667eea;
+  transform: translateY(-2px);
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+  .writing-title {
+    font-size: 2rem;
+  }
+
+  .writing-content {
+    min-height: 500px;
+  }
+
+  .writing-textarea {
+    min-height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .writing-page {
+    padding: 15px;
+  }
+
+  .writing-header {
+    margin-bottom: 20px;
+  }
+
+  .back-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .writing-title {
+    font-size: 1.8rem;
+  }
+
+  .correction-toggle {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .writing-content {
+    padding: 20px;
+    min-height: 450px;
+  }
+
+  .writing-textarea {
+    min-height: 350px;
+    font-size: 15px;
+  }
+
+  .writing-toolbar {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+  }
+
+  .toolbar-left,
+  .toolbar-right {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .writing-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+  }
+
+  .back-button {
+    width: 100%;
+  }
+
+  .writing-title {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .header-controls {
+    justify-content: center;
+  }
+
+  .correction-toggle {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .writing-content {
+    padding: 15px;
+    min-height: 400px;
+  }
+
+  .writing-textarea {
+    min-height: 300px;
+    font-size: 14px;
+    padding: 15px;
+  }
+
+  .ai-menu {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .tool-btn {
+    flex: 1;
+  }
+}

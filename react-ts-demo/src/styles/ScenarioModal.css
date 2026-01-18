@@ -24,9 +24,10 @@
 .modal-content {
   background: white;
   border-radius: 20px;
-  padding: 2rem;
+  width: 60%;
+
+  padding: 1rem;
   max-width: 600px;
-  width: 90%;
   max-height: 80vh;
   overflow-y: auto;
   animation: slideUp 0.3s ease;
@@ -69,9 +70,8 @@
 }
 
 .scenarios-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1.5rem;
+  display: flex;
+  gap: 0.7rem;
 }
 
 .scenario-card {
@@ -129,8 +129,7 @@
 }
 
 .levels-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  display: flex;
   gap: 1.5rem;
 }
 
@@ -198,6 +197,49 @@
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
 }
 
+/* 专属陪伴选择 */
+.companion-selection {
+  animation: slideUp 0.3s ease;
+}
+
+.companion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+}
+
+.companion-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 15px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.companion-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(102, 126, 234, 0.5);
+}
+
+.companion-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.companion-name {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.companion-description {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
 /* 移动端响应式 */
 @media (max-width: 768px) {
   .modal-content {
@@ -214,6 +256,11 @@
   }
 
   .levels-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .companion-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
   }

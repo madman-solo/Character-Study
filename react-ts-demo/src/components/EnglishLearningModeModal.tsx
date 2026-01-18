@@ -1,7 +1,7 @@
 import type { EnglishLevel } from '../types';
 import '../styles/EnglishLearningModeModal.css';
 
-export type EnglishLearningModeType = 'daily-conversation' | 'listening-speaking' | 'vocabulary';
+export type EnglishLearningModeType = 'daily-conversation' | 'listening-speaking' | 'vocabulary' | 'real-time-translation' | 'writing';
 
 interface EnglishLearningModeModalProps {
   isOpen: boolean;
@@ -34,6 +34,18 @@ const EnglishLearningModeModal = ({
       label: '单词本',
       description: '系统化学习单词',
       icon: '📖',
+    },
+    {
+      value: 'real-time-translation',
+      label: '实时翻译',
+      description: '多语言实时翻译工具',
+      icon: '🌐',
+    },
+    {
+      value: 'writing',
+      label: '写作',
+      description: 'AI辅助写作与实时纠正',
+      icon: '✍️',
     },
   ];
 

@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import type { ScenarioMode, EnglishLevel } from '../types';
-import '../styles/ScenarioModal.css';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import type { ScenarioMode, EnglishLevel } from "../types";
+import "../styles/ScenarioModal.css";
 
 interface ScenarioModalProps {
   isOpen: boolean;
@@ -17,9 +18,13 @@ const ScenarioModal = ({
   onShowEnglishModeSelection,
   onNavigateHome,
 }: ScenarioModalProps) => {
+  const navigate = useNavigate();
   const [showLevelSelection, setShowLevelSelection] = useState(false);
-  const [selectedScenario, setSelectedScenario] = useState<ScenarioMode | null>(null);
+  const [selectedScenario, setSelectedScenario] = useState<ScenarioMode | null>(
+    null,
+  );
   const [showTip, setShowTip] = useState(false);
+  const [showCompanionSelection, setShowCompanionSelection] = useState(false);
 
   const scenarios: ScenarioMode[] = [
     {
@@ -42,15 +47,18 @@ const ScenarioModal = ({
     },
   ];
 
-  const levels: { value: EnglishLevel; label: string; description: string }[] = [
-    { value: '0-12', label: '0~12岁', description: '无基础' },
-    { value: '13-18', label: '13~18岁', description: '有一些基础' },
-    { value: '18+', label: '18岁以上', description: '四六级及以上' },
-  ];
+  const levels: { value: EnglishLevel; label: string; description: string }[] =
+    [
+      { value: "0-12", label: "0~12岁", description: "无基础" },
+      { value: "13-18", label: "13~18岁", description: "有一些基础" },
+      { value: "18+", label: "18岁以上", description: "四六级及以上" },
+    ];
 
   const handleScenarioClick = (scenario: ScenarioMode) => {
     if (scenario.id === "1") {
       // 英语学习模式，显示难度选择
+      onSelectScenario(scenario);
+
       setSelectedScenario(scenario);
       setShowLevelSelection(true);
     } else if (scenario.id === "2") {
@@ -58,6 +66,12 @@ const ScenarioModal = ({
       onSelectScenario(scenario);
       onNavigateHome?.();
       onClose();
+    } else if (scenario.id === "3") {
+      onSelectScenario(scenario);
+
+      // 专属陪伴：显示树洞/自定义选择
+      setSelectedScenario(scenario);
+      setShowCompanionSelection(true);
     } else {
       // 其他模式直接选择
       onSelectScenario(scenario);
@@ -67,7 +81,7 @@ const ScenarioModal = ({
 
   const handleLevelSelect = (level: EnglishLevel) => {
     if (selectedScenario) {
-      if (level === '0-12') {
+      if (level === "0-12") {
         // 0-12岁：显示提示
         setShowTip(true);
         onSelectScenario(selectedScenario, level);
@@ -83,8 +97,23 @@ const ScenarioModal = ({
 
   const handleBack = () => {
     setShowLevelSelection(false);
+    setShowCompanionSelection(false);
     setSelectedScenario(null);
     setShowTip(false);
+  };
+
+  const handleCompanionSelect = (type: "tree-hole" | "custom") => {
+    if (type === "tree-hole") {
+      // 跳转到树洞对话页面
+      navigate("/tree-hole");
+      // todo: 记录选择的场景模式为专属陪伴
+      onClose();
+    } else {
+      // 跳转到自定义场景设置页面
+      navigate("/custom-companion-setup");
+      // todo: 记录选择的场景模式为专属陪伴，应该在情景模式完成
+      onClose();
+    }
   };
 
   const handleTipConfirm = () => {
@@ -102,10 +131,12 @@ const ScenarioModal = ({
         <div className="modal-header">
           <h2>
             {showTip
-              ? '温馨提示'
-              : showLevelSelection
-              ? '选择对话难度'
-              : '选择情景模式'}
+              ? "温馨提示"
+              : showCompanionSelection
+                ? "选择陪伴模式"
+                : showLevelSelection
+                  ? "选择对话难度"
+                  : "选择情景模式"}
           </h2>
           <button className="close-button" onClick={onClose}>
             ✕
@@ -119,6 +150,30 @@ const ScenarioModal = ({
             <button className="confirm-button" onClick={handleTipConfirm}>
               开始学习
             </button>
+          </div>
+        ) : showCompanionSelection ? (
+          <div className="companion-selection">
+            <button className="back-button" onClick={handleBack}>
+              ← 返回
+            </button>
+            <div className="companion-grid">
+              <div
+                className="companion-card"
+                onClick={() => handleCompanionSelect("tree-hole")}
+              >
+                <div className="companion-icon">🌳</div>
+                <h3 className="companion-name">树洞</h3>
+                <p className="companion-description">倾诉心声，温暖陪伴</p>
+              </div>
+              <div
+                className="companion-card"
+                onClick={() => handleCompanionSelect("custom")}
+              >
+                <div className="companion-icon">✨</div>
+                <h3 className="companion-name">自定义</h3>
+                <p className="companion-description">打造专属场景</p>
+              </div>
+            </div>
           </div>
         ) : !showLevelSelection ? (
           <div className="scenarios-grid">

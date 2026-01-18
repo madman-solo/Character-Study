@@ -1,0 +1,274 @@
+/* RealTimeTranslationPage.css */
+.translation-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.translation-container {
+  width: 100%;
+  max-width: 1400px;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 头部 */
+.translation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 55px;
+}
+
+.back-button {
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #667eea;
+  border: 2px solid #667eea;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.back-button:hover {
+  background: white;
+  color: #667eea;
+  transform: translateX(-5px);
+}
+
+.translation-title {
+  font-size: 2.5rem;
+  color: white;
+  font-weight: 700;
+  margin: 0;
+}
+
+.header-spacer {
+  width: 120px;
+}
+
+/* 翻译内容区域 */
+.translation-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.translation-panel {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  min-height: 500px;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.language-select {
+  padding: 10px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.language-select:hover {
+  border-color: #667eea;
+}
+
+.language-select:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.clear-button,
+.copy-button {
+  padding: 8px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  background: white;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.clear-button:hover,
+.copy-button:hover {
+  border-color: #667eea;
+  background: #f8f9ff;
+  color: #667eea;
+  transform: translateY(-2px);
+}
+
+.translation-textarea {
+  flex: 1;
+  width: 100%;
+  padding: 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 16px;
+  line-height: 1.6;
+  resize: none;
+  outline: none;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.translation-textarea:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.translation-textarea::placeholder {
+  color: #999;
+}
+
+.translation-output {
+  flex: 1;
+  padding: 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  background: #f8f9fa;
+  overflow-y: auto;
+}
+
+.panel-footer {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 2px solid #f0f0f0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.char-count {
+  font-size: 14px;
+  color: #999;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+  .translation-content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .translation-panel {
+    min-height: 400px;
+  }
+
+  .translation-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .translation-page {
+    padding: 15px;
+  }
+
+  .translation-header {
+    margin-bottom: 20px;
+  }
+
+  .back-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .translation-title {
+    font-size: 1.8rem;
+  }
+
+  .header-spacer {
+    width: 80px;
+  }
+
+  .translation-panel {
+    padding: 20px;
+    min-height: 350px;
+  }
+
+  .language-select {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .translation-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+  }
+
+  .back-button {
+    width: 100%;
+  }
+
+  .translation-title {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .header-spacer {
+    display: none;
+  }
+
+  .translation-panel {
+    padding: 15px;
+    min-height: 300px;
+  }
+
+  .panel-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .language-select,
+  .clear-button,
+  .copy-button {
+    width: 100%;
+  }
+
+  .translation-textarea,
+  .translation-output {
+    font-size: 14px;
+    padding: 15px;
+  }
+}

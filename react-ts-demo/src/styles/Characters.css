@@ -87,6 +87,28 @@
   color: #667eea;
 }
 
+/* 状态消息样式 */
+.loading-message,
+.error-message,
+.empty-message {
+  text-align: center;
+  padding: 3rem 2rem;
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.error-message {
+  color: #e74c3c;
+}
+
+.loading-message {
+  color: #667eea;
+}
+
+.empty-message {
+  color: #999;
+}
+
 /* 移动端响应式 */
 @media (max-width: 768px) {
   .characters-container {

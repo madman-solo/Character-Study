@@ -14,11 +14,16 @@ import CharacterDetail from './pages/CharacterDetail';
 import VocabularyPage from './pages/VocabularyPage';
 import ListeningPage from './pages/ListeningPage';
 import SpeakingPage from './pages/SpeakingPage';
+import TreeHolePage from './pages/TreeHolePage';
+import CustomCompanionSetupPage from './pages/CustomCompanionSetupPage';
+import CustomCompanionChatPage from './pages/CustomCompanionChatPage';
 import LoginPage from './pages/LoginPage';
 import SettingsPage from './pages/SettingsPage';
 import PlaceholderPage from './pages/PlaceholderPage';
 import MyCharactersPage from './pages/MyCharactersPage';
 import MyFavoritesPage from './pages/MyFavoritesPage';
+import RealTimeTranslationPage from './pages/RealTimeTranslationPage';
+import WritingPage from './pages/WritingPage';
 import type { ScenarioMode, EnglishLevel, VocabularyBookType, LearningMode } from './types';
 import type { EnglishLearningModeType } from './components/EnglishLearningModeModal';
 import './App.css';
@@ -61,6 +66,10 @@ function AppContent() {
       navigate('/listening');
     } else if (mode === 'vocabulary') {
       setIsVocabularyModalOpen(true);
+    } else if (mode === 'real-time-translation') {
+      navigate('/translation');
+    } else if (mode === 'writing') {
+      navigate('/writing');
     }
   };
 
@@ -107,6 +116,11 @@ function AppContent() {
         <Route path="/character/:id" element={<CharacterDetail />} />
         <Route path="/listening" element={<ListeningPage />} />
         <Route path="/speaking" element={<SpeakingPage />} />
+        <Route path="/translation" element={<RealTimeTranslationPage />} />
+        <Route path="/writing" element={<WritingPage />} />
+        <Route path="/tree-hole" element={<TreeHolePage />} />
+        <Route path="/custom-companion-setup" element={<CustomCompanionSetupPage />} />
+        <Route path="/custom-companion-chat" element={<CustomCompanionChatPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/settings" element={<SettingsPage />} />
         <Route
