@@ -1,0 +1,127 @@
+/* 少儿英语系统 - 动画明星详情页样式 */
+@import './child-variables.css';
+@import './child-animations.css';
+
+/* ========== 详情页容器 ========== */
+.child-detail-container {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--child-light-gray);
+  padding: var(--child-spacing-lg);
+  font-family: var(--child-font-family);
+}
+
+/* ========== 返回按钮 ========== */
+.child-back-button {
+  background: var(--child-white);
+  border: 2px solid var(--child-primary);
+  border-radius: var(--child-radius-medium);
+  padding: var(--child-spacing-sm) var(--child-spacing-lg);
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-normal);
+  font-weight: var(--child-font-weight-semibold);
+  color: var(--child-primary);
+  cursor: pointer;
+  transition: all var(--child-transition-normal);
+  margin-bottom: var(--child-spacing-lg);
+}
+
+.child-back-button:hover {
+  background: var(--child-primary);
+  color: var(--child-white);
+  transform: translateX(-5px);
+}
+
+/* ========== 详情页头部 ========== */
+.child-detail-header {
+  background: var(--child-white);
+  border-radius: var(--child-radius-large);
+  padding: var(--child-spacing-xl);
+  text-align: center;
+  box-shadow: var(--child-shadow-medium);
+  margin-bottom: var(--child-spacing-xl);
+  animation: child-bounce-in var(--child-transition-slow) var(--child-ease-bounce);
+}
+
+.child-detail-icon {
+  font-size: 8rem;
+  margin-bottom: var(--child-spacing-lg);
+  animation: child-float 3s ease-in-out infinite;
+}
+
+.child-detail-name {
+  font-size: var(--child-font-size-xlarge);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-primary);
+  margin: 0 0 var(--child-spacing-md) 0;
+}
+
+.child-detail-description {
+  font-size: var(--child-font-size-medium);
+  color: var(--child-dark-gray);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ========== 详情页内容 ========== */
+.child-detail-content {
+  background: var(--child-white);
+  border-radius: var(--child-radius-large);
+  padding: var(--child-spacing-xl);
+  box-shadow: var(--child-shadow-medium);
+}
+
+.child-detail-title {
+  font-size: var(--child-font-size-large);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-secondary);
+  text-align: center;
+  margin: 0 0 var(--child-spacing-lg) 0;
+}
+
+.child-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--child-spacing-lg);
+}
+
+/* ========== 移动端适配 ========== */
+@media (max-width: 768px) {
+  .child-detail-container {
+    padding: var(--child-spacing-md);
+  }
+
+  .child-back-button {
+    padding: var(--child-spacing-xs) var(--child-spacing-md);
+    font-size: var(--child-font-size-small);
+  }
+
+  .child-detail-header {
+    padding: var(--child-spacing-lg);
+  }
+
+  .child-detail-icon {
+    font-size: 5rem;
+  }
+
+  .child-detail-name {
+    font-size: var(--child-font-size-large);
+  }
+
+  .child-detail-description {
+    font-size: var(--child-font-size-normal);
+  }
+
+  .child-detail-content {
+    padding: var(--child-spacing-lg);
+  }
+
+  .child-detail-title {
+    font-size: var(--child-font-size-medium);
+  }
+
+  .child-detail-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--child-spacing-md);
+  }
+}

@@ -1,0 +1,164 @@
+/* 少儿英语系统 - 轮播图组件样式 */
+@import './child-variables.css';
+@import './child-animations.css';
+
+/* ========== 轮播图容器 ========== */
+.child-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--child-radius-large);
+  box-shadow: var(--child-shadow-medium);
+}
+
+.child-carousel-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* ========== 轮播项 ========== */
+.child-carousel-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity var(--child-transition-slow) ease-in-out;
+}
+
+.child-carousel-item.child-active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.child-carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ========== 标题 ========== */
+.child-carousel-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 30px;
+  border-radius: var(--child-radius-medium);
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-medium);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-primary);
+  box-shadow: var(--child-shadow-light);
+}
+
+/* ========== 控制按钮 ========== */
+.child-carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: var(--child-radius-circle);
+  font-size: 2rem;
+  color: var(--child-primary);
+  cursor: pointer;
+  transition: all var(--child-transition-normal);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--child-shadow-light);
+}
+
+.child-carousel-prev {
+  left: 20px;
+}
+
+.child-carousel-next {
+  right: 20px;
+}
+
+.child-carousel-control:hover {
+  background: var(--child-white);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: var(--child-shadow-medium);
+}
+
+.child-carousel-control:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* ========== 指示器 ========== */
+.child-carousel-indicators {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 2;
+}
+
+.child-carousel-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--child-radius-circle);
+  background: rgba(255, 255, 255, 0.5);
+  border: 2px solid var(--child-white);
+  cursor: pointer;
+  transition: all var(--child-transition-normal);
+  padding: 0;
+}
+
+.child-carousel-indicator.child-active {
+  background: var(--child-primary);
+  width: 30px;
+  border-radius: var(--child-radius-small);
+}
+
+.child-carousel-indicator:hover {
+  background: var(--child-white);
+  transform: scale(1.2);
+}
+
+/* ========== 移动端适配 ========== */
+@media (max-width: 768px) {
+  .child-carousel {
+    border-radius: var(--child-radius-medium);
+  }
+
+  .child-carousel-caption {
+    font-size: var(--child-font-size-normal);
+    padding: 8px 20px;
+    bottom: 15px;
+  }
+
+  .child-carousel-control {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+
+  .child-carousel-prev {
+    left: 10px;
+  }
+
+  .child-carousel-next {
+    right: 10px;
+  }
+
+  .child-carousel-indicator {
+    width: 10px;
+    height: 10px;
+  }
+
+  .child-carousel-indicator.child-active {
+    width: 24px;
+  }
+}

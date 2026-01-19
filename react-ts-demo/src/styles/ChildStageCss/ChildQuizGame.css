@@ -1,0 +1,244 @@
+/* 少儿英语系统 - 答题闯关页面样式 */
+@import './child-variables.css';
+@import './child-animations.css';
+
+/* ========== 加载页面 ========== */
+.child-quiz-loading {
+  width: 100%;
+  height: 100vh;
+  background: var(--child-gradient-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--child-font-family);
+}
+
+.child-loading-content {
+  text-align: center;
+  animation: child-bounce-in var(--child-transition-slow) var(--child-ease-bounce);
+}
+
+.child-loading-title {
+  font-size: var(--child-font-size-xlarge);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-white);
+  margin: 0 0 var(--child-spacing-sm) 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.child-loading-subtitle {
+  font-size: var(--child-font-size-medium);
+  color: var(--child-white);
+  margin: 0 0 var(--child-spacing-xl) 0;
+}
+
+/* ========== 进度条 ========== */
+.child-progress-bar {
+  width: 400px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: var(--child-radius-medium);
+  overflow: hidden;
+  margin: 0 auto var(--child-spacing-md);
+  box-shadow: var(--child-shadow-light);
+}
+
+.child-progress-fill {
+  height: 100%;
+  background: var(--child-gradient-accent);
+  transition: width var(--child-transition-fast) ease-out;
+  border-radius: var(--child-radius-medium);
+}
+
+.child-progress-text {
+  font-size: var(--child-font-size-large);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-white);
+  margin: 0;
+}
+
+/* ========== 横屏提示（默认隐藏） ========== */
+.child-rotate-hint {
+  display: none;
+}
+
+/* ========== 游戏主页面 ========== */
+.child-quiz-game {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--child-light-gray);
+  padding: var(--child-spacing-lg);
+  font-family: var(--child-font-family);
+}
+
+.child-quiz-back {
+  background: var(--child-white);
+  border: 2px solid var(--child-secondary);
+  border-radius: var(--child-radius-medium);
+  padding: var(--child-spacing-sm) var(--child-spacing-lg);
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-normal);
+  font-weight: var(--child-font-weight-semibold);
+  color: var(--child-secondary);
+  cursor: pointer;
+  transition: all var(--child-transition-normal);
+  margin-bottom: var(--child-spacing-lg);
+}
+
+.child-quiz-back:hover {
+  background: var(--child-secondary);
+  color: var(--child-white);
+  transform: translateX(-5px);
+}
+
+.child-quiz-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--child-white);
+  border-radius: var(--child-radius-large);
+  padding: var(--child-spacing-lg);
+  margin-bottom: var(--child-spacing-lg);
+  box-shadow: var(--child-shadow-medium);
+}
+
+.child-quiz-title {
+  font-size: var(--child-font-size-large);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-primary);
+  margin: 0;
+}
+
+.child-quiz-score {
+  font-size: var(--child-font-size-medium);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-secondary);
+  background: var(--child-mint);
+  padding: var(--child-spacing-sm) var(--child-spacing-lg);
+  border-radius: var(--child-radius-medium);
+}
+
+.child-quiz-content {
+  background: var(--child-white);
+  border-radius: var(--child-radius-large);
+  padding: var(--child-spacing-xl);
+  box-shadow: var(--child-shadow-medium);
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.child-quiz-placeholder {
+  text-align: center;
+}
+
+.child-placeholder-icon {
+  font-size: 6rem;
+  margin-bottom: var(--child-spacing-lg);
+  animation: child-pulse 2s ease-in-out infinite;
+}
+
+.child-placeholder-title {
+  font-size: var(--child-font-size-large);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-primary);
+  margin: 0 0 var(--child-spacing-md) 0;
+}
+
+.child-placeholder-text {
+  font-size: var(--child-font-size-medium);
+  color: var(--child-dark-gray);
+  margin: 0;
+}
+
+/* ========== 移动端竖屏：显示横屏提示 ========== */
+@media (max-width: 768px) and (orientation: portrait) {
+  .child-quiz-game {
+    display: none;
+  }
+
+  .child-rotate-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background: var(--child-gradient-primary);
+  }
+
+  .child-rotate-content {
+    text-align: center;
+    animation: child-bounce-in var(--child-transition-slow) var(--child-ease-bounce);
+  }
+
+  .child-rotate-icon {
+    font-size: 6rem;
+    margin-bottom: var(--child-spacing-lg);
+    animation: child-wiggle 2s ease-in-out infinite;
+  }
+
+  .child-rotate-text {
+    font-size: var(--child-font-size-xlarge);
+    font-weight: var(--child-font-weight-bold);
+    color: var(--child-white);
+    margin: 0 0 var(--child-spacing-sm) 0;
+  }
+
+  .child-rotate-subtext {
+    font-size: var(--child-font-size-medium);
+    color: var(--child-white);
+    margin: 0;
+  }
+}
+
+/* ========== 移动端横屏：正常显示游戏 ========== */
+@media (max-width: 768px) and (orientation: landscape) {
+  .child-rotate-hint {
+    display: none;
+  }
+
+  .child-quiz-game {
+    display: block;
+    padding: var(--child-spacing-md);
+  }
+
+  .child-progress-bar {
+    width: 300px;
+  }
+
+  .child-quiz-back {
+    padding: var(--child-spacing-xs) var(--child-spacing-md);
+    font-size: var(--child-font-size-small);
+  }
+
+  .child-quiz-header {
+    padding: var(--child-spacing-md);
+  }
+
+  .child-quiz-title {
+    font-size: var(--child-font-size-medium);
+  }
+
+  .child-quiz-score {
+    font-size: var(--child-font-size-normal);
+    padding: var(--child-spacing-xs) var(--child-spacing-md);
+  }
+
+  .child-quiz-content {
+    padding: var(--child-spacing-lg);
+    min-height: 300px;
+  }
+
+  .child-placeholder-icon {
+    font-size: 4rem;
+  }
+
+  .child-placeholder-title {
+    font-size: var(--child-font-size-medium);
+  }
+
+  .child-placeholder-text {
+    font-size: var(--child-font-size-normal);
+  }
+}

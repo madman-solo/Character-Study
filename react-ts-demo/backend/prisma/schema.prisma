@@ -44,3 +44,15 @@ model UserFavorite {
 
   @@unique([userId, characterId]) // 同一用户不能重复收藏同一角色
 }
+
+// 用户对话记录
+model Conversation {
+  id          Int      @id @default(autoincrement())
+  userId      String   // 用户ID
+  message     String   // 消息内容
+  sender      String   // 发送者：user 或 character
+  characterId Int?     // 角色ID（可选）
+  timestamp   DateTime @default(now()) // 消息时间
+
+  @@index([userId, timestamp]) // 索引优化查询
+}

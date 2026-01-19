@@ -55,9 +55,11 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-.character-avatar {
-  font-size: 4rem;
+.character-card .character-avatar {
+  position: static;
+  font-size: 5rem;
   margin-bottom: 1rem;
+  cursor: pointer;
 }
 
 .character-name {

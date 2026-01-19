@@ -1,0 +1,60 @@
+/* 少儿英语系统 - SVIP板块样式 */
+@import './child-variables.css';
+
+/* ========== SVIP板块容器 ========== */
+.child-svip-section {
+  width: 100%;
+  padding: var(--child-spacing-lg) 0;
+}
+
+/* ========== SVIP大轮播图 ========== */
+.child-svip-banner {
+  margin-bottom: var(--child-spacing-xl);
+  padding: 0 var(--child-spacing-lg);
+}
+
+/* ========== SVIP课程区域 ========== */
+.child-svip-courses {
+  margin-bottom: var(--child-spacing-xl);
+  padding: 0 var(--child-spacing-lg);
+}
+
+/* ========== SVIP标题 ========== */
+.child-svip-title {
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-large);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-primary);
+  margin: 0 0 var(--child-spacing-lg) 0;
+  text-align: center;
+}
+
+/* ========== SVIP分类区域 ========== */
+.child-svip-categories {
+  padding: 0 var(--child-spacing-lg);
+}
+
+.child-svip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--child-spacing-lg);
+}
+
+/* ========== 移动端适配 ========== */
+@media (max-width: 768px) {
+  .child-svip-banner,
+  .child-svip-courses,
+  .child-svip-categories {
+    padding: 0 var(--child-spacing-md);
+  }
+
+  .child-svip-title {
+    font-size: var(--child-font-size-medium);
+    margin-bottom: var(--child-spacing-md);
+  }
+
+  .child-svip-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--child-spacing-md);
+  }
+}

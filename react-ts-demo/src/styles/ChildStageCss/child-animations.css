@@ -1,0 +1,123 @@
+/* 少儿英语系统 - 童趣动画库 */
+/* 所有动画使用 child- 前缀，确保与项目其他动画隔离 */
+
+/* ========== 进入动画 ========== */
+
+/* 弹跳进入 - 适用于卡片、按钮 */
+@keyframes child-bounce-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* 从下方滑入 */
+@keyframes child-slide-up {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 从左侧滑入 */
+@keyframes child-slide-left {
+  from {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* 从右侧滑入 */
+@keyframes child-slide-right {
+  from {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* 淡入 */
+@keyframes child-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ========== 循环动画 ========== */
+
+/* 摇摆动画 - 适用于图标、装饰元素 */
+@keyframes child-wiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+}
+
+/* 浮动动画 - 适用于悬浮元素 */
+@keyframes child-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* 脉冲动画 - 适用于强调元素 */
+@keyframes child-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* 旋转动画 - 适用于加载图标 */
+@keyframes child-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 心跳动画 - 适用于收藏、点赞 */
+@keyframes child-heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  10%, 30% {
+    transform: scale(1.1);
+  }
+  20%, 40% {
+    transform: scale(0.95);
+  }
+}

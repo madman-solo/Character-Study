@@ -1,0 +1,13 @@
+{
+  "model": "deepseek-v3.1-250821",
+  "messages": [
+    {
+      "role": "system",
+      "content": "你是一个友好的AI助手"
+    },
+    {
+      "role": "user",
+      "content": "你好"
+    }
+  ]
+}

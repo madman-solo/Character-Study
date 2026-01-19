@@ -31,11 +31,10 @@
   color: white;
 }
 
-.character-avatar {
-  position: relative;
-  /* top: 122px; */
-  /* left: 360px; */
-  font-size: 120px;
+.character-placeholder .character-avatar {
+  cursor: pointer;
+  position: static;
+  font-size: 5rem;
   animation: float 3s ease-in-out infinite;
 }
 
@@ -225,7 +224,7 @@
 }
 
 .user-message {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
   color: white;
   align-self: flex-end;
   max-width: 80%;

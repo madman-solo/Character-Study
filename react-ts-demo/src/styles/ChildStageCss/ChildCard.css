@@ -1,0 +1,73 @@
+/* 少儿英语系统 - 卡片组件样式 */
+@import './child-variables.css';
+@import './child-animations.css';
+
+/* ========== 卡片容器 ========== */
+.child-card {
+  background: var(--child-white);
+  border-radius: var(--child-radius-large);
+  padding: var(--child-spacing-lg);
+  box-shadow: var(--child-shadow-light);
+  transition: all var(--child-transition-normal) var(--child-ease-bounce);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: child-bounce-in var(--child-transition-slow) var(--child-ease-bounce);
+}
+
+.child-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--child-shadow-hover);
+}
+
+.child-card:active {
+  transform: translateY(-4px) scale(0.98);
+}
+
+/* ========== 卡片图标 ========== */
+.child-card-icon {
+  font-size: 4rem;
+  margin-bottom: var(--child-spacing-md);
+  animation: child-float 3s ease-in-out infinite;
+}
+
+/* ========== 卡片标题 ========== */
+.child-card-title {
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-medium);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-text);
+  margin: 0 0 var(--child-spacing-sm) 0;
+}
+
+/* ========== 卡片描述 ========== */
+.child-card-description {
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-normal);
+  color: var(--child-dark-gray);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ========== 移动端适配 ========== */
+@media (max-width: 768px) {
+  .child-card {
+    padding: var(--child-spacing-md);
+    border-radius: var(--child-radius-medium);
+  }
+
+  .child-card-icon {
+    font-size: 3rem;
+    margin-bottom: var(--child-spacing-sm);
+  }
+
+  .child-card-title {
+    font-size: var(--child-font-size-normal);
+  }
+
+  .child-card-description {
+    font-size: var(--child-font-size-small);
+  }
+}

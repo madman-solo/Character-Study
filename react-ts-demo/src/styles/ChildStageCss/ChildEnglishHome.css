@@ -1,0 +1,227 @@
+/* 少儿英语系统 - 首页样式 */
+@import './child-variables.css';
+@import './child-animations.css';
+
+/* ========== 首页容器 ========== */
+.child-home-container {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--child-light-gray);
+  font-family: var(--child-font-family);
+}
+
+/* ========== 第一层：顶部导航栏 ========== */
+.child-navbar {
+  position: sticky;
+  top: 0;
+  z-index: var(--child-z-navbar);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--child-navbar-height);
+  background: var(--child-gradient-primary);
+  padding: 0 var(--child-spacing-lg);
+  box-shadow: var(--child-shadow-medium);
+}
+
+.child-navbar-left,
+.child-navbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--child-spacing-sm);
+}
+
+.child-icon-button {
+  width: 50px;
+  height: 50px;
+  border: none;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: var(--child-radius-circle);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all var(--child-transition-normal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.child-icon-button:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(1.1);
+}
+
+.child-icon-button:active {
+  transform: scale(0.95);
+}
+
+.child-navbar-title {
+  font-size: var(--child-font-size-xlarge);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-white);
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  animation: child-pulse 2s ease-in-out infinite;
+}
+
+.child-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: var(--child-radius-circle);
+  background: var(--child-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all var(--child-transition-normal);
+  box-shadow: var(--child-shadow-light);
+}
+
+.child-avatar:hover {
+  transform: scale(1.1);
+  box-shadow: var(--child-shadow-medium);
+}
+
+/* ========== 第二层：分类导航栏 ========== */
+.child-category-nav {
+  position: sticky;
+  top: var(--child-navbar-height);
+  z-index: var(--child-z-category-nav);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: var(--child-category-nav-height);
+  background: var(--child-white);
+  box-shadow: var(--child-shadow-light);
+  padding: 0 var(--child-spacing-md);
+}
+
+.child-category-tab {
+  flex: 1;
+  height: 100%;
+  border: none;
+  background: transparent;
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-normal);
+  font-weight: var(--child-font-weight-semibold);
+  color: var(--child-dark-gray);
+  cursor: pointer;
+  transition: all var(--child-transition-normal);
+  position: relative;
+}
+
+.child-category-tab:hover {
+  color: var(--child-primary);
+  transform: scale(1.05);
+}
+
+.child-category-tab.child-active {
+  color: var(--child-primary);
+  font-weight: var(--child-font-weight-bold);
+}
+
+.child-category-tab.child-active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 4px;
+  background: var(--child-gradient-primary);
+  border-radius: var(--child-radius-small);
+}
+
+/* ========== 第三层：轮播图区域 ========== */
+.child-banner-section {
+  padding: var(--child-spacing-xl) var(--child-spacing-lg);
+}
+
+/* ========== 第四层：固定专栏板块 ========== */
+.child-special-section {
+  padding: var(--child-spacing-xl) var(--child-spacing-lg);
+  background: var(--child-white);
+  margin: var(--child-spacing-lg);
+  border-radius: var(--child-radius-large);
+  box-shadow: var(--child-shadow-medium);
+}
+
+.child-section-title {
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-large);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-primary);
+  text-align: center;
+  margin: 0 0 var(--child-spacing-lg) 0;
+}
+
+.child-special-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--child-spacing-lg);
+}
+
+/* ========== 第五层：底部内容区 ========== */
+.child-content-area {
+  padding: var(--child-spacing-lg);
+}
+
+.child-content-section {
+  width: 100%;
+}
+
+.child-content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--child-spacing-lg);
+}
+
+/* ========== 移动端适配 ========== */
+@media (max-width: 768px) {
+  .child-navbar {
+    padding: 0 var(--child-spacing-md);
+  }
+
+  .child-icon-button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .child-navbar-title {
+    font-size: var(--child-font-size-large);
+  }
+
+  .child-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .child-category-tab {
+    font-size: var(--child-font-size-small);
+  }
+
+  .child-banner-section {
+    padding: var(--child-spacing-lg) var(--child-spacing-md);
+  }
+
+  .child-special-section {
+    padding: var(--child-spacing-lg) var(--child-spacing-md);
+    margin: var(--child-spacing-md);
+  }
+
+  .child-section-title {
+    font-size: var(--child-font-size-medium);
+  }
+
+  .child-special-grid,
+  .child-content-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--child-spacing-md);
+  }
+
+  .child-content-area {
+    padding: var(--child-spacing-md);
+  }
+}

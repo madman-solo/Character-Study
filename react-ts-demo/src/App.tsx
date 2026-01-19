@@ -24,6 +24,9 @@ import MyCharactersPage from './pages/MyCharactersPage';
 import MyFavoritesPage from './pages/MyFavoritesPage';
 import RealTimeTranslationPage from './pages/RealTimeTranslationPage';
 import WritingPage from './pages/WritingPage';
+import ChildEnglishHome from './pages/ChildStage/ChildEnglishHome';
+import ChildAnimationDetail from './pages/ChildStage/ChildAnimationDetail';
+import ChildQuizGame from './pages/ChildStage/ChildQuizGame';
 import type { ScenarioMode, EnglishLevel, VocabularyBookType, LearningMode } from './types';
 import type { EnglishLearningModeType } from './components/EnglishLearningModeModal';
 import './App.css';
@@ -99,6 +102,7 @@ function AppContent() {
   };
 
   const handleNavigateHome = () => {
+    setEnglishMode(''); // 清空英语模式，确保日常对话模式下不显示英语模式指示器
     navigate('/');
   };
 
@@ -119,6 +123,9 @@ function AppContent() {
         <Route path="/translation" element={<RealTimeTranslationPage />} />
         <Route path="/writing" element={<WritingPage />} />
         <Route path="/tree-hole" element={<TreeHolePage />} />
+        <Route path="/child-english-home" element={<ChildEnglishHome />} />
+        <Route path="/child-animation-detail/:id" element={<ChildAnimationDetail />} />
+        <Route path="/child-quiz-game" element={<ChildQuizGame />} />
         <Route path="/custom-companion-setup" element={<CustomCompanionSetupPage />} />
         <Route path="/custom-companion-chat" element={<CustomCompanionChatPage />} />
         <Route path="/login" element={<LoginPage />} />

@@ -1,0 +1,54 @@
+/* 少儿英语系统 - 动画专区板块样式 */
+@import './child-variables.css';
+
+/* ========== 动画专区容器 ========== */
+.child-animation-section {
+  width: 100%;
+  padding: var(--child-spacing-lg) 0;
+}
+
+/* ========== 动画明星区域 ========== */
+.child-animation-stars {
+  margin-bottom: var(--child-spacing-xl);
+  padding: 0 var(--child-spacing-lg);
+}
+
+/* ========== 动画分类区域 ========== */
+.child-animation-categories {
+  padding: 0 var(--child-spacing-lg);
+}
+
+/* ========== 动画标题 ========== */
+.child-animation-title {
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-large);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-secondary);
+  margin: 0 0 var(--child-spacing-lg) 0;
+  text-align: center;
+}
+
+/* ========== 动画网格布局 ========== */
+.child-animation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--child-spacing-lg);
+}
+
+/* ========== 移动端适配 ========== */
+@media (max-width: 768px) {
+  .child-animation-stars,
+  .child-animation-categories {
+    padding: 0 var(--child-spacing-md);
+  }
+
+  .child-animation-title {
+    font-size: var(--child-font-size-medium);
+    margin-bottom: var(--child-spacing-md);
+  }
+
+  .child-animation-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--child-spacing-md);
+  }
+}

@@ -63,6 +63,7 @@ const ScenarioModal = ({
       setShowLevelSelection(true);
     } else if (scenario.id === "2") {
       // 日常对话：跳转到首页
+      // todo:外层的日常对话不是英语模式，只是跳转到首页
       onSelectScenario(scenario);
       onNavigateHome?.();
       onClose();
@@ -121,6 +122,7 @@ const ScenarioModal = ({
     setShowLevelSelection(false);
     setSelectedScenario(null);
     onClose();
+    navigate('/child-english-home');
   };
 
   if (!isOpen) return null;

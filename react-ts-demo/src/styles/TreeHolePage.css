@@ -96,10 +96,11 @@
   /* pointer-events: none; */
 }
 
-.character-avatar {
+.user-avatar .character-avatar {
   display: flex;
-  position: static;
+  position: absolute;
   bottom: 40px;
+  right: 60px;
   font-size: 5rem;
   cursor: pointer;
   transition: transform 0.3s;

@@ -1,0 +1,32 @@
+/* 少儿英语系统 - 推荐板块样式 */
+@import './child-variables.css';
+
+/* ========== 推荐板块容器 ========== */
+.child-recommend-section {
+  width: 100%;
+  padding: var(--child-spacing-lg) 0;
+}
+
+/* ========== 推荐网格布局 ========== */
+.child-recommend-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--child-spacing-lg);
+  padding: 0 var(--child-spacing-lg);
+}
+
+/* ========== 移动端适配 ========== */
+@media (max-width: 768px) {
+  .child-recommend-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--child-spacing-md);
+    padding: 0 var(--child-spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .child-recommend-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--child-spacing-sm);
+  }
+}
