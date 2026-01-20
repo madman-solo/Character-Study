@@ -85,20 +85,40 @@ const Home = ({ englishMode }: HomeProps) => {
     await saveMessage(inputValue, "user");
 
     try {
+      // 构建 System Prompt
+      let systemPrompt = "";
+
+      if (englishMode) {
+        // 英语对话模式的 System Prompt
+        systemPrompt = `You are a friendly English conversation partner and teacher. Your role is to help users practice English through natural daily conversations.
+
+Core Rules:
+1. Always respond in English (you may provide Chinese explanations in parentheses for difficult words if needed)
+2. Act as a supportive language partner - be encouraging and patient
+3. Correct grammar mistakes gently by rephrasing the correct form naturally in your response
+4. Use simple, clear language appropriate for language learners
+5. Ask follow-up questions to keep the conversation flowing
+6. Simulate real-life conversation scenarios (greetings, daily activities, hobbies, etc.)
+7. If the user makes a significant error, acknowledge it kindly: "I understand you mean... A better way to say this would be..."
+
+Your goal: Make English learning natural, fun, and confidence-building through authentic conversation practice.`;
+      } else {
+        // 普通模式的 System Prompt
+        systemPrompt = currentCharacter
+          ? `你是${currentCharacter.name}，${currentCharacter.description}`
+          : "你是一个友好的AI助手";
+      }
+
       // 调用千帆 API
       const response = await fetch("http://localhost:3001/api/qianfan/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          model: "deepseek-v3.1-250821",
+          model: "ernie-speed-8k",
           messages: [
             {
               role: "system",
-              content: injectDateContext(
-                currentCharacter
-                  ? `你是${currentCharacter.name}，${currentCharacter.description}`
-                  : "你是一个友好的AI助手"
-              ),
+              content: injectDateContext(systemPrompt),
             },
             {
               role: "user",

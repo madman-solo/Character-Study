@@ -202,11 +202,7 @@ app.get("/api/qianfan/models", async (req, res) => {
 // 2. 文本生成接口（对话）
 app.post("/api/qianfan/chat", async (req, res) => {
   try {
-    const {
-      messages,
-      model = "deepseek-v3.1-250821",
-      ...otherParams
-    } = req.body;
+    const { messages, model = "ernie-speed-8k", ...otherParams } = req.body;
 
     const data = await qianfanRequest("/chat/completions", "POST", {
       model,
