@@ -11,10 +11,9 @@ const app = express();
 const PORT = 3001;
 
 // 百度千帆 API 配置
-const QIANFAN_API_KEY =
-  "bce-v3/ALTAK-SHGW7f9jd3InS4EROcvwb/5a6de6d8dca5f1225828ba1b559264e2ca5c836e"; // 手动填写
+const QIANFAN_API_KEY = process.env.QIANFAN_API_KEY;
 const QIANFAN_BASE_URL = "https://qianfan.baidubce.com/v2";
-const QIANFAN_SECRET_KEY = "5a6de6d8dca5f1225828ba1b559264e2ca5c836e";
+const QIANFAN_SECRET_KEY = process.env.QIANFAN_SECRET_KEY;
 
 // 初始化限流器和重试处理器
 // 根据千帆 API 的 TPM 限制调整参数：
@@ -49,7 +48,7 @@ async function qianfanRequest(endpoint, method = "GET", data = null) {
         const response = await axios(config);
         return response.data;
       },
-      { name: `${method} ${endpoint}` }
+      { name: `${method} ${endpoint}` },
     );
   });
 }
@@ -179,9 +178,10 @@ app.get("/api/qianfan/status", (_req, res) => {
   const status = rateLimiter.getStatus();
   res.json({
     ...status,
-    message: status.queueLength > 0
-      ? `当前有 ${status.queueLength} 个请求在队列中等待`
-      : "系统运行正常",
+    message:
+      status.queueLength > 0
+        ? `当前有 ${status.queueLength} 个请求在队列中等待`
+        : "系统运行正常",
     rateLimitInfo: `${status.recentRequests}/${status.maxRequests} 请求/分钟`,
   });
 });
