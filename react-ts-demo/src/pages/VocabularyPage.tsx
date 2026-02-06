@@ -1,65 +1,57 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import type { VocabularyBookType } from '../types';
+import { fetchWordsByBookType } from '../services/vocabularyService';
+import { trackWordProgress } from '../services/spacedRepetitionService';
 import '../styles/VocabularyPage.css';
 
-// 模拟单词数据
+// 单词数据接口
 interface Word {
   id: string;
   word: string;
   phonetic: string;
   translation: string;
   example: string;
+  definition?: string;
+  pos?: string;
+  collins?: number;
+  oxford?: boolean;
+  tag?: string;
 }
 
-const mockWords: Record<VocabularyBookType, Word[]> = {
-  '初一': [
-    { id: '1', word: 'hello', phonetic: '/həˈləʊ/', translation: '你好', example: 'Hello, how are you?' },
-    { id: '2', word: 'world', phonetic: '/wɜːld/', translation: '世界', example: 'Welcome to the world.' },
-    { id: '3', word: 'book', phonetic: '/bʊk/', translation: '书', example: 'I have a book.' },
-  ],
-  '初二': [
-    { id: '1', word: 'study', phonetic: '/ˈstʌdi/', translation: '学习', example: 'I study English every day.' },
-    { id: '2', word: 'friend', phonetic: '/frend/', translation: '朋友', example: 'She is my best friend.' },
-  ],
-  '初三': [
-    { id: '1', word: 'important', phonetic: '/ɪmˈpɔːtnt/', translation: '重要的', example: 'This is very important.' },
-  ],
-  '高一': [
-    { id: '1', word: 'knowledge', phonetic: '/ˈnɒlɪdʒ/', translation: '知识', example: 'Knowledge is power.' },
-  ],
-  '高二': [
-    { id: '1', word: 'environment', phonetic: '/ɪnˈvaɪrənmənt/', translation: '环境', example: 'Protect the environment.' },
-  ],
-  '高三': [
-    { id: '1', word: 'achievement', phonetic: '/əˈtʃiːvmənt/', translation: '成就', example: 'This is a great achievement.' },
-  ],
-  '四级必考': [
-    { id: '1', word: 'abandon', phonetic: '/əˈbændən/', translation: '放弃', example: 'Never abandon your dreams.' },
-  ],
-  '六级必考': [
-    { id: '1', word: 'abstract', phonetic: '/ˈæbstrækt/', translation: '抽象的', example: 'This is an abstract concept.' },
-  ],
-  '雅思': [
-    { id: '1', word: 'accommodate', phonetic: '/əˈkɒmədeɪt/', translation: '容纳；适应', example: 'The hotel can accommodate 500 guests.' },
-  ],
-  '托福': [
-    { id: '1', word: 'accumulate', phonetic: '/əˈkjuːmjəleɪt/', translation: '积累', example: 'Accumulate knowledge over time.' },
-  ],
-};
-
-interface VocabularyPageProps {
-  bookType: VocabularyBookType;
-}
-
-const VocabularyPage = ({ bookType }: VocabularyPageProps) => {
+const VocabularyPage = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
+  const { bookType: urlBookType } = useParams<{ bookType: string }>();
+
+  // 解码 URL 参数并验证
+  const bookType = (urlBookType ? decodeURIComponent(urlBookType) : '初一') as VocabularyBookType;
+
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [userInput, setUserInput] = useState('');
   const [showAnswer, setShowAnswer] = useState(false);
+  const [words, setWords] = useState<Word[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [isBlurred, setIsBlurred] = useState(false);
 
-  const words = mockWords[bookType] || [];
+  // 加载单词数据
+  useEffect(() => {
+    const loadWords = async () => {
+      setLoading(true);
+
+      // 直接从本地数据库获取单词列表（获取所有单词，不限制数量）
+      const wordList = await fetchWordsByBookType(bookType, 0);
+
+      console.log(`Loaded ${wordList.length} words for ${bookType}`);
+      setWords(wordList);
+      setLoading(false);
+    };
+
+    loadWords();
+  }, [bookType]);
+
   const currentWord = words[currentWordIndex];
 
   const handleNext = () => {
@@ -67,6 +59,7 @@ const VocabularyPage = ({ bookType }: VocabularyPageProps) => {
       setCurrentWordIndex(currentWordIndex + 1);
       setUserInput('');
       setShowAnswer(false);
+      setIsBlurred(false);
     }
   };
 
@@ -75,17 +68,36 @@ const VocabularyPage = ({ bookType }: VocabularyPageProps) => {
       setCurrentWordIndex(currentWordIndex - 1);
       setUserInput('');
       setShowAnswer(false);
+      setIsBlurred(false);
     }
   };
 
-  const handleCheck = () => {
+  const handleCheck = async () => {
     setShowAnswer(true);
+    setIsBlurred(false);
+
+    // 判断答案是否正确
+    if (currentWord && user) {
+      const isCorrect = userInput.toLowerCase() === currentWord.word.toLowerCase();
+
+      try {
+        // 调用后端API保存进度（这样单词会进入艾宾浩斯复习系统）
+        await trackWordProgress(user.id, parseInt(currentWord.id), bookType, isCorrect);
+        console.log(`${isCorrect ? '✅' : '❌'} 单词${isCorrect ? '答对' : '答错'}了，已加入复习系统:`, currentWord.word);
+      } catch (error) {
+        console.error("保存单词进度失败:", error);
+      }
+    }
+  };
+
+  const handleInputFocus = () => {
+    setIsBlurred(true);
   };
 
   return (
     <div className="vocabulary-page">
       {/* 左侧导航栏 */}
-      <div className={`sidebar ${isNavCollapsed ? 'collapsed' : ''}`}>
+      <div className={`sidebar ${isNavCollapsed ? 'collapsed' : ''} ${isBlurred ? 'blurred' : ''}`}>
         <div className="sidebar-header">
           <h2>{!isNavCollapsed && '单词本学习'}</h2>
           <button
@@ -105,107 +117,125 @@ const VocabularyPage = ({ bookType }: VocabularyPageProps) => {
                 <p>当前进度: {currentWordIndex + 1}/{words.length}</p>
               </div>
 
-              <div className="word-list">
-                {words.map((word, index) => (
-                  <div
-                    key={word.id}
-                    className={`word-item ${index === currentWordIndex ? 'active' : ''}`}
-                    onClick={() => {
-                      setCurrentWordIndex(index);
-                      setUserInput('');
-                      setShowAnswer(false);
-                    }}
-                  >
-                    <span className="word-number">{index + 1}</span>
-                    <span className="word-text">{word.word}</span>
-                  </div>
-                ))}
-              </div>
+              {loading ? (
+                <div className="loading-message">加载中...</div>
+              ) : (
+                <div className="word-list">
+                  {words.map((word, index) => (
+                    <div
+                      key={word.id}
+                      className={`word-item ${index === currentWordIndex ? 'active' : ''}`}
+                      onClick={() => {
+                        setCurrentWordIndex(index);
+                        setUserInput('');
+                        setShowAnswer(false);
+                      }}
+                    >
+                      <span className="word-number">{index + 1}</span>
+                      <span className="word-text">{word.word}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
-            <button className="back-home-button" onClick={() => navigate('/')}>
-              返回首页
-            </button>
+            <div className="sidebar-actions">
+              <button className="review-button" onClick={() => navigate(`/vocabulary-review/${bookType}`)}>
+                📝 开始复习
+              </button>
+              <button className="back-home-button" onClick={() => navigate('/')}>
+                返回首页
+              </button>
+            </div>
           </>
         )}
       </div>
 
       {/* 右侧内容区 */}
       <div className="content-area">
-        {/* 左边：单词页 */}
-        <div className="word-display">
-          <div className="word-card">
-            <h2 className="word-title">{currentWord?.word}</h2>
-            <p className="word-phonetic">{currentWord?.phonetic}</p>
-            <p className="word-translation">{currentWord?.translation}</p>
-            <div className="word-example">
-              <h4>例句：</h4>
-              <p>{currentWord?.example}</p>
-            </div>
-
-            <div className="navigation-buttons">
-              <button
-                onClick={handlePrevious}
-                disabled={currentWordIndex === 0}
-                className="nav-button"
-              >
-                上一个
-              </button>
-              <span className="word-counter">
-                {currentWordIndex + 1} / {words.length}
-              </span>
-              <button
-                onClick={handleNext}
-                disabled={currentWordIndex === words.length - 1}
-                className="nav-button"
-              >
-                下一个
-              </button>
-            </div>
+        {loading ? (
+          <div className="loading-container">
+            <p>正在加载单词数据...</p>
           </div>
-        </div>
+        ) : (
+          <>
+            {/* 左边：单词页 */}
+            <div className={`word-display ${isBlurred ? 'blurred' : ''}`}>
+              <div className="word-card">
+                <h2 className="word-title">{currentWord?.word}</h2>
+                <p className="word-phonetic">{currentWord?.phonetic}</p>
+                <p className="word-translation">{currentWord?.translation}</p>
+                <div className="word-example">
+                  <h4>例句：</h4>
+                  <p>{currentWord?.example}</p>
+                </div>
 
-        {/* 右边：默写页 */}
-        <div className="dictation-area">
-          <div className="dictation-card">
-            <h3>单词默写</h3>
-            <div className="dictation-prompt">
-              <p className="prompt-text">请根据中文意思写出单词：</p>
-              <p className="prompt-translation">{currentWord?.translation}</p>
+                <div className="navigation-buttons">
+                  <button
+                    onClick={handlePrevious}
+                    disabled={currentWordIndex === 0}
+                    className="nav-button"
+                  >
+                    上一个
+                  </button>
+                  <span className="word-counter">
+                    {currentWordIndex + 1} / {words.length}
+                  </span>
+                  <button
+                    onClick={handleNext}
+                    disabled={currentWordIndex === words.length - 1}
+                    className="nav-button"
+                  >
+                    下一个
+                  </button>
+                </div>
+              </div>
             </div>
 
-            <input
-              type="text"
-              className="dictation-input"
-              value={userInput}
-              onChange={(e) => setUserInput(e.target.value)}
-              placeholder="在此输入单词..."
-            />
+            {/* 右边：默写页 */}
+            <div className="dictation-area">
+              <div className="dictation-card">
+                <h3>单词默写</h3>
+                <div className="dictation-prompt">
+                  <p className="prompt-text">请根据中文意思写出单词：</p>
+                  <p className="prompt-translation">{currentWord?.translation}</p>
+                </div>
 
-            <button className="check-button" onClick={handleCheck}>
-              检查答案
-            </button>
+                <input
+                  type="text"
+                  className="dictation-input"
+                  value={userInput}
+                  onChange={(e) => setUserInput(e.target.value)}
+                  onFocus={handleInputFocus}
+                  placeholder="在此输入单词..."
+                />
 
-            {showAnswer && (
-              <div className={`answer-feedback ${userInput.toLowerCase() === currentWord?.word.toLowerCase() ? 'correct' : 'incorrect'}`}>
-                {userInput.toLowerCase() === currentWord?.word.toLowerCase() ? (
-                  <div className="correct-answer">
-                    <span className="feedback-icon">✓</span>
-                    <span>回答正确！</span>
-                  </div>
-                ) : (
-                  <div className="incorrect-answer">
-                    <span className="feedback-icon">✗</span>
-                    <div>
-                      <p>正确答案是: <strong>{currentWord?.word}</strong></p>
-                      <p>你的答案: {userInput || '(未填写)'}</p>
-                    </div>
+                <button className="check-button" onClick={handleCheck}>
+                  检查答案
+                </button>
+
+                {showAnswer && (
+                  <div className={`answer-feedback ${userInput.toLowerCase() === currentWord?.word.toLowerCase() ? 'correct' : 'incorrect'}`}>
+                    {userInput.toLowerCase() === currentWord?.word.toLowerCase() ? (
+                      <div className="correct-answer">
+                        <span className="feedback-icon">✓</span>
+                        <span>回答正确！</span>
+                      </div>
+                    ) : (
+                      <div className="incorrect-answer">
+                        <span className="feedback-icon">✗</span>
+                        <div>
+                          <p>正确答案是: <strong>{currentWord?.word}</strong></p>
+                          <p>你的答案: {userInput || '(未填写)'}</p>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
-            )}
-          </div>
-        </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

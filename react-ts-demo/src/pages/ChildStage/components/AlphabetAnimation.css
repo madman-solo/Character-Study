@@ -1,0 +1,111 @@
+/* AlphabetAnimation Component Styles */
+@import '../../../styles/ChildStageCss/child-variables.css';
+@import '../../../styles/ChildStageCss/child-animations.css';
+
+/* 字母从左侧钻出动画 */
+@keyframes slide-in-bounce {
+  0% {
+    transform: translateX(-100px) scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(10px) scale(1.2);
+    opacity: 1;
+  }
+  70% {
+    transform: translateX(-5px) scale(0.9);
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* 持续跳动动画 */
+@keyframes continuous-bounce {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.05);
+  }
+}
+
+.child-alphabet-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--child-spacing-xs);
+  padding: var(--child-spacing-md);
+  flex-wrap: wrap;
+  min-height: 80px;
+  background: linear-gradient(135deg, rgba(255, 230, 109, 0.1) 0%, rgba(78, 205, 196, 0.1) 100%);
+  border-radius: var(--child-border-radius-large);
+  margin: var(--child-spacing-md) 0;
+}
+
+.child-alphabet-letter {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--child-font-size-large);
+  font-weight: var(--child-font-weight-bold);
+  font-family: var(--child-font-family);
+  color: var(--child-primary);
+  background: linear-gradient(135deg, var(--child-gradient-primary));
+  border-radius: var(--child-border-radius-circle);
+  box-shadow: var(--child-shadow-light);
+  cursor: pointer;
+  transition: all var(--child-transition-normal) var(--child-ease-smooth);
+  opacity: 0;
+  animation: slide-in-bounce 0.8s ease-out forwards;
+}
+
+/* 钻出动画完成后持续跳动 */
+.child-alphabet-letter.settled {
+  animation: continuous-bounce 2s ease-in-out infinite;
+}
+
+.child-alphabet-letter.no-animation {
+  opacity: 1;
+  animation: none !important;
+}
+
+.child-alphabet-letter:hover {
+  transform: scale(1.15) translateY(-3px);
+  box-shadow: var(--child-shadow-hover);
+  background: linear-gradient(135deg, var(--child-gradient-accent));
+}
+
+.child-alphabet-letter:active {
+  transform: scale(0.95);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .child-alphabet-container {
+    gap: calc(var(--child-spacing-xs) * 0.75);
+    padding: var(--child-spacing-sm);
+    min-height: 60px;
+  }
+
+  .child-alphabet-letter {
+    width: 40px;
+    height: 40px;
+    font-size: var(--child-font-size-medium);
+  }
+}
+
+@media (max-width: 480px) {
+  .child-alphabet-container {
+    gap: calc(var(--child-spacing-xs) * 0.5);
+  }
+
+  .child-alphabet-letter {
+    width: 35px;
+    height: 35px;
+    font-size: var(--child-font-size-normal);
+  }
+}

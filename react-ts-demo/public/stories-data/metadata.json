@@ -1,0 +1,26 @@
+{
+  "totalStories": 278,
+  "byDifficulty": {
+    "easy": 36,
+    "medium": 96,
+    "hard": 146
+  },
+  "byCollection": {
+    "andersen-fairybook": 19,
+    "beatrix-potter-fairybook": 13,
+    "blue-fairybook": 8,
+    "chinese-fairybook": 28,
+    "first-round": 36,
+    "green-fairybook": 6,
+    "grimm-fairybook": 11,
+    "irish-fairybook": 15,
+    "japanese-fairybook": 19,
+    "lilac-fairybook": 21,
+    "native-american-fairybook": 24,
+    "norwegian-fairybook": 33,
+    "scottish-fairybook": 19,
+    "swedish-fairybook": 23,
+    "wonderclock-fairybook": 3
+  },
+  "generatedAt": "2026-02-06T10:03:05.534Z"
+}

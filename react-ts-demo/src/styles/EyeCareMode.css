@@ -1,0 +1,282 @@
+/**
+ * 护眼模式全局样式
+ * 适配少儿护眼需求：暖黄色调 + 低饱和度 + 适中亮度
+ */
+
+/* ==================== 护眼模式全局变量 ==================== */
+body.eye-care-mode {
+  /* 护眼色调：暖黄色系 */
+  --eye-care-bg-primary: #f5f0e8;        /* 主背景 - 米黄色 */
+  --eye-care-bg-secondary: #faf7f2;      /* 次级背景 - 浅米黄 */
+  --eye-care-bg-card: #fdfcf9;           /* 卡片背景 - 极浅米黄 */
+
+  /* 文本颜色：保持足够对比度 */
+  --eye-care-text-primary: #4a4237;      /* 主文本 - 深棕色 */
+  --eye-care-text-secondary: #6b5d4f;    /* 次级文本 - 中棕色 */
+  --eye-care-text-tertiary: #8b7d6f;     /* 三级文本 - 浅棕色 */
+
+  /* 主题色调整：降低饱和度 */
+  --eye-care-primary: #b89968;           /* 主色 - 暖金色 */
+  --eye-care-primary-light: #d4c4a8;     /* 主色浅色 */
+  --eye-care-primary-dark: #9a7d4f;      /* 主色深色 */
+
+  --eye-care-accent: #d4a574;            /* 强调色 - 暖橙色 */
+  --eye-care-accent-light: #e8c9a8;      /* 强调色浅色 */
+
+  /* 边框和分割线 */
+  --eye-care-border: #e0d8cc;            /* 边框色 */
+  --eye-care-divider: #ebe5dc;           /* 分割线 */
+
+  /* 阴影：柔和 */
+  --eye-care-shadow-sm: 0 2px 8px rgba(139, 125, 111, 0.08);
+  --eye-care-shadow-md: 0 4px 16px rgba(139, 125, 111, 0.12);
+  --eye-care-shadow-lg: 0 8px 24px rgba(139, 125, 111, 0.15);
+
+  /* 渐变背景 */
+  --eye-care-gradient-1: linear-gradient(135deg, #f5f0e8 0%, #faf7f2 100%);
+  --eye-care-gradient-2: linear-gradient(135deg, #d4c4a8 0%, #e8c9a8 100%);
+}
+
+/* ==================== 全局背景和文本 ==================== */
+body.eye-care-mode {
+  background: var(--eye-care-bg-primary) !important;
+  color: var(--eye-care-text-primary) !important;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* ==================== 通用元素样式 ==================== */
+
+/* 卡片和容器 */
+body.eye-care-mode .card,
+body.eye-care-mode .container,
+body.eye-care-mode .box,
+body.eye-care-mode .panel {
+  background: var(--eye-care-bg-card) !important;
+  color: var(--eye-care-text-primary) !important;
+  border-color: var(--eye-care-border) !important;
+  box-shadow: var(--eye-care-shadow-sm) !important;
+}
+
+/* 按钮 */
+body.eye-care-mode button,
+body.eye-care-mode .button,
+body.eye-care-mode .btn {
+  background: var(--eye-care-primary) !important;
+  color: var(--eye-care-bg-card) !important;
+  border-color: var(--eye-care-primary-dark) !important;
+  box-shadow: var(--eye-care-shadow-sm) !important;
+}
+
+body.eye-care-mode button:hover,
+body.eye-care-mode .button:hover,
+body.eye-care-mode .btn:hover {
+  background: var(--eye-care-primary-dark) !important;
+  box-shadow: var(--eye-care-shadow-md) !important;
+}
+
+/* 输入框 */
+body.eye-care-mode input,
+body.eye-care-mode textarea,
+body.eye-care-mode select {
+  background: var(--eye-care-bg-secondary) !important;
+  color: var(--eye-care-text-primary) !important;
+  border-color: var(--eye-care-border) !important;
+}
+
+body.eye-care-mode input::placeholder,
+body.eye-care-mode textarea::placeholder {
+  color: var(--eye-care-text-tertiary) !important;
+}
+
+/* 链接 */
+body.eye-care-mode a {
+  color: var(--eye-care-primary-dark) !important;
+}
+
+body.eye-care-mode a:hover {
+  color: var(--eye-care-primary) !important;
+}
+
+/* 标题 */
+body.eye-care-mode h1,
+body.eye-care-mode h2,
+body.eye-care-mode h3,
+body.eye-care-mode h4,
+body.eye-care-mode h5,
+body.eye-care-mode h6 {
+  color: var(--eye-care-text-primary) !important;
+}
+
+/* 段落和文本 */
+body.eye-care-mode p,
+body.eye-care-mode span,
+body.eye-care-mode div {
+  color: inherit;
+}
+
+/* ==================== 导航栏 ==================== */
+body.eye-care-mode .navbar,
+body.eye-care-mode .nav,
+body.eye-care-mode header {
+  background: var(--eye-care-bg-card) !important;
+  border-bottom-color: var(--eye-care-border) !important;
+  box-shadow: var(--eye-care-shadow-sm) !important;
+}
+
+/* ==================== 侧边栏 ==================== */
+body.eye-care-mode .sidebar,
+body.eye-care-mode .profile-sidebar {
+  background: var(--eye-care-bg-card) !important;
+  box-shadow: var(--eye-care-shadow-lg) !important;
+}
+
+body.eye-care-mode .menu-item {
+  color: var(--eye-care-text-primary) !important;
+}
+
+body.eye-care-mode .menu-item:hover {
+  background: var(--eye-care-bg-secondary) !important;
+}
+
+/* ==================== 模态框 ==================== */
+body.eye-care-mode .modal,
+body.eye-care-mode .modal-content {
+  background: var(--eye-care-bg-card) !important;
+  box-shadow: var(--eye-care-shadow-lg) !important;
+}
+
+body.eye-care-mode .modal-overlay {
+  background: rgba(139, 125, 111, 0.6) !important;
+}
+
+/* ==================== 故事页面特殊处理 ==================== */
+body.eye-care-mode .stories-page {
+  background: var(--eye-care-gradient-1) !important;
+}
+
+body.eye-care-mode .story-card {
+  background: var(--eye-care-bg-card) !important;
+  border-color: var(--eye-care-border) !important;
+  box-shadow: var(--eye-care-shadow-md) !important;
+}
+
+body.eye-care-mode .story-cover-placeholder {
+  background: var(--eye-care-gradient-2) !important;
+}
+
+body.eye-care-mode .stories-header {
+  background: var(--eye-care-primary) !important;
+  box-shadow: var(--eye-care-shadow-md) !important;
+}
+
+body.eye-care-mode .filter-btn {
+  background: var(--eye-care-bg-card) !important;
+  color: var(--eye-care-text-primary) !important;
+  border-color: var(--eye-care-border) !important;
+}
+
+body.eye-care-mode .filter-btn.active {
+  background: var(--eye-care-primary) !important;
+  color: var(--eye-care-bg-card) !important;
+}
+
+/* ==================== 少儿英语首页 ==================== */
+body.eye-care-mode .child-english-home {
+  background: var(--eye-care-gradient-1) !important;
+}
+
+body.eye-care-mode .section-card,
+body.eye-care-mode .feature-card {
+  background: var(--eye-care-bg-card) !important;
+  border-color: var(--eye-care-border) !important;
+  box-shadow: var(--eye-care-shadow-sm) !important;
+}
+
+/* ==================== 阅读器页面 ==================== */
+body.eye-care-mode .story-reader-page,
+body.eye-care-mode .reader-content {
+  background: var(--eye-care-bg-primary) !important;
+}
+
+body.eye-care-mode .story-section,
+body.eye-care-mode .word-panel {
+  background: var(--eye-care-bg-card) !important;
+  box-shadow: var(--eye-care-shadow-md) !important;
+}
+
+body.eye-care-mode .story-text {
+  color: var(--eye-care-text-primary) !important;
+  line-height: 2 !important; /* 增加行高，减少眼睛疲劳 */
+}
+
+body.eye-care-mode .clickable-word:hover {
+  background: var(--eye-care-primary-light) !important;
+  color: var(--eye-care-text-primary) !important;
+}
+
+/* ==================== 单词本页面 ==================== */
+body.eye-care-mode .vocabulary-page {
+  background: var(--eye-care-bg-primary) !important;
+}
+
+body.eye-care-mode .word-card {
+  background: var(--eye-care-bg-card) !important;
+  border-color: var(--eye-care-border) !important;
+  box-shadow: var(--eye-care-shadow-sm) !important;
+}
+
+/* ==================== 特殊元素保持原色 ==================== */
+/* 某些装饰性元素保持原有颜色以维持趣味性 */
+body.eye-care-mode .emoji,
+body.eye-care-mode .icon-emoji,
+body.eye-care-mode .card-decoration {
+  filter: sepia(0.3) saturate(0.7) brightness(1.1);
+}
+
+/* 难度标签保持区分度 */
+body.eye-care-mode .difficulty-badge {
+  opacity: 0.85;
+  filter: saturate(0.7);
+}
+
+/* ==================== 滚动条 ==================== */
+body.eye-care-mode ::-webkit-scrollbar {
+  background: var(--eye-care-bg-secondary);
+}
+
+body.eye-care-mode ::-webkit-scrollbar-thumb {
+  background: var(--eye-care-primary-light);
+  border-color: var(--eye-care-bg-secondary);
+}
+
+body.eye-care-mode ::-webkit-scrollbar-thumb:hover {
+  background: var(--eye-care-primary);
+}
+
+/* ==================== 动画和过渡 ==================== */
+body.eye-care-mode * {
+  transition-property: background-color, color, border-color, box-shadow;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+/* ==================== 响应式调整 ==================== */
+@media (max-width: 768px) {
+  body.eye-care-mode {
+    /* 移动端字体稍大，减少眼睛疲劳 */
+    font-size: 16px;
+  }
+
+  body.eye-care-mode .story-text {
+    font-size: 17px !important;
+    line-height: 2.2 !important;
+  }
+}
+
+/* ==================== 打印样式 ==================== */
+@media print {
+  body.eye-care-mode {
+    background: white !important;
+    color: black !important;
+  }
+}

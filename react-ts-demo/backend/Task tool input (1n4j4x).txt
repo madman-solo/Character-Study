@@ -1,0 +1,119 @@
+4个TODO任务：
+
+## 用户需求：
+1. ⭐单词学习中心中连续打卡、学习时长真实功能实现
+2. 正确实现复习单词功能
+3. ⭐少儿英语页面学习统计改进：
+   - 去掉学习模块内容
+   - 添加单词掌握度分析（AI分析或其他方法）
+   - 添加学习曲线图表（Chart.js/Recharts/Echarts）
+   - 添加每日/每周/每月报告
+4. ⭐正确实现12+英语学习中的单词本复习模块（基于艾宾浩斯遗忘曲线）
+
+## 现有实现情况：
+
+### 学习时长和打卡系统：
+- **Hook**: `react-ts-demo/src/hooks/useChildLearning.ts`
+  - 已实现 startLearningSession() 和 endLearningSession()
+  - 追踪 totalStudyTime（总学习时长，分钟）
+  - 追踪 dailyStudyTime（每日学习时长，JSON格式）
+  - 追踪 consecutiveDays（连续打卡天数）
+  - 数据存储在 localStorage: `child_learning_{userId}`
+  
+- **数据库**: `backend/prisma/schema.prisma` - UserLearningData 模型
+  - totalStudyTime, consecutiveDays, dailyStudyTime 等字段
+  
+- **API**: `backend/routes/learningData.js`
+  - GET /api/learning-data/:userId
+  - POST /api/learning-data
+
+- **使用位置**: ChildVocabularyBook.tsx 在组件挂载时启动会话，卸载时结束会话
+
+**问题**：可能存在的问题是打卡逻辑不够严格，学习时长可能不够准确
+
+### 复习功能：
+- **算法**: `backend/utils/spacedRepetition.js`
+  - 实现了艾宾浩斯遗忘曲线
+  - 复习间隔：1天、3天、7天、15天、30天、60天（掌握）
+  - calculateNextReview(), isDueForReview(), calculatePriority()
+  - 掌握标准：correctCount >= 5 && wrongCount < 2
+
+- **数据库模型**:
+  - WordProgress（成人单词）
+  - ChildWordProgress（儿童单词）
+  - 字段：correctCount, wrongCount, lastStudied, mastered
+
+- **API**: `backend/routes/wordProgress.js`
+  - POST /api/word-progress（成人）
+  - POST /api/child-word-progress（儿童）
+  - GET /api/word-progress/review/:userId
+  - GET /api/child-word-progress/review/:userId
+
+- **前端组件**:
+  - VocabularyReview.tsx（成人复习页面）
+  - ChildVocabularyReview.tsx（儿童复习页面）
+  - useSpacedRepetition hook
+
+**问题**：用户说需要"正确实现"，可能存在bug或逻辑问题
+
+### 学习统计：
+- **当前显示位置**:
+  - ChildEnglishHome.tsx - 基本统计
+  - ParentPanel.tsx - 详细统计面板（3个标签页）
+  - ChildVocabularyHub.tsx - 进度卡片
+
+- **当前统计内容**:
+  - 总学习时长、平均每日学习时长
+  - 掌握单词数、答题准确率
+  - 连续登录天数、互动次数
+  - 词汇书进度、薄弱单词列表
+  - 积分和徽章
+
+- **可视化**:
+  - 仅使用CSS进度条
+  - 没有集成图表库
+
+**需要改进**:
+- 移除"学习模块内容"（需要明确是什么）
+- 添加单词掌握度分析
+- 添加学习曲线图表（需要选择图表库）
+- 添加每日/每周/每月报告
+
+### 奖励系统：
+- **Hook**: `react-ts-demo/src/hooks/useChildRewards.ts`
+- **积分规则**: 每日登录10分、答对5分、掌握单词10分、互动3分、学习10分钟20分
+- **徽章系统**: 6个成就徽章
+
+## 设计要求：
+
+请设计详细的实现方案，包括：
+
+1. **连续打卡和学习时长真实性改进**：
+   - 如何确保打卡的真实性（防止作弊）
+   - 如何准确追踪学习时长（考虑页面切换、最小化等情况）
+   - 需要修改哪些文件
+   - 数据库schema是否需要调整
+
+2. **复习功能改进**：
+   - 诊断现有复习功能可能存在的问题
+   - 如何确保艾宾浩斯曲线正确实施
+   - 儿童和成人复习功能的差异化处理
+   - 需要修改的文件和具体改进点
+
+3. **学习统计改进**：
+   - 选择合适的图表库（推荐Recharts，因为它是React原生的）
+   - 设计单词掌握度分析算法（可以基于正确率、复习次数、时间间隔等）
+   - 设计学习曲线图表（显示什么数据？每日学习时长？掌握单词数？）
+   - 设计每日/每周/每月报告的数据结构和API
+   - 明确需要移除的"学习模块内容"是什么
+   - 需要创建的新组件和修改的现有组件
+
+4. **数据库和API设计**：
+   - 是否需要新的数据库表或字段
+   - 需要新增哪些API端点
+   - 数据聚合和统计的实现方式
+
+5. **实现优先级和步骤**：
+   - 将任务分解为可执行的步骤
+   - 标注关键文件路径
+   - 考虑向后兼容性

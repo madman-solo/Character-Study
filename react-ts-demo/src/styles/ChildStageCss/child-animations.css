@@ -121,3 +121,369 @@
     transform: scale(0.95);
   }
 }
+
+/* ========== 学习专用动画 ========== */
+
+/* 字母跳动动画 - 单词展示区 */
+@keyframes child-letter-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* 音标闪烁动画 */
+@keyframes child-phonetic-blink {
+  0%, 100% {
+    opacity: 1;
+    color: var(--child-primary);
+  }
+  50% {
+    opacity: 0.6;
+    color: var(--child-secondary);
+  }
+}
+
+/* 正确答题礼花动效 */
+@keyframes child-confetti-burst {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5) rotate(180deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* 错误答题温和提示动效 */
+@keyframes child-gentle-shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+/* 对话气泡渐变动效 */
+@keyframes child-bubble-appear {
+  0% {
+    transform: scale(0.8) translateY(10px);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05) translateY(-2px);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 单词卡片滑动切换动画 */
+@keyframes child-card-slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes child-card-slide-out {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+/* 积分飞入动画 */
+@keyframes child-point-fly {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-50px) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* 勋章解锁动画 */
+@keyframes child-badge-unlock {
+  0% {
+    transform: scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(10deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* 星星闪烁动画 */
+@keyframes child-star-twinkle {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  25% {
+    transform: scale(1.2) rotate(5deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(0.9) rotate(-5deg);
+    opacity: 1;
+  }
+  75% {
+    transform: scale(1.1) rotate(3deg);
+    opacity: 0.9;
+  }
+}
+
+/* 进度条填充动画 */
+@keyframes child-progress-fill {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--progress-width);
+  }
+}
+
+/* 彩虹渐变动画 */
+@keyframes child-rainbow-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ========== 动画工具类 ========== */
+
+.child-animate-bounce-in {
+  animation: child-bounce-in var(--child-transition-normal) var(--child-ease-bounce);
+}
+
+.child-animate-slide-up {
+  animation: child-slide-up var(--child-transition-normal) var(--child-ease-smooth);
+}
+
+.child-animate-slide-left {
+  animation: child-slide-left var(--child-transition-normal) var(--child-ease-smooth);
+}
+
+.child-animate-slide-right {
+  animation: child-slide-right var(--child-transition-normal) var(--child-ease-smooth);
+}
+
+.child-animate-fade-in {
+  animation: child-fade-in var(--child-transition-normal) ease-in;
+}
+
+.child-animate-wiggle {
+  animation: child-wiggle 1s ease-in-out infinite;
+}
+
+.child-animate-float {
+  animation: child-float 3s ease-in-out infinite;
+}
+
+.child-animate-pulse {
+  animation: child-pulse 2s ease-in-out infinite;
+}
+
+.child-animate-rotate {
+  animation: child-rotate 2s linear infinite;
+}
+
+.child-animate-heartbeat {
+  animation: child-heartbeat 1.5s ease-in-out infinite;
+}
+
+.child-animate-letter-bounce {
+  animation: child-letter-bounce 0.6s ease-in-out;
+}
+
+.child-animate-phonetic-blink {
+  animation: child-phonetic-blink 1.5s ease-in-out infinite;
+}
+
+.child-animate-confetti {
+  animation: child-confetti-burst 0.8s ease-out forwards;
+}
+
+.child-animate-gentle-shake {
+  animation: child-gentle-shake 0.5s ease-in-out;
+}
+
+.child-animate-bubble {
+  animation: child-bubble-appear 0.4s var(--child-ease-bounce);
+}
+
+.child-animate-card-in {
+  animation: child-card-slide-in 0.5s var(--child-ease-smooth);
+}
+
+.child-animate-card-out {
+  animation: child-card-slide-out 0.5s var(--child-ease-smooth);
+}
+
+.child-animate-point-fly {
+  animation: child-point-fly 1s ease-out forwards;
+}
+
+.child-animate-badge-unlock {
+  animation: child-badge-unlock 0.8s var(--child-ease-bounce);
+}
+
+.child-animate-star-twinkle {
+  animation: child-star-twinkle 2s ease-in-out infinite;
+}
+
+/* ========== 延迟动画工具类 ========== */
+
+.child-animate-delay-1 {
+  animation-delay: 0.1s;
+}
+
+.child-animate-delay-2 {
+  animation-delay: 0.2s;
+}
+
+.child-animate-delay-3 {
+  animation-delay: 0.3s;
+}
+
+.child-animate-delay-4 {
+  animation-delay: 0.4s;
+}
+
+.child-animate-delay-5 {
+  animation-delay: 0.5s;
+}
+
+/* ========== 单词本专用动画 ========== */
+
+/* 字母从左侧弹跳进入 - 用于26个字母动画 */
+@keyframes child-alphabet-bounce-in {
+  0% {
+    transform: translateX(-100vw) rotate(-180deg);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(10px) rotate(10deg);
+    opacity: 1;
+  }
+  80% {
+    transform: translateX(-5px) rotate(-5deg);
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* 字母轻轻跳动 - 字母在底部的持续动画 */
+@keyframes child-alphabet-gentle-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* 单词卡片悬停脉冲 */
+@keyframes child-vocab-card-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* 单词卡片背景闪烁 */
+@keyframes child-vocab-bg-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* 答案正确动画 */
+@keyframes child-answer-correct {
+  0% {
+    transform: scale(1);
+    background-color: var(--child-secondary);
+  }
+  50% {
+    transform: scale(1.1);
+    background-color: var(--child-accent);
+  }
+  100% {
+    transform: scale(1);
+    background-color: var(--child-secondary);
+  }
+}
+
+/* 答案错误动画 */
+@keyframes child-answer-wrong {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+}
+
+/* 单词本工具类 */
+.child-alphabet-letter {
+  animation: child-alphabet-bounce-in 0.8s var(--child-ease-bounce) forwards;
+}
+
+.child-alphabet-letter.settled {
+  animation: child-alphabet-gentle-bounce 2s ease-in-out infinite;
+}
+
+.child-vocab-card-hover {
+  animation: child-vocab-card-pulse 1s ease-in-out infinite;
+}
+
+.child-answer-correct-feedback {
+  animation: child-answer-correct 0.6s ease-out;
+}
+
+.child-answer-wrong-feedback {
+  animation: child-answer-wrong 0.5s ease-in-out;
+}

@@ -1,0 +1,139 @@
+/* 互动学习卡片样式 */
+@import '../../../styles/ChildStageCss/child-variables.css';
+@import '../../../styles/ChildStageCss/child-animations.css';
+
+.interactive-learning-card {
+  position: relative;
+  background: var(--child-white);
+  border-radius: var(--child-radius-large);
+  padding: var(--child-spacing-lg);
+  box-shadow: var(--child-shadow-light);
+  cursor: pointer;
+  transition: all var(--child-transition-normal);
+  overflow: hidden;
+}
+
+.interactive-learning-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--child-shadow-hover);
+}
+
+.interactive-learning-card.completed {
+  background: var(--child-gradient-secondary);
+  border: 3px solid var(--child-secondary);
+}
+
+.card-icon-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--child-spacing-md);
+}
+
+.card-icon {
+  font-size: 4rem;
+  transition: all var(--child-transition-normal);
+}
+
+.interactive-learning-card:hover .card-icon {
+  transform: scale(1.2) rotate(10deg);
+}
+
+.completion-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 40px;
+  height: 40px;
+  background: var(--child-gradient-primary);
+  border-radius: var(--child-radius-circle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--child-white);
+  box-shadow: var(--child-shadow-primary);
+}
+
+.card-title {
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-large);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-text);
+  text-align: center;
+  margin: 0 0 var(--child-spacing-sm) 0;
+}
+
+.card-description {
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-normal);
+  color: var(--child-dark-gray);
+  text-align: center;
+  margin: 0 0 var(--child-spacing-md) 0;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: var(--child-spacing-md);
+  border-top: 2px solid var(--child-gray);
+}
+
+.card-points {
+  display: flex;
+  align-items: center;
+  gap: var(--child-spacing-xs);
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-medium);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-primary);
+}
+
+.points-icon {
+  font-size: 1.5rem;
+  animation: child-star-twinkle 2s ease-in-out infinite;
+}
+
+.points-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-xlarge);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-primary);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .interactive-learning-card {
+    padding: var(--child-spacing-md);
+  }
+
+  .card-icon {
+    font-size: 3rem;
+  }
+
+  .card-title {
+    font-size: var(--child-font-size-medium);
+  }
+
+  .card-description {
+    font-size: var(--child-font-size-small);
+  }
+
+  .card-points {
+    font-size: var(--child-font-size-normal);
+  }
+
+  .completion-badge {
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+  }
+}

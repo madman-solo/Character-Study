@@ -1,0 +1,893 @@
+/* 绘本故事页面样式 - 童话风格 */
+
+.stories-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #abe6e8 0%, #abe6e8 50%, #abf0d1 100%);
+  padding: 20px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* 添加童话装饰元素 */
+.stories-page::before {
+  content: '✨';
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  font-size: 40px;
+  animation: float 3s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+.stories-page::after {
+  content: '🌟';
+  position: absolute;
+  top: 20%;
+  right: 8%;
+  font-size: 35px;
+  animation: float 4s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* 顶部导航 */
+.stories-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px 25px;
+  background: linear-gradient(135deg, #14a699 0%, #14a699 100%);
+  border-radius: 25px;
+  box-shadow: 0 8px 20px rgba(20, 166, 153, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.stories-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.back-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  background: white;
+  color: #14a699;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.back-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.page-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: white;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.header-spacer {
+  width: 120px;
+}
+
+/* 说明 */
+.stories-intro {
+  text-align: center;
+  margin-bottom: 25px;
+  padding: 25px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(20, 166, 153, 0.15);
+  border: 3px solid #abe6e8;
+  position: relative;
+}
+
+.stories-intro::before {
+  content: '📚';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 40px;
+  background: white;
+  padding: 5px 15px;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.stories-intro p {
+  font-size: 20px;
+  color: #14a699;
+  margin: 10px 0 0 0;
+  font-weight: 700;
+}
+
+/* 难度筛选 */
+.difficulty-filter {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 35px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 14px 28px;
+  border: 3px solid #abe6e8;
+  border-radius: 30px;
+  background: white;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #14a699;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(20, 166, 153, 0.1);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+}
+
+.filter-btn:hover::before {
+  width: 200%;
+  height: 200%;
+}
+
+.filter-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(20, 166, 153, 0.25);
+  border-color: #14a699;
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, #14a699 0%, #14a699 100%);
+  color: white;
+  border-color: #14a699;
+  box-shadow: 0 6px 20px rgba(20, 166, 153, 0.4);
+  transform: translateY(-2px);
+}
+
+/* 加载状态 */
+.loading-container {
+  text-align: center;
+  padding: 50px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  margin: 20px auto;
+  max-width: 400px;
+}
+
+.loading-container p {
+  font-size: 18px;
+  color: #666;
+  margin: 0;
+}
+
+/* 无故事提示 */
+.no-stories {
+  text-align: center;
+  padding: 50px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  margin: 20px auto;
+  max-width: 400px;
+}
+
+.no-stories p {
+  font-size: 18px;
+  color: #999;
+  margin: 0;
+}
+
+
+/* 故事网格 */
+.stories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.story-card {
+  background: white;
+  border-radius: 25px;
+  overflow: visible; /* 改为visible让装饰元素可以溢出 */
+  box-shadow: 0 8px 25px rgba(20, 166, 153, 0.15);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 4px solid #abe6e8;
+  position: relative;
+}
+
+.story-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, #ffa286, #14a699, #abf0d1);
+  border-radius: 25px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.story-card:hover::before {
+  opacity: 1;
+}
+
+.story-card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 15px 40px rgba(20, 166, 153, 0.3);
+  border-color: transparent;
+}
+
+/* 卡片装饰元素 */
+.card-decoration {
+  position: absolute;
+  font-size: 24px;
+  z-index: 10;
+  opacity: 0.7;
+  transition: all 0.4s ease;
+  pointer-events: none;
+}
+
+/* 装饰位置 */
+.deco-top-left {
+  top: -8px;
+  left: -8px;
+}
+
+.deco-top-right {
+  top: -8px;
+  right: -8px;
+}
+
+.deco-bottom-left {
+  bottom: 10px;
+  left: -8px;
+}
+
+/* 卡片hover时装饰元素动画 */
+.story-card:hover .card-decoration {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* 不同装饰的特殊动画 */
+.story-card:hover .deco-star,
+.story-card:hover .deco-star-glow {
+  animation: rotate-star 2s ease-in-out infinite;
+}
+
+.story-card:hover .deco-sparkle {
+  animation: sparkle-pulse 1.5s ease-in-out infinite;
+}
+
+.story-card:hover .deco-cloud {
+  animation: float-cloud 3s ease-in-out infinite;
+}
+
+.story-card:hover .deco-flower,
+.story-card:hover .deco-flower-pink {
+  animation: flower-bloom 2s ease-in-out infinite;
+}
+
+.story-card:hover .deco-heart {
+  animation: heart-beat 1s ease-in-out infinite;
+}
+
+.story-card:hover .deco-rainbow {
+  animation: rainbow-slide 2s ease-in-out infinite;
+}
+
+.story-card:hover .deco-butterfly {
+  animation: butterfly-fly 2.5s ease-in-out infinite;
+}
+
+.story-card:hover .deco-bird {
+  animation: bird-hop 1.5s ease-in-out infinite;
+}
+
+.story-card:hover .deco-moon {
+  animation: moon-glow 2s ease-in-out infinite;
+}
+
+.story-card:hover .deco-sun {
+  animation: sun-rotate 3s linear infinite;
+}
+
+/* 装饰动画定义 */
+@keyframes rotate-star {
+  0%, 100% {
+    transform: scale(1.2) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.4) rotate(180deg);
+  }
+}
+
+@keyframes sparkle-pulse {
+  0%, 100% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.6;
+  }
+}
+
+@keyframes float-cloud {
+  0%, 100% {
+    transform: scale(1.2) translateY(0);
+  }
+  50% {
+    transform: scale(1.2) translateY(-8px);
+  }
+}
+
+@keyframes flower-bloom {
+  0%, 100% {
+    transform: scale(1.2) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.4) rotate(10deg);
+  }
+}
+
+@keyframes heart-beat {
+  0%, 100% {
+    transform: scale(1.2);
+  }
+  25% {
+    transform: scale(1.4);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  75% {
+    transform: scale(1.4);
+  }
+}
+
+@keyframes rainbow-slide {
+  0%, 100% {
+    transform: scale(1.2) translateX(0);
+  }
+  50% {
+    transform: scale(1.2) translateX(5px);
+  }
+}
+
+@keyframes butterfly-fly {
+  0%, 100% {
+    transform: scale(1.2) translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.3) translateY(-5px) rotate(-5deg);
+  }
+  50% {
+    transform: scale(1.2) translateY(-8px) rotate(0deg);
+  }
+  75% {
+    transform: scale(1.3) translateY(-5px) rotate(5deg);
+  }
+}
+
+@keyframes bird-hop {
+  0%, 100% {
+    transform: scale(1.2) translateY(0);
+  }
+  50% {
+    transform: scale(1.2) translateY(-10px);
+  }
+}
+
+@keyframes moon-glow {
+  0%, 100% {
+    transform: scale(1.2);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.3);
+    filter: brightness(1.3);
+  }
+}
+
+@keyframes sun-rotate {
+  0% {
+    transform: scale(1.2) rotate(0deg);
+  }
+  100% {
+    transform: scale(1.2) rotate(360deg);
+  }
+}
+
+.story-cover {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 25px 25px 0 0; /* 添加圆角以配合卡片 */
+}
+
+.story-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 故事封面占位符 - 童话风格 */
+.story-cover-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #14a699 0%, #abf0d1 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+.story-cover-placeholder::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.story-icon {
+  font-size: 90px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  animation: bounce 2s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.collection-badge {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #14a699;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 2px solid #abe6e8;
+  z-index: 1;
+}
+
+.difficulty-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 8px 18px;
+  border-radius: 20px;
+  color: white;
+  font-weight: 800;
+  font-size: 14px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  border: 3px solid white;
+  z-index: 2;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.story-info {
+  padding: 25px;
+  background: linear-gradient(to bottom, white 0%, #f8fffe 100%);
+}
+
+.story-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #14a699;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.story-title-cn {
+  font-size: 17px;
+  color: #666;
+  margin: 0 0 12px 0;
+  font-weight: 600;
+}
+
+.story-collection {
+  font-size: 14px;
+  color: #999;
+  margin: 0 0 15px 0;
+  font-weight: 500;
+}
+
+.story-stats {
+  display: flex;
+  gap: 15px;
+  font-size: 15px;
+  color: #14a699;
+  font-weight: 600;
+}
+
+.story-stats span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #abe6e8;
+  padding: 6px 12px;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.story-stats span:hover {
+  background: #14a699;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* 故事详情模态框 - 童话风格 */
+.story-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(20, 166, 153, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: white;
+  border-radius: 30px;
+  padding: 35px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  border: 5px solid #abe6e8;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 45px;
+  height: 45px;
+  border: none;
+  background: linear-gradient(135deg, #ffa286 0%, #ff8a6d 100%);
+  color: white;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 162, 134, 0.4);
+  font-weight: 700;
+}
+
+.modal-close:hover {
+  background: linear-gradient(135deg, #ff8a6d 0%, #ff7254 100%);
+  transform: rotate(90deg) scale(1.1);
+  box-shadow: 0 6px 20px rgba(255, 162, 134, 0.6);
+}
+
+.modal-cover {
+  width: 100%;
+  height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 25px;
+  border: 4px solid #abe6e8;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.modal-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 模态框封面占位符 */
+.modal-cover-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #14a699 0%, #abf0d1 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-cover-placeholder::before {
+  content: '✨';
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  font-size: 50px;
+  opacity: 0.3;
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+.modal-cover-placeholder::after {
+  content: '⭐';
+  position: absolute;
+  bottom: 15%;
+  right: 15%;
+  font-size: 45px;
+  opacity: 0.3;
+  animation: twinkle 2.5s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.2);
+  }
+}
+
+.story-icon-large {
+  font-size: 140px;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.modal-title {
+  font-size: 30px;
+  font-weight: 800;
+  color: #14a699;
+  text-align: center;
+  margin: 0 0 12px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.modal-title-cn {
+  font-size: 22px;
+  color: #666;
+  text-align: center;
+  margin: 0 0 12px 0;
+  font-weight: 600;
+}
+
+.modal-collection {
+  font-size: 17px;
+  color: #999;
+  text-align: center;
+  margin: 0 0 25px 0;
+  font-weight: 500;
+}
+
+.modal-description {
+  background: linear-gradient(135deg, #abe6e8 0%, #abf0d1 100%);
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 25px;
+  border: 3px solid #14a699;
+  box-shadow: 0 4px 15px rgba(20, 166, 153, 0.1);
+}
+
+.modal-description h3 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #14a699;
+  margin: 0 0 18px 0;
+  text-align: center;
+}
+
+.story-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.story-details p {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+  font-weight: 600;
+  background: white;
+  padding: 12px 18px;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.modal-stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.modal-stats span {
+  font-size: 16px;
+  color: #666;
+}
+
+.modal-difficulty {
+  padding: 10px 25px;
+  border-radius: 25px;
+  color: white;
+  font-weight: 800;
+  font-size: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: 3px solid white;
+}
+
+.read-btn {
+  width: 100%;
+  padding: 18px;
+  border: none;
+  border-radius: 25px;
+  font-size: 20px;
+  font-weight: 800;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ffa286 0%, #ff8a6d 100%);
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(255, 162, 134, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.read-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.read-btn:hover::before {
+  width: 300%;
+  height: 300%;
+}
+
+.read-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(255, 162, 134, 0.6);
+}
+
+.modal-hint {
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .stories-page {
+    padding: 15px;
+  }
+
+  .stories-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .header-spacer {
+    display: none;
+  }
+
+  .stories-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-content {
+    padding: 20px;
+  }
+
+  .modal-cover {
+    height: 250px;
+  }
+}

@@ -5,6 +5,75 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+// 用户表
+model User {
+  id            String   @id @default(uuid()) // 用户ID，使用UUID
+  username      String   @unique // 用户名，唯一
+  email         String?  @unique // 邮箱，可选，唯一
+  password      String   // 密码（加密后）
+  nickname      String?  // 昵称
+  avatar        String?  // 头像URL
+  ageGroup      String?  // 年龄段：child(0-12), teen(13-17), adult(18+)
+  bio           String?  // 个人简介
+  isGuest       Boolean  @default(false) // 是否为游客
+  createdAt     DateTime @default(now()) // 创建时间
+  updatedAt     DateTime @updatedAt // 更新时间
+  lastLoginAt   DateTime @default(now()) // 最后登录时间
+
+  // 关系
+  learningData  UserLearningData[]
+  rewardData    UserRewardData[]
+}
+
+// 用户学习数据
+model UserLearningData {
+  id                Int      @id @default(autoincrement())
+  userId            String   // 用户ID
+  totalStudyTime    Int      @default(0) // 总学习时长（分钟）
+  consecutiveDays   Int      @default(0) // 连续打卡天数
+  interactionCount  Int      @default(0) // 互动次数
+  dailyStudyTime    String   @default("{}") // 每日学习时长（JSON）
+  currentBookProgress String @default("{}") // 当前单词本进度（JSON）
+  masteredWords     String   @default("[]") // 已掌握单词列表（JSON）
+  weakWords         String   @default("[]") // 薄弱单词列表（JSON）
+  answerHistory     String   @default("{}") // 答题历史（JSON）
+  lastCheckInDate   String   @default("") // 最后打卡日期（YYYY-MM-DD）
+  checkInHistory    String   @default("[]") // 打卡历史记录（JSON）
+  dailyMinStudyTime Int      @default(5) // 每日最低学习时长（分钟）
+  validCheckIns     Int      @default(0) // 有效打卡次数
+  dailyAccuracy     String   @default("{}") // 每日准确率（JSON）
+  weeklyReport      String   @default("{}") // 周报数据（JSON）
+  monthlyReport     String   @default("{}") // 月报数据（JSON）
+  learningStreak    Int      @default(0) // 学习连续天数
+  longestStreak     Int      @default(0) // 最长连续天数
+  lastSyncAt        DateTime @default(now()) // 最后同步时间
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId]) // 每个用户只有一条学习数据
+  @@index([userId])
+}
+
+// 用户奖励数据
+model UserRewardData {
+  id            Int      @id @default(autoincrement())
+  userId        String   // 用户ID
+  totalPoints   Int      @default(0) // 总积分
+  badges        String   @default("[]") // 勋章列表（JSON）
+  recentPoints  String   @default("[]") // 最近积分记录（JSON）
+  lastSyncAt    DateTime @default(now()) // 最后同步时间
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId]) // 每个用户只有一条奖励数据
+  @@index([userId])
+}
+
 model Character {
   id          Int      @id @default(autoincrement()) // 主键id，自增，唯一
   name        String   // 人物名称
@@ -55,4 +124,82 @@ model Conversation {
   timestamp   DateTime @default(now()) // 消息时间
 
   @@index([userId, timestamp]) // 索引优化查询
+}
+
+// 单词词典表
+model Word {
+  id          Int      @id @default(autoincrement())
+  word        String   @unique // 单词（唯一）
+  phonetic    String?  // 音标
+  translation String?  // 中文翻译
+  definition  String?  // 英文释义
+  pos         String?  // 词性（part of speech）
+  collins     Int?     @default(0) // 柯林斯星级
+  oxford      Boolean? @default(false) // 是否牛津3000核心词
+  tag         String?  // 标签（如：zk=中考, gk=高考, cet4=四级, cet6=六级, ielts=雅思, toefl=托福）
+  bnc         Int?     // 英国国家语料库词频
+  frq         Int?     // 当代语料库词频
+  exchange    String?  // 时态复数等变换
+  detail      String?  // 详细释义（JSON格式）
+  audio       String?  // 发音音频URL
+  createdAt   DateTime @default(now())
+
+  // 关系
+  progress    WordProgress[]
+
+  @@index([word]) // 单词索引
+  @@index([tag]) // 标签索引
+}
+
+// 单词学习记录
+model WordProgress {
+  id          Int      @id @default(autoincrement())
+  userId      String   // 用户ID
+  wordId      Int      // 单词ID
+  bookType    String   // 单词本类型（初一、初二、高一等）
+  correctCount Int     @default(0) // 正确次数
+  wrongCount   Int     @default(0) // 错误次数
+  lastStudied DateTime @default(now()) // 最后学习时间
+  mastered    Boolean  @default(false) // 是否已掌握
+
+  word        Word     @relation(fields: [wordId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, wordId, bookType]) // 同一用户同一单词本中的单词唯一
+  @@index([userId, bookType]) // 用户和单词本索引
+}
+
+// 少儿英语单词表（3-6岁幼儿 + 小学1-6年级）
+model ChildWord {
+  id          Int      @id @default(autoincrement())
+  word        String   @unique // 单词（唯一）
+  phonetic    String   // 音标（统一格式 /xxx/）
+  translation String   // 简化的中文释义（幼儿≤5字，小学≤10字）
+  pos         String   // 词性（n./v./adj.）
+  grade       Int      // 年级（0=幼儿，1-6=小学1-6年级）
+  bnc         Int?     // 英国国家语料库词频（用于排序）
+  frq         Int?     // 当代语料库词频（用于排序）
+  audio       String?  // 发音音频URL
+  createdAt   DateTime @default(now())
+
+  // 关系
+  progress    ChildWordProgress[]
+
+  @@index([grade]) // 年级索引
+  @@index([word]) // 单词索引
+}
+
+// 少儿单词学习记录
+model ChildWordProgress {
+  id          Int      @id @default(autoincrement())
+  userId      String   // 用户ID
+  wordId      Int      // 单词ID
+  correctCount Int     @default(0) // 正确次数
+  wrongCount   Int     @default(0) // 错误次数
+  lastStudied DateTime @default(now()) // 最后学习时间
+  mastered    Boolean  @default(false) // 是否已掌握
+
+  word        ChildWord @relation(fields: [wordId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, wordId]) // 同一用户同一单词唯一
+  @@index([userId]) // 用户索引
 }

@@ -1,0 +1,272 @@
+/* 奖励中心样式 */
+@import '../../../styles/ChildStageCss/child-variables.css';
+@import '../../../styles/ChildStageCss/child-animations.css';
+
+.child-reward-center {
+  background: var(--child-white);
+  border-radius: var(--child-radius-large);
+  padding: var(--child-spacing-lg);
+  box-shadow: var(--child-shadow-medium);
+  max-width: 400px;
+  width: 100%;
+}
+
+.child-reward-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--child-spacing-lg);
+}
+
+.child-reward-title {
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-large);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-primary);
+  margin: 0;
+}
+
+.child-reward-close {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: var(--child-light-gray);
+  border-radius: var(--child-radius-circle);
+  font-size: 1.2rem;
+  color: var(--child-dark-gray);
+  cursor: pointer;
+  transition: all var(--child-transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.child-reward-close:hover {
+  background: var(--child-gray);
+  transform: scale(1.1);
+}
+
+/* 积分展示 */
+.child-points-section {
+  position: relative;
+  background: var(--child-gradient-accent);
+  border-radius: var(--child-radius-medium);
+  padding: var(--child-spacing-lg);
+  margin-bottom: var(--child-spacing-lg);
+  box-shadow: var(--child-shadow-accent);
+}
+
+.child-points-display {
+  display: flex;
+  align-items: center;
+  gap: var(--child-spacing-md);
+}
+
+.child-points-icon {
+  font-size: 3rem;
+  animation: child-star-twinkle 2s ease-in-out infinite;
+}
+
+.child-points-info {
+  flex: 1;
+}
+
+.child-points-label {
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-normal);
+  color: var(--child-text);
+  margin-bottom: var(--child-spacing-xs);
+}
+
+.child-points-value {
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-xlarge);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-primary);
+}
+
+.child-points-fly {
+  position: absolute;
+  top: 50%;
+  right: var(--child-spacing-lg);
+  font-size: var(--child-font-size-large);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-primary);
+  pointer-events: none;
+}
+
+/* 勋章展示 */
+.child-badges-section {
+  margin-bottom: var(--child-spacing-lg);
+}
+
+.child-section-subtitle {
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-medium);
+  font-weight: var(--child-font-weight-semibold);
+  color: var(--child-text);
+  margin: 0 0 var(--child-spacing-md) 0;
+}
+
+.child-section-subtitle-small {
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-normal);
+  font-weight: var(--child-font-weight-semibold);
+  color: var(--child-dark-gray);
+  margin: var(--child-spacing-md) 0 var(--child-spacing-sm) 0;
+}
+
+.child-badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: var(--child-spacing-md);
+  margin-bottom: var(--child-spacing-md);
+}
+
+.child-badge-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--child-spacing-md);
+  border-radius: var(--child-radius-medium);
+  background: var(--child-light-gray);
+  transition: all var(--child-transition-normal);
+  cursor: pointer;
+  position: relative;
+}
+
+.child-badge-unlocked {
+  background: var(--child-gradient-secondary);
+  box-shadow: var(--child-shadow-secondary);
+}
+
+.child-badge-unlocked:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--child-shadow-hover);
+}
+
+.child-badge-locked {
+  opacity: 0.6;
+}
+
+.child-badge-icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--child-spacing-xs);
+}
+
+.child-badge-icon-locked {
+  filter: grayscale(100%);
+}
+
+.child-badge-name {
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-small);
+  font-weight: var(--child-font-weight-semibold);
+  color: var(--child-text);
+  text-align: center;
+  margin-bottom: var(--child-spacing-xs);
+}
+
+.child-badge-progress {
+  width: 100%;
+  height: 4px;
+  background: var(--child-gray);
+  border-radius: var(--child-radius-small);
+  overflow: hidden;
+  margin-top: var(--child-spacing-xs);
+}
+
+.child-badge-progress-fill {
+  height: 100%;
+  background: var(--child-gradient-primary);
+  transition: width var(--child-transition-normal);
+}
+
+.child-badge-requirement {
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-xsmall);
+  color: var(--child-dark-gray);
+  text-align: center;
+  margin-top: var(--child-spacing-xs);
+}
+
+/* 积分历史 */
+.child-points-history {
+  border-top: 2px solid var(--child-gray);
+  padding-top: var(--child-spacing-md);
+}
+
+.child-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--child-spacing-sm);
+}
+
+.child-history-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--child-spacing-sm);
+  background: var(--child-light-gray);
+  border-radius: var(--child-radius-small);
+  transition: all var(--child-transition-fast);
+}
+
+.child-history-item:hover {
+  background: var(--child-gray);
+  transform: translateX(5px);
+}
+
+.child-history-reason {
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-small);
+  color: var(--child-text);
+}
+
+.child-history-points {
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-normal);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-primary);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .child-reward-center {
+    max-width: 100%;
+    padding: var(--child-spacing-md);
+  }
+
+  .child-reward-title {
+    font-size: var(--child-font-size-medium);
+  }
+
+  .child-points-section {
+    padding: var(--child-spacing-md);
+  }
+
+  .child-points-icon {
+    font-size: 2.5rem;
+  }
+
+  .child-points-value {
+    font-size: var(--child-font-size-large);
+  }
+
+  .child-badges-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--child-spacing-sm);
+  }
+
+  .child-badge-item {
+    padding: var(--child-spacing-sm);
+  }
+
+  .child-badge-icon {
+    font-size: 2rem;
+  }
+
+  .child-badge-name {
+    font-size: var(--child-font-size-xsmall);
+  }
+}

@@ -1,0 +1,158 @@
+/* ChildVocabularyHub Page Styles */
+@import '../../styles/ChildStageCss/child-variables.css';
+@import '../../styles/ChildStageCss/child-animations.css';
+
+.child-vocab-hub-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #AA96DA 0%, #6C9BD1 100%);
+  padding-bottom: var(--child-spacing-xl);
+}
+
+.child-vocab-hub-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--child-spacing-lg);
+  background: white;
+  box-shadow: var(--child-shadow-light);
+  position: sticky;
+  top: 0;
+  z-index: var(--child-z-navbar);
+}
+
+.nav-back-btn {
+  padding: var(--child-spacing-sm) var(--child-spacing-md);
+  font-size: var(--child-font-size-normal);
+  font-weight: var(--child-font-weight-semibold);
+  font-family: var(--child-font-family);
+  background: var(--child-bg-light);
+  border: none;
+  border-radius: var(--child-border-radius-medium);
+  cursor: pointer;
+  transition: all var(--child-transition-fast);
+}
+
+.nav-back-btn:hover {
+  background: var(--child-primary);
+  color: white;
+  transform: translateX(-3px);
+}
+
+.nav-title {
+  font-size: var(--child-font-size-xlarge);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-primary);
+}
+
+.nav-user-info {
+  display: flex;
+  align-items: center;
+  gap: var(--child-spacing-sm);
+}
+
+.user-points {
+  font-size: var(--child-font-size-medium);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-accent);
+}
+
+.child-vocab-hub-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--child-spacing-xl);
+}
+
+.banner-section {
+  margin-bottom: var(--child-spacing-xxl);
+}
+
+.progress-section,
+.modules-section {
+  margin-bottom: var(--child-spacing-xxl);
+}
+
+.section-title {
+  font-size: var(--child-font-size-xlarge);
+  font-weight: var(--child-font-weight-bold);
+  color: white;
+  text-align: center;
+  margin-bottom: var(--child-spacing-lg);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.progress-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--child-spacing-md);
+}
+
+.progress-card {
+  background: white;
+  padding: var(--child-spacing-lg);
+  border-radius: var(--child-border-radius-large);
+  text-align: center;
+  box-shadow: var(--child-shadow-light);
+  transition: all var(--child-transition-normal);
+  animation: child-bounce-in var(--child-transition-normal);
+}
+
+.progress-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--child-shadow-hover);
+}
+
+.progress-icon {
+  font-size: 3rem;
+  margin-bottom: var(--child-spacing-sm);
+}
+
+.progress-label {
+  font-size: var(--child-font-size-small);
+  color: var(--child-text-gray);
+  margin-bottom: var(--child-spacing-xs);
+}
+
+.progress-value {
+  font-size: var(--child-font-size-xlarge);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-primary);
+}
+
+.modules-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--child-spacing-lg);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .child-vocab-hub-navbar {
+    flex-direction: column;
+    gap: var(--child-spacing-sm);
+    padding: var(--child-spacing-md);
+  }
+
+  .child-vocab-hub-content {
+    padding: var(--child-spacing-md);
+  }
+
+  .progress-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--child-spacing-sm);
+  }
+
+  .modules-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--child-spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .progress-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .modules-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,274 @@
+/* 单词学习卡片样式 */
+@import '../../../styles/ChildStageCss/child-variables.css';
+@import '../../../styles/ChildStageCss/child-animations.css';
+
+.word-learning-card {
+  width: 100%;
+  max-width: 400px;
+  height: 500px;
+  perspective: 1000px;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.word-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.word-learning-card.flipped .word-card-inner {
+  transform: rotateY(180deg);
+}
+
+.word-card-front,
+.word-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: var(--child-white);
+  border-radius: var(--child-radius-large);
+  padding: var(--child-spacing-xl);
+  box-shadow: var(--child-shadow-medium);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.word-card-back {
+  transform: rotateY(180deg);
+  background: var(--child-gradient-secondary);
+}
+
+.word-learning-card.mastered .word-card-front {
+  background: var(--child-gradient-accent);
+  border: 3px solid var(--child-accent);
+}
+
+.word-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--child-spacing-md);
+}
+
+.word-speak-btn {
+  width: 50px;
+  height: 50px;
+  border: none;
+  background: var(--child-gradient-primary);
+  border-radius: var(--child-radius-circle);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all var(--child-transition-normal);
+  box-shadow: var(--child-shadow-primary);
+}
+
+.word-speak-btn:hover {
+  transform: scale(1.1);
+  box-shadow: var(--child-shadow-hover);
+}
+
+.word-speak-btn:active {
+  transform: scale(0.95);
+}
+
+.word-mastered-badge {
+  width: 50px;
+  height: 50px;
+  background: var(--child-gradient-secondary);
+  border-radius: var(--child-radius-circle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: var(--child-white);
+  box-shadow: var(--child-shadow-secondary);
+}
+
+.word-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.word-text {
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-xlarge);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-primary);
+  margin: 0 0 var(--child-spacing-md) 0;
+  display: flex;
+  gap: var(--child-spacing-xs);
+}
+
+.word-letter {
+  display: inline-block;
+}
+
+.word-phonetic {
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-large);
+  color: var(--child-secondary);
+  margin: 0 0 var(--child-spacing-lg) 0;
+}
+
+.word-translation {
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-large);
+  font-weight: var(--child-font-weight-semibold);
+  color: var(--child-text);
+  margin: 0 0 var(--child-spacing-lg) 0;
+}
+
+.word-example-toggle {
+  padding: var(--child-spacing-sm) var(--child-spacing-lg);
+  border: 2px solid var(--child-white);
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: var(--child-radius-medium);
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-normal);
+  font-weight: var(--child-font-weight-semibold);
+  color: var(--child-white);
+  cursor: pointer;
+  transition: all var(--child-transition-fast);
+  margin-bottom: var(--child-spacing-md);
+}
+
+.word-example-toggle:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(1.05);
+}
+
+.word-example {
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-normal);
+  color: var(--child-white);
+  font-style: italic;
+  line-height: 1.6;
+  margin: var(--child-spacing-md) 0;
+  padding: var(--child-spacing-md);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--child-radius-medium);
+}
+
+.word-hint {
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-small);
+  color: var(--child-dark-gray);
+  margin-top: var(--child-spacing-lg);
+  opacity: 0.7;
+}
+
+.word-card-back .word-hint {
+  color: var(--child-white);
+}
+
+.word-actions {
+  display: flex;
+  gap: var(--child-spacing-md);
+  margin-top: var(--child-spacing-lg);
+}
+
+.word-action-btn {
+  flex: 1;
+  padding: var(--child-spacing-md);
+  border: none;
+  border-radius: var(--child-radius-medium);
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-normal);
+  font-weight: var(--child-font-weight-bold);
+  cursor: pointer;
+  transition: all var(--child-transition-normal);
+}
+
+.weak-btn {
+  background: var(--child-orange);
+  color: var(--child-white);
+  box-shadow: 0 4px 15px rgba(255, 160, 122, 0.3);
+}
+
+.weak-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 160, 122, 0.4);
+}
+
+.master-btn {
+  background: var(--child-gradient-primary);
+  color: var(--child-white);
+  box-shadow: var(--child-shadow-primary);
+}
+
+.master-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: var(--child-shadow-hover);
+}
+
+.word-action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.word-action-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.word-review-count {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-small);
+  color: var(--child-dark-gray);
+  background: var(--child-light-gray);
+  padding: var(--child-spacing-xs) var(--child-spacing-md);
+  border-radius: var(--child-radius-small);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .word-learning-card {
+    height: 450px;
+  }
+
+  .word-card-front,
+  .word-card-back {
+    padding: var(--child-spacing-lg);
+  }
+
+  .word-text {
+    font-size: var(--child-font-size-large);
+  }
+
+  .word-phonetic {
+    font-size: var(--child-font-size-medium);
+  }
+
+  .word-translation {
+    font-size: var(--child-font-size-medium);
+  }
+
+  .word-speak-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 1.3rem;
+  }
+
+  .word-mastered-badge {
+    width: 44px;
+    height: 44px;
+    font-size: 1.5rem;
+  }
+
+  .word-action-btn {
+    padding: var(--child-spacing-sm);
+    font-size: var(--child-font-size-small);
+  }
+}

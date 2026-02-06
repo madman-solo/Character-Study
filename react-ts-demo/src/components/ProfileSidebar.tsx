@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { useEyeCare } from '../contexts/EyeCareContext';
 import '../styles/ProfileSidebar.css';
 
 interface ProfileSidebarProps {
@@ -10,6 +11,7 @@ interface ProfileSidebarProps {
 const ProfileSidebar = ({ isOpen, onClose }: ProfileSidebarProps) => {
   const navigate = useNavigate();
   const { user, isAuthenticated, logout } = useAuth();
+  const { isEyeCareMode, toggleEyeCareMode } = useEyeCare();
 
   const menuItems = [
     { id: 'settings', label: '设置', icon: '⚙️', path: '/settings' },
@@ -19,7 +21,6 @@ const ProfileSidebar = ({ isOpen, onClose }: ProfileSidebarProps) => {
     { id: 'games', label: '益智小游戏', icon: '🎮', path: '/games' },
     { id: 'notes', label: '我的笔记', icon: '📝', path: '/notes' },
     { id: 'favorites', label: '我的收藏', icon: '⭐', path: '/favorites' },
-    { id: 'eye-care', label: '护眼模式', icon: '👁️', path: '/eye-care' },
     { id: 'help', label: '帮助与反馈', icon: '❓', path: '/help' },
     { id: 'share', label: '分享好友', icon: '📤', path: '/share' },
   ];
@@ -27,6 +28,11 @@ const ProfileSidebar = ({ isOpen, onClose }: ProfileSidebarProps) => {
   const handleMenuClick = (path: string) => {
     navigate(path);
     onClose();
+  };
+
+  const handleEyeCareToggle = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    toggleEyeCareMode();
   };
 
   const handleLogout = () => {
@@ -72,15 +78,31 @@ const ProfileSidebar = ({ isOpen, onClose }: ProfileSidebarProps) => {
               <span className="menu-arrow">›</span>
             </div>
           ))}
+
+          {/* 护眼模式切换 */}
+          <div
+            className={`menu-item eye-care-toggle ${isEyeCareMode ? 'active' : ''}`}
+            onClick={handleEyeCareToggle}
+          >
+            <span className="menu-icon">👁️</span>
+            <span className="menu-label">护眼模式</span>
+            <div className="toggle-switch">
+              <div className={`toggle-slider ${isEyeCareMode ? 'active' : ''}`}></div>
+            </div>
+          </div>
         </div>
 
-        {isAuthenticated && (
-          <div className="sidebar-footer">
+        <div className="sidebar-footer">
+          {isAuthenticated && user && !user.isGuest ? (
             <button className="logout-button" onClick={handleLogout}>
               退出登录
             </button>
-          </div>
-        )}
+          ) : (
+            <button className="logout-button" onClick={() => { navigate('/login'); onClose(); }}>
+              登录
+            </button>
+          )}
+        </div>
       </div>
     </>
   );

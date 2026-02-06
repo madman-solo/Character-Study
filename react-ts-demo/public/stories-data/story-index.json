@@ -1,0 +1,4172 @@
+[
+  {
+    "id": "andersen-fairybook-brave-tin-soldier",
+    "slug": "brave-tin-soldier",
+    "title": "Brave Tin Soldier",
+    "titleCn": "勇敢的锡兵",
+    "collection": "andersen-fairybook",
+    "collectionName": "安徒生童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 12,
+      "totalSentences": 75,
+      "totalQuestions": 27,
+      "totalWords": 1731
+    }
+  },
+  {
+    "id": "andersen-fairybook-buckwheat",
+    "slug": "buckwheat",
+    "title": "Buckwheat",
+    "titleCn": "Buckwheat",
+    "collection": "andersen-fairybook",
+    "collectionName": "安徒生童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 8,
+      "totalSentences": 33,
+      "totalQuestions": 15,
+      "totalWords": 674
+    }
+  },
+  {
+    "id": "andersen-fairybook-flax",
+    "slug": "flax",
+    "title": "Flax",
+    "titleCn": "Flax",
+    "collection": "andersen-fairybook",
+    "collectionName": "安徒生童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 13,
+      "totalSentences": 61,
+      "totalQuestions": 24,
+      "totalWords": 1772
+    }
+  },
+  {
+    "id": "andersen-fairybook-goblin-huckster",
+    "slug": "goblin-huckster",
+    "title": "Goblin Huckster",
+    "titleCn": "Goblin Huckster",
+    "collection": "andersen-fairybook",
+    "collectionName": "安徒生童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 11,
+      "totalSentences": 68,
+      "totalQuestions": 24,
+      "totalWords": 1509
+    }
+  },
+  {
+    "id": "andersen-fairybook-grandmother",
+    "slug": "grandmother",
+    "title": "Grandmother",
+    "titleCn": "Grandmother",
+    "collection": "andersen-fairybook",
+    "collectionName": "安徒生童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 5,
+      "totalSentences": 29,
+      "totalQuestions": 11,
+      "totalWords": 734
+    }
+  },
+  {
+    "id": "andersen-fairybook-money-box",
+    "slug": "money-box",
+    "title": "Money Box",
+    "titleCn": "Money Box",
+    "collection": "andersen-fairybook",
+    "collectionName": "安徒生童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 7,
+      "totalSentences": 43,
+      "totalQuestions": 19,
+      "totalWords": 965
+    }
+  },
+  {
+    "id": "andersen-fairybook-naughty-boy",
+    "slug": "naughty-boy",
+    "title": "Naughty Boy",
+    "titleCn": "Naughty Boy",
+    "collection": "andersen-fairybook",
+    "collectionName": "安徒生童话",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 7,
+      "totalSentences": 48,
+      "totalQuestions": 15,
+      "totalWords": 834
+    }
+  },
+  {
+    "id": "andersen-fairybook-old-street-lamp",
+    "slug": "old-street-lamp",
+    "title": "Old Street Lamp",
+    "titleCn": "Old Street Lamp",
+    "collection": "andersen-fairybook",
+    "collectionName": "安徒生童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 22,
+      "totalSentences": 121,
+      "totalQuestions": 39,
+      "totalWords": 2799
+    }
+  },
+  {
+    "id": "andersen-fairybook-puppet-show-man",
+    "slug": "puppet-show-man",
+    "title": "Puppet Show Man",
+    "titleCn": "Puppet Show Man",
+    "collection": "andersen-fairybook",
+    "collectionName": "安徒生童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 13,
+      "totalSentences": 52,
+      "totalQuestions": 24,
+      "totalWords": 1653
+    }
+  },
+  {
+    "id": "andersen-fairybook-races",
+    "slug": "races",
+    "title": "Races",
+    "titleCn": "Races",
+    "collection": "andersen-fairybook",
+    "collectionName": "安徒生童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 8,
+      "totalSentences": 20,
+      "totalQuestions": 16,
+      "totalWords": 1197
+    }
+  },
+  {
+    "id": "andersen-fairybook-red-shoes",
+    "slug": "red-shoes",
+    "title": "Red Shoes",
+    "titleCn": "Red Shoes",
+    "collection": "andersen-fairybook",
+    "collectionName": "安徒生童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 15,
+      "totalSentences": 99,
+      "totalQuestions": 30,
+      "totalWords": 2248
+    }
+  },
+  {
+    "id": "andersen-fairybook-snail-rose-tree",
+    "slug": "snail-rose-tree",
+    "title": "Snail Rose Tree",
+    "titleCn": "Snail Rose Tree",
+    "collection": "andersen-fairybook",
+    "collectionName": "安徒生童话",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 8,
+      "totalSentences": 35,
+      "totalQuestions": 15,
+      "totalWords": 839
+    }
+  },
+  {
+    "id": "andersen-fairybook-Snow-man",
+    "slug": "Snow-man",
+    "title": "Snow Man",
+    "titleCn": "Snow Man",
+    "collection": "andersen-fairybook",
+    "collectionName": "安徒生童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 13,
+      "totalSentences": 96,
+      "totalQuestions": 24,
+      "totalWords": 1953
+    }
+  },
+  {
+    "id": "andersen-fairybook-storks",
+    "slug": "storks",
+    "title": "Storks",
+    "titleCn": "Storks",
+    "collection": "andersen-fairybook",
+    "collectionName": "安徒生童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 13,
+      "totalSentences": 53,
+      "totalQuestions": 9,
+      "totalWords": 1911
+    }
+  },
+  {
+    "id": "andersen-fairybook-the-mother",
+    "slug": "the-mother",
+    "title": "The Mother",
+    "titleCn": "The Mother",
+    "collection": "andersen-fairybook",
+    "collectionName": "安徒生童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 13,
+      "totalSentences": 105,
+      "totalQuestions": 23,
+      "totalWords": 1893
+    }
+  },
+  {
+    "id": "andersen-fairybook-the-teapot",
+    "slug": "the-teapot",
+    "title": "The Teapot",
+    "titleCn": "The Teapot",
+    "collection": "andersen-fairybook",
+    "collectionName": "安徒生童话",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 5,
+      "totalSentences": 26,
+      "totalQuestions": 11,
+      "totalWords": 600
+    }
+  },
+  {
+    "id": "andersen-fairybook-two-maidens",
+    "slug": "two-maidens",
+    "title": "Two Maidens",
+    "titleCn": "Two Maidens",
+    "collection": "andersen-fairybook",
+    "collectionName": "安徒生童话",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 6,
+      "totalSentences": 28,
+      "totalQuestions": 12,
+      "totalWords": 662
+    }
+  },
+  {
+    "id": "andersen-fairybook-what-one-can-invent",
+    "slug": "what-one-can-invent",
+    "title": "What One Can Invent",
+    "titleCn": "What One Can Invent",
+    "collection": "andersen-fairybook",
+    "collectionName": "安徒生童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 13,
+      "totalSentences": 69,
+      "totalQuestions": 13,
+      "totalWords": 1162
+    }
+  },
+  {
+    "id": "andersen-fairybook-what-the-goodman-does-is-always-right",
+    "slug": "what-the-goodman-does-is-always-right",
+    "title": "What The Goodman Does Is Always Right",
+    "titleCn": "What The Goodman Does Is Always Right",
+    "collection": "andersen-fairybook",
+    "collectionName": "安徒生童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 19,
+      "totalSentences": 108,
+      "totalQuestions": 26,
+      "totalWords": 1916
+    }
+  },
+  {
+    "id": "beatrix-potter-fairybook-the-pie-and-the-patty-pan",
+    "slug": "the-pie-and-the-patty-pan",
+    "title": "The Pie And The Patty Pan",
+    "titleCn": "The Pie And The Patty Pan",
+    "collection": "beatrix-potter-fairybook",
+    "collectionName": "彼得兔系列",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 19,
+      "totalSentences": 145,
+      "totalQuestions": 24,
+      "totalWords": 2633
+    }
+  },
+  {
+    "id": "beatrix-potter-fairybook-the-roly-poly-pudding",
+    "slug": "the-roly-poly-pudding",
+    "title": "The Roly Poly Pudding",
+    "titleCn": "The Roly Poly Pudding",
+    "collection": "beatrix-potter-fairybook",
+    "collectionName": "彼得兔系列",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 17,
+      "totalSentences": 165,
+      "totalQuestions": 22,
+      "totalWords": 2329
+    }
+  },
+  {
+    "id": "beatrix-potter-fairybook-the-story-of-miss-moppet",
+    "slug": "the-story-of-miss-moppet",
+    "title": "The Story Of Miss Moppet",
+    "titleCn": "The Story Of Miss Moppet",
+    "collection": "beatrix-potter-fairybook",
+    "collectionName": "彼得兔系列",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 2,
+      "totalSentences": 18,
+      "totalQuestions": 5,
+      "totalWords": 202
+    }
+  },
+  {
+    "id": "beatrix-potter-fairybook-the-tale-of-bad-mice",
+    "slug": "the-tale-of-bad-mice",
+    "title": "The Tale Of Bad Mice",
+    "titleCn": "The Tale Of Bad Mice",
+    "collection": "beatrix-potter-fairybook",
+    "collectionName": "彼得兔系列",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 8,
+      "totalSentences": 57,
+      "totalQuestions": 10,
+      "totalWords": 815
+    }
+  },
+  {
+    "id": "beatrix-potter-fairybook-the-tale-of-benjamin-bunny",
+    "slug": "the-tale-of-benjamin-bunny",
+    "title": "The Tale Of Benjamin Bunny",
+    "titleCn": "The Tale Of Benjamin Bunny",
+    "collection": "beatrix-potter-fairybook",
+    "collectionName": "彼得兔系列",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 10,
+      "totalSentences": 67,
+      "totalQuestions": 12,
+      "totalWords": 1005
+    }
+  },
+  {
+    "id": "beatrix-potter-fairybook-the-tale-of-jemina-puddle-duck",
+    "slug": "the-tale-of-jemina-puddle-duck",
+    "title": "The Tale Of Jemina Puddle Duck",
+    "titleCn": "The Tale Of Jemina Puddle Duck",
+    "collection": "beatrix-potter-fairybook",
+    "collectionName": "彼得兔系列",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 9,
+      "totalSentences": 76,
+      "totalQuestions": 13,
+      "totalWords": 1128
+    }
+  },
+  {
+    "id": "beatrix-potter-fairybook-the-tale-of-mr-jeremy-fisher",
+    "slug": "the-tale-of-mr-jeremy-fisher",
+    "title": "The Tale Of Mr Jeremy Fisher",
+    "titleCn": "The Tale Of Mr Jeremy Fisher",
+    "collection": "beatrix-potter-fairybook",
+    "collectionName": "彼得兔系列",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 5,
+      "totalSentences": 43,
+      "totalQuestions": 9,
+      "totalWords": 608
+    }
+  },
+  {
+    "id": "beatrix-potter-fairybook-the-tale-of-mrs.-tiggy-winkle",
+    "slug": "the-tale-of-mrs.-tiggy-winkle",
+    "title": "The Tale Of Mrs. Tiggy Winkle",
+    "titleCn": "The Tale Of Mrs. Tiggy Winkle",
+    "collection": "beatrix-potter-fairybook",
+    "collectionName": "彼得兔系列",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 11,
+      "totalSentences": 81,
+      "totalQuestions": 11,
+      "totalWords": 1280
+    }
+  },
+  {
+    "id": "beatrix-potter-fairybook-the-tale-of-peter-rabbit",
+    "slug": "the-tale-of-peter-rabbit",
+    "title": "The Tale Of Peter Rabbit",
+    "titleCn": "The Tale Of Peter Rabbit",
+    "collection": "beatrix-potter-fairybook",
+    "collectionName": "彼得兔系列",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 9,
+      "totalSentences": 53,
+      "totalQuestions": 12,
+      "totalWords": 863
+    }
+  },
+  {
+    "id": "beatrix-potter-fairybook-the-tale-of-the-flopsy-bunnies",
+    "slug": "the-tale-of-the-flopsy-bunnies",
+    "title": "The Tale Of The Flopsy Bunnies",
+    "titleCn": "The Tale Of The Flopsy Bunnies",
+    "collection": "beatrix-potter-fairybook",
+    "collectionName": "彼得兔系列",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 9,
+      "totalSentences": 72,
+      "totalQuestions": 10,
+      "totalWords": 907
+    }
+  },
+  {
+    "id": "beatrix-potter-fairybook-the-tale-of-timmy-tiptoes",
+    "slug": "the-tale-of-timmy-tiptoes",
+    "title": "The Tale Of Timmy Tiptoes",
+    "titleCn": "The Tale Of Timmy Tiptoes",
+    "collection": "beatrix-potter-fairybook",
+    "collectionName": "彼得兔系列",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 11,
+      "totalSentences": 78,
+      "totalQuestions": 14,
+      "totalWords": 1206
+    }
+  },
+  {
+    "id": "beatrix-potter-fairybook-the-toad",
+    "slug": "the-toad",
+    "title": "The Toad",
+    "titleCn": "The Toad",
+    "collection": "beatrix-potter-fairybook",
+    "collectionName": "彼得兔系列",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 20,
+      "totalSentences": 156,
+      "totalQuestions": 23,
+      "totalWords": 2586
+    }
+  },
+  {
+    "id": "beatrix-potter-fairybook-the-top-and-ball",
+    "slug": "the-top-and-ball",
+    "title": "The Top And Ball",
+    "titleCn": "The Top And Ball",
+    "collection": "beatrix-potter-fairybook",
+    "collectionName": "彼得兔系列",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 8,
+      "totalSentences": 35,
+      "totalQuestions": 11,
+      "totalWords": 723
+    }
+  },
+  {
+    "id": "blue-fairybook-the-brownie-of-the-lake",
+    "slug": "the-brownie-of-the-lake",
+    "title": "The Brownie Of The Lake",
+    "titleCn": "The Brownie Of The Lake",
+    "collection": "blue-fairybook",
+    "collectionName": "蓝色童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 23,
+      "totalSentences": 82,
+      "totalQuestions": 33,
+      "totalWords": 2398
+    }
+  },
+  {
+    "id": "blue-fairybook-the-bunyip",
+    "slug": "the-bunyip",
+    "title": "The Bunyip",
+    "titleCn": "The Bunyip",
+    "collection": "blue-fairybook",
+    "collectionName": "蓝色童话集",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 11,
+      "totalSentences": 36,
+      "totalQuestions": 14,
+      "totalWords": 1174
+    }
+  },
+  {
+    "id": "blue-fairybook-the-golden-blackbird",
+    "slug": "the-golden-blackbird",
+    "title": "The Golden Blackbird",
+    "titleCn": "The Golden Blackbird",
+    "collection": "blue-fairybook",
+    "collectionName": "蓝色童话集",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 15,
+      "totalSentences": 68,
+      "totalQuestions": 20,
+      "totalWords": 1672
+    }
+  },
+  {
+    "id": "blue-fairybook-the-history-of-jack-the-giant-killer",
+    "slug": "the-history-of-jack-the-giant-killer",
+    "title": "The History Of Jack The Giant Killer",
+    "titleCn": "The History Of Jack The Giant Killer",
+    "collection": "blue-fairybook",
+    "collectionName": "蓝色童话集",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 17,
+      "totalSentences": 66,
+      "totalQuestions": 21,
+      "totalWords": 1709
+    }
+  },
+  {
+    "id": "blue-fairybook-the-magic-mirror",
+    "slug": "the-magic-mirror",
+    "title": "The Magic Mirror",
+    "titleCn": "The Magic Mirror",
+    "collection": "blue-fairybook",
+    "collectionName": "蓝色童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 18,
+      "totalSentences": 88,
+      "totalQuestions": 20,
+      "totalWords": 1922
+    }
+  },
+  {
+    "id": "blue-fairybook-the-sunchild",
+    "slug": "the-sunchild",
+    "title": "The Sunchild",
+    "titleCn": "The Sunchild",
+    "collection": "blue-fairybook",
+    "collectionName": "蓝色童话集",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 11,
+      "totalSentences": 57,
+      "totalQuestions": 14,
+      "totalWords": 1050
+    }
+  },
+  {
+    "id": "blue-fairybook-the-war-of-the-wolf-and-the-fox",
+    "slug": "the-war-of-the-wolf-and-the-fox",
+    "title": "The War Of The Wolf And The Fox",
+    "titleCn": "The War Of The Wolf And The Fox",
+    "collection": "blue-fairybook",
+    "collectionName": "蓝色童话集",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 13,
+      "totalSentences": 59,
+      "totalQuestions": 17,
+      "totalWords": 1304
+    }
+  },
+  {
+    "id": "blue-fairybook-which-was-the-foolishest",
+    "slug": "which-was-the-foolishest",
+    "title": "Which Was The Foolishest",
+    "titleCn": "Which Was The Foolishest",
+    "collection": "blue-fairybook",
+    "collectionName": "蓝色童话集",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 14,
+      "totalSentences": 53,
+      "totalQuestions": 13,
+      "totalWords": 1526
+    }
+  },
+  {
+    "id": "chinese-fairybook-a-legend-of-confucius",
+    "slug": "a-legend-of-confucius",
+    "title": "A Legend Of Confucius",
+    "titleCn": "A Legend Of Confucius",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 5,
+      "totalSentences": 20,
+      "totalQuestions": 15,
+      "totalWords": 361
+    }
+  },
+  {
+    "id": "chinese-fairybook-black-arts",
+    "slug": "black-arts",
+    "title": "Black Arts",
+    "titleCn": "Black Arts",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 17,
+      "totalSentences": 89,
+      "totalQuestions": 30,
+      "totalWords": 1806
+    }
+  },
+  {
+    "id": "chinese-fairybook-dschang-liang",
+    "slug": "dschang-liang",
+    "title": "Dschang Liang",
+    "titleCn": "Dschang Liang",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 8,
+      "totalSentences": 35,
+      "totalQuestions": 16,
+      "totalWords": 754
+    }
+  },
+  {
+    "id": "chinese-fairybook-fox-fire",
+    "slug": "fox-fire",
+    "title": "Fox Fire",
+    "titleCn": "Fox Fire",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 5,
+      "totalSentences": 24,
+      "totalQuestions": 15,
+      "totalWords": 413
+    }
+  },
+  {
+    "id": "chinese-fairybook-giauna-the-beautiful",
+    "slug": "giauna-the-beautiful",
+    "title": "Giauna The Beautiful",
+    "titleCn": "Giauna The Beautiful",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 36,
+      "totalSentences": 158,
+      "totalQuestions": 30,
+      "totalWords": 2779
+    }
+  },
+  {
+    "id": "chinese-fairybook-help-in-need",
+    "slug": "help-in-need",
+    "title": "Help In Need",
+    "titleCn": "Help In Need",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 19,
+      "totalSentences": 69,
+      "totalQuestions": 28,
+      "totalWords": 2720
+    }
+  },
+  {
+    "id": "chinese-fairybook-how-molo-stole-the-lovely-rose-red",
+    "slug": "how-molo-stole-the-lovely-rose-red",
+    "title": "How Molo Stole The Lovely Rose Red",
+    "titleCn": "How Molo Stole The Lovely Rose Red",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 11,
+      "totalSentences": 72,
+      "totalQuestions": 22,
+      "totalWords": 1312
+    }
+  },
+  {
+    "id": "chinese-fairybook-how-the-five-ancients-became-men",
+    "slug": "how-the-five-ancients-became-men",
+    "title": "How The Five Ancients Became Men",
+    "titleCn": "How The Five Ancients Became Men",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 5,
+      "totalSentences": 46,
+      "totalQuestions": 14,
+      "totalWords": 691
+    }
+  },
+  {
+    "id": "chinese-fairybook-how-the-river-gods-wedding-was-broken-off",
+    "slug": "how-the-river-gods-wedding-was-broken-off",
+    "title": "How The River Gods Wedding Was Broken Off",
+    "titleCn": "How The River Gods Wedding Was Broken Off",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 6,
+      "totalSentences": 45,
+      "totalQuestions": 17,
+      "totalWords": 647
+    }
+  },
+  {
+    "id": "chinese-fairybook-laotsze",
+    "slug": "laotsze",
+    "title": "Laotsze",
+    "titleCn": "Laotsze",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 5,
+      "totalSentences": 32,
+      "totalQuestions": 15,
+      "totalWords": 584
+    }
+  },
+  {
+    "id": "chinese-fairybook-notscha",
+    "slug": "notscha",
+    "title": "Notscha",
+    "titleCn": "Notscha",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 16,
+      "totalSentences": 145,
+      "totalQuestions": 43,
+      "totalWords": 2714
+    }
+  },
+  {
+    "id": "chinese-fairybook-old-dschang",
+    "slug": "old-dschang",
+    "title": "Old Dschang",
+    "titleCn": "Old Dschang",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 11,
+      "totalSentences": 89,
+      "totalQuestions": 21,
+      "totalWords": 1597
+    }
+  },
+  {
+    "id": "chinese-fairybook-rose-of-evening",
+    "slug": "rose-of-evening",
+    "title": "Rose Of Evening",
+    "titleCn": "Rose Of Evening",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 27,
+      "totalSentences": 152,
+      "totalQuestions": 31,
+      "totalWords": 2465
+    }
+  },
+  {
+    "id": "chinese-fairybook-the-bird-with-nine-heads",
+    "slug": "the-bird-with-nine-heads",
+    "title": "The Bird With Nine Heads",
+    "titleCn": "The Bird With Nine Heads",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 11,
+      "totalSentences": 65,
+      "totalQuestions": 14,
+      "totalWords": 1176
+    }
+  },
+  {
+    "id": "chinese-fairybook-the-constable",
+    "slug": "the-constable",
+    "title": "The Constable",
+    "titleCn": "The Constable",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 17,
+      "totalSentences": 62,
+      "totalQuestions": 19,
+      "totalWords": 1602
+    }
+  },
+  {
+    "id": "chinese-fairybook-the-dangerous-reward",
+    "slug": "the-dangerous-reward",
+    "title": "The Dangerous Reward",
+    "titleCn": "The Dangerous Reward",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 8,
+      "totalSentences": 38,
+      "totalQuestions": 14,
+      "totalWords": 811
+    }
+  },
+  {
+    "id": "chinese-fairybook-the-disowned-princess",
+    "slug": "the-disowned-princess",
+    "title": "The Disowned Princess",
+    "titleCn": "The Disowned Princess",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 34,
+      "totalSentences": 145,
+      "totalQuestions": 23,
+      "totalWords": 2758
+    }
+  },
+  {
+    "id": "chinese-fairybook-the-dragon-princess",
+    "slug": "the-dragon-princess",
+    "title": "The Dragon Princess",
+    "titleCn": "The Dragon Princess",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 15,
+      "totalSentences": 64,
+      "totalQuestions": 18,
+      "totalWords": 1365
+    }
+  },
+  {
+    "id": "chinese-fairybook-the-favorite-of-fortune-and-the-child-of-ill-luck",
+    "slug": "the-favorite-of-fortune-and-the-child-of-ill-luck",
+    "title": "The Favorite Of Fortune And The Child Of Ill Luck",
+    "titleCn": "The Favorite Of Fortune And The Child Of Ill Luck",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 8,
+      "totalSentences": 36,
+      "totalQuestions": 14,
+      "totalWords": 503
+    }
+  },
+  {
+    "id": "chinese-fairybook-the-fire-god",
+    "slug": "the-fire-god",
+    "title": "The Fire God",
+    "titleCn": "The Fire God",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 3,
+      "totalSentences": 17,
+      "totalQuestions": 11,
+      "totalWords": 308
+    }
+  },
+  {
+    "id": "chinese-fairybook-the-flying-ogre",
+    "slug": "the-flying-ogre",
+    "title": "The Flying Ogre",
+    "titleCn": "The Flying Ogre",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 6,
+      "totalSentences": 23,
+      "totalQuestions": 13,
+      "totalWords": 448
+    }
+  },
+  {
+    "id": "chinese-fairybook-the-king-of-the-ants",
+    "slug": "the-king-of-the-ants",
+    "title": "The King Of The Ants",
+    "titleCn": "The King Of The Ants",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 7,
+      "totalSentences": 43,
+      "totalQuestions": 13,
+      "totalWords": 676
+    }
+  },
+  {
+    "id": "chinese-fairybook-the-lady-of-the-moon",
+    "slug": "the-lady-of-the-moon",
+    "title": "The Lady Of The Moon",
+    "titleCn": "The Lady Of The Moon",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 5,
+      "totalSentences": 29,
+      "totalQuestions": 20,
+      "totalWords": 505
+    }
+  },
+  {
+    "id": "chinese-fairybook-the-little-hunting-dog",
+    "slug": "the-little-hunting-dog",
+    "title": "The Little Hunting Dog",
+    "titleCn": "The Little Hunting Dog",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 8,
+      "totalSentences": 39,
+      "totalQuestions": 21,
+      "totalWords": 615
+    }
+  },
+  {
+    "id": "chinese-fairybook-the-miserly-farmer",
+    "slug": "the-miserly-farmer",
+    "title": "The Miserly Farmer",
+    "titleCn": "The Miserly Farmer",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 4,
+      "totalSentences": 40,
+      "totalQuestions": 20,
+      "totalWords": 551
+    }
+  },
+  {
+    "id": "chinese-fairybook-the-queen-of-heaven",
+    "slug": "the-queen-of-heaven",
+    "title": "The Queen Of Heaven",
+    "titleCn": "The Queen Of Heaven",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 8,
+      "totalSentences": 47,
+      "totalQuestions": 24,
+      "totalWords": 782
+    }
+  },
+  {
+    "id": "chinese-fairybook-the-two-scholars",
+    "slug": "the-two-scholars",
+    "title": "The Two Scholars",
+    "titleCn": "The Two Scholars",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 11,
+      "totalSentences": 60,
+      "totalQuestions": 25,
+      "totalWords": 986
+    }
+  },
+  {
+    "id": "chinese-fairybook-why-dog-and-cat-are-enemies",
+    "slug": "why-dog-and-cat-are-enemies",
+    "title": "Why Dog And Cat Are Enemies",
+    "titleCn": "Why Dog And Cat Are Enemies",
+    "collection": "chinese-fairybook",
+    "collectionName": "中国童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 4,
+      "totalSentences": 25,
+      "totalQuestions": 20,
+      "totalWords": 445
+    }
+  },
+  {
+    "id": "first-round-ali-baba-and-forty-thieves",
+    "slug": "ali-baba-and-forty-thieves",
+    "title": "Ali Baba And Forty Thieves",
+    "titleCn": "Ali Baba And Forty Thieves",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 8,
+      "totalSentences": 41,
+      "totalQuestions": 17,
+      "totalWords": 877
+    }
+  },
+  {
+    "id": "first-round-black-sheep",
+    "slug": "black-sheep",
+    "title": "Black Sheep",
+    "titleCn": "Black Sheep",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 14,
+      "totalSentences": 57,
+      "totalQuestions": 25,
+      "totalWords": 1549
+    }
+  },
+  {
+    "id": "first-round-cinderella-or-the-little-glass-slipper",
+    "slug": "cinderella-or-the-little-glass-slipper",
+    "title": "Cinderella Or The Little Glass Slipper",
+    "titleCn": "Cinderella Or The Little Glass Slipper",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 19,
+      "totalSentences": 84,
+      "totalQuestions": 23,
+      "totalWords": 2418
+    }
+  },
+  {
+    "id": "first-round-enchanted-wreath",
+    "slug": "enchanted-wreath",
+    "title": "Enchanted Wreath",
+    "titleCn": "Enchanted Wreath",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 24,
+      "totalSentences": 111,
+      "totalQuestions": 24,
+      "totalWords": 3367
+    }
+  },
+  {
+    "id": "first-round-fox-and-wolf",
+    "slug": "fox-and-wolf",
+    "title": "Fox And Wolf",
+    "titleCn": "Fox And Wolf",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 12,
+      "totalSentences": 81,
+      "totalQuestions": 14,
+      "totalWords": 1974
+    }
+  },
+  {
+    "id": "first-round-golden-goose",
+    "slug": "golden-goose",
+    "title": "Golden Goose",
+    "titleCn": "Golden Goose",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 12,
+      "totalSentences": 59,
+      "totalQuestions": 22,
+      "totalWords": 1701
+    }
+  },
+  {
+    "id": "first-round-happy-prince",
+    "slug": "happy-prince",
+    "title": "Happy Prince",
+    "titleCn": "Happy Prince",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 21,
+      "totalSentences": 169,
+      "totalQuestions": 20,
+      "totalWords": 3529
+    }
+  },
+  {
+    "id": "first-round-little-boy-blue",
+    "slug": "little-boy-blue",
+    "title": "Little Boy Blue",
+    "titleCn": "Little Boy Blue",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 21,
+      "totalSentences": 92,
+      "totalQuestions": 26,
+      "totalWords": 2832
+    }
+  },
+  {
+    "id": "first-round-little-miss-muffet",
+    "slug": "little-miss-muffet",
+    "title": "Little Miss Muffet",
+    "titleCn": "Little Miss Muffet",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 15,
+      "totalSentences": 82,
+      "totalQuestions": 19,
+      "totalWords": 2062
+    }
+  },
+  {
+    "id": "first-round-pinkel-thief",
+    "slug": "pinkel-thief",
+    "title": "Pinkel Thief",
+    "titleCn": "Pinkel Thief",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 25,
+      "totalSentences": 129,
+      "totalQuestions": 21,
+      "totalWords": 3527
+    }
+  },
+  {
+    "id": "first-round-prince-hyacinth-and-thedear-little-princess",
+    "slug": "prince-hyacinth-and-thedear-little-princess",
+    "title": "Prince Hyacinth And Thedear Little Princess",
+    "titleCn": "Prince Hyacinth And Thedear Little Princess",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 18,
+      "totalSentences": 68,
+      "totalQuestions": 20,
+      "totalWords": 2563
+    }
+  },
+  {
+    "id": "first-round-princess-bella-flor",
+    "slug": "princess-bella-flor",
+    "title": "Princess Bella Flor",
+    "titleCn": "Princess Bella Flor",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 17,
+      "totalSentences": 123,
+      "totalQuestions": 19,
+      "totalWords": 2862
+    }
+  },
+  {
+    "id": "first-round-remarkable-rocket",
+    "slug": "remarkable-rocket",
+    "title": "Remarkable Rocket",
+    "titleCn": "Remarkable Rocket",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 31,
+      "totalSentences": 158,
+      "totalQuestions": 15,
+      "totalWords": 4468
+    }
+  },
+  {
+    "id": "first-round-sleeping-beauty-in-the-wood",
+    "slug": "sleeping-beauty-in-the-wood",
+    "title": "Sleeping Beauty In The Wood",
+    "titleCn": "Sleeping Beauty In The Wood",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 18,
+      "totalSentences": 71,
+      "totalQuestions": 17,
+      "totalWords": 2585
+    }
+  },
+  {
+    "id": "first-round-snowflake",
+    "slug": "snowflake",
+    "title": "Snowflake",
+    "titleCn": "Snowflake",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 9,
+      "totalSentences": 79,
+      "totalQuestions": 22,
+      "totalWords": 1316
+    }
+  },
+  {
+    "id": "first-round-tale-of-ginger-and-pickles",
+    "slug": "tale-of-ginger-and-pickles",
+    "title": "Tale Of Ginger And Pickles",
+    "titleCn": "Tale Of Ginger And Pickles",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 15,
+      "totalSentences": 81,
+      "totalQuestions": 19,
+      "totalWords": 1013
+    }
+  },
+  {
+    "id": "first-round-tale-of-johnny-town-mouse",
+    "slug": "tale-of-johnny-town-mouse",
+    "title": "Tale Of Johnny Town Mouse",
+    "titleCn": "Tale Of Johnny Town Mouse",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 26,
+      "totalSentences": 76,
+      "totalQuestions": 22,
+      "totalWords": 1269
+    }
+  },
+  {
+    "id": "first-round-tale-of-mrs.tittlemouse",
+    "slug": "tale-of-mrs.tittlemouse",
+    "title": "Tale Of Mrs.tittlemouse",
+    "titleCn": "Tale Of Mrs.tittlemouse",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 13,
+      "totalSentences": 88,
+      "totalQuestions": 16,
+      "totalWords": 1015
+    }
+  },
+  {
+    "id": "first-round-tale-of-tom-kitten",
+    "slug": "tale-of-tom-kitten",
+    "title": "Tale Of Tom Kitten",
+    "titleCn": "Tale Of Tom Kitten",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 14,
+      "totalSentences": 45,
+      "totalQuestions": 19,
+      "totalWords": 668
+    }
+  },
+  {
+    "id": "first-round-the-fir-tree",
+    "slug": "the-fir-tree",
+    "title": "The Fir Tree",
+    "titleCn": "The Fir Tree",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 17,
+      "totalSentences": 130,
+      "totalQuestions": 19,
+      "totalWords": 3004
+    }
+  },
+  {
+    "id": "first-round-the-flower-queens-daughter",
+    "slug": "the-flower-queens-daughter",
+    "title": "The Flower Queens Daughter",
+    "titleCn": "The Flower Queens Daughter",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 16,
+      "totalSentences": 72,
+      "totalQuestions": 20,
+      "totalWords": 2057
+    }
+  },
+  {
+    "id": "first-round-the-flying-trunk",
+    "slug": "the-flying-trunk",
+    "title": "The Flying Trunk",
+    "titleCn": "The Flying Trunk",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 13,
+      "totalSentences": 90,
+      "totalQuestions": 20,
+      "totalWords": 1492
+    }
+  },
+  {
+    "id": "first-round-the-golden-crab",
+    "slug": "the-golden-crab",
+    "title": "The Golden Crab",
+    "titleCn": "The Golden Crab",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 14,
+      "totalSentences": 87,
+      "totalQuestions": 20,
+      "totalWords": 2127
+    }
+  },
+  {
+    "id": "first-round-the-iron-stove",
+    "slug": "the-iron-stove",
+    "title": "The Iron Stove",
+    "titleCn": "The Iron Stove",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 13,
+      "totalSentences": 93,
+      "totalQuestions": 19,
+      "totalWords": 2138
+    }
+  },
+  {
+    "id": "first-round-the-king-of-the-polar-bears",
+    "slug": "the-king-of-the-polar-bears",
+    "title": "The King Of The Polar Bears",
+    "titleCn": "The King Of The Polar Bears",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 16,
+      "totalSentences": 79,
+      "totalQuestions": 18,
+      "totalWords": 1643
+    }
+  },
+  {
+    "id": "first-round-the-magic-bon-bons",
+    "slug": "the-magic-bon-bons",
+    "title": "The Magic Bon Bons",
+    "titleCn": "The Magic Bon Bons",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 19,
+      "totalSentences": 87,
+      "totalQuestions": 19,
+      "totalWords": 2165
+    }
+  },
+  {
+    "id": "first-round-the-selfish-giant",
+    "slug": "the-selfish-giant",
+    "title": "The Selfish Giant",
+    "titleCn": "The Selfish Giant",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 11,
+      "totalSentences": 94,
+      "totalQuestions": 22,
+      "totalWords": 1624
+    }
+  },
+  {
+    "id": "first-round-the-snow-man",
+    "slug": "the-snow-man",
+    "title": "The Snow Man",
+    "titleCn": "The Snow Man",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 9,
+      "totalSentences": 91,
+      "totalQuestions": 18,
+      "totalWords": 1749
+    }
+  },
+  {
+    "id": "first-round-the-steadfast-tin-soldier",
+    "slug": "the-steadfast-tin-soldier",
+    "title": "The Steadfast Tin Soldier",
+    "titleCn": "The Steadfast Tin Soldier",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 12,
+      "totalSentences": 79,
+      "totalQuestions": 19,
+      "totalWords": 1628
+    }
+  },
+  {
+    "id": "first-round-the-ugly-duckling",
+    "slug": "the-ugly-duckling",
+    "title": "The Ugly Duckling",
+    "titleCn": "The Ugly Duckling",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 28,
+      "totalSentences": 159,
+      "totalQuestions": 22,
+      "totalWords": 3617
+    }
+  },
+  {
+    "id": "first-round-the-uraschimataro-and-the-turtle",
+    "slug": "the-uraschimataro-and-the-turtle",
+    "title": "The Uraschimataro And The Turtle",
+    "titleCn": "The Uraschimataro And The Turtle",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 9,
+      "totalSentences": 73,
+      "totalQuestions": 23,
+      "totalWords": 1646
+    }
+  },
+  {
+    "id": "first-round-the-white-cat",
+    "slug": "the-white-cat",
+    "title": "The White Cat",
+    "titleCn": "The White Cat",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 48,
+      "totalSentences": 172,
+      "totalQuestions": 20,
+      "totalWords": 6209
+    }
+  },
+  {
+    "id": "first-round-three-treasures-of-giants",
+    "slug": "three-treasures-of-giants",
+    "title": "Three Treasures Of Giants",
+    "titleCn": "Three Treasures Of Giants",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 22,
+      "totalSentences": 123,
+      "totalQuestions": 24,
+      "totalWords": 3113
+    }
+  },
+  {
+    "id": "first-round-thumbelina",
+    "slug": "thumbelina",
+    "title": "Thumbelina",
+    "titleCn": "拇指姑娘",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 25,
+      "totalSentences": 161,
+      "totalQuestions": 19,
+      "totalWords": 3909
+    }
+  },
+  {
+    "id": "first-round-twelve-brothers",
+    "slug": "twelve-brothers",
+    "title": "Twelve Brothers",
+    "titleCn": "Twelve Brothers",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 15,
+      "totalSentences": 71,
+      "totalQuestions": 19,
+      "totalWords": 1988
+    }
+  },
+  {
+    "id": "first-round-water-lily-gold-spinners",
+    "slug": "water-lily-gold-spinners",
+    "title": "Water Lily Gold Spinners",
+    "titleCn": "Water Lily Gold Spinners",
+    "collection": "first-round",
+    "collectionName": "经典故事",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 20,
+      "totalSentences": 111,
+      "totalQuestions": 27,
+      "totalWords": 2973
+    }
+  },
+  {
+    "id": "green-fairybook-alleleiraugh-or-the-many-furred-creature",
+    "slug": "alleleiraugh-or-the-many-furred-creature",
+    "title": "Alleleiraugh Or The Many Furred Creature",
+    "titleCn": "Alleleiraugh Or The Many Furred Creature",
+    "collection": "green-fairybook",
+    "collectionName": "绿色童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 11,
+      "totalSentences": 84,
+      "totalQuestions": 72,
+      "totalWords": 2002
+    }
+  },
+  {
+    "id": "green-fairybook-fairy-gifts",
+    "slug": "fairy-gifts",
+    "title": "Fairy Gifts",
+    "titleCn": "Fairy Gifts",
+    "collection": "green-fairybook",
+    "collectionName": "绿色童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 6,
+      "totalSentences": 47,
+      "totalQuestions": 49,
+      "totalWords": 1327
+    }
+  },
+  {
+    "id": "green-fairybook-jack-my-hedgehog",
+    "slug": "jack-my-hedgehog",
+    "title": "Jack My Hedgehog",
+    "titleCn": "Jack My Hedgehog",
+    "collection": "green-fairybook",
+    "collectionName": "绿色童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 12,
+      "totalSentences": 70,
+      "totalQuestions": 69,
+      "totalWords": 1983
+    }
+  },
+  {
+    "id": "green-fairybook-jorinde-and-joringel",
+    "slug": "jorinde-and-joringel",
+    "title": "Jorinde And Joringel",
+    "titleCn": "Jorinde And Joringel",
+    "collection": "green-fairybook",
+    "collectionName": "绿色童话集",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 8,
+      "totalSentences": 46,
+      "totalQuestions": 57,
+      "totalWords": 893
+    }
+  },
+  {
+    "id": "green-fairybook-king-kojata",
+    "slug": "king-kojata",
+    "title": "King Kojata",
+    "titleCn": "King Kojata",
+    "collection": "green-fairybook",
+    "collectionName": "绿色童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 20,
+      "totalSentences": 172,
+      "totalQuestions": 161,
+      "totalWords": 4012
+    }
+  },
+  {
+    "id": "green-fairybook-prince-featherhead-and-the-princess-celandine",
+    "slug": "prince-featherhead-and-the-princess-celandine",
+    "title": "Prince Featherhead And The Princess Celandine",
+    "titleCn": "Prince Featherhead And The Princess Celandine",
+    "collection": "green-fairybook",
+    "collectionName": "绿色童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 29,
+      "totalSentences": 147,
+      "totalQuestions": 72,
+      "totalWords": 4737
+    }
+  },
+  {
+    "id": "grimm-fairybook-brother-sister",
+    "slug": "brother-sister",
+    "title": "Brother Sister",
+    "titleCn": "Brother Sister",
+    "collection": "grimm-fairybook",
+    "collectionName": "格林童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 15,
+      "totalSentences": 87,
+      "totalQuestions": 29,
+      "totalWords": 2450
+    }
+  },
+  {
+    "id": "grimm-fairybook-hans-in-luck",
+    "slug": "hans-in-luck",
+    "title": "Hans In Luck",
+    "titleCn": "Hans In Luck",
+    "collection": "grimm-fairybook",
+    "collectionName": "格林童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 13,
+      "totalSentences": 102,
+      "totalQuestions": 19,
+      "totalWords": 1971
+    }
+  },
+  {
+    "id": "grimm-fairybook-mother-hulda",
+    "slug": "mother-hulda",
+    "title": "Mother Hulda",
+    "titleCn": "Mother Hulda",
+    "collection": "grimm-fairybook",
+    "collectionName": "格林童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 8,
+      "totalSentences": 36,
+      "totalQuestions": 17,
+      "totalWords": 1185
+    }
+  },
+  {
+    "id": "grimm-fairybook-mr-korbes",
+    "slug": "mr-korbes",
+    "title": "Mr Korbes",
+    "titleCn": "Mr Korbes",
+    "collection": "grimm-fairybook",
+    "collectionName": "格林童话",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 4,
+      "totalSentences": 17,
+      "totalQuestions": 6,
+      "totalWords": 379
+    }
+  },
+  {
+    "id": "grimm-fairybook-old-sultan",
+    "slug": "old-sultan",
+    "title": "Old Sultan",
+    "titleCn": "Old Sultan",
+    "collection": "grimm-fairybook",
+    "collectionName": "格林童话",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 6,
+      "totalSentences": 28,
+      "totalQuestions": 10,
+      "totalWords": 803
+    }
+  },
+  {
+    "id": "grimm-fairybook-prudent-hans",
+    "slug": "prudent-hans",
+    "title": "Prudent Hans",
+    "titleCn": "Prudent Hans",
+    "collection": "grimm-fairybook",
+    "collectionName": "格林童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 7,
+      "totalSentences": 138,
+      "totalQuestions": 14,
+      "totalWords": 1039
+    }
+  },
+  {
+    "id": "grimm-fairybook-robber-bridegroom",
+    "slug": "robber-bridegroom",
+    "title": "Robber Bridegroom",
+    "titleCn": "Robber Bridegroom",
+    "collection": "grimm-fairybook",
+    "collectionName": "格林童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 9,
+      "totalSentences": 43,
+      "totalQuestions": 14,
+      "totalWords": 1372
+    }
+  },
+  {
+    "id": "grimm-fairybook-the-death-of-the-hen",
+    "slug": "the-death-of-the-hen",
+    "title": "The Death Of The Hen",
+    "titleCn": "The Death Of The Hen",
+    "collection": "grimm-fairybook",
+    "collectionName": "格林童话",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 4,
+      "totalSentences": 26,
+      "totalQuestions": 9,
+      "totalWords": 582
+    }
+  },
+  {
+    "id": "grimm-fairybook-the-mouse-the-bird-and-the-sausage",
+    "slug": "the-mouse-the-bird-and-the-sausage",
+    "title": "The Mouse The Bird And The Sausage",
+    "titleCn": "The Mouse The Bird And The Sausage",
+    "collection": "grimm-fairybook",
+    "collectionName": "格林童话",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 6,
+      "totalSentences": 23,
+      "totalQuestions": 10,
+      "totalWords": 583
+    }
+  },
+  {
+    "id": "grimm-fairybook-the-straw-the-coal-and-the-bean",
+    "slug": "the-straw-the-coal-and-the-bean",
+    "title": "The Straw The Coal And The Bean",
+    "titleCn": "The Straw The Coal And The Bean",
+    "collection": "grimm-fairybook",
+    "collectionName": "格林童话",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 2,
+      "totalSentences": 24,
+      "totalQuestions": 7,
+      "totalWords": 475
+    }
+  },
+  {
+    "id": "grimm-fairybook-the-wolf-and-the-seven-little-goats",
+    "slug": "the-wolf-and-the-seven-little-goats",
+    "title": "The Wolf And The Seven Little Goats",
+    "titleCn": "The Wolf And The Seven Little Goats",
+    "collection": "grimm-fairybook",
+    "collectionName": "格林童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 10,
+      "totalSentences": 50,
+      "totalQuestions": 14,
+      "totalWords": 978
+    }
+  },
+  {
+    "id": "irish-fairybook-a-legend-of-knockmany",
+    "slug": "a-legend-of-knockmany",
+    "title": "A Legend Of Knockmany",
+    "titleCn": "A Legend Of Knockmany",
+    "collection": "irish-fairybook",
+    "collectionName": "爱尔兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 14,
+      "totalSentences": 143,
+      "totalQuestions": 71,
+      "totalWords": 3759
+    }
+  },
+  {
+    "id": "irish-fairybook-cuchulain-of-muirthemne",
+    "slug": "cuchulain-of-muirthemne",
+    "title": "Cuchulain Of Muirthemne",
+    "titleCn": "Cuchulain Of Muirthemne",
+    "collection": "irish-fairybook",
+    "collectionName": "爱尔兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 8,
+      "totalSentences": 82,
+      "totalQuestions": 32,
+      "totalWords": 1864
+    }
+  },
+  {
+    "id": "irish-fairybook-daniel-o-rourke",
+    "slug": "daniel-o-rourke",
+    "title": "Daniel O Rourke",
+    "titleCn": "Daniel O Rourke",
+    "collection": "irish-fairybook",
+    "collectionName": "爱尔兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 15,
+      "totalSentences": 102,
+      "totalQuestions": 43,
+      "totalWords": 2945
+    }
+  },
+  {
+    "id": "irish-fairybook-festivities-at-the-house-of-conan",
+    "slug": "festivities-at-the-house-of-conan",
+    "title": "Festivities At The House Of Conan",
+    "titleCn": "Festivities At The House Of Conan",
+    "collection": "irish-fairybook",
+    "collectionName": "爱尔兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 8,
+      "totalSentences": 64,
+      "totalQuestions": 59,
+      "totalWords": 2367
+    }
+  },
+  {
+    "id": "irish-fairybook-jamie-freel-and-the-young-lady",
+    "slug": "jamie-freel-and-the-young-lady",
+    "title": "Jamie Freel And The Young Lady",
+    "titleCn": "Jamie Freel And The Young Lady",
+    "collection": "irish-fairybook",
+    "collectionName": "爱尔兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 9,
+      "totalSentences": 120,
+      "totalQuestions": 58,
+      "totalWords": 2168
+    }
+  },
+  {
+    "id": "irish-fairybook-king-o-toole-and-st-kevin",
+    "slug": "king-o-toole-and-st-kevin",
+    "title": "King O Toole And St Kevin",
+    "titleCn": "King O Toole And St Kevin",
+    "collection": "irish-fairybook",
+    "collectionName": "爱尔兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 8,
+      "totalSentences": 68,
+      "totalQuestions": 40,
+      "totalWords": 2002
+    }
+  },
+  {
+    "id": "irish-fairybook-lawn-dyarrig",
+    "slug": "lawn-dyarrig",
+    "title": "Lawn Dyarrig",
+    "titleCn": "Lawn Dyarrig",
+    "collection": "irish-fairybook",
+    "collectionName": "爱尔兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 21,
+      "totalSentences": 229,
+      "totalQuestions": 118,
+      "totalWords": 3932
+    }
+  },
+  {
+    "id": "irish-fairybook-morraha",
+    "slug": "morraha",
+    "title": "Morraha",
+    "titleCn": "Morraha",
+    "collection": "irish-fairybook",
+    "collectionName": "爱尔兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 15,
+      "totalSentences": 245,
+      "totalQuestions": 129,
+      "totalWords": 4794
+    }
+  },
+  {
+    "id": "irish-fairybook-murtough-and-the-witch-woman",
+    "slug": "murtough-and-the-witch-woman",
+    "title": "Murtough And The Witch Woman",
+    "titleCn": "Murtough And The Witch Woman",
+    "collection": "irish-fairybook",
+    "collectionName": "爱尔兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 19,
+      "totalSentences": 93,
+      "totalQuestions": 96,
+      "totalWords": 3391
+    }
+  },
+  {
+    "id": "irish-fairybook-the-abbot-of-inisfalen",
+    "slug": "the-abbot-of-inisfalen",
+    "title": "The Abbot Of Inisfalen",
+    "titleCn": "The Abbot Of Inisfalen",
+    "collection": "irish-fairybook",
+    "collectionName": "爱尔兰童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 4,
+      "totalSentences": 50,
+      "totalQuestions": 42,
+      "totalWords": 644
+    }
+  },
+  {
+    "id": "irish-fairybook-the-adventures-of-gilla-na-chreck-an-gour",
+    "slug": "the-adventures-of-gilla-na-chreck-an-gour",
+    "title": "The Adventures Of Gilla Na Chreck An Gour",
+    "titleCn": "The Adventures Of Gilla Na Chreck An Gour",
+    "collection": "irish-fairybook",
+    "collectionName": "爱尔兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 10,
+      "totalSentences": 118,
+      "totalQuestions": 106,
+      "totalWords": 2669
+    }
+  },
+  {
+    "id": "irish-fairybook-the-boyhood-of-cuchulain",
+    "slug": "the-boyhood-of-cuchulain",
+    "title": "The Boyhood Of Cuchulain",
+    "titleCn": "The Boyhood Of Cuchulain",
+    "collection": "irish-fairybook",
+    "collectionName": "爱尔兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 7,
+      "totalSentences": 61,
+      "totalQuestions": 70,
+      "totalWords": 1559
+    }
+  },
+  {
+    "id": "irish-fairybook-the-bracket-bull",
+    "slug": "the-bracket-bull",
+    "title": "The Bracket Bull",
+    "titleCn": "The Bracket Bull",
+    "collection": "irish-fairybook",
+    "collectionName": "爱尔兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 17,
+      "totalSentences": 189,
+      "totalQuestions": 95,
+      "totalWords": 4077
+    }
+  },
+  {
+    "id": "irish-fairybook-the-coming-of-finn",
+    "slug": "the-coming-of-finn",
+    "title": "The Coming Of Finn",
+    "titleCn": "The Coming Of Finn",
+    "collection": "irish-fairybook",
+    "collectionName": "爱尔兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 14,
+      "totalSentences": 100,
+      "totalQuestions": 65,
+      "totalWords": 2796
+    }
+  },
+  {
+    "id": "irish-fairybook-the-corpse-watchers",
+    "slug": "the-corpse-watchers",
+    "title": "The Corpse Watchers",
+    "titleCn": "The Corpse Watchers",
+    "collection": "irish-fairybook",
+    "collectionName": "爱尔兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 6,
+      "totalSentences": 43,
+      "totalQuestions": 51,
+      "totalWords": 980
+    }
+  },
+  {
+    "id": "japanese-fairybook-adventures-of-kintaro-golden-boy",
+    "slug": "adventures-of-kintaro-golden-boy",
+    "title": "Adventures Of Kintaro Golden Boy",
+    "titleCn": "Adventures Of Kintaro Golden Boy",
+    "collection": "japanese-fairybook",
+    "collectionName": "日本童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 25,
+      "totalSentences": 151,
+      "totalQuestions": 60,
+      "totalWords": 2998
+    }
+  },
+  {
+    "id": "japanese-fairybook-bamboo-cutter-moon-child",
+    "slug": "bamboo-cutter-moon-child",
+    "title": "Bamboo Cutter Moon Child",
+    "titleCn": "Bamboo Cutter Moon Child",
+    "collection": "japanese-fairybook",
+    "collectionName": "日本童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 43,
+      "totalSentences": 206,
+      "totalQuestions": 61,
+      "totalWords": 5688
+    }
+  },
+  {
+    "id": "japanese-fairybook-farmer-and-badger",
+    "slug": "farmer-and-badger",
+    "title": "Farmer And Badger",
+    "titleCn": "Farmer And Badger",
+    "collection": "japanese-fairybook",
+    "collectionName": "日本童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 20,
+      "totalSentences": 104,
+      "totalQuestions": 20,
+      "totalWords": 2382
+    }
+  },
+  {
+    "id": "japanese-fairybook-happy-hunter-skillful-fisher",
+    "slug": "happy-hunter-skillful-fisher",
+    "title": "Happy Hunter Skillful Fisher",
+    "titleCn": "Happy Hunter Skillful Fisher",
+    "collection": "japanese-fairybook",
+    "collectionName": "日本童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 55,
+      "totalSentences": 195,
+      "totalQuestions": 105,
+      "totalWords": 6212
+    }
+  },
+  {
+    "id": "japanese-fairybook-how-an-old-man-lost-his-wen",
+    "slug": "how-an-old-man-lost-his-wen",
+    "title": "How An Old Man Lost His Wen",
+    "titleCn": "How An Old Man Lost His Wen",
+    "collection": "japanese-fairybook",
+    "collectionName": "日本童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 28,
+      "totalSentences": 96,
+      "totalQuestions": 50,
+      "totalWords": 2010
+    }
+  },
+  {
+    "id": "japanese-fairybook-jelly-fish-and-monkey",
+    "slug": "jelly-fish-and-monkey",
+    "title": "Jelly Fish And Monkey",
+    "titleCn": "Jelly Fish And Monkey",
+    "collection": "japanese-fairybook",
+    "collectionName": "日本童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 19,
+      "totalSentences": 132,
+      "totalQuestions": 59,
+      "totalWords": 3128
+    }
+  },
+  {
+    "id": "japanese-fairybook-mirror-of-matsuyama",
+    "slug": "mirror-of-matsuyama",
+    "title": "Mirror Of Matsuyama",
+    "titleCn": "Mirror Of Matsuyama",
+    "collection": "japanese-fairybook",
+    "collectionName": "日本童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 26,
+      "totalSentences": 188,
+      "totalQuestions": 65,
+      "totalWords": 5190
+    }
+  },
+  {
+    "id": "japanese-fairybook-momotaro-story-of-son-of-peach",
+    "slug": "momotaro-story-of-son-of-peach",
+    "title": "Momotaro Story Of Son Of Peach",
+    "titleCn": "Momotaro Story Of Son Of Peach",
+    "collection": "japanese-fairybook",
+    "collectionName": "日本童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 60,
+      "totalSentences": 198,
+      "totalQuestions": 104,
+      "totalWords": 4083
+    }
+  },
+  {
+    "id": "japanese-fairybook-my-lord-bag-of-rice",
+    "slug": "my-lord-bag-of-rice",
+    "title": "My Lord Bag Of Rice",
+    "titleCn": "My Lord Bag Of Rice",
+    "collection": "japanese-fairybook",
+    "collectionName": "日本童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 21,
+      "totalSentences": 99,
+      "totalQuestions": 60,
+      "totalWords": 2286
+    }
+  },
+  {
+    "id": "japanese-fairybook-ogre-of-rashomon",
+    "slug": "ogre-of-rashomon",
+    "title": "Ogre Of Rashomon",
+    "titleCn": "Ogre Of Rashomon",
+    "collection": "japanese-fairybook",
+    "collectionName": "日本童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 21,
+      "totalSentences": 87,
+      "totalQuestions": 42,
+      "totalWords": 2186
+    }
+  },
+  {
+    "id": "japanese-fairybook-quarrel-of-monkey-and-crab",
+    "slug": "quarrel-of-monkey-and-crab",
+    "title": "Quarrel Of Monkey And Crab",
+    "titleCn": "Quarrel Of Monkey And Crab",
+    "collection": "japanese-fairybook",
+    "collectionName": "日本童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 23,
+      "totalSentences": 110,
+      "totalQuestions": 60,
+      "totalWords": 2654
+    }
+  },
+  {
+    "id": "japanese-fairybook-sagacious-monkey-and-boar",
+    "slug": "sagacious-monkey-and-boar",
+    "title": "Sagacious Monkey And Boar",
+    "titleCn": "Sagacious Monkey And Boar",
+    "collection": "japanese-fairybook",
+    "collectionName": "日本童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 7,
+      "totalSentences": 36,
+      "totalQuestions": 22,
+      "totalWords": 915
+    }
+  },
+  {
+    "id": "japanese-fairybook-shinansha-or-south-pointing-carriage",
+    "slug": "shinansha-or-south-pointing-carriage",
+    "title": "Shinansha Or South Pointing Carriage",
+    "titleCn": "Shinansha Or South Pointing Carriage",
+    "collection": "japanese-fairybook",
+    "collectionName": "日本童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 11,
+      "totalSentences": 64,
+      "totalQuestions": 44,
+      "totalWords": 1162
+    }
+  },
+  {
+    "id": "japanese-fairybook-story-of-man-who-did-not-wish-to-die",
+    "slug": "story-of-man-who-did-not-wish-to-die",
+    "title": "Story Of Man Who Did Not Wish To Die",
+    "titleCn": "Story Of Man Who Did Not Wish To Die",
+    "collection": "japanese-fairybook",
+    "collectionName": "日本童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 21,
+      "totalSentences": 126,
+      "totalQuestions": 84,
+      "totalWords": 2567
+    }
+  },
+  {
+    "id": "japanese-fairybook-story-of-old-man-who-made-withered-trees-to-flower",
+    "slug": "story-of-old-man-who-made-withered-trees-to-flower",
+    "title": "Story Of Old Man Who Made Withered Trees To Flower",
+    "titleCn": "Story Of Old Man Who Made Withered Trees To Flower",
+    "collection": "japanese-fairybook",
+    "collectionName": "日本童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 22,
+      "totalSentences": 147,
+      "totalQuestions": 64,
+      "totalWords": 2675
+    }
+  },
+  {
+    "id": "japanese-fairybook-story-of-prince-yamato-take",
+    "slug": "story-of-prince-yamato-take",
+    "title": "Story Of Prince Yamato Take",
+    "titleCn": "Story Of Prince Yamato Take",
+    "collection": "japanese-fairybook",
+    "collectionName": "日本童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 39,
+      "totalSentences": 182,
+      "totalQuestions": 100,
+      "totalWords": 5248
+    }
+  },
+  {
+    "id": "japanese-fairybook-story-of-princess-hase",
+    "slug": "story-of-princess-hase",
+    "title": "Story Of Princess Hase",
+    "titleCn": "Story Of Princess Hase",
+    "collection": "japanese-fairybook",
+    "collectionName": "日本童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 22,
+      "totalSentences": 128,
+      "totalQuestions": 71,
+      "totalWords": 2961
+    }
+  },
+  {
+    "id": "japanese-fairybook-tongue-cut-sparrow",
+    "slug": "tongue-cut-sparrow",
+    "title": "Tongue Cut Sparrow",
+    "titleCn": "Tongue Cut Sparrow",
+    "collection": "japanese-fairybook",
+    "collectionName": "日本童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 26,
+      "totalSentences": 123,
+      "totalQuestions": 70,
+      "totalWords": 3329
+    }
+  },
+  {
+    "id": "japanese-fairybook-white-hare-and-crocodiles",
+    "slug": "white-hare-and-crocodiles",
+    "title": "White Hare And Crocodiles",
+    "titleCn": "White Hare And Crocodiles",
+    "collection": "japanese-fairybook",
+    "collectionName": "日本童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 14,
+      "totalSentences": 90,
+      "totalQuestions": 44,
+      "totalWords": 2078
+    }
+  },
+  {
+    "id": "lilac-fairybook-a-fish-story",
+    "slug": "a-fish-story",
+    "title": "A Fish Story",
+    "titleCn": "A Fish Story",
+    "collection": "lilac-fairybook",
+    "collectionName": "紫丁香童话集",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 4,
+      "totalSentences": 26,
+      "totalQuestions": 16,
+      "totalWords": 732
+    }
+  },
+  {
+    "id": "lilac-fairybook-a-french-puck",
+    "slug": "a-french-puck",
+    "title": "A French Puck",
+    "titleCn": "A French Puck",
+    "collection": "lilac-fairybook",
+    "collectionName": "紫丁香童话集",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 5,
+      "totalSentences": 56,
+      "totalQuestions": 25,
+      "totalWords": 986
+    }
+  },
+  {
+    "id": "lilac-fairybook-a-lost-paradise",
+    "slug": "a-lost-paradise",
+    "title": "A Lost Paradise",
+    "titleCn": "A Lost Paradise",
+    "collection": "lilac-fairybook",
+    "collectionName": "紫丁香童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 7,
+      "totalSentences": 77,
+      "totalQuestions": 32,
+      "totalWords": 1272
+    }
+  },
+  {
+    "id": "lilac-fairybook-how-brave-walter-hunted-wolves",
+    "slug": "how-brave-walter-hunted-wolves",
+    "title": "How Brave Walter Hunted Wolves",
+    "titleCn": "How Brave Walter Hunted Wolves",
+    "collection": "lilac-fairybook",
+    "collectionName": "紫丁香童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 12,
+      "totalSentences": 126,
+      "totalQuestions": 53,
+      "totalWords": 2197
+    }
+  },
+  {
+    "id": "lilac-fairybook-little-lasse",
+    "slug": "little-lasse",
+    "title": "Little Lasse",
+    "titleCn": "Little Lasse",
+    "collection": "lilac-fairybook",
+    "collectionName": "紫丁香童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 12,
+      "totalSentences": 135,
+      "totalQuestions": 38,
+      "totalWords": 2699
+    }
+  },
+  {
+    "id": "lilac-fairybook-moti",
+    "slug": "moti",
+    "title": "Moti",
+    "titleCn": "Moti",
+    "collection": "lilac-fairybook",
+    "collectionName": "紫丁香童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 13,
+      "totalSentences": 84,
+      "totalQuestions": 61,
+      "totalWords": 2716
+    }
+  },
+  {
+    "id": "lilac-fairybook-the-battle-of-the-birds",
+    "slug": "the-battle-of-the-birds",
+    "title": "The Battle Of The Birds",
+    "titleCn": "The Battle Of The Birds",
+    "collection": "lilac-fairybook",
+    "collectionName": "紫丁香童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 19,
+      "totalSentences": 163,
+      "totalQuestions": 89,
+      "totalWords": 3983
+    }
+  },
+  {
+    "id": "lilac-fairybook-the-believing-husbands",
+    "slug": "the-believing-husbands",
+    "title": "The Believing Husbands",
+    "titleCn": "The Believing Husbands",
+    "collection": "lilac-fairybook",
+    "collectionName": "紫丁香童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 16,
+      "totalSentences": 71,
+      "totalQuestions": 34,
+      "totalWords": 1000
+    }
+  },
+  {
+    "id": "lilac-fairybook-the-bones-of-djulung",
+    "slug": "the-bones-of-djulung",
+    "title": "The Bones Of Djulung",
+    "titleCn": "The Bones Of Djulung",
+    "collection": "lilac-fairybook",
+    "collectionName": "紫丁香童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 6,
+      "totalSentences": 83,
+      "totalQuestions": 27,
+      "totalWords": 1415
+    }
+  },
+  {
+    "id": "lilac-fairybook-the-brown-bear-of-norway",
+    "slug": "the-brown-bear-of-norway",
+    "title": "The Brown Bear Of Norway",
+    "titleCn": "The Brown Bear Of Norway",
+    "collection": "lilac-fairybook",
+    "collectionName": "紫丁香童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 16,
+      "totalSentences": 116,
+      "totalQuestions": 78,
+      "totalWords": 3114
+    }
+  },
+  {
+    "id": "lilac-fairybook-the-enchanted-deer",
+    "slug": "the-enchanted-deer",
+    "title": "The Enchanted Deer",
+    "titleCn": "The Enchanted Deer",
+    "collection": "lilac-fairybook",
+    "collectionName": "紫丁香童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 21,
+      "totalSentences": 112,
+      "totalQuestions": 60,
+      "totalWords": 2869
+    }
+  },
+  {
+    "id": "lilac-fairybook-the-escape-of-the-mouse",
+    "slug": "the-escape-of-the-mouse",
+    "title": "The Escape Of The Mouse",
+    "titleCn": "The Escape Of The Mouse",
+    "collection": "lilac-fairybook",
+    "collectionName": "紫丁香童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 27,
+      "totalSentences": 176,
+      "totalQuestions": 60,
+      "totalWords": 2735
+    }
+  },
+  {
+    "id": "lilac-fairybook-the-fairy-nurse",
+    "slug": "the-fairy-nurse",
+    "title": "The Fairy Nurse",
+    "titleCn": "The Fairy Nurse",
+    "collection": "lilac-fairybook",
+    "collectionName": "紫丁香童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 8,
+      "totalSentences": 53,
+      "totalQuestions": 36,
+      "totalWords": 1433
+    }
+  },
+  {
+    "id": "lilac-fairybook-the-false-prince-and-the-true",
+    "slug": "the-false-prince-and-the-true",
+    "title": "The False Prince And The True",
+    "titleCn": "The False Prince And The True",
+    "collection": "lilac-fairybook",
+    "collectionName": "紫丁香童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 13,
+      "totalSentences": 65,
+      "totalQuestions": 64,
+      "totalWords": 2576
+    }
+  },
+  {
+    "id": "lilac-fairybook-the-four-gifts",
+    "slug": "the-four-gifts",
+    "title": "The Four Gifts",
+    "titleCn": "The Four Gifts",
+    "collection": "lilac-fairybook",
+    "collectionName": "紫丁香童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 18,
+      "totalSentences": 124,
+      "totalQuestions": 88,
+      "totalWords": 3221
+    }
+  },
+  {
+    "id": "lilac-fairybook-the-one-handed-girl",
+    "slug": "the-one-handed-girl",
+    "title": "The One Handed Girl",
+    "titleCn": "The One Handed Girl",
+    "collection": "lilac-fairybook",
+    "collectionName": "紫丁香童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 31,
+      "totalSentences": 217,
+      "totalQuestions": 161,
+      "totalWords": 4888
+    }
+  },
+  {
+    "id": "lilac-fairybook-the-raspberry-worm",
+    "slug": "the-raspberry-worm",
+    "title": "The Raspberry Worm",
+    "titleCn": "The Raspberry Worm",
+    "collection": "lilac-fairybook",
+    "collectionName": "紫丁香童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 18,
+      "totalSentences": 87,
+      "totalQuestions": 57,
+      "totalWords": 1912
+    }
+  },
+  {
+    "id": "lilac-fairybook-the-rich-brother-and-the-poor-brother",
+    "slug": "the-rich-brother-and-the-poor-brother",
+    "title": "The Rich Brother And The Poor Brother",
+    "titleCn": "The Rich Brother And The Poor Brother",
+    "collection": "lilac-fairybook",
+    "collectionName": "紫丁香童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 19,
+      "totalSentences": 116,
+      "totalQuestions": 99,
+      "totalWords": 3601
+    }
+  },
+  {
+    "id": "lilac-fairybook-the-sea-king-gift",
+    "slug": "the-sea-king-gift",
+    "title": "The Sea King Gift",
+    "titleCn": "The Sea King Gift",
+    "collection": "lilac-fairybook",
+    "collectionName": "紫丁香童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 22,
+      "totalSentences": 158,
+      "totalQuestions": 70,
+      "totalWords": 3654
+    }
+  },
+  {
+    "id": "lilac-fairybook-the-three-crowns",
+    "slug": "the-three-crowns",
+    "title": "The Three Crowns",
+    "titleCn": "The Three Crowns",
+    "collection": "lilac-fairybook",
+    "collectionName": "紫丁香童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 18,
+      "totalSentences": 138,
+      "totalQuestions": 115,
+      "totalWords": 3389
+    }
+  },
+  {
+    "id": "lilac-fairybook-the-winning-of-olwen",
+    "slug": "the-winning-of-olwen",
+    "title": "The Winning Of Olwen",
+    "titleCn": "The Winning Of Olwen",
+    "collection": "lilac-fairybook",
+    "collectionName": "紫丁香童话集",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 36,
+      "totalSentences": 166,
+      "totalQuestions": 100,
+      "totalWords": 4665
+    }
+  },
+  {
+    "id": "native-american-fairybook-bokwewa-the-humpback",
+    "slug": "bokwewa-the-humpback",
+    "title": "Bokwewa The Humpback",
+    "titleCn": "Bokwewa The Humpback",
+    "collection": "native-american-fairybook",
+    "collectionName": "美洲原住民童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 17,
+      "totalSentences": 56,
+      "totalQuestions": 29,
+      "totalWords": 1903
+    }
+  },
+  {
+    "id": "native-american-fairybook-gray-eagle-and-his-five-brothers",
+    "slug": "gray-eagle-and-his-five-brothers",
+    "title": "Gray Eagle And His Five Brothers",
+    "titleCn": "Gray Eagle And His Five Brothers",
+    "collection": "native-american-fairybook",
+    "collectionName": "美洲原住民童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 15,
+      "totalSentences": 46,
+      "totalQuestions": 25,
+      "totalWords": 1468
+    }
+  },
+  {
+    "id": "native-american-fairybook-he-of-the-little-shell",
+    "slug": "he-of-the-little-shell",
+    "title": "He Of The Little Shell",
+    "titleCn": "He Of The Little Shell",
+    "collection": "native-american-fairybook",
+    "collectionName": "美洲原住民童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 15,
+      "totalSentences": 75,
+      "totalQuestions": 27,
+      "totalWords": 1714
+    }
+  },
+  {
+    "id": "native-american-fairybook-leelinau-the-lost-daughter",
+    "slug": "leelinau-the-lost-daughter",
+    "title": "Leelinau The Lost Daughter",
+    "titleCn": "Leelinau The Lost Daughter",
+    "collection": "native-american-fairybook",
+    "collectionName": "美洲原住民童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 14,
+      "totalSentences": 64,
+      "totalQuestions": 27,
+      "totalWords": 1790
+    }
+  },
+  {
+    "id": "native-american-fairybook-osseo-the-son-of-the-evening-star",
+    "slug": "osseo-the-son-of-the-evening-star",
+    "title": "Osseo The Son Of The Evening Star",
+    "titleCn": "Osseo The Son Of The Evening Star",
+    "collection": "native-american-fairybook",
+    "collectionName": "美洲原住民童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 12,
+      "totalSentences": 66,
+      "totalQuestions": 26,
+      "totalWords": 1889
+    }
+  },
+  {
+    "id": "native-american-fairybook-sheem-the-forsaken-boy",
+    "slug": "sheem-the-forsaken-boy",
+    "title": "Sheem The Forsaken Boy",
+    "titleCn": "Sheem The Forsaken Boy",
+    "collection": "native-american-fairybook",
+    "collectionName": "美洲原住民童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 24,
+      "totalSentences": 223,
+      "totalQuestions": 52,
+      "totalWords": 4288
+    }
+  },
+  {
+    "id": "native-american-fairybook-strong-desire-and-the-red-sorcerer",
+    "slug": "strong-desire-and-the-red-sorcerer",
+    "title": "Strong Desire And The Red Sorcerer",
+    "titleCn": "Strong Desire And The Red Sorcerer",
+    "collection": "native-american-fairybook",
+    "collectionName": "美洲原住民童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 15,
+      "totalSentences": 117,
+      "totalQuestions": 37,
+      "totalWords": 2652
+    }
+  },
+  {
+    "id": "native-american-fairybook-the-bird-lover",
+    "slug": "the-bird-lover",
+    "title": "The Bird Lover",
+    "titleCn": "The Bird Lover",
+    "collection": "native-american-fairybook",
+    "collectionName": "美洲原住民童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 17,
+      "totalSentences": 131,
+      "totalQuestions": 36,
+      "totalWords": 3616
+    }
+  },
+  {
+    "id": "native-american-fairybook-the-boy-who-set-a-snare-for-the-sun",
+    "slug": "the-boy-who-set-a-snare-for-the-sun",
+    "title": "The Boy Who Set A Snare For The Sun",
+    "titleCn": "The Boy Who Set A Snare For The Sun",
+    "collection": "native-american-fairybook",
+    "collectionName": "美洲原住民童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 7,
+      "totalSentences": 73,
+      "totalQuestions": 23,
+      "totalWords": 1413
+    }
+  },
+  {
+    "id": "native-american-fairybook-the-celestial-sisters",
+    "slug": "the-celestial-sisters",
+    "title": "The Celestial Sisters",
+    "titleCn": "The Celestial Sisters",
+    "collection": "native-american-fairybook",
+    "collectionName": "美洲原住民童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 10,
+      "totalSentences": 115,
+      "totalQuestions": 34,
+      "totalWords": 1971
+    }
+  },
+  {
+    "id": "native-american-fairybook-the-crane-that-crossed-the-river",
+    "slug": "the-crane-that-crossed-the-river",
+    "title": "The Crane That Crossed The River",
+    "titleCn": "The Crane That Crossed The River",
+    "collection": "native-american-fairybook",
+    "collectionName": "美洲原住民童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 7,
+      "totalSentences": 51,
+      "totalQuestions": 20,
+      "totalWords": 1361
+    }
+  },
+  {
+    "id": "native-american-fairybook-the-enchanted-moccasins",
+    "slug": "the-enchanted-moccasins",
+    "title": "The Enchanted Moccasins",
+    "titleCn": "The Enchanted Moccasins",
+    "collection": "native-american-fairybook",
+    "collectionName": "美洲原住民童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 19,
+      "totalSentences": 148,
+      "totalQuestions": 53,
+      "totalWords": 3741
+    }
+  },
+  {
+    "id": "native-american-fairybook-the-fire-plume",
+    "slug": "the-fire-plume",
+    "title": "The Fire Plume",
+    "titleCn": "The Fire Plume",
+    "collection": "native-american-fairybook",
+    "collectionName": "美洲原住民童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 28,
+      "totalSentences": 217,
+      "totalQuestions": 84,
+      "totalWords": 5210
+    }
+  },
+  {
+    "id": "native-american-fairybook-the-little-spirit-or-boy-man",
+    "slug": "the-little-spirit-or-boy-man",
+    "title": "The Little Spirit Or Boy Man",
+    "titleCn": "The Little Spirit Or Boy Man",
+    "collection": "native-american-fairybook",
+    "collectionName": "美洲原住民童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 12,
+      "totalSentences": 128,
+      "totalQuestions": 40,
+      "totalWords": 2210
+    }
+  },
+  {
+    "id": "native-american-fairybook-the-magic-bundle",
+    "slug": "the-magic-bundle",
+    "title": "The Magic Bundle",
+    "titleCn": "The Magic Bundle",
+    "collection": "native-american-fairybook",
+    "collectionName": "美洲原住民童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 4,
+      "totalSentences": 24,
+      "totalQuestions": 25,
+      "totalWords": 587
+    }
+  },
+  {
+    "id": "native-american-fairybook-the-man-with-his-leg-tied-up",
+    "slug": "the-man-with-his-leg-tied-up",
+    "title": "The Man With His Leg Tied Up",
+    "titleCn": "The Man With His Leg Tied Up",
+    "collection": "native-american-fairybook",
+    "collectionName": "美洲原住民童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 11,
+      "totalSentences": 59,
+      "totalQuestions": 47,
+      "totalWords": 1849
+    }
+  },
+  {
+    "id": "native-american-fairybook-the-origin-of-the-robin",
+    "slug": "the-origin-of-the-robin",
+    "title": "The Origin Of The Robin",
+    "titleCn": "The Origin Of The Robin",
+    "collection": "native-american-fairybook",
+    "collectionName": "美洲原住民童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 6,
+      "totalSentences": 22,
+      "totalQuestions": 34,
+      "totalWords": 869
+    }
+  },
+  {
+    "id": "native-american-fairybook-the-red-swan",
+    "slug": "the-red-swan",
+    "title": "The Red Swan",
+    "titleCn": "The Red Swan",
+    "collection": "native-american-fairybook",
+    "collectionName": "美洲原住民童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 34,
+      "totalSentences": 321,
+      "totalQuestions": 127,
+      "totalWords": 6881
+    }
+  },
+  {
+    "id": "native-american-fairybook-the-toad-woman",
+    "slug": "the-toad-woman",
+    "title": "The Toad Woman",
+    "titleCn": "The Toad Woman",
+    "collection": "native-american-fairybook",
+    "collectionName": "美洲原住民童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 9,
+      "totalSentences": 57,
+      "totalQuestions": 40,
+      "totalWords": 1596
+    }
+  },
+  {
+    "id": "native-american-fairybook-the-two-jeebi",
+    "slug": "the-two-jeebi",
+    "title": "The Two Jeebi",
+    "titleCn": "The Two Jeebi",
+    "collection": "native-american-fairybook",
+    "collectionName": "美洲原住民童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 6,
+      "totalSentences": 52,
+      "totalQuestions": 42,
+      "totalWords": 1086
+    }
+  },
+  {
+    "id": "native-american-fairybook-the-winter-spirit-and-his-visitor",
+    "slug": "the-winter-spirit-and-his-visitor",
+    "title": "The Winter Spirit And His Visitor",
+    "titleCn": "The Winter Spirit And His Visitor",
+    "collection": "native-american-fairybook",
+    "collectionName": "美洲原住民童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 3,
+      "totalSentences": 26,
+      "totalQuestions": 24,
+      "totalWords": 509
+    }
+  },
+  {
+    "id": "native-american-fairybook-weendigoes-and-the-bone-dwarf",
+    "slug": "weendigoes-and-the-bone-dwarf",
+    "title": "Weendigoes And The Bone Dwarf",
+    "titleCn": "Weendigoes And The Bone Dwarf",
+    "collection": "native-american-fairybook",
+    "collectionName": "美洲原住民童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 12,
+      "totalSentences": 96,
+      "totalQuestions": 60,
+      "totalWords": 2338
+    }
+  },
+  {
+    "id": "native-american-fairybook-white-feather-and-the-six-giants",
+    "slug": "white-feather-and-the-six-giants",
+    "title": "White Feather And The Six Giants",
+    "titleCn": "White Feather And The Six Giants",
+    "collection": "native-american-fairybook",
+    "collectionName": "美洲原住民童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 14,
+      "totalSentences": 111,
+      "totalQuestions": 63,
+      "totalWords": 2833
+    }
+  },
+  {
+    "id": "native-american-fairybook-wunzh-the-father-of-indian-corn",
+    "slug": "wunzh-the-father-of-indian-corn",
+    "title": "Wunzh The Father Of Indian Corn",
+    "titleCn": "Wunzh The Father Of Indian Corn",
+    "collection": "native-american-fairybook",
+    "collectionName": "美洲原住民童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 10,
+      "totalSentences": 80,
+      "totalQuestions": 29,
+      "totalWords": 1944
+    }
+  },
+  {
+    "id": "norwegian-fairybook-anent-giant-who-did-not-have-his-heart-about-him",
+    "slug": "anent-giant-who-did-not-have-his-heart-about-him",
+    "title": "Anent Giant Who Did Not Have His Heart About Him",
+    "titleCn": "Anent Giant Who Did Not Have His Heart About Him",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 11,
+      "totalSentences": 150,
+      "totalQuestions": 53,
+      "totalWords": 2600
+    }
+  },
+  {
+    "id": "norwegian-fairybook-aspenclog",
+    "slug": "aspenclog",
+    "title": "Aspenclog",
+    "titleCn": "Aspenclog",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 5,
+      "totalSentences": 48,
+      "totalQuestions": 23,
+      "totalWords": 665
+    }
+  },
+  {
+    "id": "norwegian-fairybook-cat-who-could-eat-so-much",
+    "slug": "cat-who-could-eat-so-much",
+    "title": "Cat Who Could Eat So Much",
+    "titleCn": "Cat Who Could Eat So Much",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 17,
+      "totalSentences": 101,
+      "totalQuestions": 22,
+      "totalWords": 2344
+    }
+  },
+  {
+    "id": "norwegian-fairybook-child-of-mary",
+    "slug": "child-of-mary",
+    "title": "Child Of Mary",
+    "titleCn": "Child Of Mary",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 9,
+      "totalSentences": 0,
+      "totalQuestions": 45,
+      "totalWords": 1601
+    }
+  },
+  {
+    "id": "norwegian-fairybook-chronicle-of-pancake",
+    "slug": "chronicle-of-pancake",
+    "title": "Chronicle Of Pancake",
+    "titleCn": "Chronicle Of Pancake",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 10,
+      "totalSentences": 63,
+      "totalQuestions": 19,
+      "totalWords": 924
+    }
+  },
+  {
+    "id": "norwegian-fairybook-comrade",
+    "slug": "comrade",
+    "title": "Comrade",
+    "titleCn": "Comrade",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 32,
+      "totalSentences": 224,
+      "totalQuestions": 70,
+      "totalWords": 4496
+    }
+  },
+  {
+    "id": "norwegian-fairybook-east-of-sun-and-west-of-moon",
+    "slug": "east-of-sun-and-west-of-moon",
+    "title": "East Of Sun And West Of Moon",
+    "titleCn": "East Of Sun And West Of Moon",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 30,
+      "totalSentences": 205,
+      "totalQuestions": 84,
+      "totalWords": 4239
+    }
+  },
+  {
+    "id": "norwegian-fairybook-farther-south-than-south-and-farther-north-than-north-and-in-great-hill-of-gold",
+    "slug": "farther-south-than-south-and-farther-north-than-north-and-in-great-hill-of-gold",
+    "title": "Farther South Than South And Farther North Than North And In Great Hill Of Gold",
+    "titleCn": "Farther South Than South And Farther North Than North And In Great Hill Of Gold",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 11,
+      "totalSentences": 106,
+      "totalQuestions": 34,
+      "totalWords": 1776
+    }
+  },
+  {
+    "id": "norwegian-fairybook-four-shilling-piece",
+    "slug": "four-shilling-piece",
+    "title": "Four Shilling Piece",
+    "titleCn": "Four Shilling Piece",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 9,
+      "totalSentences": 74,
+      "totalQuestions": 26,
+      "totalWords": 1625
+    }
+  },
+  {
+    "id": "norwegian-fairybook-hat-of-huldres",
+    "slug": "hat-of-huldres",
+    "title": "Hat Of Huldres",
+    "titleCn": "Hat Of Huldres",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 3,
+      "totalSentences": 19,
+      "totalQuestions": 12,
+      "totalWords": 365
+    }
+  },
+  {
+    "id": "norwegian-fairybook-helge-hal-in-blue-hill",
+    "slug": "helge-hal-in-blue-hill",
+    "title": "Helge Hal In Blue Hill",
+    "titleCn": "Helge Hal In Blue Hill",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 25,
+      "totalSentences": 137,
+      "totalQuestions": 62,
+      "totalWords": 2741
+    }
+  },
+  {
+    "id": "norwegian-fairybook-isle-of-udrost",
+    "slug": "isle-of-udrost",
+    "title": "Isle Of Udrost",
+    "titleCn": "Isle Of Udrost",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 11,
+      "totalSentences": 86,
+      "totalQuestions": 31,
+      "totalWords": 1539
+    }
+  },
+  {
+    "id": "norwegian-fairybook-kari-woodencoat",
+    "slug": "kari-woodencoat",
+    "title": "Kari Woodencoat",
+    "titleCn": "Kari Woodencoat",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 26,
+      "totalSentences": 197,
+      "totalQuestions": 100,
+      "totalWords": 4429
+    }
+  },
+  {
+    "id": "norwegian-fairybook-kings-hares",
+    "slug": "kings-hares",
+    "title": "Kings Hares",
+    "titleCn": "Kings Hares",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 19,
+      "totalSentences": 114,
+      "totalQuestions": 55,
+      "totalWords": 2656
+    }
+  },
+  {
+    "id": "norwegian-fairybook-lord-of-hill-and-john-blessom",
+    "slug": "lord-of-hill-and-john-blessom",
+    "title": "Lord Of Hill And John Blessom",
+    "titleCn": "Lord Of Hill And John Blessom",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 4,
+      "totalSentences": 27,
+      "totalQuestions": 14,
+      "totalWords": 477
+    }
+  },
+  {
+    "id": "norwegian-fairybook-lucky-andrew",
+    "slug": "lucky-andrew",
+    "title": "Lucky Andrew",
+    "titleCn": "Lucky Andrew",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 12,
+      "totalSentences": 74,
+      "totalQuestions": 72,
+      "totalWords": 1971
+    }
+  },
+  {
+    "id": "norwegian-fairybook-magic-apples",
+    "slug": "magic-apples",
+    "title": "Magic Apples",
+    "titleCn": "Magic Apples",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 8,
+      "totalSentences": 67,
+      "totalQuestions": 29,
+      "totalWords": 990
+    }
+  },
+  {
+    "id": "norwegian-fairybook-master-girl",
+    "slug": "master-girl",
+    "title": "Master Girl",
+    "titleCn": "Master Girl",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 20,
+      "totalSentences": 262,
+      "totalQuestions": 70,
+      "totalWords": 5116
+    }
+  },
+  {
+    "id": "norwegian-fairybook-murmur-goose-egg",
+    "slug": "murmur-goose-egg",
+    "title": "Murmur Goose Egg",
+    "titleCn": "Murmur Goose Egg",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 32,
+      "totalSentences": 215,
+      "totalQuestions": 102,
+      "totalWords": 3962
+    }
+  },
+  {
+    "id": "norwegian-fairybook-neighbor-underground",
+    "slug": "neighbor-underground",
+    "title": "Neighbor Underground",
+    "titleCn": "Neighbor Underground",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 4,
+      "totalSentences": 33,
+      "totalQuestions": 16,
+      "totalWords": 692
+    }
+  },
+  {
+    "id": "norwegian-fairybook-ola-storbaekkjen",
+    "slug": "ola-storbaekkjen",
+    "title": "Ola Storbaekkjen",
+    "titleCn": "Ola Storbaekkjen",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 3,
+      "totalSentences": 22,
+      "totalQuestions": 14,
+      "totalWords": 488
+    }
+  },
+  {
+    "id": "norwegian-fairybook-per-gynt",
+    "slug": "per-gynt",
+    "title": "Per Gynt",
+    "titleCn": "Per Gynt",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 11,
+      "totalSentences": 105,
+      "totalQuestions": 37,
+      "totalWords": 1686
+    }
+  },
+  {
+    "id": "norwegian-fairybook-secret-church",
+    "slug": "secret-church",
+    "title": "Secret Church",
+    "titleCn": "Secret Church",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 5,
+      "totalSentences": 35,
+      "totalQuestions": 19,
+      "totalWords": 879
+    }
+  },
+  {
+    "id": "norwegian-fairybook-self-did-it",
+    "slug": "self-did-it",
+    "title": "Self Did It",
+    "titleCn": "Self Did It",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 2,
+      "totalSentences": 20,
+      "totalQuestions": 15,
+      "totalWords": 304
+    }
+  },
+  {
+    "id": "norwegian-fairybook-skipper-and-sir-urian",
+    "slug": "skipper-and-sir-urian",
+    "title": "Skipper And Sir Urian",
+    "titleCn": "Skipper And Sir Urian",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 3,
+      "totalSentences": 20,
+      "totalQuestions": 12,
+      "totalWords": 508
+    }
+  },
+  {
+    "id": "norwegian-fairybook-soria-moria-castle",
+    "slug": "soria-moria-castle",
+    "title": "Soria Moria Castle",
+    "titleCn": "Soria Moria Castle",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 21,
+      "totalSentences": 168,
+      "totalQuestions": 125,
+      "totalWords": 3483
+    }
+  },
+  {
+    "id": "norwegian-fairybook-storm-magic",
+    "slug": "storm-magic",
+    "title": "Storm Magic",
+    "titleCn": "Storm Magic",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 12,
+      "totalSentences": 59,
+      "totalQuestions": 46,
+      "totalWords": 1474
+    }
+  },
+  {
+    "id": "norwegian-fairybook-three-lemons",
+    "slug": "three-lemons",
+    "title": "Three Lemons",
+    "titleCn": "Three Lemons",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 9,
+      "totalSentences": 70,
+      "totalQuestions": 30,
+      "totalWords": 1764
+    }
+  },
+  {
+    "id": "norwegian-fairybook-three-princesses-in-whiteland",
+    "slug": "three-princesses-in-whiteland",
+    "title": "Three Princesses In Whiteland",
+    "titleCn": "Three Princesses In Whiteland",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 11,
+      "totalSentences": 79,
+      "totalQuestions": 35,
+      "totalWords": 2043
+    }
+  },
+  {
+    "id": "norwegian-fairybook-troll-wedding",
+    "slug": "troll-wedding",
+    "title": "Troll Wedding",
+    "titleCn": "Troll Wedding",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 4,
+      "totalSentences": 33,
+      "totalQuestions": 14,
+      "totalWords": 556
+    }
+  },
+  {
+    "id": "norwegian-fairybook-troll-wife",
+    "slug": "troll-wife",
+    "title": "Troll Wife",
+    "titleCn": "Troll Wife",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 6,
+      "totalSentences": 43,
+      "totalQuestions": 24,
+      "totalWords": 974
+    }
+  },
+  {
+    "id": "norwegian-fairybook-youth-who-wanted-to-win-daughter-of-mother-in-corner",
+    "slug": "youth-who-wanted-to-win-daughter-of-mother-in-corner",
+    "title": "Youth Who Wanted To Win Daughter Of Mother In Corner",
+    "titleCn": "Youth Who Wanted To Win Daughter Of Mother In Corner",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 13,
+      "totalSentences": 117,
+      "totalQuestions": 57,
+      "totalWords": 2274
+    }
+  },
+  {
+    "id": "norwegian-fairybook-youth-who-was-to-serve-three-years-without-pay",
+    "slug": "youth-who-was-to-serve-three-years-without-pay",
+    "title": "Youth Who Was To Serve Three Years Without Pay",
+    "titleCn": "Youth Who Was To Serve Three Years Without Pay",
+    "collection": "norwegian-fairybook",
+    "collectionName": "挪威童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 22,
+      "totalSentences": 214,
+      "totalQuestions": 61,
+      "totalWords": 3786
+    }
+  },
+  {
+    "id": "scottish-fairybook-assipattle-and-the-mester-stoorworm",
+    "slug": "assipattle-and-the-mester-stoorworm",
+    "title": "Assipattle And The Mester Stoorworm",
+    "titleCn": "Assipattle And The Mester Stoorworm",
+    "collection": "scottish-fairybook",
+    "collectionName": "苏格兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 35,
+      "totalSentences": 187,
+      "totalQuestions": 85,
+      "totalWords": 5303
+    }
+  },
+  {
+    "id": "scottish-fairybook-canonbie-dick-and-thomas-of-ercildoune",
+    "slug": "canonbie-dick-and-thomas-of-ercildoune",
+    "title": "Canonbie Dick And Thomas Of Ercildoune",
+    "titleCn": "Canonbie Dick And Thomas Of Ercildoune",
+    "collection": "scottish-fairybook",
+    "collectionName": "苏格兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 13,
+      "totalSentences": 111,
+      "totalQuestions": 35,
+      "totalWords": 1819
+    }
+  },
+  {
+    "id": "scottish-fairybook-farquhar-macneill",
+    "slug": "farquhar-macneill",
+    "title": "Farquhar Macneill",
+    "titleCn": "Farquhar Macneill",
+    "collection": "scottish-fairybook",
+    "collectionName": "苏格兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 11,
+      "totalSentences": 0,
+      "totalQuestions": 36,
+      "totalWords": 1288
+    }
+  },
+  {
+    "id": "scottish-fairybook-gold-tree-and-silver-tree",
+    "slug": "gold-tree-and-silver-tree",
+    "title": "Gold Tree And Silver Tree",
+    "titleCn": "Gold Tree And Silver Tree",
+    "collection": "scottish-fairybook",
+    "collectionName": "苏格兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 27,
+      "totalSentences": 223,
+      "totalQuestions": 78,
+      "totalWords": 3363
+    }
+  },
+  {
+    "id": "scottish-fairybook-habetrot-the-spinstress",
+    "slug": "habetrot-the-spinstress",
+    "title": "Habetrot The Spinstress",
+    "titleCn": "Habetrot The Spinstress",
+    "collection": "scottish-fairybook",
+    "collectionName": "苏格兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 23,
+      "totalSentences": 123,
+      "totalQuestions": 67,
+      "totalWords": 3233
+    }
+  },
+  {
+    "id": "scottish-fairybook-nippit-fit-and-clippit-fit",
+    "slug": "nippit-fit-and-clippit-fit",
+    "title": "Nippit Fit And Clippit Fit",
+    "titleCn": "Nippit Fit And Clippit Fit",
+    "collection": "scottish-fairybook",
+    "collectionName": "苏格兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 8,
+      "totalSentences": 38,
+      "totalQuestions": 39,
+      "totalWords": 1123
+    }
+  },
+  {
+    "id": "scottish-fairybook-peerifool",
+    "slug": "peerifool",
+    "title": "Peerifool",
+    "titleCn": "Peerifool",
+    "collection": "scottish-fairybook",
+    "collectionName": "苏格兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 24,
+      "totalSentences": 110,
+      "totalQuestions": 90,
+      "totalWords": 3701
+    }
+  },
+  {
+    "id": "scottish-fairybook-the-black-bull-of-norroway",
+    "slug": "the-black-bull-of-norroway",
+    "title": "The Black Bull Of Norroway",
+    "titleCn": "The Black Bull Of Norroway",
+    "collection": "scottish-fairybook",
+    "collectionName": "苏格兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 25,
+      "totalSentences": 149,
+      "totalQuestions": 111,
+      "totalWords": 4248
+    }
+  },
+  {
+    "id": "scottish-fairybook-the-dwarfie-stone",
+    "slug": "the-dwarfie-stone",
+    "title": "The Dwarfie Stone",
+    "titleCn": "The Dwarfie Stone",
+    "collection": "scottish-fairybook",
+    "collectionName": "苏格兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 23,
+      "totalSentences": 153,
+      "totalQuestions": 107,
+      "totalWords": 3984
+    }
+  },
+  {
+    "id": "scottish-fairybook-the-elfin-knight",
+    "slug": "the-elfin-knight",
+    "title": "The Elfin Knight",
+    "titleCn": "The Elfin Knight",
+    "collection": "scottish-fairybook",
+    "collectionName": "苏格兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 15,
+      "totalSentences": 47,
+      "totalQuestions": 81,
+      "totalWords": 2665
+    }
+  },
+  {
+    "id": "scottish-fairybook-the-fairies-of-merlin-crag",
+    "slug": "the-fairies-of-merlin-crag",
+    "title": "The Fairies Of Merlin Crag",
+    "titleCn": "The Fairies Of Merlin Crag",
+    "collection": "scottish-fairybook",
+    "collectionName": "苏格兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 10,
+      "totalSentences": 63,
+      "totalQuestions": 63,
+      "totalWords": 1397
+    }
+  },
+  {
+    "id": "scottish-fairybook-the-fox-and-the-wolf",
+    "slug": "the-fox-and-the-wolf",
+    "title": "The Fox And The Wolf",
+    "titleCn": "The Fox And The Wolf",
+    "collection": "scottish-fairybook",
+    "collectionName": "苏格兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 13,
+      "totalSentences": 75,
+      "totalQuestions": 52,
+      "totalWords": 1624
+    }
+  },
+  {
+    "id": "scottish-fairybook-the-page-boy-and-the-silver-goblet",
+    "slug": "the-page-boy-and-the-silver-goblet",
+    "title": "The Page Boy And The Silver Goblet",
+    "titleCn": "The Page Boy And The Silver Goblet",
+    "collection": "scottish-fairybook",
+    "collectionName": "苏格兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 10,
+      "totalSentences": 44,
+      "totalQuestions": 47,
+      "totalWords": 1347
+    }
+  },
+  {
+    "id": "scottish-fairybook-the-seal-catcher-and-the-merman",
+    "slug": "the-seal-catcher-and-the-merman",
+    "title": "The Seal Catcher And The Merman",
+    "titleCn": "The Seal Catcher And The Merman",
+    "collection": "scottish-fairybook",
+    "collectionName": "苏格兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 15,
+      "totalSentences": 92,
+      "totalQuestions": 52,
+      "totalWords": 1884
+    }
+  },
+  {
+    "id": "scottish-fairybook-the-wee-bannock",
+    "slug": "the-wee-bannock",
+    "title": "The Wee Bannock",
+    "titleCn": "The Wee Bannock",
+    "collection": "scottish-fairybook",
+    "collectionName": "苏格兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 16,
+      "totalSentences": 77,
+      "totalQuestions": 50,
+      "totalWords": 1850
+    }
+  },
+  {
+    "id": "scottish-fairybook-the-well-o-the-worlds-end",
+    "slug": "the-well-o-the-worlds-end",
+    "title": "The Well O The Worlds End",
+    "titleCn": "The Well O The Worlds End",
+    "collection": "scottish-fairybook",
+    "collectionName": "苏格兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 12,
+      "totalSentences": 54,
+      "totalQuestions": 30,
+      "totalWords": 1050
+    }
+  },
+  {
+    "id": "scottish-fairybook-the-witch-of-fife",
+    "slug": "the-witch-of-fife",
+    "title": "The Witch Of Fife",
+    "titleCn": "The Witch Of Fife",
+    "collection": "scottish-fairybook",
+    "collectionName": "苏格兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 16,
+      "totalSentences": 62,
+      "totalQuestions": 60,
+      "totalWords": 1826
+    }
+  },
+  {
+    "id": "scottish-fairybook-thomas-the-rhymer",
+    "slug": "thomas-the-rhymer",
+    "title": "Thomas The Rhymer",
+    "titleCn": "Thomas The Rhymer",
+    "collection": "scottish-fairybook",
+    "collectionName": "苏格兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 22,
+      "totalSentences": 110,
+      "totalQuestions": 89,
+      "totalWords": 3133
+    }
+  },
+  {
+    "id": "scottish-fairybook-whippety-stourie",
+    "slug": "whippety-stourie",
+    "title": "Whippety Stourie",
+    "titleCn": "Whippety Stourie",
+    "collection": "scottish-fairybook",
+    "collectionName": "苏格兰童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 13,
+      "totalSentences": 58,
+      "totalQuestions": 56,
+      "totalWords": 1833
+    }
+  },
+  {
+    "id": "swedish-fairybook-charcol-nils-troll-woman",
+    "slug": "charcol-nils-troll-woman",
+    "title": "Charcol Nils Troll Woman",
+    "titleCn": "Charcol Nils Troll Woman",
+    "collection": "swedish-fairybook",
+    "collectionName": "瑞典童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 15,
+      "totalSentences": 46,
+      "totalQuestions": 14,
+      "totalWords": 1041
+    }
+  },
+  {
+    "id": "swedish-fairybook-evil-one-kitta-grau",
+    "slug": "evil-one-kitta-grau",
+    "title": "Evil One Kitta Grau",
+    "titleCn": "Evil One Kitta Grau",
+    "collection": "swedish-fairybook",
+    "collectionName": "瑞典童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 8,
+      "totalSentences": 44,
+      "totalQuestions": 19,
+      "totalWords": 808
+    }
+  },
+  {
+    "id": "swedish-fairybook-faithful-and-unfaithful",
+    "slug": "faithful-and-unfaithful",
+    "title": "Faithful And Unfaithful",
+    "titleCn": "Faithful And Unfaithful",
+    "collection": "swedish-fairybook",
+    "collectionName": "瑞典童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 20,
+      "totalSentences": 116,
+      "totalQuestions": 23,
+      "totalWords": 2595
+    }
+  },
+  {
+    "id": "swedish-fairybook-finn-the-giant-and-the-minister-of-lund",
+    "slug": "finn-the-giant-and-the-minister-of-lund",
+    "title": "Finn The Giant And The Minister Of Lund",
+    "titleCn": "Finn The Giant And The Minister Of Lund",
+    "collection": "swedish-fairybook",
+    "collectionName": "瑞典童话",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 6,
+      "totalSentences": 16,
+      "totalQuestions": 17,
+      "totalWords": 411
+    }
+  },
+  {
+    "id": "swedish-fairybook-first-born-first-wed",
+    "slug": "first-born-first-wed",
+    "title": "First Born First Wed",
+    "titleCn": "First Born First Wed",
+    "collection": "swedish-fairybook",
+    "collectionName": "瑞典童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 26,
+      "totalSentences": 163,
+      "totalQuestions": 25,
+      "totalWords": 4595
+    }
+  },
+  {
+    "id": "swedish-fairybook-girl-and-snake",
+    "slug": "girl-and-snake",
+    "title": "Girl And Snake",
+    "titleCn": "Girl And Snake",
+    "collection": "swedish-fairybook",
+    "collectionName": "瑞典童话",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 3,
+      "totalSentences": 21,
+      "totalQuestions": 13,
+      "totalWords": 457
+    }
+  },
+  {
+    "id": "swedish-fairybook-knos",
+    "slug": "knos",
+    "title": "Knos",
+    "titleCn": "Knos",
+    "collection": "swedish-fairybook",
+    "collectionName": "瑞典童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 19,
+      "totalSentences": 98,
+      "totalQuestions": 23,
+      "totalWords": 1727
+    }
+  },
+  {
+    "id": "swedish-fairybook-lame-dog",
+    "slug": "lame-dog",
+    "title": "Lame Dog",
+    "titleCn": "Lame Dog",
+    "collection": "swedish-fairybook",
+    "collectionName": "瑞典童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 17,
+      "totalSentences": 127,
+      "totalQuestions": 35,
+      "totalWords": 2958
+    }
+  },
+  {
+    "id": "swedish-fairybook-lasse-my-thrall",
+    "slug": "lasse-my-thrall",
+    "title": "Lasse My Thrall",
+    "titleCn": "Lasse My Thrall",
+    "collection": "swedish-fairybook",
+    "collectionName": "瑞典童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 49,
+      "totalSentences": 254,
+      "totalQuestions": 42,
+      "totalWords": 4728
+    }
+  },
+  {
+    "id": "swedish-fairybook-mount-of-golden-queen",
+    "slug": "mount-of-golden-queen",
+    "title": "Mount Of Golden Queen",
+    "titleCn": "Mount Of Golden Queen",
+    "collection": "swedish-fairybook",
+    "collectionName": "瑞典童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 7,
+      "totalSentences": 64,
+      "totalQuestions": 25,
+      "totalWords": 1181
+    }
+  },
+  {
+    "id": "swedish-fairybook-old-hop-giant",
+    "slug": "old-hop-giant",
+    "title": "Old Hop Giant",
+    "titleCn": "Old Hop Giant",
+    "collection": "swedish-fairybook",
+    "collectionName": "瑞典童话",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 10,
+      "totalSentences": 25,
+      "totalQuestions": 15,
+      "totalWords": 496
+    }
+  },
+  {
+    "id": "swedish-fairybook-princess-glass-mountain",
+    "slug": "princess-glass-mountain",
+    "title": "Princess Glass Mountain",
+    "titleCn": "Princess Glass Mountain",
+    "collection": "swedish-fairybook",
+    "collectionName": "瑞典童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 28,
+      "totalSentences": 183,
+      "totalQuestions": 59,
+      "totalWords": 4551
+    }
+  },
+  {
+    "id": "swedish-fairybook-queen-crane",
+    "slug": "queen-crane",
+    "title": "Queen Crane",
+    "titleCn": "Queen Crane",
+    "collection": "swedish-fairybook",
+    "collectionName": "瑞典童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 13,
+      "totalSentences": 115,
+      "totalQuestions": 30,
+      "totalWords": 1887
+    }
+  },
+  {
+    "id": "swedish-fairybook-rooster-handmill-swarm-of-hornets",
+    "slug": "rooster-handmill-swarm-of-hornets",
+    "title": "Rooster Handmill Swarm Of Hornets",
+    "titleCn": "Rooster Handmill Swarm Of Hornets",
+    "collection": "swedish-fairybook",
+    "collectionName": "瑞典童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 10,
+      "totalSentences": 51,
+      "totalQuestions": 22,
+      "totalWords": 944
+    }
+  },
+  {
+    "id": "swedish-fairybook-silverwhite-lillwacker",
+    "slug": "silverwhite-lillwacker",
+    "title": "Silverwhite Lillwacker",
+    "titleCn": "Silverwhite Lillwacker",
+    "collection": "swedish-fairybook",
+    "collectionName": "瑞典童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 34,
+      "totalSentences": 214,
+      "totalQuestions": 44,
+      "totalWords": 3872
+    }
+  },
+  {
+    "id": "swedish-fairybook-skalunda-giant",
+    "slug": "skalunda-giant",
+    "title": "Skalunda Giant",
+    "titleCn": "Skalunda Giant",
+    "collection": "swedish-fairybook",
+    "collectionName": "瑞典童话",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 6,
+      "totalSentences": 20,
+      "totalQuestions": 14,
+      "totalWords": 384
+    }
+  },
+  {
+    "id": "swedish-fairybook-spectre-fjelkinge",
+    "slug": "spectre-fjelkinge",
+    "title": "Spectre Fjelkinge",
+    "titleCn": "Spectre Fjelkinge",
+    "collection": "swedish-fairybook",
+    "collectionName": "瑞典童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 7,
+      "totalSentences": 33,
+      "totalQuestions": 11,
+      "totalWords": 522
+    }
+  },
+  {
+    "id": "swedish-fairybook-starkad-bale",
+    "slug": "starkad-bale",
+    "title": "Starkad Bale",
+    "titleCn": "Starkad Bale",
+    "collection": "swedish-fairybook",
+    "collectionName": "瑞典童话",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 7,
+      "totalSentences": 17,
+      "totalQuestions": 9,
+      "totalWords": 330
+    }
+  },
+  {
+    "id": "swedish-fairybook-stompe-pilt",
+    "slug": "stompe-pilt",
+    "title": "Stompe Pilt",
+    "titleCn": "Stompe Pilt",
+    "collection": "swedish-fairybook",
+    "collectionName": "瑞典童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 6,
+      "totalSentences": 35,
+      "totalQuestions": 13,
+      "totalWords": 428
+    }
+  },
+  {
+    "id": "swedish-fairybook-three-dogs",
+    "slug": "three-dogs",
+    "title": "Three Dogs",
+    "titleCn": "Three Dogs",
+    "collection": "swedish-fairybook",
+    "collectionName": "瑞典童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 34,
+      "totalSentences": 231,
+      "totalQuestions": 56,
+      "totalWords": 5082
+    }
+  },
+  {
+    "id": "swedish-fairybook-torre-jeppe",
+    "slug": "torre-jeppe",
+    "title": "Torre Jeppe",
+    "titleCn": "Torre Jeppe",
+    "collection": "swedish-fairybook",
+    "collectionName": "瑞典童话",
+    "difficulty": "easy",
+    "stats": {
+      "totalSections": 4,
+      "totalSentences": 24,
+      "totalQuestions": 15,
+      "totalWords": 446
+    }
+  },
+  {
+    "id": "swedish-fairybook-werewolf",
+    "slug": "werewolf",
+    "title": "Werewolf",
+    "titleCn": "Werewolf",
+    "collection": "swedish-fairybook",
+    "collectionName": "瑞典童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 22,
+      "totalSentences": 180,
+      "totalQuestions": 54,
+      "totalWords": 4092
+    }
+  },
+  {
+    "id": "swedish-fairybook-yuletide-specters",
+    "slug": "yuletide-specters",
+    "title": "Yuletide Specters",
+    "titleCn": "Yuletide Specters",
+    "collection": "swedish-fairybook",
+    "collectionName": "瑞典童话",
+    "difficulty": "medium",
+    "stats": {
+      "totalSections": 8,
+      "totalSentences": 29,
+      "totalQuestions": 15,
+      "totalWords": 685
+    }
+  },
+  {
+    "id": "wonderclock-fairybook-how-boots-befooled-king",
+    "slug": "how-boots-befooled-king",
+    "title": "How Boots Befooled King",
+    "titleCn": "How Boots Befooled King",
+    "collection": "wonderclock-fairybook",
+    "collectionName": "奇妙时钟童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 15,
+      "totalSentences": 170,
+      "totalQuestions": 26,
+      "totalWords": 2704
+    }
+  },
+  {
+    "id": "wonderclock-fairybook-how-princess-pride-was-broken",
+    "slug": "how-princess-pride-was-broken",
+    "title": "How Princess Pride Was Broken",
+    "titleCn": "How Princess Pride Was Broken",
+    "collection": "wonderclock-fairybook",
+    "collectionName": "奇妙时钟童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 15,
+      "totalSentences": 106,
+      "totalQuestions": 21,
+      "totalWords": 2557
+    }
+  },
+  {
+    "id": "wonderclock-fairybook-swan-maiden",
+    "slug": "swan-maiden",
+    "title": "Swan Maiden",
+    "titleCn": "Swan Maiden",
+    "collection": "wonderclock-fairybook",
+    "collectionName": "奇妙时钟童话",
+    "difficulty": "hard",
+    "stats": {
+      "totalSections": 16,
+      "totalSentences": 122,
+      "totalQuestions": 29,
+      "totalWords": 2577
+    }
+  }
+]

@@ -63,6 +63,36 @@
   animation: child-pulse 2s ease-in-out infinite;
 }
 
+/* 积分徽章 */
+.child-points-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--child-spacing-xs);
+  background: var(--child-gradient-accent);
+  padding: var(--child-spacing-sm) var(--child-spacing-md);
+  border-radius: var(--child-radius-large);
+  box-shadow: var(--child-shadow-accent);
+  cursor: pointer;
+  transition: all var(--child-transition-normal);
+}
+
+.child-points-badge:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: var(--child-shadow-hover);
+}
+
+.child-points-badge .points-icon {
+  font-size: 1.5rem;
+  animation: child-star-twinkle 2s ease-in-out infinite;
+}
+
+.child-points-badge .points-text {
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-medium);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-primary);
+}
+
 .child-avatar {
   width: 50px;
   height: 50px;
@@ -176,6 +206,141 @@
   gap: var(--child-spacing-lg);
 }
 
+/* ========== 奖励中心侧边栏 ========== */
+.child-reward-sidebar {
+  position: fixed;
+  top: calc(var(--child-navbar-height) + var(--child-category-nav-height));
+  right: 0;
+  width: 400px;
+  height: calc(100vh - var(--child-navbar-height) - var(--child-category-nav-height));
+  background: var(--child-white);
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+  z-index: var(--child-z-modal);
+  overflow-y: auto;
+  animation: child-slide-left var(--child-transition-normal) var(--child-ease-smooth);
+}
+
+/* ========== 家长模式按钮 ========== */
+.child-parent-mode-btn {
+  background: var(--child-gradient-purple) !important;
+  box-shadow: var(--child-shadow-light);
+}
+
+.child-parent-mode-btn:hover {
+  box-shadow: var(--child-shadow-medium);
+}
+
+/* ========== 家长密码验证弹窗 ========== */
+.child-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--child-z-modal);
+  animation: child-fade-in var(--child-transition-normal);
+}
+
+.child-modal-content {
+  background: var(--child-white);
+  border-radius: var(--child-radius-large);
+  padding: var(--child-spacing-xl);
+  max-width: 400px;
+  width: 90%;
+  box-shadow: var(--child-shadow-heavy);
+  animation: child-bounce-in var(--child-transition-normal) var(--child-ease-bounce);
+}
+
+.child-modal-title {
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-large);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-primary);
+  text-align: center;
+  margin: 0 0 var(--child-spacing-md) 0;
+}
+
+.child-modal-text {
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-normal);
+  color: var(--child-text);
+  text-align: center;
+  margin: 0 0 var(--child-spacing-lg) 0;
+}
+
+.child-modal-input {
+  width: 100%;
+  padding: var(--child-spacing-md);
+  border: 2px solid var(--child-gray);
+  border-radius: var(--child-radius-medium);
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-normal);
+  color: var(--child-text);
+  margin-bottom: var(--child-spacing-lg);
+  transition: all var(--child-transition-fast);
+  box-sizing: border-box;
+}
+
+.child-modal-input:focus {
+  outline: none;
+  border-color: var(--child-primary);
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+}
+
+.child-modal-buttons {
+  display: flex;
+  gap: var(--child-spacing-md);
+}
+
+.child-modal-btn {
+  flex: 1;
+  padding: var(--child-spacing-md);
+  border: none;
+  border-radius: var(--child-radius-medium);
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-normal);
+  font-weight: var(--child-font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--child-transition-fast);
+}
+
+.child-modal-btn-cancel {
+  background: var(--child-gray);
+  color: var(--child-text);
+}
+
+.child-modal-btn-cancel:hover {
+  background: var(--child-dark-gray);
+  color: var(--child-white);
+}
+
+.child-modal-btn-confirm {
+  background: var(--child-gradient-primary);
+  color: var(--child-white);
+  box-shadow: var(--child-shadow-primary);
+}
+
+.child-modal-btn-confirm:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--child-shadow-hover);
+}
+
+/* ========== 加载状态 ========== */
+.child-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-large);
+  color: var(--child-primary);
+  animation: child-pulse 2s ease-in-out infinite;
+}
+
 /* ========== 移动端适配 ========== */
 @media (max-width: 768px) {
   .child-navbar {
@@ -223,5 +388,21 @@
 
   .child-content-area {
     padding: var(--child-spacing-md);
+  }
+
+  /* 奖励中心在手机端全屏显示 */
+  .child-reward-sidebar {
+    width: 100%;
+    top: 0;
+    height: 100vh;
+    animation: child-slide-up var(--child-transition-normal) var(--child-ease-smooth);
+  }
+
+  .child-modal-content {
+    padding: var(--child-spacing-lg);
+  }
+
+  .child-modal-title {
+    font-size: var(--child-font-size-medium);
   }
 }

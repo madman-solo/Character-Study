@@ -21,16 +21,20 @@ const LoginPage = () => {
     try {
       if (isLogin) {
         await login(formData.name, formData.password);
+        navigate("/");
       } else {
         if (formData.password !== formData.confirmPassword) {
           setError("两次输入的密码不一致");
           return;
         }
         await register(formData.name, formData.password);
+        // 注册成功后切换到登录模式
+        setIsLogin(true);
+        setFormData({ name: "", password: "", confirmPassword: "" });
+        setError("注册成功！请登录");
       }
-      navigate("/");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "登录失败，请重试");
+      setError(err instanceof Error ? err.message : "操作失败，请重试");
     }
   };
 

@@ -49,9 +49,9 @@ const ScenarioModal = ({
 
   const levels: { value: EnglishLevel; label: string; description: string }[] =
     [
-      { value: "0-12", label: "0~12岁", description: "无基础" },
-      { value: "13-18", label: "13~18岁", description: "有一些基础" },
-      { value: "18+", label: "18岁以上", description: "四六级及以上" },
+      { value: "1-6", label: "1~6岁", description: "无基础" },
+      { value: "7-12", label: "7~12岁", description: "有一些基础" },
+      { value: "12+", label: "12岁以上", description: "有一定基础" },
     ];
 
   const handleScenarioClick = (scenario: ScenarioMode) => {
@@ -82,12 +82,18 @@ const ScenarioModal = ({
 
   const handleLevelSelect = (level: EnglishLevel) => {
     if (selectedScenario) {
-      if (level === "0-12") {
-        // 0-12岁：显示提示
+      if (level === "1-6") {
+        // 1-6岁：显示提示
         setShowTip(true);
         onSelectScenario(selectedScenario, level);
+      } else if (level === "7-12") {
+        // 7-12岁：导航到单词本学习中心
+        navigate("/child-vocabulary-hub");
+        setShowLevelSelection(false);
+        setSelectedScenario(null);
+        onClose();
       } else {
-        // 13-18岁或18+：显示英语学习模式选择
+        // 12+：显示英语学习模式选择
         onShowEnglishModeSelection?.(level);
         setShowLevelSelection(false);
         setSelectedScenario(null);
@@ -122,7 +128,7 @@ const ScenarioModal = ({
     setShowLevelSelection(false);
     setSelectedScenario(null);
     onClose();
-    navigate('/child-english-home');
+    navigate("/child-english-home");
   };
 
   if (!isOpen) return null;

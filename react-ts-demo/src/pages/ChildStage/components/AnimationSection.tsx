@@ -15,14 +15,18 @@ const AnimationSection = () => {
   ];
 
   const animationCategories = [
-    { id: '1', icon: '🌈', title: '日常生活', description: '生活场景对话' },
-    { id: '2', icon: '🎒', title: '校园故事', description: '学校趣事' },
-    { id: '3', icon: '🏡', title: '家庭时光', description: '温馨家庭' },
-    { id: '4', icon: '🌳', title: '大自然', description: '探索自然' },
+    { id: '1', icon: '🌈', title: '日常生活', description: '生活场景对话', path: '/child-daily-life' },
+    { id: '2', icon: '🎒', title: '校园故事', description: '学校趣事', path: '/child-school-stories' },
+    { id: '3', icon: '🏡', title: '家庭时光', description: '温馨家庭', path: '/child-family-time' },
+    { id: '4', icon: '🌳', title: '大自然', description: '探索自然', path: '/child-nature' },
   ];
 
   const handleStarClick = (id: string) => {
     navigate(`/child-animation-detail/${id}`);
+  };
+
+  const handleCategoryClick = (path: string) => {
+    navigate(path);
   };
 
   return (
@@ -51,7 +55,7 @@ const AnimationSection = () => {
               icon={category.icon}
               title={category.title}
               description={category.description}
-              onClick={() => console.log(`点击了：${category.title}`)}
+              onClick={() => handleCategoryClick(category.path)}
             />
           ))}
         </div>

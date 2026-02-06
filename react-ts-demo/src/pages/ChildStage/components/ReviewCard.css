@@ -1,0 +1,166 @@
+/* ReviewCard Component Styles */
+@import '../../../styles/ChildStageCss/child-variables.css';
+@import '../../../styles/ChildStageCss/child-animations.css';
+
+.child-review-card {
+  display: flex;
+  gap: var(--child-spacing-xl);
+  padding: var(--child-spacing-xl);
+  background: white;
+  border-radius: var(--child-border-radius-xlarge);
+  box-shadow: var(--child-shadow-medium);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.child-review-card-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--child-spacing-md);
+}
+
+.child-review-word-image {
+  width: 100%;
+  max-width: 300px;
+  height: 300px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: var(--child-border-radius-large);
+  position: relative;
+  overflow: hidden;
+}
+
+.child-review-image-overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(255, 230, 109, 0.1) 0%, rgba(78, 205, 196, 0.1) 100%);
+}
+
+.child-review-word-emoji {
+  font-size: 8rem;
+  animation: child-float 3s ease-in-out infinite;
+}
+
+.child-review-audio-btn,
+.child-review-translation-btn {
+  padding: var(--child-spacing-md) var(--child-spacing-lg);
+  font-size: var(--child-font-size-medium);
+  font-weight: var(--child-font-weight-semibold);
+  font-family: var(--child-font-family);
+  border: none;
+  border-radius: var(--child-border-radius-medium);
+  cursor: pointer;
+  transition: all var(--child-transition-normal);
+  box-shadow: var(--child-shadow-light);
+}
+
+.child-review-audio-btn {
+  background: linear-gradient(135deg, var(--child-gradient-secondary));
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: var(--child-spacing-sm);
+}
+
+.child-review-audio-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--child-shadow-hover);
+}
+
+.audio-icon {
+  font-size: 1.5rem;
+}
+
+.child-review-translation-btn {
+  background: var(--child-accent);
+  color: var(--child-text-dark);
+}
+
+.child-review-translation-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--child-shadow-hover);
+}
+
+.child-review-translation {
+  padding: var(--child-spacing-md);
+  background: linear-gradient(135deg, rgba(255, 230, 109, 0.2) 0%, rgba(255, 230, 109, 0.1) 100%);
+  border-radius: var(--child-border-radius-medium);
+  text-align: center;
+}
+
+.translation-label {
+  font-size: var(--child-font-size-small);
+  color: var(--child-text-gray);
+  margin-bottom: var(--child-spacing-xs);
+}
+
+.translation-text {
+  font-size: var(--child-font-size-large);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-primary);
+}
+
+.child-review-card-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--child-spacing-lg);
+}
+
+.child-review-instructions {
+  text-align: center;
+}
+
+.child-review-instructions h3 {
+  font-size: var(--child-font-size-xlarge);
+  font-weight: var(--child-font-weight-bold);
+  color: var(--child-primary);
+  margin-bottom: var(--child-spacing-sm);
+}
+
+.child-review-instructions p {
+  font-size: var(--child-font-size-normal);
+  color: var(--child-text-gray);
+}
+
+.child-review-hint {
+  text-align: center;
+  padding: var(--child-spacing-md);
+  background: rgba(78, 205, 196, 0.1);
+  border-radius: var(--child-border-radius-medium);
+}
+
+.child-review-hint p {
+  margin: var(--child-spacing-xs) 0;
+  font-size: var(--child-font-size-normal);
+  color: var(--child-text-dark);
+}
+
+.phonetic-hint {
+  font-style: italic;
+  color: var(--child-secondary);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .child-review-card {
+    flex-direction: column;
+    padding: var(--child-spacing-md);
+  }
+
+  .child-review-word-image {
+    max-width: 250px;
+    height: 250px;
+  }
+
+  .child-review-word-emoji {
+    font-size: 6rem;
+  }
+}

@@ -42,20 +42,20 @@ export interface Conversation {
 }
 
 // 英语学习难度级别
-export type EnglishLevel = '0-12' | '13-18' | '18+';
+export type EnglishLevel = "1-6" | "7-12" | "12+";
 
 // 单词本类型
 export type VocabularyBookType =
-  | '初一'
-  | '初二'
-  | '初三'
-  | '高一'
-  | '高二'
-  | '高三'
-  | '四级必考'
-  | '六级必考'
-  | '雅思'
-  | '托福';
+  | "初一"
+  | "初二"
+  | "初三"
+  | "高一"
+  | "高二"
+  | "高三"
+  | "四级"
+  | "六级"
+  | "雅思"
+  | "托福";
 
 // 学习模式
-export type LearningMode = 'vocabulary-book' | 'interactive-memory';
+export type LearningMode = "vocabulary-book" | "interactive-memory";

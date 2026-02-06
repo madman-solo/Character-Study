@@ -1,0 +1,118 @@
+/* 音效控制组件样式 */
+@import '../../../styles/ChildStageCss/child-variables.css';
+@import '../../../styles/ChildStageCss/child-animations.css';
+
+.child-sound-control {
+  display: flex;
+  align-items: center;
+  gap: var(--child-spacing-md);
+  background: var(--child-white);
+  border-radius: var(--child-radius-large);
+  padding: var(--child-spacing-sm);
+  box-shadow: var(--child-shadow-light);
+}
+
+.child-sound-toggle {
+  width: 50px;
+  height: 50px;
+  border: none;
+  background: var(--child-light-gray);
+  border-radius: var(--child-radius-circle);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all var(--child-transition-normal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.child-sound-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: var(--child-shadow-light);
+}
+
+.child-sound-toggle.active {
+  background: var(--child-gradient-secondary);
+  box-shadow: var(--child-shadow-secondary);
+}
+
+.child-sound-volume {
+  display: flex;
+  align-items: center;
+  gap: var(--child-spacing-sm);
+}
+
+.child-volume-slider {
+  width: 120px;
+  height: 6px;
+  border-radius: var(--child-radius-small);
+  background: var(--child-gray);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.child-volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--child-radius-circle);
+  background: var(--child-gradient-primary);
+  cursor: pointer;
+  box-shadow: var(--child-shadow-light);
+  transition: all var(--child-transition-fast);
+}
+
+.child-volume-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: var(--child-shadow-medium);
+}
+
+.child-volume-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border: none;
+  border-radius: var(--child-radius-circle);
+  background: var(--child-gradient-primary);
+  cursor: pointer;
+  box-shadow: var(--child-shadow-light);
+  transition: all var(--child-transition-fast);
+}
+
+.child-volume-slider::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: var(--child-shadow-medium);
+}
+
+.child-volume-value {
+  font-family: var(--child-font-family);
+  font-size: var(--child-font-size-small);
+  font-weight: var(--child-font-weight-semibold);
+  color: var(--child-primary);
+  min-width: 40px;
+  text-align: right;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .child-sound-control {
+    padding: var(--child-spacing-xs);
+  }
+
+  .child-sound-toggle {
+    width: 44px;
+    height: 44px;
+    font-size: 1.3rem;
+  }
+
+  .child-volume-slider {
+    width: 80px;
+  }
+
+  .child-volume-value {
+    font-size: var(--child-font-size-xsmall);
+    min-width: 35px;
+  }
+}

@@ -1,3 +1,6 @@
+// 加载环境变量
+require("dotenv").config();
+
 const { PrismaClient } = require("@prisma/client");
 const express = require("express");
 const cors = require("cors");
@@ -56,6 +59,30 @@ async function qianfanRequest(endpoint, method = "GET", data = null) {
 // 中间件
 app.use(cors());
 app.use(express.json());
+
+// 引入认证路由
+const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/user");
+const learningDataRoutes = require("./routes/learningData");
+const rewardDataRoutes = require("./routes/rewardData");
+const childWordsRoutes = require("./routes/childWords");
+const wordProgressRoutes = require("./routes/wordProgress");
+const learningSessionRoutes = require("./routes/learningSession");
+const reportsRoutes = require("./routes/reports");
+const ttsRoutes = require("./routes/tts");
+const audioRoutes = require("./routes/audio");
+
+// 注册认证路由
+app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
+app.use("/api/learning-data", learningDataRoutes);
+app.use("/api/reward-data", rewardDataRoutes);
+app.use("/api/child-words", childWordsRoutes);
+app.use("/api", wordProgressRoutes);
+app.use("/api/learning-session", learningSessionRoutes);
+app.use("/api/reports", reportsRoutes);
+app.use("/api/tts", ttsRoutes);
+app.use("/api/audio", audioRoutes);
 
 // 模拟角色数据
 const characters = [
@@ -602,6 +629,284 @@ app.put(
   },
 );
 
+// ========== 百度翻译 API 接口 ==========
+
+// 百度翻译接口
+app.post("/api/translate", async (req, res) => {
+  try {
+    const { q, from = "auto", to = "zh" } = req.body;
+
+    // 验证参数
+    if (!q) {
+      return res.status(400).json({ error: "缺少翻译文本参数 q" });
+    }
+
+    if (to === "auto") {
+      return res.status(400).json({ error: "目标语言不能设置为 auto" });
+    }
+
+    if (q.length > 6000) {
+      return res
+        .status(400)
+        .json({ error: "文本长度超过限制（最多6000字符）" });
+    }
+
+    // 从环境变量获取百度翻译配置
+    // 尝试使用 BAIDU_APPID 作为 APPID
+    const BAIDU_APPID = process.env.BAIDU_APPID || process.env.BAIDU_API_KEY;
+    const BAIDU_SECRET_KEY = process.env.BAIDU_SECRET_KEY;
+
+    if (!BAIDU_APPID || !BAIDU_SECRET_KEY) {
+      return res.status(500).json({ error: "百度翻译 API 配置缺失" });
+    }
+
+    console.log(`\n=== 百度翻译请求 ===`);
+    console.log(`APPID: ${BAIDU_APPID}`);
+    console.log(`Secret Key: ${BAIDU_SECRET_KEY}`);
+    console.log(`文本: ${q.substring(0, 50)}${q.length > 50 ? "..." : ""}`);
+    console.log(`源语言: ${from}, 目标语言: ${to}`);
+
+    // 生成随机数 salt
+    const salt = Date.now().toString();
+
+    // 生成签名：appid+q+salt+密钥 的 MD5 值
+    const crypto = require("crypto");
+    const signStr = BAIDU_APPID + q + salt + BAIDU_SECRET_KEY;
+    const sign = crypto.createHash("md5").update(signStr).digest("hex");
+
+    console.log(`Salt: ${salt}`);
+    console.log(`Sign: ${sign}`);
+
+    // 调用百度翻译 API（通用翻译API）
+    // 使用 GET 或 POST 方式，参数需要 URL encode
+    const params = new URLSearchParams({
+      q: q,
+      from: from,
+      to: to,
+      appid: BAIDU_APPID,
+      salt: salt,
+      sign: sign,
+    });
+
+    const response = await axios.get(
+      `https://fanyi-api.baidu.com/api/trans/vip/translate?${params.toString()}`,
+    );
+
+    const data = response.data;
+    console.log("百度翻译响应:", JSON.stringify(data, null, 2));
+
+    // 检查是否有错误
+    if (data.error_code) {
+      return res.status(400).json({
+        error: "翻译失败",
+        message: data.error_msg || `错误码：${data.error_code}`,
+        error_code: data.error_code,
+      });
+    }
+
+    // 返回翻译结果
+    res.json(data);
+  } catch (error) {
+    console.error("百度翻译失败:", error.message);
+    if (error.response) {
+      console.error("API 响应错误:", error.response.data);
+      res.status(error.response.status).json({
+        error: "翻译失败",
+        message: error.response.data?.error_msg || error.message,
+        error_code: error.response.data?.error_code,
+      });
+    } else {
+      res.status(500).json({
+        error: "翻译服务异常",
+        message: error.message,
+      });
+    }
+  }
+});
+
+// ========== 词典 API 接口 ==========
+
+const {
+  getWordFromLocal,
+  initializeLocalDictionary,
+  getWordsByTag,
+} = require("./localDictionary");
+
+// 获取单词列表（根据标签/单词本类型）
+app.get("/api/vocabulary/words", async (req, res) => {
+  try {
+    const { bookType, limit = 100 } = req.query;
+    const parsedLimit = parseInt(limit);
+    console.log(
+      `\n=== 获取单词列表: bookType=${bookType}, limit=${parsedLimit === 0 ? "不限制" : parsedLimit} ===`,
+    );
+
+    // 根据单词本类型映射到标签
+    const tagMap = {
+      初一: "zk",
+      初二: "zk",
+      初三: "zk",
+      高一: "gk",
+      高二: "gk",
+      高三: "gk",
+      四级: "cet4",
+      六级: "cet6",
+      雅思: "ielts",
+      托福: "toefl",
+    };
+
+    const tag = tagMap[bookType] || "zk";
+    console.log(`映射标签: ${bookType} -> ${tag}`);
+
+    // 从数据库获取单词列表（limit为0时获取所有单词）
+    const words = await getWordsByTag(tag, parsedLimit);
+    console.log(`找到 ${words.length} 个单词`);
+
+    // 格式化返回数据
+    const formattedWords = words.map((word, index) => ({
+      id: (index + 1).toString(),
+      word: word.word,
+      phonetic: word.phonetic || `/${word.word}/`,
+      translation: word.translation || "暂无翻译",
+      example: word.detail
+        ? JSON.parse(word.detail).example
+        : `Example sentence with ${word.word}.`,
+      definition: word.definition,
+      pos: word.pos,
+      collins: word.collins,
+      oxford: word.oxford,
+      tag: word.tag,
+    }));
+
+    res.json(formattedWords);
+  } catch (error) {
+    console.error("获取单词列表失败:", error);
+    res.status(500).json({ error: "获取单词列表失败" });
+  }
+});
+
+// 获取每日一词（从少儿单词库随机选择）
+app.get("/api/dictionary/daily-word", async (req, res) => {
+  try {
+    console.log("\n=== 获取每日一词（少儿版） ===");
+
+    // 从少儿单词库随机选择一个单词
+    // 优先选择幼儿和小学低年级单词（grade 0-3）
+    const childWordCount = await prisma.childWord.count({
+      where: {
+        grade: {
+          lte: 3, // 幼儿到小学三年级
+        },
+      },
+    });
+
+    if (childWordCount === 0) {
+      // 如果没有低年级单词，从所有少儿单词中选择
+      const totalCount = await prisma.childWord.count();
+      if (totalCount === 0) {
+        console.log("少儿单词库为空，返回默认单词");
+        return res.json({
+          word: "cat",
+          phonetic: "/kæt/",
+          translation: "猫",
+          example: "I have a cat.",
+          source: "fallback",
+        });
+      }
+
+      const randomIndex = Math.floor(Math.random() * totalCount);
+      const randomWord = await prisma.childWord.findMany({
+        skip: randomIndex,
+        take: 1,
+      });
+
+      if (randomWord.length > 0) {
+        console.log("每日一词:", randomWord[0].word);
+        return res.json({
+          word: randomWord[0].word,
+          phonetic: randomWord[0].phonetic,
+          translation: randomWord[0].translation,
+          example: `This is ${randomWord[0].word}.`,
+          pos: randomWord[0].pos,
+          grade: randomWord[0].grade,
+          source: "child-local",
+        });
+      }
+    }
+
+    // 从低年级单词中随机选择
+    const randomIndex = Math.floor(Math.random() * childWordCount);
+    const randomWord = await prisma.childWord.findMany({
+      where: {
+        grade: {
+          lte: 3,
+        },
+      },
+      skip: randomIndex,
+      take: 1,
+    });
+
+    if (randomWord.length > 0) {
+      console.log("每日一词:", randomWord[0].word, `(${randomWord[0].grade === 0 ? '幼儿' : '小学' + randomWord[0].grade + '年级'})`);
+      return res.json({
+        word: randomWord[0].word,
+        phonetic: randomWord[0].phonetic,
+        translation: randomWord[0].translation,
+        example: `This is ${randomWord[0].word}.`,
+        pos: randomWord[0].pos,
+        grade: randomWord[0].grade,
+        source: "child-local",
+      });
+    }
+
+    // 如果都失败，返回默认单词
+    res.json({
+      word: "cat",
+      phonetic: "/kæt/",
+      translation: "猫",
+      example: "I have a cat.",
+      source: "fallback",
+    });
+  } catch (error) {
+    console.error("获取每日一词失败:", error.message);
+    res.status(500).json({ error: "获取每日一词失败" });
+  }
+});
+
+// 获取单词详细信息（优先使用本地词典，失败时使用有道API）
+app.get("/api/dictionary/:word", async (req, res) => {
+  try {
+    const { word } = req.params;
+    console.log(`\n=== 查询单词: ${word} ===`);
+
+    // 1. 优先从本地词典查询
+    console.log("尝试从本地词典查询...");
+    const localResult = await getWordFromLocal(word);
+
+    if (localResult) {
+      console.log("本地词典查询成功:", localResult);
+      const result = {
+        word: localResult.word,
+        phonetic: localResult.phonetic || `/${word}/`,
+        translation: localResult.translation || "暂无翻译",
+        example: localResult.example || `Example sentence with ${word}.`,
+        definition: localResult.definition,
+        pos: localResult.pos,
+        collins: localResult.collins,
+        oxford: localResult.oxford,
+        tag: localResult.tag,
+        source: "local", // 标记数据来源
+      };
+      return res.json(result);
+    }
+
+    console.log("本地词典未找到，尝试使用有道API...");
+  } catch (error) {
+    console.error("获取单词详情失败:", error.message);
+    res.status(500).json({ error: "获取单词详情失败" });
+  }
+});
+
 // 数据库初始化函数
 async function initializeDatabase() {
   try {
@@ -627,6 +932,15 @@ async function initializeDatabase() {
       console.log("默认角色数据已插入");
     } else {
       console.log(`数据库中已有 ${count} 个角色`);
+    }
+
+    // 初始化本地词典
+    const wordCount = await prisma.word.count();
+    if (wordCount === 0) {
+      console.log("本地词典为空，正在初始化示例数据...");
+      await initializeLocalDictionary();
+    } else {
+      console.log(`本地词典中已有 ${wordCount} 个单词`);
     }
   } catch (error) {
     console.error("数据库初始化失败:", error);
