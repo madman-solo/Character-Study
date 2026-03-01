@@ -1,96 +1,95 @@
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useCharacter } from "../contexts/CharacterContext";
 import { useAuth } from "../contexts/AuthContext";
-import type { Message } from "../types";
-import { injectDateContext } from "../utils/dateInjector";
-import "../styles/Home.css";
+import { chat, saveMessage, getConversationHistory, deleteConversationHistory } from "../services/chatService";
+import { useTypewriter } from "../hooks/useTypewriter";
+import "../styles/HomeNew.css";
 
 interface HomeProps {
   englishMode?: string;
 }
 
+interface Message {
+  id: string;
+  role: 'user' | 'assistant';
+  content: string;
+  timestamp: Date;
+}
+
 const Home = ({ englishMode }: HomeProps) => {
   const { currentCharacter } = useCharacter();
   const { user } = useAuth();
+  const userId = user?.id || "guest";
+
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
-  const [historyMessages, setHistoryMessages] = useState<Message[]>([]);
-  const [loading, setLoading] = useState(false);
 
-  // 获取用户ID（如果未登录，使用临时ID）
-  const userId = user?.id || "guest";
+  // 当前 AI 回复（用于打字机效果和气泡显示）
+  const [currentAIReply, setCurrentAIReply] = useState("");
+  const [showAIBubble, setShowAIBubble] = useState(false);
+
+  // 打字机效果
+  const { displayedText, isTyping, isComplete } = useTypewriter({
+    text: currentAIReply,
+    speed: 30,
+    enabled: showAIBubble,
+  });
+
+  // 当打字完成后，3秒后隐藏气泡
+  useEffect(() => {
+    if (isComplete && showAIBubble) {
+      const timer = setTimeout(() => {
+        setShowAIBubble(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [isComplete, showAIBubble]);
+
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   // 加载历史对话
   useEffect(() => {
-    if (userId) {
-      loadConversationHistory();
-    }
-  }, [userId]);
-
-  const loadConversationHistory = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:3001/api/users/${userId}/conversations`,
-      );
-      if (response.ok) {
-        const data = await response.json();
-        const formattedMessages: Message[] = data
-          .map((conv: any) => ({
+    const loadHistory = async () => {
+      const scene = englishMode ? 'english' : 'home';
+      const history = await getConversationHistory(userId, 50, scene);
+      if (history.length > 0) {
+        const formattedMessages = history
+          .map((conv: { id: number; sender: string; message: string; timestamp: string }) => ({
             id: conv.id.toString(),
+            role: (conv.sender === 'user' ? 'user' : 'assistant') as 'user' | 'assistant',
             content: conv.message,
-            sender: conv.sender,
             timestamp: new Date(conv.timestamp),
           }))
           .reverse();
-        setHistoryMessages(formattedMessages);
         setMessages(formattedMessages);
       }
-    } catch (error) {
-      console.error("加载历史对话失败:", error);
-    }
-  };
-
-  const saveMessage = async (message: string, sender: string) => {
-    try {
-      await fetch(`http://localhost:3001/api/users/${userId}/conversations`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          message,
-          sender,
-          characterId: currentCharacter?.id,
-        }),
-      });
-    } catch (error) {
-      console.error("保存消息失败:", error);
-    }
-  };
-
-  const handleSendMessage = async () => {
-    if (!inputValue.trim() || loading) return;
-
-    const userMessage: Message = {
-      id: Date.now().toString(),
-      content: inputValue,
-      sender: "user",
-      timestamp: new Date(),
     };
+    loadHistory();
+  }, [userId, englishMode]);
 
-    setMessages([...messages, userMessage]);
-    setInputValue("");
-    setLoading(true);
+  // 自动调整输入框高度
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
+    }
+  }, [inputValue]);
 
-    // 保存用户消息
-    await saveMessage(inputValue, "user");
-
-    try {
-      // 构建 System Prompt
-      let systemPrompt = "";
-
-      if (englishMode) {
-        // 英语对话模式的 System Prompt
-        systemPrompt = `You are a friendly English conversation partner and teacher. Your role is to help users practice English through natural daily conversations.
+  // 构建系统提示词
+  const getSystemPrompt = () => {
+    if (englishMode) {
+      return `You are a friendly English conversation partner and teacher. Your role is to help users practice English through natural daily conversations.
 
 Core Rules:
 1. Always respond in English (you may provide Chinese explanations in parentheses for difficult words if needed)
@@ -102,176 +101,199 @@ Core Rules:
 7. If the user makes a significant error, acknowledge it kindly: "I understand you mean... A better way to say this would be..."
 
 Your goal: Make English learning natural, fun, and confidence-building through authentic conversation practice.`;
-      } else {
-        // 普通模式的 System Prompt
-        systemPrompt = currentCharacter
-          ? `你是${currentCharacter.name}，${currentCharacter.description}`
-          : "你是一个友好的AI助手";
-      }
+    }
+    return undefined;
+  };
 
-      // 调用千帆 API
-      const response = await fetch("http://localhost:3001/api/qianfan/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          model: "ernie-speed-8k",
-          messages: [
-            {
-              role: "system",
-              content: injectDateContext(systemPrompt),
-            },
-            {
-              role: "user",
-              content: inputValue,
-            },
-          ],
-        }),
+  const handleSendMessage = async () => {
+    if (!inputValue.trim() || isLoading) return;
+
+    const userInput = inputValue.trim();
+    setInputValue('');
+
+    // 添加用户消息
+    const userMessage: Message = {
+      id: Date.now().toString(),
+      role: 'user',
+      content: userInput,
+      timestamp: new Date(),
+    };
+    setMessages(prev => [...prev, userMessage]);
+
+    // 保存用户消息
+    const scene = englishMode ? 'english' : 'home';
+    await saveMessage(userId, userInput, 'user', scene);
+
+    setIsLoading(true);
+
+    try {
+      // 构建上下文消息（最近10轮）
+      const recentMessages = messages.slice(-20);
+      const contextMessages = [
+        ...recentMessages.map(msg => ({
+          role: msg.role,
+          content: msg.content,
+        })),
+        { role: 'user' as const, content: userInput },
+      ];
+
+      // 调用 AI 服务
+      const response = await chat({
+        scene: englishMode ? 'english' : 'home',
+        messages: contextMessages,
+        systemPrompt: getSystemPrompt(),
+        characterName: currentCharacter?.name,
+        characterDescription: currentCharacter?.description,
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        const aiReply =
-          data.choices?.[0]?.message?.content || "抱歉，我现在无法回复。";
-
-        const replyMessage: Message = {
-          id: (Date.now() + 1).toString(),
-          content: aiReply,
-          sender: "character",
-          timestamp: new Date(),
-        };
-
-        setMessages((prev) => [...prev, replyMessage]);
-        await saveMessage(aiReply, "character");
-      } else {
-        throw new Error("API 请求失败");
+      if (response.error) {
+        throw new Error(response.error);
       }
-    } catch (error) {
-      console.error("发送消息失败:", error);
-      const errorMessage: Message = {
+
+      // 添加 AI 回复到消息列表
+      const aiMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: "抱歉，消息发送失败。请检查 API Key 配置。",
-        sender: "character",
+        role: 'assistant',
+        content: response.content,
         timestamp: new Date(),
       };
-      setMessages((prev) => [...prev, errorMessage]);
+      setMessages(prev => [...prev, aiMessage]);
+
+      // 显示 AI 气泡和打字机效果
+      setCurrentAIReply(response.content);
+      setShowAIBubble(true);
+
+      // 保存 AI 回复
+      const scene = englishMode ? 'english' : 'home';
+      await saveMessage(userId, response.content, 'character', scene);
+    } catch (error) {
+      console.error('发送消息失败:', error);
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: '抱歉，消息发送失败。请稍后重试。',
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, errorMessage]);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSendMessage();
+    }
+  };
+
+  const handleClearHistory = async () => {
+    if (window.confirm('确定要清空对话历史吗？')) {
+      // 清空前端状态
+      setMessages([]);
+      // 删除数据库记录
+      await deleteConversationHistory(userId);
     }
   };
 
   return (
-    <div className="home-container">
-      <div className="character-display">
-        <div className="live2d-placeholder">
+    <div className="home-new-container">
+      {/* Live2D 展示区 */}
+      <div className="live2d-section">
+        <div className="live2d-display">
           {currentCharacter ? (
             <>
-              <div className="current-character-avatar">
+              <div className="character-avatar-large">
                 {currentCharacter.avatar}
               </div>
-              <p className="current-character-name">{currentCharacter.name}</p>
-              <p className="placeholder-hint">（后期集成Live2D模型）</p>
+              <p className="character-name">{currentCharacter.name}</p>
+              <p className="live2d-hint">（后期集成Live2D模型）</p>
             </>
           ) : (
             <>
-              <p>Live2D 角色模型展示区</p>
-              <p className="placeholder-hint">（后期集成Live2D模型）</p>
+              <p className="live2d-placeholder-text">Live2D 角色模型展示区</p>
+              <p className="live2d-hint">（后期集成Live2D模型）</p>
             </>
           )}
-        </div>
-      </div>
 
-      <div className="chat-container">
-        <div className="chat-header">
-          <button
-            className="history-button"
-            onClick={() => setShowHistory(!showHistory)}
-            title="查看历史对话"
-          >
-            📜
-          </button>
-        </div>
-
-        <div className="messages-area">
-          {messages.length === 0 ? (
-            <div className="empty-message">
-              <p>开始与角色对话吧！</p>
-            </div>
-          ) : (
-            messages.map((msg) => (
-              <div
-                key={msg.id}
-                className={`message ${
-                  msg.sender === "user" ? "user-message" : "character-message"
-                }`}
-              >
-                <div className="message-content">{msg.content}</div>
+          {/* AI 回复气泡 */}
+          {showAIBubble && (
+            <div className="ai-speech-bubble">
+              <div className="bubble-content">
+                {displayedText}
+                {isTyping && <span className="bubble-cursor">▌</span>}
               </div>
-            ))
-          )}
-          {loading && (
-            <div className="message character-message">
-              <div className="message-content">正在思考中...</div>
+              <div className="bubble-tail"></div>
             </div>
           )}
         </div>
 
-        <div className="input-area">
+        {/* 对话输入区 */}
+        <div className="chat-input-section">
+          <div className="input-header">
+            <button className="history-btn" onClick={() => setShowHistory(!showHistory)}>
+              📜 历史
+            </button>
+            <button className="clear-btn" onClick={handleClearHistory}>
+              清空
+            </button>
+          </div>
+
+          <div className="input-container">
+            <textarea
+              ref={textareaRef}
+              className="message-input"
+              placeholder={englishMode ? "Type your message..." : "输入消息..."}
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              onKeyDown={handleKeyDown}
+              disabled={isLoading}
+              rows={1}
+            />
+            <button
+              className="send-btn"
+              onClick={handleSendMessage}
+              disabled={!inputValue.trim() || isLoading}
+            >
+              {isLoading ? "..." : "↑"}
+            </button>
+          </div>
+
           {englishMode && (
-            <div className="english-mode-indicator">
+            <div className="mode-indicator">
               <span className="mode-icon">🌐</span>
               <span className="mode-text">{englishMode}</span>
             </div>
           )}
-          <input
-            type="text"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
-            placeholder={englishMode ? "Type your message..." : "输入消息..."}
-            className="message-input"
-            disabled={loading}
-          />
-          <button
-            onClick={handleSendMessage}
-            className="send-button"
-            disabled={loading}
-          >
-            {loading ? "发送中..." : "发送"}
-          </button>
         </div>
       </div>
 
+      {/* 历史记录侧边栏 */}
       {showHistory && (
-        <div className="history-modal" onClick={() => setShowHistory(false)}>
-          <div className="history-content" onClick={(e) => e.stopPropagation()}>
-            <div className="history-header">
-              <h3>历史对话</h3>
-              <button
-                className="close-button"
-                onClick={() => setShowHistory(false)}
-              >
-                ✕
-              </button>
-            </div>
-            <div className="history-messages">
-              {historyMessages.length === 0 ? (
-                <p className="empty-history">暂无历史对话</p>
-              ) : (
-                historyMessages.map((msg) => (
-                  <div
-                    key={msg.id}
-                    className={`history-message ${
-                      msg.sender === "user" ? "user" : "character"
-                    }`}
-                  >
-                    <div className="history-message-content">{msg.content}</div>
-                    <div className="history-message-time">
-                      {new Date(msg.timestamp).toLocaleString()}
-                    </div>
+        <div className="history-sidebar">
+          <div className="history-header">
+            <h3>对话历史</h3>
+            <button className="close-history" onClick={() => setShowHistory(false)}>
+              ✕
+            </button>
+          </div>
+          <div className="history-list">
+            {messages.length === 0 ? (
+              <p className="empty-history">暂无历史对话</p>
+            ) : (
+              messages.map((msg) => (
+                <div
+                  key={msg.id}
+                  className={`history-item ${msg.role}`}
+                >
+                  <div className="history-content">{msg.content}</div>
+                  <div className="history-time">
+                    {msg.timestamp.toLocaleString()}
                   </div>
-                ))
-              )}
-            </div>
+                </div>
+              ))
+            )}
+            <div ref={messagesEndRef} />
           </div>
         </div>
       )}

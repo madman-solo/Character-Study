@@ -22,6 +22,8 @@ import VocabularyPage from "./pages/VocabularyPage";
 import ListeningPage from "./pages/ListeningPage";
 import SpeakingPage from "./pages/SpeakingPage";
 import TreeHolePage from "./pages/TreeHolePage";
+import CharacterSelectionPage from "./pages/CharacterSelectionPage";
+import CharacterCreationPage from "./pages/CharacterCreationPage";
 import CustomCompanionSetupPage from "./pages/CustomCompanionSetupPage";
 import CustomCompanionChatPage from "./pages/CustomCompanionChatPage";
 import LoginPage from "./pages/LoginPage";
@@ -202,6 +204,14 @@ function AppContent() {
         <Route path="/child-word-detail/:word" element={<ChildWordDetail />} />
         <Route path="/child-vocabulary-review" element={<ChildVocabularyReview />} />
         <Route path="/vocabulary-review/:bookType" element={<VocabularyReview />} />
+        <Route
+          path="/character-selection"
+          element={<CharacterSelectionPage />}
+        />
+        <Route
+          path="/character-creation"
+          element={<CharacterCreationPage />}
+        />
         <Route
           path="/custom-companion-setup"
           element={<CustomCompanionSetupPage />}

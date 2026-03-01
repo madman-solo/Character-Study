@@ -16,7 +16,7 @@ const PORT = 3001;
 // 百度千帆 API 配置
 const QIANFAN_API_KEY = process.env.QIANFAN_API_KEY;
 const QIANFAN_BASE_URL = "https://qianfan.baidubce.com/v2";
-const QIANFAN_SECRET_KEY = process.env.QIANFAN_SECRET_KEY;
+// const QIANFAN_SECRET_KEY = process.env.QIANFAN_SECRET_KEY;
 
 // 初始化限流器和重试处理器
 // 根据千帆 API 的 TPM 限制调整参数：
@@ -60,6 +60,28 @@ async function qianfanRequest(endpoint, method = "GET", data = null) {
 app.use(cors());
 app.use(express.json());
 
+// 情景模式数据（和前端的数据不一致，但是这个变量并不重要）
+const scenarios = [
+  {
+    id: "1",
+    name: "树洞",
+    description: "倾诉你的心事",
+    icon: "🌳",
+  },
+  {
+    id: "2",
+    name: "学习助手",
+    description: "帮助你学习成长",
+    icon: "📚",
+  },
+  {
+    id: "3",
+    name: "专属陪伴",
+    description: "贴心的情感陪伴",
+    icon: "💝",
+  },
+];
+
 // 引入认证路由
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
@@ -83,6 +105,188 @@ app.use("/api/learning-session", learningSessionRoutes);
 app.use("/api/reports", reportsRoutes);
 app.use("/api/tts", ttsRoutes);
 app.use("/api/audio", audioRoutes);
+
+// ========== 情感分析和情绪记录 API ==========
+
+// 情感分析接口
+console.log("✅ 注册路由: POST /api/qianfan/emotion");
+app.post("/api/qianfan/emotion", async (req, res) => {
+  console.log("\n=== 情感分析请求 ===");
+  console.log("请求体:", req.body);
+
+  try {
+    const { text } = req.body;
+
+    if (!text) {
+      console.error("错误: 缺少 text 参数");
+      return res.status(400).json({ error: "缺少 text 参数" });
+    }
+
+    console.log("分析文本:", text);
+
+    // 使用千帆 API 进行情感分析
+    console.log("调用千帆 API...");
+    const data = await qianfanRequest("/chat/completions", "POST", {
+      model: "ernie-speed-pro-128k",
+      messages: [
+        {
+          role: "system",
+          content: `你是一个专业的情感分析助手。请分析用户输入的文本，识别其情感状态。
+
+请以 JSON 格式返回分析结果，格式如下：
+{
+  "sentiment": "positive/negative/neutral",
+  "emotion": "happy/sad/angry/anxious/calm/excited/frustrated/lonely/confused/hopeful",
+  "confidence": 0.0-1.0,
+  "keywords": ["关键词1", "关键词2"]
+}
+
+情感分类说明：
+- sentiment: positive(积极)/negative(消极)/neutral(中性)
+- emotion: happy(开心)/sad(悲伤)/angry(愤怒)/anxious(焦虑)/calm(平静)/excited(兴奋)/frustrated(沮丧)/lonely(孤独)/confused(困惑)/hopeful(充满希望)
+- confidence: 置信度，0-1之间的小数
+- keywords: 体现情感的关键词
+
+只返回 JSON，不要有其他文字。`,
+        },
+        {
+          role: "user",
+          content: text,
+        },
+      ],
+    });
+
+    console.log("千帆 API 响应:", JSON.stringify(data, null, 2));
+
+    const content = data.choices[0].message.content;
+    console.log("AI 返回内容:", content);
+
+    let emotionData;
+
+    try {
+      const jsonMatch = content.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        emotionData = JSON.parse(jsonMatch[0]);
+      } else {
+        emotionData = JSON.parse(content);
+      }
+      console.log("解析后的情感数据:", emotionData);
+    } catch (parseError) {
+      console.error("解析情感分析结果失败:", parseError);
+      emotionData = {
+        sentiment: "neutral",
+        emotion: "calm",
+        confidence: 0.5,
+        keywords: [],
+      };
+      console.log("使用默认情感数据:", emotionData);
+    }
+
+    console.log("返回情感分析结果:", emotionData);
+    res.json(emotionData);
+  } catch (error) {
+    console.error("情感分析失败:", error);
+    console.error("错误堆栈:", error.stack);
+    res.status(500).json({
+      error: "情感分析失败",
+      message: error.response?.data?.error?.message || error.message,
+    });
+  }
+});
+
+// 保存情绪记录接口
+console.log("✅ 注册路由: POST /api/emotion/save");
+app.post("/api/emotion/save", async (req, res) => {
+  console.log("\n=== 保存情绪记录请求 ===");
+  console.log("请求体:", req.body);
+
+  try {
+    const { userId, messageContent, emotion, sentiment, confidence, keywords } =
+      req.body;
+
+    const emotionRecord = await prisma.emotionRecord.create({
+      data: {
+        userId,
+        messageContent,
+        emotion,
+        sentiment,
+        confidence,
+        keywords: JSON.stringify(keywords || []),
+      },
+    });
+
+    console.log("情绪记录已保存:", emotionRecord.id);
+    res.json({ success: true, id: emotionRecord.id });
+  } catch (error) {
+    console.error("保存情绪记录失败:", error);
+    res.status(500).json({ error: "保存情绪记录失败" });
+  }
+});
+
+// 获取用户情绪历史记录
+console.log("✅ 注册路由: GET /api/emotion/history/:userId");
+app.get("/api/emotion/history/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { limit = 50 } = req.query;
+
+    const records = await prisma.emotionRecord.findMany({
+      where: { userId },
+      orderBy: { createdAt: "desc" },
+      take: parseInt(limit),
+    });
+
+    const formattedRecords = records.map((record) => ({
+      ...record,
+      keywords: JSON.parse(record.keywords),
+    }));
+
+    res.json(formattedRecords);
+  } catch (error) {
+    console.error("获取情绪历史失败:", error);
+    res.status(500).json({ error: "获取情绪历史失败" });
+  }
+});
+
+// 获取用户情绪统计
+console.log("✅ 注册路由: GET /api/emotion/stats/:userId");
+app.get("/api/emotion/stats/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { days = 7 } = req.query;
+
+    const startDate = new Date();
+    startDate.setDate(startDate.getDate() - parseInt(days));
+
+    const records = await prisma.emotionRecord.findMany({
+      where: {
+        userId,
+        createdAt: { gte: startDate },
+      },
+    });
+
+    const emotionCounts = {};
+    const sentimentCounts = { positive: 0, negative: 0, neutral: 0 };
+
+    records.forEach((record) => {
+      emotionCounts[record.emotion] = (emotionCounts[record.emotion] || 0) + 1;
+      sentimentCounts[record.sentiment] =
+        (sentimentCounts[record.sentiment] || 0) + 1;
+    });
+
+    res.json({
+      totalRecords: records.length,
+      emotionCounts,
+      sentimentCounts,
+      period: `${days} days`,
+    });
+  } catch (error) {
+    console.error("获取情绪统计失败:", error);
+    res.status(500).json({ error: "获取情绪统计失败" });
+  }
+});
+
+// ========== 角色和场景相关 API ==========
 
 // 模拟角色数据
 const characters = [
@@ -154,6 +358,214 @@ app.get("/api/characters", async (req, res) => {
   }
 });
 
+// ==================== 自定义角色管理 API（必须在 /api/characters/:id 之前） ====================
+
+// 获取用户的所有自定义角色
+app.get("/api/characters/custom/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const characters = await prisma.customCharacter.findMany({
+      where: { userId, isActive: true },
+      orderBy: [{ isDefault: "desc" }, { createdAt: "desc" }],
+    });
+    res.json({ success: true, characters });
+  } catch (error) {
+    console.error("获取自定义角色失败:", error);
+    res.status(500).json({ error: "获取自定义角色失败" });
+  }
+});
+
+// 创建新的自定义角色
+app.post("/api/characters/custom", async (req, res) => {
+  try {
+    const {
+      userId,
+      name,
+      avatar,
+      gender,
+      age,
+      personality,
+      background,
+      speakingStyle,
+      hobbies,
+      traits,
+    } = req.body;
+
+    // 生成system prompt
+    const systemPrompt = generateCharacterPrompt({
+      name,
+      gender,
+      age,
+      personality,
+      background,
+      speakingStyle,
+      hobbies,
+      traits,
+    });
+
+    const character = await prisma.customCharacter.create({
+      data: {
+        userId,
+        name,
+        avatar: avatar || null,
+        gender: gender || "female",
+        age: age || null,
+        personality,
+        background: background || null,
+        speakingStyle: speakingStyle || null,
+        hobbies: JSON.stringify(hobbies || []),
+        traits: JSON.stringify(traits || []),
+        systemPrompt,
+        isActive: true,
+        isDefault: false,
+      },
+    });
+
+    res.json({ success: true, character });
+  } catch (error) {
+    console.error("创建自定义角色失败:", error);
+    res.status(500).json({ error: "创建自定义角色失败" });
+  }
+});
+
+// 更新自定义角色
+app.put("/api/characters/custom/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const {
+      name,
+      avatar,
+      gender,
+      age,
+      personality,
+      background,
+      speakingStyle,
+      hobbies,
+      traits,
+    } = req.body;
+
+    // 重新生成system prompt
+    const systemPrompt = generateCharacterPrompt({
+      name,
+      gender,
+      age,
+      personality,
+      background,
+      speakingStyle,
+      hobbies,
+      traits,
+    });
+
+    const character = await prisma.customCharacter.update({
+      where: { id: parseInt(id) },
+      data: {
+        name,
+        avatar,
+        gender,
+        age,
+        personality,
+        background,
+        speakingStyle,
+        hobbies: JSON.stringify(hobbies || []),
+        traits: JSON.stringify(traits || []),
+        systemPrompt,
+      },
+    });
+
+    res.json({ success: true, character });
+  } catch (error) {
+    console.error("更新自定义角色失败:", error);
+    res.status(500).json({ error: "更新自定义角色失败" });
+  }
+});
+
+// 删除自定义角色（软删除）
+app.delete("/api/characters/custom/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    await prisma.customCharacter.update({
+      where: { id: parseInt(id) },
+      data: { isActive: false },
+    });
+    res.json({ success: true });
+  } catch (error) {
+    console.error("删除自定义角色失败:", error);
+    res.status(500).json({ error: "删除自定义角色失败" });
+  }
+});
+
+// 设置默认角色
+app.put("/api/characters/custom/:id/set-default", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { userId } = req.body;
+
+    // 先取消所有默认角色
+    await prisma.customCharacter.updateMany({
+      where: { userId, isDefault: true },
+      data: { isDefault: false },
+    });
+
+    // 设置新的默认角色
+    const character = await prisma.customCharacter.update({
+      where: { id: parseInt(id) },
+      data: { isDefault: true },
+    });
+
+    res.json({ success: true, character });
+  } catch (error) {
+    console.error("设置默认角色失败:", error);
+    res.status(500).json({ error: "设置默认角色失败" });
+  }
+});
+
+// 保存角色对话记录
+app.post("/api/characters/conversation", async (req, res) => {
+  try {
+    const { characterId, userId, userMessage, characterReply, emotion } =
+      req.body;
+
+    const conversation = await prisma.characterConversation.create({
+      data: {
+        characterId: parseInt(characterId),
+        userId,
+        userMessage,
+        characterReply,
+        emotion: emotion || null,
+      },
+    });
+
+    res.json({ success: true, conversation });
+  } catch (error) {
+    console.error("保存对话记录失败:", error);
+    res.status(500).json({ error: "保存对话记录失败" });
+  }
+});
+
+// 保存角色记忆
+app.post("/api/characters/memory", async (req, res) => {
+  try {
+    const { characterId, userId, memoryType, content, importance } = req.body;
+
+    const memory = await prisma.characterMemory.create({
+      data: {
+        characterId: parseInt(characterId),
+        userId,
+        memoryType,
+        content,
+        importance: importance || 5,
+      },
+    });
+
+    res.json({ success: true, memory });
+  } catch (error) {
+    console.error("保存角色记忆失败:", error);
+    res.status(500).json({ error: "保存角色记忆失败" });
+  }
+});
+
+// ==================== 预设角色 API ====================
+
 // 获取单个角色详情
 app.get("/api/characters/:id", async (req, res) => {
   try {
@@ -190,6 +602,60 @@ app.get("/api/characters/:id", async (req, res) => {
   } catch (error) {
     console.error("获取角色详情失败:", error);
     res.status(500).json({ error: "服务器错误" });
+  }
+});
+
+// 获取角色对话历史（用于记忆系统）
+app.get("/api/characters/:characterId/conversations", async (req, res) => {
+  try {
+    const { characterId } = req.params;
+    const { userId, limit = 20 } = req.query;
+
+    const conversations = await prisma.characterConversation.findMany({
+      where: {
+        characterId: parseInt(characterId),
+        userId,
+      },
+      orderBy: { createdAt: "desc" },
+      take: parseInt(limit),
+    });
+
+    res.json({ success: true, conversations: conversations.reverse() });
+  } catch (error) {
+    console.error("获取对话历史失败:", error);
+    res.status(500).json({ error: "获取对话历史失败" });
+  }
+});
+
+// 获取角色记忆
+app.get("/api/characters/:characterId/memories", async (req, res) => {
+  try {
+    const { characterId } = req.params;
+    const { userId } = req.query;
+
+    const memories = await prisma.characterMemory.findMany({
+      where: {
+        characterId: parseInt(characterId),
+        userId,
+      },
+      orderBy: [{ importance: "desc" }, { lastAccessedAt: "desc" }],
+      take: 10, // 只返回最重要的10条记忆
+    });
+
+    // 更新最后访问时间
+    if (memories.length > 0) {
+      await prisma.characterMemory.updateMany({
+        where: {
+          id: { in: memories.map((m) => m.id) },
+        },
+        data: { lastAccessedAt: new Date() },
+      });
+    }
+
+    res.json({ success: true, memories });
+  } catch (error) {
+    console.error("获取角色记忆失败:", error);
+    res.status(500).json({ error: "获取角色记忆失败" });
   }
 });
 
@@ -346,13 +812,18 @@ app.post("/api/qianfan/rerank", async (req, res) => {
 app.post("/api/users/:userId/conversations", async (req, res) => {
   try {
     const { userId } = req.params;
-    const { message, sender, characterId } = req.body;
+    const { message, sender, scene, characterId } = req.body;
+
+    console.log(
+      `[保存对话] userId: ${userId}, sender: ${sender}, scene: ${scene}`,
+    );
 
     const conversation = await prisma.conversation.create({
       data: {
         userId,
         message,
         sender,
+        scene: scene || null,
         characterId: characterId ? parseInt(characterId) : null,
         timestamp: new Date(),
       },
@@ -369,14 +840,27 @@ app.post("/api/users/:userId/conversations", async (req, res) => {
 app.get("/api/users/:userId/conversations", async (req, res) => {
   try {
     const { userId } = req.params;
-    const { limit = 50, offset = 0 } = req.query;
+    const { limit = 50, offset = 0, scene } = req.query;
+
+    console.log(
+      `[对话历史查询] userId: ${userId}, scene: ${scene}, limit: ${limit}`,
+    );
+
+    const whereClause = { userId };
+
+    // 如果提供了scene参数，按场景过滤
+    if (scene) {
+      whereClause.scene = scene;
+    }
 
     const conversations = await prisma.conversation.findMany({
-      where: { userId },
+      where: whereClause,
       orderBy: { timestamp: "desc" },
       take: parseInt(limit),
       skip: parseInt(offset),
     });
+
+    console.log(`[对话历史查询] 返回 ${conversations.length} 条记录`);
 
     res.json(conversations);
   } catch (error) {
@@ -389,9 +873,17 @@ app.get("/api/users/:userId/conversations", async (req, res) => {
 app.delete("/api/users/:userId/conversations", async (req, res) => {
   try {
     const { userId } = req.params;
+    const { scene } = req.query;
+
+    const whereClause = { userId };
+
+    // 如果提供了scene参数，只删除该场景的对话
+    if (scene) {
+      whereClause.scene = scene;
+    }
 
     await prisma.conversation.deleteMany({
-      where: { userId },
+      where: whereClause,
     });
 
     res.json({ success: true });
@@ -847,7 +1339,11 @@ app.get("/api/dictionary/daily-word", async (req, res) => {
     });
 
     if (randomWord.length > 0) {
-      console.log("每日一词:", randomWord[0].word, `(${randomWord[0].grade === 0 ? '幼儿' : '小学' + randomWord[0].grade + '年级'})`);
+      console.log(
+        "每日一词:",
+        randomWord[0].word,
+        `(${randomWord[0].grade === 0 ? "幼儿" : "小学" + randomWord[0].grade + "年级"})`,
+      );
       return res.json({
         word: randomWord[0].word,
         phonetic: randomWord[0].phonetic,
@@ -906,6 +1402,55 @@ app.get("/api/dictionary/:word", async (req, res) => {
     res.status(500).json({ error: "获取单词详情失败" });
   }
 });
+
+// 生成角色system prompt的辅助函数
+function generateCharacterPrompt({
+  name,
+  gender,
+  age,
+  personality,
+  background,
+  speakingStyle,
+  hobbies,
+  traits,
+}) {
+  let prompt = `你是${name}`;
+
+  if (gender) {
+    const genderMap = { male: "男性", female: "女性", other: "非二元性别" };
+    prompt += `，${genderMap[gender] || gender}`;
+  }
+
+  if (age) {
+    prompt += `，${age}`;
+  }
+
+  prompt += `。\n\n`;
+
+  if (personality) {
+    prompt += `性格特征：${personality}\n\n`;
+  }
+
+  if (background) {
+    prompt += `背景故事：${background}\n\n`;
+  }
+
+  if (speakingStyle) {
+    prompt += `说话风格：${speakingStyle}\n\n`;
+  }
+
+  if (hobbies && hobbies.length > 0) {
+    prompt += `兴趣爱好：${hobbies.join("、")}\n\n`;
+  }
+
+  if (traits && traits.length > 0) {
+    prompt += `性格标签：${traits.join("、")}\n\n`;
+  }
+
+  prompt += `请始终保持角色设定，用符合${name}性格和说话风格的方式回复。回复要自然、生动，体现出角色的个性特点。`;
+
+  return prompt;
+}
 
 // 数据库初始化函数
 async function initializeDatabase() {

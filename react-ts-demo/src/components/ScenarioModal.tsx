@@ -116,8 +116,8 @@ const ScenarioModal = ({
       // todo: 记录选择的场景模式为专属陪伴
       onClose();
     } else {
-      // 跳转到自定义场景设置页面
-      navigate("/custom-companion-setup");
+      // 跳转到角色选择页面
+      navigate("/character-selection");
       // todo: 记录选择的场景模式为专属陪伴，应该在情景模式完成
       onClose();
     }

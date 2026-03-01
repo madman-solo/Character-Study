@@ -1,0 +1,725 @@
+/* 角色创建页面 - 潘通国际美学设计 */
+
+.character-creation-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.creation-container {
+  width: 100%;
+  max-width: 800px;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+/* 进度条 */
+.progress-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 60px 30px;
+  background: linear-gradient(to bottom, #f8f9fa 0%, white 100%);
+  position: relative;
+}
+
+.progress-bar::before {
+  content: '';
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  right: 60px;
+  height: 2px;
+  background: #e9ecef;
+  z-index: 0;
+}
+
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+.step-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #e9ecef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #adb5bd;
+  transition: all 0.3s ease;
+  font-size: 16px;
+}
+
+.progress-step.active .step-circle {
+  border-color: #667eea;
+  color: #667eea;
+  background: #f0f3ff;
+}
+
+.progress-step.current .step-circle {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: transparent;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.step-label {
+  font-size: 12px;
+  color: #adb5bd;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.progress-step.active .step-label {
+  color: #667eea;
+}
+
+.progress-step.current .step-label {
+  color: #667eea;
+  font-weight: 600;
+}
+
+/* 内容区域 */
+.content-area {
+  padding: 40px 60px;
+  min-height: 500px;
+}
+
+.step-content {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.step-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.5px;
+}
+
+.step-subtitle {
+  font-size: 16px;
+  color: #718096;
+  margin: 0 0 32px 0;
+}
+
+/* 头像上传 */
+.avatar-upload-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.avatar-preview {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  font-weight: 700;
+  color: #667eea;
+}
+
+.upload-btn {
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.upload-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.3);
+}
+
+.upload-btn.secondary {
+  background: white;
+  color: #667eea;
+  border: 2px solid #667eea;
+  box-shadow: none;
+}
+
+.upload-btn.secondary:hover {
+  background: #f0f3ff;
+}
+
+/* 表单字段 */
+.form-field {
+  margin-bottom: 24px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.field-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 8px;
+}
+
+.required {
+  color: #e53e3e;
+  margin-left: 4px;
+}
+
+.field-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.field-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.field-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 100px;
+  box-sizing: border-box;
+}
+
+.field-textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* 性别选择 */
+.gender-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.gender-btn {
+  padding: 12px;
+  border: 2px solid #e2e8f0;
+  background: white;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4a5568;
+}
+
+.gender-btn:hover {
+  border-color: #667eea;
+  background: #f0f3ff;
+}
+
+.gender-btn.active {
+  border-color: #667eea;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.gender-icon {
+  font-size: 24px;
+}
+
+/* 性格标签 */
+.preset-traits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.trait-chip {
+  padding: 10px 16px;
+  border: 2px solid #e2e8f0;
+  background: white;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4a5568;
+  text-align: center;
+}
+
+.trait-chip:hover {
+  border-color: #667eea;
+  background: #f0f3ff;
+  transform: translateY(-2px);
+}
+
+.trait-chip.active {
+  border-color: #667eea;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.custom-trait-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.custom-trait-input .field-input {
+  flex: 1;
+}
+
+.add-btn {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.add-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.selected-traits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.trait-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 16px;
+  font-size: 13px;
+  font-weight: 500;
+  animation: tagAppear 0.3s ease;
+}
+
+.trait-tag button {
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  color: white;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.trait-tag button:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes tagAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 关系卡片 */
+.relationship-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.relationship-card {
+  padding: 24px 16px;
+  border: 2px solid #e2e8f0;
+  background: white;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.relationship-card:hover {
+  border-color: #667eea;
+  background: #f0f3ff;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);
+}
+
+.relationship-card.active {
+  border-color: #667eea;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+}
+
+.relationship-icon {
+  font-size: 36px;
+  margin-bottom: 4px;
+}
+
+.relationship-name {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.relationship-desc {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* 背景主题 */
+.background-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.background-card {
+  border: 2px solid #e2e8f0;
+  background: white;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  padding: 0;
+}
+
+.background-card:hover {
+  border-color: #667eea;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);
+}
+
+.background-card.active {
+  border-color: #667eea;
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+}
+
+.background-preview {
+  width: 100%;
+  height: 80px;
+  border-radius: 12px 12px 0 0;
+}
+
+.background-name {
+  padding: 12px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.custom-background-section {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.color-picker-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.color-picker-section input[type="color"] {
+  width: 100%;
+  height: 50px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* 导航按钮 */
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 24px 60px 40px;
+  background: #f8f9fa;
+}
+
+.nav-btn {
+  padding: 14px 32px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  max-width: 200px;
+}
+
+.nav-btn.primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.nav-btn.primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.3);
+}
+
+.nav-btn.primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.nav-btn.secondary {
+  background: white;
+  color: #4a5568;
+  border: 2px solid #e2e8f0;
+}
+
+.nav-btn.secondary:hover {
+  background: #f7fafc;
+  border-color: #cbd5e0;
+}
+
+/* 响应式设计 - 平板 */
+@media (max-width: 1024px) {
+  .creation-container {
+    max-width: 700px;
+  }
+
+  .content-area {
+    padding: 32px 40px;
+  }
+
+  .navigation-buttons {
+    padding: 20px 40px 32px;
+  }
+
+  .progress-bar {
+    padding: 32px 40px 24px;
+  }
+
+  .progress-bar::before {
+    left: 40px;
+    right: 40px;
+  }
+}
+
+/* 响应式设计 - 移动端 */
+@media (max-width: 768px) {
+  .character-creation-page {
+    padding: 20px 10px;
+  }
+
+  .creation-container {
+    border-radius: 16px;
+  }
+
+  .progress-bar {
+    padding: 24px 20px 20px;
+  }
+
+  .progress-bar::before {
+    left: 20px;
+    right: 20px;
+  }
+
+  .step-circle {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .step-label {
+    font-size: 11px;
+  }
+
+  .content-area {
+    padding: 24px 20px;
+    min-height: 400px;
+  }
+
+  .step-title {
+    font-size: 24px;
+  }
+
+  .step-subtitle {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .gender-options {
+    grid-template-columns: 1fr;
+  }
+
+  .preset-traits-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 8px;
+  }
+
+  .relationship-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .relationship-card {
+    padding: 20px 12px;
+  }
+
+  .relationship-icon {
+    font-size: 32px;
+  }
+
+  .relationship-name {
+    font-size: 14px;
+  }
+
+  .relationship-desc {
+    font-size: 11px;
+  }
+
+  .background-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .background-preview {
+    height: 60px;
+  }
+
+  .navigation-buttons {
+    padding: 16px 20px 24px;
+    flex-wrap: wrap;
+  }
+
+  .nav-btn {
+    padding: 12px 24px;
+    font-size: 14px;
+    max-width: none;
+  }
+
+  .nav-btn.secondary:first-child {
+    flex: 0 0 100%;
+    order: 3;
+  }
+}
+
+/* 响应式设计 - 小屏手机 */
+@media (max-width: 480px) {
+  .step-label {
+    display: none;
+  }
+
+  .progress-bar {
+    padding: 20px 15px 16px;
+  }
+
+  .progress-bar::before {
+    left: 15px;
+    right: 15px;
+  }
+
+  .content-area {
+    padding: 20px 15px;
+  }
+
+  .navigation-buttons {
+    padding: 12px 15px 20px;
+  }
+
+  .relationship-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .background-grid {
+    grid-template-columns: 1fr;
+  }
+}

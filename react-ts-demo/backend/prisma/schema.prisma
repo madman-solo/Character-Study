@@ -120,10 +120,12 @@ model Conversation {
   userId      String   // 用户ID
   message     String   // 消息内容
   sender      String   // 发送者：user 或 character
+  scene       String?  // 场景：home, treehole, custom, daily, english
   characterId Int?     // 角色ID（可选）
   timestamp   DateTime @default(now()) // 消息时间
 
   @@index([userId, timestamp]) // 索引优化查询
+  @@index([userId, scene]) // 按场景查询的索引
 }
 
 // 单词词典表
@@ -202,4 +204,80 @@ model ChildWordProgress {
 
   @@unique([userId, wordId]) // 同一用户同一单词唯一
   @@index([userId]) // 用户索引
+}
+
+// 情绪记录表
+model EmotionRecord {
+  id              Int      @id @default(autoincrement())
+  userId          String   // 用户ID
+  conversationId  Int?     // 关联的对话ID（可选）
+  messageContent  String   // 用户消息内容
+  emotion         String   // 具体情绪：happy/sad/angry/anxious/calm/excited/frustrated/lonely/confused/hopeful
+  sentiment       String   // 情感倾向：positive/negative/neutral
+  confidence      Float    // 置信度 0-1
+  keywords        String   @default("[]") // 关键词（JSON数组）
+  createdAt       DateTime @default(now()) // 记录时间
+
+  @@index([userId, createdAt]) // 用户和时间索引
+  @@index([emotion]) // 情绪索引
+}
+
+// 自定义角色表（仿照筑梦岛）
+model CustomCharacter {
+  id              Int      @id @default(autoincrement())
+  userId          String   // 创建者用户ID
+  name            String   // 角色名称
+  avatar          String?  // 角色头像URL
+  gender          String   @default("female") // 性别：male/female/other
+  age             String?  // 年龄或年龄段
+  personality     String   // 性格特征（如：温柔、活泼、冷静、傲娇等）
+  background      String?  // 背景故事
+  speakingStyle   String?  // 说话风格描述
+  hobbies         String   @default("[]") // 兴趣爱好（JSON数组）
+  traits          String   @default("[]") // 性格标签（JSON数组）
+  systemPrompt    String   // 生成的system prompt
+  isActive        Boolean  @default(true) // 是否激活
+  isDefault       Boolean  @default(false) // 是否为默认角色
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // 关系
+  conversations   CharacterConversation[]
+  memories        CharacterMemory[]
+
+  @@index([userId, isActive]) // 用户和激活状态索引
+  @@index([userId, isDefault]) // 用户和默认角色索引
+}
+
+// 角色对话记录表
+model CharacterConversation {
+  id              Int      @id @default(autoincrement())
+  characterId     Int      // 角色ID
+  userId          String   // 用户ID
+  userMessage     String   // 用户消息
+  characterReply  String   // 角色回复
+  emotion         String?  // 用户情绪（可选）
+  createdAt       DateTime @default(now())
+
+  character       CustomCharacter @relation(fields: [characterId], references: [id], onDelete: Cascade)
+
+  @@index([characterId, createdAt]) // 角色和时间索引
+  @@index([userId, createdAt]) // 用户和时间索引
+}
+
+// 角色记忆表（长期记忆系统）
+model CharacterMemory {
+  id              Int      @id @default(autoincrement())
+  characterId     Int      // 角色ID
+  userId          String   // 用户ID
+  memoryType      String   // 记忆类型：fact(事实)/preference(偏好)/event(事件)
+  content         String   // 记忆内容
+  importance      Int      @default(5) // 重要性 1-10
+  createdAt       DateTime @default(now())
+  lastAccessedAt  DateTime @default(now()) // 最后访问时间
+
+  character       CustomCharacter @relation(fields: [characterId], references: [id], onDelete: Cascade)
+
+  @@index([characterId, importance]) // 角色和重要性索引
+  @@index([userId, characterId]) // 用户和角色索引
 }

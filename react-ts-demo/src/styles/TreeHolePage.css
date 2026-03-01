@@ -168,6 +168,57 @@
   animation: dialogue-enter 0.4s ease;
 }
 
+/* 用户输入框样式 */
+.user-input-box {
+  cursor: default;
+  padding: 20px 25px;
+}
+
+.dialogue-input {
+  width: 100%;
+  min-height: 80px;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #333;
+  resize: vertical;
+  font-family: inherit;
+  margin-top: 10px;
+  transition: border-color 0.3s;
+}
+
+.dialogue-input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.dialogue-submit-button {
+  margin-top: 15px;
+  padding: 12px 32px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.dialogue-submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+.dialogue-submit-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
 @keyframes dialogue-enter {
   from {
     opacity: 0;
@@ -220,11 +271,77 @@
 }
 
 .click-hint {
-  text-align: right;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 14px;
   color: #999;
   margin-top: 15px;
   animation: pulse-hint 1.5s ease-in-out infinite;
+}
+
+.hint-left {
+  flex: 1;
+  text-align: left;
+  color: #667eea;
+}
+
+.hint-center {
+  flex: 1;
+  text-align: center;
+}
+
+.hint-right {
+  flex: 1;
+  text-align: right;
+  color: #667eea;
+}
+
+/* 回看模式指示器 */
+.review-mode-indicator {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  animation: indicator-pulse 2s ease-in-out infinite;
+}
+
+.review-icon {
+  font-size: 16px;
+  animation: book-flip 2s ease-in-out infinite;
+}
+
+.review-text {
+  white-space: nowrap;
+}
+
+@keyframes indicator-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.95;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes book-flip {
+  0%, 100% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
 }
 
 @keyframes pulse-hint {
@@ -329,6 +446,17 @@
   .click-hint {
     font-size: 12px;
     margin-top: 12px;
+  }
+
+  .review-mode-indicator {
+    top: 8px;
+    right: 15px;
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+
+  .review-icon {
+    font-size: 14px;
   }
 
   .dialogue-progress {
