@@ -1,7 +1,7 @@
 /* WritingPage.css */
 .writing-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   padding: 20px;
   display: flex;
   justify-content: center;
@@ -36,8 +36,8 @@
 .back-button {
   padding: 12px 24px;
   background: rgba(255, 255, 255, 0.2);
-  color: #667eea;
-  border: 2px solid #667eea;
+  color: #bf6363;
+  border: 2px solid #bf6363;
   border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
@@ -48,7 +48,7 @@
 
 .back-button:hover {
   background: white;
-  color: #667eea;
+  color: #bf6363;
   transform: translateX(-5px);
 }
 
@@ -82,7 +82,7 @@
 
 .correction-toggle:hover {
   background: white;
-  color: #667eea;
+  color: #bf6363;
 }
 
 .correction-toggle input[type="checkbox"] {
@@ -124,7 +124,7 @@
 }
 
 .writing-textarea:focus {
-  border-color: #667eea;
+  border-color: #bf6363;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -174,9 +174,9 @@
 }
 
 .ai-menu-btn:hover {
-  border-color: #667eea;
+  border-color: #bf6363;
   background: #f8f9ff;
-  color: #667eea;
+  color: #bf6363;
   transform: translateY(-2px);
 }
 
@@ -215,9 +215,9 @@
 }
 
 .tool-btn:hover {
-  border-color: #667eea;
+  border-color: #bf6363;
   background: #f8f9ff;
-  color: #667eea;
+  color: #bf6363;
   transform: translateY(-2px);
 }
 

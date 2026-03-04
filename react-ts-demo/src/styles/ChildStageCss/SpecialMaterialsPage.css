@@ -24,7 +24,7 @@
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   color: white;
   transition: all 0.3s ease;
 }
@@ -120,7 +120,7 @@
 }
 
 .material-type {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   color: white;
   padding: 3px 12px;
   border-radius: 12px;

@@ -5,14 +5,43 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #f5f5f5;
+  /* background: #f5f5f5; */
+  /* 修改 */
+  background: linear-gradient(
+    135deg,
+    #fff8f0 0%,
+    #ffe5e5 100%
+  ); /* 温暖渐变背景：奶油色到淡粉 */
 }
 
 .app {
   min-height: 100vh;
+}
+/* 新增 */ /* 温暖治愈风格全局变量 */
+/* 新增 */
+:root {
+  /* 新增 */
+  --warm-beige: #f5e6d3;
+  /* 新增 */
+  --warm-peach: #ffd4b8;
+  /* 新增 */
+  --warm-pink: #ffe5e5;
+  /* 新增 */
+  --warm-cream: #fff8f0;
+  /* 新增 */
+  --warm-brown: #8b7355;
+  /* 新增 */
+  --warm-coral: #ff9b85;
+  /* 新增 */
+  --warm-shadow: 0 4px 20px rgba(139, 115, 85, 0.12); /* 柔和阴影 */
+  /* 新增 */
+  --warm-radius: 18px; /* 圆润圆角 */
+  /* 新增 */
+  --warm-transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1); /* 轻柔动效 */
+  /* 新增 */
 }

@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
   padding: 40px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   position: relative;
   margin-top: 80px;
 }
@@ -152,7 +152,7 @@
 
 .speaking-page .character-display .back-button:hover {
   background: white;
-  color: #667eea;
+  color: #bf6363;
   transform: translateY(-2px);
 }
 
@@ -182,7 +182,7 @@
 
 .toggle-transcript-button {
   padding: 8px 20px;
-  background: #667eea;
+  background: #bf6363;
   color: white;
   border: none;
   border-radius: 6px;
@@ -224,7 +224,7 @@
 }
 
 .user-message {
-  /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+  /* background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%); */
   color: white;
   align-self: flex-end;
   max-width: 80%;
@@ -254,7 +254,7 @@
 }
 
 .character-message .speaker-name {
-  color: #667eea;
+  color: #bf6363;
 }
 
 .message-time {

@@ -1,7 +1,7 @@
 /* 角色选择页面样式 */
 .character-selection-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   padding: 40px 20px;
 }
 
@@ -79,7 +79,7 @@
   justify-content: center;
   padding: 40px 20px;
   cursor: pointer;
-  border: 2px dashed #667eea;
+  border: 2px dashed #bf6363;
   background: rgba(102, 126, 234, 0.05);
 }
 
@@ -92,7 +92,7 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   color: white;
   font-size: 48px;
   display: flex;
@@ -194,7 +194,7 @@
   justify-content: center;
   font-size: 48px;
   font-weight: bold;
-  color: #667eea;
+  color: #bf6363;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
@@ -240,7 +240,7 @@
   display: inline-block;
   padding: 4px 10px;
   background: rgba(102, 126, 234, 0.1);
-  color: #667eea;
+  color: #bf6363;
   font-size: 12px;
   border-radius: 12px;
   font-weight: 500;
@@ -249,7 +249,7 @@
 .select-btn {
   width: 100%;
   padding: 12px 24px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   color: white;
   border: none;
   border-radius: 8px;

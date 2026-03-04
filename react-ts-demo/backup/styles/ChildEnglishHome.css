@@ -1,17 +1,12 @@
-/* 少儿英语系统 - 首页样式（宝宝巴士风格优化）*/
-@import "./child-variables.css";
-@import "./child-animations.css";
+/* 少儿英语系统 - 首页样式 */
+@import './child-variables.css';
+@import './child-animations.css';
 
 /* ========== 首页容器 ========== */
 .child-home-container {
   width: 100%;
   min-height: 100vh;
-  /* 修改 */
-  background: linear-gradient(
-    135deg,
-    #fff8dc 0%,
-    #ffe4e1 100%
-  ); /* 更明亮的背景渐变 */
+  background: var(--child-light-gray);
   font-family: var(--child-font-family);
 }
 
@@ -26,8 +21,7 @@
   height: var(--child-navbar-height);
   background: var(--child-gradient-primary);
   padding: 0 var(--child-spacing-lg);
-  /* 修改 */
-  box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3); /* 增强阴影 */
+  box-shadow: var(--child-shadow-medium);
 }
 
 .child-navbar-left,
@@ -49,19 +43,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* 新增 */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 卡通化阴影 */
 }
 
 .child-icon-button:hover {
-  background: rgba(255, 255, 255, 0.5); /* 修改 */
-  transform: scale(1.15) rotate(5deg); /* 增加旋转效果 */ /* 新增 */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(1.1);
 }
 
 .child-icon-button:active {
-  /* 修改 */
-  transform: scale(0.9); /* 点击缩放动效 */
+  transform: scale(0.95);
 }
 
 .child-navbar-title {
@@ -69,8 +59,7 @@
   font-weight: var(--child-font-weight-bold);
   color: var(--child-white);
   margin: 0;
-  /* 修改 */
-  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.25); /* 增强文字阴影 */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   animation: child-pulse 2s ease-in-out infinite;
 }
 
@@ -85,20 +74,16 @@
   box-shadow: var(--child-shadow-accent);
   cursor: pointer;
   transition: all var(--child-transition-normal);
-  /* 新增 */
-  border: 3px solid rgba(255, 255, 255, 0.5); /* 卡通化边框 */
 }
 
 .child-points-badge:hover {
-  /* 修改 */
-  transform: translateY(-4px) scale(1.08); /* 增强悬停效果 */
+  transform: translateY(-3px) scale(1.05);
   box-shadow: var(--child-shadow-hover);
 }
 
 .child-points-badge .points-icon {
   font-size: 1.5rem;
-  /* 修改 */
-  animation: child-star-twinkle 1.5s ease-in-out infinite; /* 加快闪烁速度 */
+  animation: child-star-twinkle 2s ease-in-out infinite;
 }
 
 .child-points-badge .points-text {
@@ -120,13 +105,10 @@
   cursor: pointer;
   transition: all var(--child-transition-normal);
   box-shadow: var(--child-shadow-light);
-  /* 新增 */
-  border: 3px solid rgba(255, 255, 255, 0.8); /* 卡通化边框 */
 }
 
 .child-avatar:hover {
-  /* 修改 */
-  transform: scale(1.15) rotate(-5deg); /* 增加旋转效果 */
+  transform: scale(1.1);
   box-shadow: var(--child-shadow-medium);
 }
 
@@ -140,8 +122,7 @@
   justify-content: space-around;
   height: var(--child-category-nav-height);
   background: var(--child-white);
-  /* 修改 */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* 增强阴影 */
+  box-shadow: var(--child-shadow-light);
   padding: 0 var(--child-spacing-md);
 }
 
@@ -161,8 +142,7 @@
 
 .child-category-tab:hover {
   color: var(--child-primary);
-  /* 修改 */
-  transform: scale(1.08); /* 增加缩放 */
+  transform: scale(1.05);
 }
 
 .child-category-tab.child-active {
@@ -171,18 +151,15 @@
 }
 
 .child-category-tab.child-active::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 60%;
-  /* 修改 */
-  height: 5px; /* 增加高度 */
+  height: 4px;
   background: var(--child-gradient-primary);
   border-radius: var(--child-radius-small);
-  /* 新增 */
-  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.4); /* 发光效果 */
 }
 
 /* ========== 第三层：轮播图区域 ========== */
@@ -197,19 +174,6 @@
   margin: var(--child-spacing-lg);
   border-radius: var(--child-radius-large);
   box-shadow: var(--child-shadow-medium);
-  /* 新增 */
-  border: 3px solid rgba(255, 230, 109, 0.3); /* 卡通化边框 */
-  /* 新增 */
-  transition: all var(--child-transition-normal);
-}
-
-/*新增 */
-.child-special-section:hover {
-  /* 新增 */
-  transform: translateY(-3px);
-  /* 新增 */
-  box-shadow: var(--child-shadow-hover);
-  /* 新增 */
 }
 
 .child-section-title {
@@ -219,8 +183,6 @@
   color: var(--child-primary);
   text-align: center;
   margin: 0 0 var(--child-spacing-lg) 0;
-  /* 新增 */
-  text-shadow: 2px 2px 4px rgba(255, 107, 107, 0.2); /* 文字阴影 */
 }
 
 .child-special-grid {
@@ -250,18 +212,15 @@
   top: calc(var(--child-navbar-height) + var(--child-category-nav-height));
   right: 0;
   width: 400px;
-  height: calc(
-    100vh - var(--child-navbar-height) - var(--child-category-nav-height)
-  );
+  height: calc(100vh - var(--child-navbar-height) - var(--child-category-nav-height));
   background: var(--child-white);
   box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
   z-index: var(--child-z-modal);
   overflow-y: auto;
-  animation: child-slide-left var(--child-transition-normal)
-    var(--child-ease-smooth);
+  animation: child-slide-left var(--child-transition-normal) var(--child-ease-smooth);
 }
 
-/*========== 家长模式按钮 ========== */
+/* ========== 家长模式按钮 ========== */
 .child-parent-mode-btn {
   background: var(--child-gradient-purple) !important;
   box-shadow: var(--child-shadow-light);
@@ -293,8 +252,7 @@
   max-width: 400px;
   width: 90%;
   box-shadow: var(--child-shadow-heavy);
-  animation: child-bounce-in var(--child-transition-normal)
-    var(--child-ease-bounce);
+  animation: child-bounce-in var(--child-transition-normal) var(--child-ease-bounce);
 }
 
 .child-modal-title {
@@ -432,13 +390,12 @@
     padding: var(--child-spacing-md);
   }
 
-  /*奖励中心在手机端全屏显示 */
+  /* 奖励中心在手机端全屏显示 */
   .child-reward-sidebar {
     width: 100%;
     top: 0;
     height: 100vh;
-    animation: child-slide-up var(--child-transition-normal)
-      var(--child-ease-smooth);
+    animation: child-slide-up var(--child-transition-normal) var(--child-ease-smooth);
   }
 
   .child-modal-content {

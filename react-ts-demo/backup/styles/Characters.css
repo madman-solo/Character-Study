@@ -1,0 +1,137 @@
+.characters-container {
+  margin-top: 70px;
+  padding: 2rem;
+  min-height: calc(100vh - 70px);
+}
+
+.category-nav {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.category-btn {
+  padding: 0.8rem 1.5rem;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.category-btn:hover {
+  border-color: #bf6363;
+  color: #bf6363;
+}
+
+.category-btn.active {
+  background: #bf6363;
+  color: white;
+  border-color: #bf6363;
+}
+
+.characters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.character-card {
+  background: white;
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+}
+
+.character-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.character-card .character-avatar {
+  position: static;
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.character-name {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.character-desc {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.character-tags {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 0.3rem 0.8rem;
+  background: #f0f0f0;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  color: #bf6363;
+}
+
+/* 状态消息样式 */
+.loading-message,
+.error-message,
+.empty-message {
+  text-align: center;
+  padding: 3rem 2rem;
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.error-message {
+  color: #e74c3c;
+}
+
+.loading-message {
+  color: #bf6363;
+}
+
+.empty-message {
+  color: #999;
+}
+
+/* 移动端响应式 */
+@media (max-width: 768px) {
+  .characters-container {
+    padding: 1rem;
+  }
+
+  .category-nav {
+    gap: 0.5rem;
+  }
+
+  .category-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .characters-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
+  .character-avatar {
+    font-size: 3rem;
+  }
+}

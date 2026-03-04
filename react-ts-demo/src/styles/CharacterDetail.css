@@ -19,8 +19,8 @@
 }
 
 .back-button:hover {
-  border-color: #667eea;
-  color: #667eea;
+  border-color: #bf6363;
+  color: #bf6363;
 }
 
 .character-info {
@@ -63,7 +63,7 @@
   background: #f0f0f0;
   border-radius: 20px;
   font-size: 1rem;
-  color: #667eea;
+  color: #bf6363;
 }
 
 .character-actions {
@@ -76,17 +76,17 @@
 .action-button {
   padding: 0.8rem 2rem;
   font-size: 1rem;
-  border: 2px solid #667eea;
+  border: 2px solid #bf6363;
   border-radius: 25px;
   background: white;
-  color: #667eea;
+  color: #bf6363;
   cursor: pointer;
   transition: all 0.3s;
   font-weight: 500;
 }
 
 .action-button:hover:not(:disabled) {
-  background: #667eea;
+  background: #bf6363;
   color: white;
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);

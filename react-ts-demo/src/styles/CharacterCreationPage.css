@@ -2,7 +2,7 @@
 
 .character-creation-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   padding: 40px 20px;
   display: flex;
   align-items: center;
@@ -64,13 +64,13 @@
 }
 
 .progress-step.active .step-circle {
-  border-color: #667eea;
-  color: #667eea;
+  border-color: #bf6363;
+  color: #bf6363;
   background: #f0f3ff;
 }
 
 .progress-step.current .step-circle {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   color: white;
   border-color: transparent;
   transform: scale(1.1);
@@ -85,11 +85,11 @@
 }
 
 .progress-step.active .step-label {
-  color: #667eea;
+  color: #bf6363;
 }
 
 .progress-step.current .step-label {
-  color: #667eea;
+  color: #bf6363;
   font-weight: 600;
 }
 
@@ -163,12 +163,12 @@
   justify-content: center;
   font-size: 48px;
   font-weight: 700;
-  color: #667eea;
+  color: #bf6363;
 }
 
 .upload-btn {
   padding: 10px 24px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   color: white;
   border: none;
   border-radius: 12px;
@@ -186,8 +186,8 @@
 
 .upload-btn.secondary {
   background: white;
-  color: #667eea;
-  border: 2px solid #667eea;
+  color: #bf6363;
+  border: 2px solid #bf6363;
   box-shadow: none;
 }
 
@@ -232,7 +232,7 @@
 
 .field-input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #bf6363;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -251,7 +251,7 @@
 
 .field-textarea:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #bf6363;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -279,13 +279,13 @@
 }
 
 .gender-btn:hover {
-  border-color: #667eea;
+  border-color: #bf6363;
   background: #f0f3ff;
 }
 
 .gender-btn.active {
-  border-color: #667eea;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: #bf6363;
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   color: white;
 }
 
@@ -315,14 +315,14 @@
 }
 
 .trait-chip:hover {
-  border-color: #667eea;
+  border-color: #bf6363;
   background: #f0f3ff;
   transform: translateY(-2px);
 }
 
 .trait-chip.active {
-  border-color: #667eea;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: #bf6363;
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   color: white;
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
 }
@@ -339,7 +339,7 @@
 
 .add-btn {
   padding: 12px 24px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   color: white;
   border: none;
   border-radius: 12px;
@@ -366,7 +366,7 @@
   align-items: center;
   gap: 6px;
   padding: 6px 12px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   color: white;
   border-radius: 16px;
   font-size: 13px;
@@ -426,15 +426,15 @@
 }
 
 .relationship-card:hover {
-  border-color: #667eea;
+  border-color: #bf6363;
   background: #f0f3ff;
   transform: translateY(-4px);
   box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);
 }
 
 .relationship-card.active {
-  border-color: #667eea;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: #bf6363;
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   color: white;
   box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
 }
@@ -473,13 +473,13 @@
 }
 
 .background-card:hover {
-  border-color: #667eea;
+  border-color: #bf6363;
   transform: translateY(-4px);
   box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);
 }
 
 .background-card.active {
-  border-color: #667eea;
+  border-color: #bf6363;
   box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
 }
 
@@ -538,7 +538,7 @@
 }
 
 .nav-btn.primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   color: white;
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
 }

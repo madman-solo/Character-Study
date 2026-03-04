@@ -19,8 +19,8 @@
 }
 
 .back-button:hover {
-  border-color: #667eea;
-  color: #667eea;
+  border-color: #bf6363;
+  color: #bf6363;
 }
 
 .page-header {
@@ -60,7 +60,7 @@
 
 .browse-button {
   padding: 1rem 2.5rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   color: white;
   border: none;
   border-radius: 25px;
@@ -140,7 +140,7 @@
   background: #f0f0f0;
   border-radius: 15px;
   font-size: 0.85rem;
-  color: #667eea;
+  color: #bf6363;
 }
 
 .default-badge {
@@ -148,7 +148,7 @@
   top: 1rem;
   right: 1rem;
   padding: 0.4rem 1rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   color: white;
   border-radius: 15px;
   font-size: 0.85rem;

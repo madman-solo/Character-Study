@@ -37,7 +37,7 @@
 }
 
 .listening-sidebar .collapse-button {
-  background: #667eea;
+  background: #bf6363;
   color: white;
   border: none;
   width: 32px;
@@ -86,7 +86,7 @@
 }
 
 .tab-button.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   color: white;
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
@@ -98,7 +98,7 @@
 .listening-sidebar .back-home-button {
   margin: 20px;
   padding: 12px 20px;
-  background: #667eea;
+  background: #bf6363;
   color: white;
   border: none;
   border-radius: 8px;
@@ -148,13 +148,13 @@
 
 .search-input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #bf6363;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
 .search-button {
   padding: 12px 24px;
-  background: #667eea;
+  background: #bf6363;
   color: white;
   border: none;
   border-radius: 8px;
@@ -194,7 +194,7 @@
 .material-thumbnail {
   width: 120px;
   height: 80px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -287,12 +287,12 @@
 }
 
 .mode-button:hover {
-  border-color: #667eea;
-  color: #667eea;
+  border-color: #bf6363;
+  color: #bf6363;
 }
 
 .mode-button.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   color: white;
   border-color: transparent;
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);

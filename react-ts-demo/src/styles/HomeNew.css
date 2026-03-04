@@ -3,7 +3,7 @@
 .home-new-container {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,7 +54,7 @@
 .character-name {
   font-size: 28px;
   font-weight: 700;
-  color: #667eea;
+  color: #bf6363;
   margin: 10px 0;
 }
 
@@ -159,8 +159,8 @@
 .history-btn:hover,
 .clear-btn:hover {
   background: #f8f9fa;
-  border-color: #667eea;
-  color: #667eea;
+  border-color: #bf6363;
+  color: #bf6363;
 }
 
 .input-container {
@@ -195,7 +195,7 @@
   height: 40px;
   border-radius: 50%;
   border: none;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   color: white;
   font-size: 20px;
   cursor: pointer;
@@ -313,7 +313,7 @@
 
 .history-item.user {
   background: #e7f3ff;
-  border-left: 3px solid #667eea;
+  border-left: 3px solid #bf6363;
 }
 
 .history-item.assistant {

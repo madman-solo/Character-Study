@@ -43,7 +43,7 @@
 }
 
 .collapse-button {
-  background: #667eea;
+  background: #bf6363;
   color: white;
   border: none;
   width: 32px;
@@ -69,7 +69,7 @@
 }
 
 .book-info {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   padding: 20px;
   border-radius: 12px;
   color: white;
@@ -109,7 +109,7 @@
 }
 
 .word-item.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   color: white;
 }
 
@@ -147,7 +147,7 @@
 .review-button {
   flex: 1;
   padding: 12px 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   color: white;
   border: none;
   border-radius: 8px;
@@ -165,7 +165,7 @@
 .back-home-button {
   flex: 1;
   padding: 12px 20px;
-  background: #667eea;
+  background: #bf6363;
   color: white;
   border: none;
   border-radius: 8px;
@@ -218,7 +218,7 @@
 .word-title {
   font-size: 48px;
   font-weight: 700;
-  color: #667eea;
+  color: #bf6363;
   margin: 20px 0 15px 0;
   text-align: center;
 }
@@ -249,7 +249,7 @@
 
 .word-example h4 {
   font-size: 16px;
-  color: #667eea;
+  color: #bf6363;
   margin: 0 0 10px 0;
 }
 
@@ -271,7 +271,7 @@
 .nav-button {
   flex: 1;
   padding: 12px 24px;
-  background: #667eea;
+  background: #bf6363;
   color: white;
   border: none;
   border-radius: 8px;
@@ -296,7 +296,7 @@
 .word-counter {
   font-size: 16px;
   font-weight: 600;
-  color: #667eea;
+  color: #bf6363;
   white-space: nowrap;
 }
 
@@ -360,14 +360,14 @@
 
 .dictation-input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #bf6363;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
 .check-button {
   width: 100%;
   padding: 15px 24px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   color: white;
   border: none;
   border-radius: 8px;

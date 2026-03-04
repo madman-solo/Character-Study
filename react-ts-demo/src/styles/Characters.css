@@ -1,3 +1,5 @@
+/* 角色页面样式 - 温暖治愈风格 */
+
 .characters-container {
   margin-top: 70px;
   padding: 2rem;
@@ -14,24 +16,40 @@
 
 .category-btn {
   padding: 0.8rem 1.5rem;
-  background: white;
-  border: 2px solid #e0e0e0;
-  border-radius: 25px;
+  /* 修改 */
+  background: rgba(255, 255, 255, 0.9); /* 半透明白色 */
+  /* 修改 */
+  border: 2px solid rgba(255, 212, 184, 0.4); /* 温暖边框 */
+  /* 修改 */
+  border-radius: 20px; /* 圆润圆角 */
   font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s;
+  /* 修改 */
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
+  /* 新增 */
+  box-shadow: 0 2px 8px rgba(139, 115, 85, 0.06); /* 柔和阴影 */
 }
 
 .category-btn:hover {
-  border-color: #667eea;
-  color: #667eea;
+  /* 修改 */
+  border-color: #ff9b85; /* 珊瑚色边框 */
+  /* 修改 */
+  color: #ff9b85;
+  /* 新增 */
+  transform: translateY(-2px); /* 轻柔上浮 */
+  /* 新增 */
+  box-shadow: 0 4px 12px rgba(255, 155, 133, 0.15);
 }
 
 .category-btn.active {
-  background: #667eea;
+  /* 修改 */
+  background: linear-gradient(135deg, #ffd4b8 0%, #ff9b85 100%); /* 温暖渐变 */
   color: white;
-  border-color: #667eea;
+  /* 修改 */
+  border-color: #ff9b85;
+  /* 新增 */
+  box-shadow: 0 4px 16px rgba(255, 155, 133, 0.3);
 }
 
 .characters-grid {
@@ -41,18 +59,27 @@
 }
 
 .character-card {
-  background: white;
-  border-radius: 15px;
+  /* 修改 */
+  background: rgba(255, 255, 255, 0.95); /* 半透明白色 */
+  /* 修改 */
+  border-radius: 20px; /* 圆润圆角 */
   padding: 1.5rem;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  /* 修改 */
+  box-shadow: 0 4px 20px rgba(139, 115, 85, 0.12); /* 柔和阴影 */
   cursor: pointer;
-  transition: all 0.3s;
+  /* 修改 */
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   text-align: center;
+  /* 新增 */
+  border: 1px solid rgba(255, 212, 184, 0.2); /* 温暖边框 */
 }
 
 .character-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  /* 修改 */
+  transform: translateY(-4px); /* 减小上浮幅度 */
+  /* 修改 */
+  box-shadow: 0 6px 28px rgba(255, 155, 133, 0.18); /* 温暖阴影 */ /* 新增 */
+  border-color: rgba(255, 155, 133, 0.4);
 }
 
 .character-card .character-avatar {
@@ -60,18 +87,26 @@
   font-size: 5rem;
   margin-bottom: 1rem;
   cursor: pointer;
+  /* 新增 */
+  filter: drop-shadow(0 4px 8px rgba(139, 115, 85, 0.1)); /* 柔和投影 */
 }
 
 .character-name {
   font-size: 1.3rem;
-  color: #333;
+  /* 修改 */
+  color: #8b7355; /* 温暖棕色 */
   margin-bottom: 0.5rem;
+  /* 新增 */
+  font-weight: 600;
 }
 
 .character-desc {
-  color: #666;
+  /* 修改 */
+  color: #c4b5a0; /* 暖灰色 */
   font-size: 0.9rem;
   margin-bottom: 1rem;
+  /* 新增 */
+  line-height: 1.5;
 }
 
 .character-tags {
@@ -83,10 +118,15 @@
 
 .tag {
   padding: 0.3rem 0.8rem;
-  background: #f0f0f0;
-  border-radius: 15px;
+  /* 修改 */
+  background: rgba(255, 212, 184, 0.25); /* 温暖背景 */
+  /* 修改 */
+  border-radius: 12px; /* 圆润圆角 */
   font-size: 0.85rem;
-  color: #667eea;
+  /* 修改 */
+  color: #ff9b85; /* 珊瑚色文字 */
+  /* 新增 */
+  border: 1px solid rgba(255, 155, 133, 0.2);
 }
 
 /* 状态消息样式 */
@@ -96,19 +136,23 @@
   text-align: center;
   padding: 3rem 2rem;
   font-size: 1.1rem;
-  color: #666;
+  /* 修改 */
+  color: #c4b5a0;
 }
 
 .error-message {
-  color: #e74c3c;
+  /* 修改 */
+  color: #ff9b85; /* 温暖的错误提示色 */
 }
 
 .loading-message {
-  color: #667eea;
+  /* 修改 */
+  color: #ffd4b8; /* 温暖的加载提示色 */
 }
 
 .empty-message {
-  color: #999;
+  /* 修改 */
+  color: #c4b5a0;
 }
 
 /* 移动端响应式 */

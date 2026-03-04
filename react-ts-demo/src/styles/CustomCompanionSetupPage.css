@@ -1,7 +1,7 @@
 /* CustomCompanionSetupPage.css */
 .custom-setup-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   padding: 40px 20px;
   display: flex;
   justify-content: center;
@@ -55,7 +55,7 @@
 
 .setup-back-button:hover {
   background: white;
-  color: #667eea;
+  color: #bf6363;
   transform: translateX(-5px);
 }
 
@@ -111,7 +111,7 @@
 }
 
 .form-input:focus {
-  border-color: #667eea;
+  border-color: #bf6363;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -167,7 +167,7 @@
 }
 
 .color-picker-input:hover {
-  border-color: #667eea;
+  border-color: #bf6363;
 }
 
 .color-preview {
@@ -200,7 +200,7 @@
 }
 
 .copy-color-btn:hover {
-  border-color: #667eea;
+  border-color: #bf6363;
   background: #f8f9ff;
   transform: scale(1.05);
 }
@@ -248,7 +248,7 @@
   display: block;
   width: 100%;
   padding: 15px 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   color: white;
   border-radius: 8px;
   font-size: 16px;
@@ -290,7 +290,7 @@
 }
 
 .settings-button:hover {
-  border-color: #667eea;
+  border-color: #bf6363;
   background: #f8f9ff;
   color: #333;
 }
@@ -317,7 +317,7 @@
 }
 
 .background-option.selected {
-  border-color: #667eea;
+  border-color: #bf6363;
   box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
 }
 
@@ -338,7 +338,7 @@
 .start-chat-button {
   width: 100%;
   padding: 18px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   color: white;
   border: none;
   border-radius: 12px;
@@ -409,7 +409,7 @@
 .preview-role {
   font-size: 16px;
   font-weight: 700;
-  color: #667eea;
+  color: #bf6363;
   min-width: 60px;
 }
 
@@ -690,7 +690,7 @@
 }
 
 .modal-input:focus {
-  border-color: #667eea;
+  border-color: #bf6363;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -713,7 +713,7 @@
 }
 
 .modal-textarea:focus {
-  border-color: #667eea;
+  border-color: #bf6363;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -750,7 +750,7 @@
 }
 
 .modal-button.confirm {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
   color: white;
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
