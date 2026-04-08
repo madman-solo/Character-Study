@@ -10,7 +10,7 @@
 
 /* 添加童话装饰元素 */
 .stories-page::before {
-  content: '✨';
+  content: "✨";
   position: absolute;
   top: 10%;
   left: 5%;
@@ -20,7 +20,7 @@
 }
 
 .stories-page::after {
-  content: '🌟';
+  content: "🌟";
   position: absolute;
   top: 20%;
   right: 8%;
@@ -30,7 +30,8 @@
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {
@@ -53,7 +54,7 @@
 }
 
 .stories-header::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   right: -10%;
@@ -108,7 +109,7 @@
 }
 
 .stories-intro::before {
-  content: '📚';
+  content: "📚";
   position: absolute;
   top: -20px;
   left: 50%;
@@ -152,7 +153,7 @@
 }
 
 .filter-btn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -161,7 +162,9 @@
   border-radius: 50%;
   background: rgba(20, 166, 153, 0.1);
   transform: translate(-50%, -50%);
-  transition: width 0.3s, height 0.3s;
+  transition:
+    width 0.3s,
+    height 0.3s;
 }
 
 .filter-btn:hover::before {
@@ -215,7 +218,6 @@
   margin: 0;
 }
 
-
 /* 故事网格 */
 .stories-grid {
   display: grid;
@@ -237,7 +239,7 @@
 }
 
 .story-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -2px;
   left: -2px;
@@ -337,7 +339,8 @@
 
 /* 装饰动画定义 */
 @keyframes rotate-star {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1.2) rotate(0deg);
   }
   50% {
@@ -346,7 +349,8 @@
 }
 
 @keyframes sparkle-pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1.2);
     opacity: 1;
   }
@@ -357,7 +361,8 @@
 }
 
 @keyframes float-cloud {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1.2) translateY(0);
   }
   50% {
@@ -366,7 +371,8 @@
 }
 
 @keyframes flower-bloom {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1.2) rotate(0deg);
   }
   50% {
@@ -375,7 +381,8 @@
 }
 
 @keyframes heart-beat {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1.2);
   }
   25% {
@@ -390,7 +397,8 @@
 }
 
 @keyframes rainbow-slide {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1.2) translateX(0);
   }
   50% {
@@ -399,7 +407,8 @@
 }
 
 @keyframes butterfly-fly {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1.2) translateY(0) rotate(0deg);
   }
   25% {
@@ -414,7 +423,8 @@
 }
 
 @keyframes bird-hop {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1.2) translateY(0);
   }
   50% {
@@ -423,7 +433,8 @@
 }
 
 @keyframes moon-glow {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1.2);
     filter: brightness(1);
   }
@@ -471,13 +482,17 @@
 }
 
 .story-cover-placeholder::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.2) 0%,
+    transparent 70%
+  );
   animation: shimmer 3s infinite;
 }
 
@@ -498,7 +513,8 @@
 }
 
 @keyframes bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -534,7 +550,8 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -618,8 +635,7 @@
     opacity: 1;
   }
 }
-
-.modal-content {
+.story-modal .modal-content {
   background: white;
   border-radius: 30px;
   padding: 35px;
@@ -699,7 +715,7 @@
 }
 
 .modal-cover-placeholder::before {
-  content: '✨';
+  content: "✨";
   position: absolute;
   top: 10%;
   left: 10%;
@@ -709,7 +725,7 @@
 }
 
 .modal-cover-placeholder::after {
-  content: '⭐';
+  content: "⭐";
   position: absolute;
   bottom: 15%;
   right: 15%;
@@ -719,7 +735,8 @@
 }
 
 @keyframes twinkle {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.3;
     transform: scale(1);
   }
@@ -835,7 +852,7 @@
 }
 
 .read-btn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -844,7 +861,9 @@
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.3);
   transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
+  transition:
+    width 0.6s,
+    height 0.6s;
 }
 
 .read-btn:hover::before {

@@ -1,10 +1,10 @@
 /* ChildWordDetail Page Styles */
-@import '../../styles/ChildStageCss/child-variables.css';
-@import '../../styles/ChildStageCss/child-animations.css';
+@import "../../styles/ChildStageCss/child-variables.css";
+@import "../../styles/ChildStageCss/child-animations.css";
 
 .child-word-detail-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #FFE66D 0%, #FFA07A 100%);
+  background: linear-gradient(135deg, #ffe66d 0%, #ffa07a 100%);
   padding-bottom: var(--child-spacing-xl);
 }
 
@@ -85,7 +85,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(255, 230, 109, 0.1) 0%, rgba(78, 205, 196, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 230, 109, 0.1) 0%,
+    rgba(78, 205, 196, 0.1) 100%
+  );
 }
 
 .word-emoji {
@@ -113,8 +117,7 @@
   color: var(--child-secondary);
   font-style: italic;
 }
-
-.word-translation {
+.word-info-container .word-translation {
   font-size: var(--child-font-size-xlarge);
   font-weight: var(--child-font-weight-semibold);
   color: var(--child-text-dark);
@@ -176,7 +179,11 @@
 
 .interactive-card {
   padding: var(--child-spacing-lg);
-  background: linear-gradient(135deg, rgba(255, 230, 109, 0.1) 0%, rgba(78, 205, 196, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 230, 109, 0.1) 0%,
+    rgba(78, 205, 196, 0.1) 100%
+  );
   border-radius: var(--child-border-radius-large);
   text-align: center;
   cursor: pointer;

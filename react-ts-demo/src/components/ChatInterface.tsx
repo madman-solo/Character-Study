@@ -28,6 +28,7 @@ export interface ChatInterfaceProps {
   enableTypewriter?: boolean;
   maxRounds?: number;
   characterId?: number; // 角色ID，用于角色专属对话
+  background?: React.CSSProperties;
 }
 
 /**
@@ -44,6 +45,7 @@ const ChatInterface = ({
   enableTypewriter = true,
   maxRounds = 10,
   characterId, // 角色ID，用于角色专属对话
+  background,
 }: ChatInterfaceProps) => {
   const { user } = useAuth();
   const userId = user?.id || "guest";
@@ -114,20 +116,22 @@ const ChatInterface = ({
           const history = await getCharacterHistory(characterId, userId, 50);
           if (history.length > 0) {
             // CharacterConversation 结构：userMessage, characterReply
-            formattedMessages = history.flatMap((conv: CharacterConversation) => [
-              {
-                id: `${conv.id}-user`,
-                role: "user" as const,
-                content: conv.userMessage,
-                timestamp: new Date(conv.createdAt),
-              },
-              {
-                id: `${conv.id}-assistant`,
-                role: "assistant" as const,
-                content: conv.characterReply,
-                timestamp: new Date(conv.createdAt),
-              },
-            ]);
+            formattedMessages = history.flatMap(
+              (conv: CharacterConversation) => [
+                {
+                  id: `${conv.id}-user`,
+                  role: "user" as const,
+                  content: conv.userMessage,
+                  timestamp: new Date(conv.createdAt),
+                },
+                {
+                  id: `${conv.id}-assistant`,
+                  role: "assistant" as const,
+                  content: conv.characterReply,
+                  timestamp: new Date(conv.createdAt),
+                },
+              ],
+            );
           }
         } else {
           // 否则使用通用对话历史，按场景过滤
@@ -186,9 +190,9 @@ const ChatInterface = ({
     try {
       // 构建上下文消息
       const contextMessages: ChatMessage[] = [
-        ...getContextMessages().map(msg => ({
-          role: msg.role as 'user' | 'assistant',
-          content: msg.content
+        ...getContextMessages().map((msg) => ({
+          role: msg.role as "user" | "assistant",
+          content: msg.content,
         })),
         { role: "user" as const, content: userInput },
       ];
@@ -218,7 +222,12 @@ const ChatInterface = ({
       // 保存对话到数据库
       if (characterId) {
         // 角色模式：保存完整对话到角色对话表
-        await saveConversation(characterId, userId, userInput, response.content);
+        await saveConversation(
+          characterId,
+          userId,
+          userInput,
+          response.content,
+        );
       } else {
         // 通用模式：保存 AI 回复
         await saveMessage(userId, response.content, "character", scene);
@@ -255,7 +264,7 @@ const ChatInterface = ({
   };
 
   return (
-    <div className="chat-interface">
+    <div className="chat-interface" style={background}>
       {/* 头部 */}
       <div className="chat-interface-header">
         <div className="chat-interface-title">{title}</div>

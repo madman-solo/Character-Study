@@ -70,7 +70,9 @@
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .loading-container p {
@@ -142,8 +144,13 @@
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 .completion-container h2 {
@@ -184,11 +191,11 @@
 }
 
 .stat-value.correct {
-  color: #4CAF50;
+  color: #4caf50;
 }
 
 .stat-value.wrong {
-  color: #FF6B6B;
+  color: #ff6b6b;
 }
 
 .completion-actions {
@@ -245,6 +252,7 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
+  height: 95%;
   margin-bottom: 30px;
   padding-bottom: 30px;
   border-bottom: 2px solid #f0f0f0;
@@ -278,8 +286,14 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .translation-text {

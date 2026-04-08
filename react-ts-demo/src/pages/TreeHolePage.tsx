@@ -4,6 +4,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { chat, saveMessage } from "../services/chatService";
 import { analyzeEmotion, saveEmotionRecord } from "../services/emotionService";
 import "../styles/TreeHolePage.css";
+import Live2DModelComponent from "../components/Live2DModel";
 // import { log } from  "console";
 
 interface DialogueMessage {
@@ -399,18 +400,26 @@ const TreeHolePage = () => {
       <div className="characters-container">
         {/* 用户角色（右下角） */}
         {currentMessage.speaker === "user" && (
-          <div className="character-avatar user-avatar">
-            <div className="avatar-placeholder">👤</div>
-            <div className="character-label">我</div>
-          </div>
+          <Live2DModelComponent
+            modelPath="/tororo_hijiki/tororo/runtime/tororo.model3.json"
+            width={300}
+            height={450}
+            paddingRight={50}
+            paddingBottom={154}
+            right={200}
+          />
         )}
 
         {/* 树洞角色（左下角） */}
         {currentMessage.speaker === "tree-hole" && (
-          <div className="character-avatar tree-hole-avatar">
-            <div className="avatar-placeholder">👩</div>
-            <div className="character-label">树洞</div>
-          </div>
+          <Live2DModelComponent
+            modelPath="/tororo_hijiki/hijiki/runtime/hijiki.model3.json"
+            width={300}
+            height={450}
+            paddingRight={50}
+            paddingBottom={154}
+            right={900}
+          />
         )}
       </div>
 

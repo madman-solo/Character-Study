@@ -163,7 +163,7 @@ const CharacterSelectionPage = () => {
                 className="card-body"
                 onClick={() => handleSelectCharacter(character)}
               >
-                <div className="character-avatar-large">
+                {/* <div className="character-avatar-large">
                   {character.avatar ? (
                     <img src={character.avatar} alt={character.name} />
                   ) : (
@@ -171,7 +171,7 @@ const CharacterSelectionPage = () => {
                       {character.name[0]}
                     </div>
                   )}
-                </div>
+                </div> */}
 
                 <h3 className="character-name">{character.name}</h3>
 

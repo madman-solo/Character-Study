@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
   padding: 40px;
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
+  background: #bf6363;
   position: relative;
   margin-top: 80px;
 }
@@ -66,7 +66,7 @@
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: white;
+  background: #db7777;
   border: none;
   cursor: pointer;
   display: flex;
@@ -76,6 +76,7 @@
   gap: 8px;
   transition: all 0.3s ease;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
 
 .record-button:hover {
@@ -163,6 +164,7 @@
   box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
+  margin-top: 80px;
 }
 
 .transcript-header {
@@ -193,7 +195,7 @@
 }
 
 .toggle-transcript-button:hover {
-  background: #5568d3;
+  background: #eb6d64;
   transform: scale(1.05);
 }
 

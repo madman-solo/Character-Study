@@ -2,7 +2,7 @@
 
 .character-creation-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
+  background: #a38d8d;
   padding: 40px 20px;
   display: flex;
   align-items: center;
@@ -11,8 +11,10 @@
 
 .creation-container {
   width: 100%;
+  position: relative;
+  top: 33px;
   max-width: 800px;
-  background: white;
+  background: rgb(224, 140, 140);
   border-radius: 24px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
   overflow: hidden;
@@ -28,7 +30,7 @@
 }
 
 .progress-bar::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 60px;
   left: 60px;
@@ -70,7 +72,7 @@
 }
 
 .progress-step.current .step-circle {
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
+  background: #e53e3e;
   color: white;
   border-color: transparent;
   transform: scale(1.1);
@@ -94,7 +96,7 @@
 }
 
 /* 内容区域 */
-.content-area {
+.creation-container .content-area {
   padding: 40px 60px;
   min-height: 500px;
 }
@@ -142,7 +144,7 @@
   height: 120px;
   border-radius: 50%;
   overflow: hidden;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: #e53e3e;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -168,7 +170,7 @@
 
 .upload-btn {
   padding: 10px 24px;
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
+  background: #af7373;
   color: white;
   border: none;
   border-radius: 12px;
@@ -215,7 +217,7 @@
 }
 
 .required {
-  color: #e53e3e;
+  color: #c75b5b;
   margin-left: 4px;
 }
 
@@ -232,7 +234,7 @@
 
 .field-input:focus {
   outline: none;
-  border-color: #bf6363;
+  border-color: #975555;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -251,7 +253,7 @@
 
 .field-textarea:focus {
   outline: none;
-  border-color: #bf6363;
+  border-color: #8d4646;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -279,13 +281,13 @@
 }
 
 .gender-btn:hover {
-  border-color: #bf6363;
+  border-color: #af4e4e;
   background: #f0f3ff;
 }
 
 .gender-btn.active {
-  border-color: #bf6363;
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
+  border-color: #a04545;
+  background: #eb9393;
   color: white;
 }
 
@@ -322,7 +324,7 @@
 
 .trait-chip.active {
   border-color: #bf6363;
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
+  background: #f1aaaa;
   color: white;
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
 }
@@ -339,7 +341,7 @@
 
 .add-btn {
   padding: 12px 24px;
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
+  background: #d49a9a;
   color: white;
   border: none;
   border-radius: 12px;
@@ -366,7 +368,7 @@
   align-items: center;
   gap: 6px;
   padding: 6px 12px;
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
+  background: #bf6363;
   color: white;
   border-radius: 16px;
   font-size: 13px;
@@ -434,7 +436,7 @@
 
 .relationship-card.active {
   border-color: #bf6363;
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
+  background: #d18b8b;
   color: white;
   box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
 }
@@ -536,19 +538,17 @@
   flex: 1;
   max-width: 200px;
 }
-
-.nav-btn.primary {
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
+.navigation-buttons .nav-btn.primary {
+  background: #e53e3e;
   color: white;
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
 }
-
-.nav-btn.primary:hover:not(:disabled) {
+.navigation-buttons .nav-btn.primary:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(102, 126, 234, 0.3);
+  background: #0c1b25;
 }
-
-.nav-btn.primary:disabled {
+.navigation-buttons .nav-btn.primary:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
@@ -558,9 +558,8 @@
   color: #4a5568;
   border: 2px solid #e2e8f0;
 }
-
-.nav-btn.secondary:hover {
-  background: #f7fafc;
+.navigation-buttons .nav-btn.secondary:hover {
+  background: #0c1b25;
   border-color: #cbd5e0;
 }
 

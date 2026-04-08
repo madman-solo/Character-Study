@@ -1,10 +1,10 @@
 /* ChildVocabularyReview Page Styles */
-@import '../../styles/ChildStageCss/child-variables.css';
-@import '../../styles/ChildStageCss/child-animations.css';
+@import "../../styles/ChildStageCss/child-variables.css";
+@import "../../styles/ChildStageCss/child-animations.css";
 
 .child-vocab-review-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #4ECDC4 0%, #95E1D3 100%);
+  background: linear-gradient(135deg, #4ecdc4 0%, #95e1d3 100%);
   padding-bottom: var(--child-spacing-xl);
 }
 
@@ -282,7 +282,7 @@
 }
 
 /* Word Card */
-.word-card {
+.words-grid .word-card {
   background: white;
   border-radius: var(--child-border-radius-large);
   padding: var(--child-spacing-lg);
@@ -314,8 +314,7 @@
   color: var(--child-text-light);
   font-style: italic;
 }
-
-.word-translation {
+.all-words-section .word-translation {
   font-size: var(--child-font-size-medium);
   color: var(--child-text-dark);
   margin-bottom: var(--child-spacing-md);
@@ -358,7 +357,7 @@
 }
 
 .mastered-badge {
-  color: #FFD700;
+  color: #ffd700;
   font-weight: var(--child-font-weight-semibold);
   padding: 4px 8px;
   border-radius: var(--child-border-radius-small);
@@ -366,7 +365,7 @@
 }
 
 .due-badge {
-  color: #FF6B6B;
+  color: #ff6b6b;
   font-weight: var(--child-font-weight-semibold);
   padding: 4px 8px;
   border-radius: var(--child-border-radius-small);

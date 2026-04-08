@@ -119,7 +119,7 @@
   cursor: pointer;
   margin-bottom: 1.5rem;
   transition: all 0.3s;
-  color: #bf6363;
+  color: #1b1b1b;
   font-weight: 500;
 }
 
@@ -209,7 +209,7 @@
 }
 
 .companion-card {
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
+  background: #e09b5a;
   border-radius: 15px;
   padding: 2rem 1.5rem;
   text-align: center;

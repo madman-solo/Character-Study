@@ -1,8 +1,10 @@
 /* 角色选择页面样式 */
 .character-selection-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
-  padding: 40px 20px;
+  background: #54585c;
+  /* padding: 40px 20px; */
+  position: relative;
+  top: 65px;
 }
 
 .selection-container {
@@ -17,7 +19,7 @@
   position: relative;
 }
 
-.back-btn {
+.character-selection-page .back-btn {
   position: absolute;
   left: 0;
   top: 0;
@@ -30,10 +32,10 @@
   font-size: 16px;
   transition: all 0.3s ease;
 }
-
-.back-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
+.character-selection-page .back-btn:hover {
+  background: rgba(202, 202, 202, 0.3);
   transform: translateX(-5px);
+  color: #e9ecef;
 }
 
 .selection-header h1 {
@@ -51,22 +53,23 @@
 
 /* 角色网格 */
 .characters-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  display: flex;
+  /* grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); */
   gap: 24px;
-  margin-top: 30px;
+  flex-wrap: wrap;
+  margin-top: 10px;
 }
 
 /* 角色卡片 */
-.character-card {
-  background: white;
+.selection-container .character-card {
+  background: rgb(255, 234, 118);
   border-radius: 16px;
   overflow: hidden;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.character-card:hover {
+.selection-container .character-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
@@ -80,20 +83,20 @@
   padding: 40px 20px;
   cursor: pointer;
   border: 2px dashed #bf6363;
-  background: rgba(102, 126, 234, 0.05);
+  background: rgba(113, 113, 114, 0.05);
 }
 
 .create-card:hover {
-  background: rgba(102, 126, 234, 0.1);
-  border-color: #764ba2;
+  background: rgba(92, 92, 92, 0.1);
+  border-color: #92a24b;
 }
 
 .create-icon {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
-  color: white;
+  background: #f8f9fa;
+  color: rgb(143, 156, 122);
   font-size: 48px;
   display: flex;
   align-items: center;
@@ -174,7 +177,7 @@
   border-radius: 50%;
   margin: 0 auto 16px;
   overflow: hidden;
-  background: #f5f7fa;
+  /* background: #f5f7fa; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -195,7 +198,7 @@
   font-size: 48px;
   font-weight: bold;
   color: #bf6363;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  /* background: #f8f8f7; */
 }
 
 .character-name {
@@ -235,11 +238,10 @@
   gap: 6px;
   margin-bottom: 16px;
 }
-
-.trait-tag {
+.character-traits .trait-tag {
   display: inline-block;
   padding: 4px 10px;
-  background: rgba(102, 126, 234, 0.1);
+  background: rgba(187, 187, 187, 0.1);
   color: #bf6363;
   font-size: 12px;
   border-radius: 12px;
@@ -249,7 +251,7 @@
 .select-btn {
   width: 100%;
   padding: 12px 24px;
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
+  background: #adadad;
   color: white;
   border: none;
   border-radius: 8px;
@@ -260,7 +262,7 @@
 }
 
 .select-btn:hover {
-  background: linear-gradient(135deg, #5568d3 0%, #6a3f8f 100%);
+  background: #5f5f5f;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }

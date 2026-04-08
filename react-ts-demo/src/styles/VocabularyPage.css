@@ -15,6 +15,8 @@
   transition: all 0.3s ease;
   position: relative;
   z-index: 10;
+  top: 80px;
+  height: 95%;
 }
 
 .sidebar.collapsed {
@@ -26,8 +28,7 @@
   pointer-events: none;
   user-select: none;
 }
-
-.sidebar-header {
+.sidebar .sidebar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -58,7 +59,7 @@
 }
 
 .collapse-button:hover {
-  background: #5568d3;
+  background: #bf6363;
   transform: scale(1.1);
 }
 
@@ -69,11 +70,13 @@
 }
 
 .book-info {
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
-  padding: 20px;
+  background: #bf6363;
+  /* padding: 20px;
+   */
   border-radius: 12px;
   color: white;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .book-info h3 {
@@ -92,11 +95,10 @@
   flex-direction: column;
   gap: 8px;
 }
-
-.word-item {
+.word-list .word-item {
   display: flex;
   align-items: center;
-  padding: 12px 15px;
+  /* padding: 12px 15px; */
   background: #f8f9fa;
   border-radius: 8px;
   cursor: pointer;
@@ -109,7 +111,7 @@
 }
 
 .word-item.active {
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
+  background: #555;
   color: white;
 }
 
@@ -147,7 +149,7 @@
 .review-button {
   flex: 1;
   padding: 12px 20px;
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
+  background: #bf6363;
   color: white;
   border: none;
   border-radius: 8px;
@@ -176,18 +178,19 @@
 }
 
 .back-home-button:hover {
-  background: #5568d3;
+  background: #ff6b6b;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
 }
 
 /* 右侧内容区 */
-.content-area {
+.vocabulary-page .content-area {
+  position: relative;
   flex: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  padding: 20px;
+  top: 80px;
   overflow: hidden;
 }
 
@@ -208,8 +211,7 @@
   pointer-events: none;
   user-select: none;
 }
-
-.word-card {
+.word-display .word-card {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -230,9 +232,8 @@
   text-align: center;
   font-style: italic;
 }
-
-.word-translation {
-  font-size: 24px;
+.word-card .word-translation {
+  font-size: 17px;
   color: #333;
   margin: 0 0 30px 0;
   text-align: center;
@@ -282,7 +283,7 @@
 }
 
 .nav-button:hover:not(:disabled) {
-  background: #5568d3;
+  background: #bf6363;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
 }
@@ -304,7 +305,8 @@
 .dictation-area {
   background: white;
   border-radius: 16px;
-  padding: 30px;
+  padding: 20px;
+  height: 95%;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
@@ -326,7 +328,7 @@
 }
 
 .dictation-prompt {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background: #77a883;
   padding: 25px;
   border-radius: 12px;
   margin-bottom: 30px;
@@ -341,7 +343,7 @@
 }
 
 .prompt-translation {
-  font-size: 28px;
+  font-size: 18px;
   font-weight: 600;
   color: white;
   margin: 0;
@@ -367,7 +369,7 @@
 .check-button {
   width: 100%;
   padding: 15px 24px;
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
+  background: #bf6363;
   color: white;
   border: none;
   border-radius: 8px;
@@ -405,7 +407,7 @@
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  background: #f8d7da;
+  background: #ffebeb;
   padding: 20px;
   border-radius: 12px;
   color: #721c24;
@@ -467,8 +469,7 @@
   .word-phonetic {
     font-size: 16px;
   }
-
-  .word-translation {
+  .word-card .word-translation {
     font-size: 20px;
   }
 

@@ -1,6 +1,6 @@
 /* ChangeWordModal Component Styles */
-@import '../../../styles/ChildStageCss/child-variables.css';
-@import '../../../styles/ChildStageCss/child-animations.css';
+@import "../../../styles/ChildStageCss/child-variables.css";
+@import "../../../styles/ChildStageCss/child-animations.css";
 
 .child-change-word-modal-overlay {
   position: fixed;
@@ -27,8 +27,7 @@
   flex-direction: column;
   animation: child-bounce-in var(--child-transition-normal);
 }
-
-.modal-header {
+.modal-overlay .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -37,9 +36,9 @@
 }
 
 .modal-header h2 {
-  font-size: var(--child-font-size-xlarge);
+  /* font-size: var(--child-font-size-xlarge);
   font-weight: var(--child-font-weight-bold);
-  color: var(--child-primary);
+  color: var(--child-primary); */
 }
 
 .modal-close-btn {
@@ -135,22 +134,24 @@
   color: white;
   border-color: var(--child-secondary);
 }
-
-.modal-content {
+.modal-overlay .modal-content {
   flex: 1;
   overflow-y: auto;
   padding: var(--child-spacing-lg);
 }
 
-.words-grid {
+.modal-overlay .words-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: var(--child-spacing-md);
 }
-
-.word-item {
+.words-grid .word-item {
   padding: var(--child-spacing-md);
-  background: linear-gradient(135deg, rgba(255, 230, 109, 0.1) 0%, rgba(78, 205, 196, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 230, 109, 0.1) 0%,
+    rgba(78, 205, 196, 0.1) 100%
+  );
   border-radius: var(--child-border-radius-medium);
   cursor: pointer;
   transition: all var(--child-transition-normal);
@@ -168,8 +169,7 @@
   color: var(--child-primary);
   margin-bottom: var(--child-spacing-xs);
 }
-
-.word-translation {
+.words-grid .word-translation {
   font-size: var(--child-font-size-small);
   color: var(--child-text-gray);
 }

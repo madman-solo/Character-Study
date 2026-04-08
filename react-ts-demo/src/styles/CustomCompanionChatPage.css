@@ -9,6 +9,7 @@
   justify-content: center;
   overflow: hidden;
   position: relative;
+  background: #bf6363;
   transition: background 0.5s ease;
 }
 
@@ -36,11 +37,10 @@
 
 /* 头部保持固定颜色 */
 .custom-companion-chat-page .chat-interface-header {
-  background: rgba(255, 255, 255, 0.95) !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+  background: #bf6363 !important;
+  border-bottom: 1px solid #bf6363 !important;
   border-radius: 12px;
   margin-top: 43px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
 }
 
@@ -86,6 +86,7 @@
 /* 消息气泡保持固定颜色 */
 .custom-companion-chat-page .chat-message-wrapper {
   margin-bottom: 16px;
+  background: #bf6363 !important;
 }
 
 .custom-companion-chat-page .chat-message-avatar {
@@ -95,7 +96,7 @@
 }
 
 .custom-companion-chat-page .user-message .chat-message-avatar {
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%) !important;
+  /* background: #bf6363 !important; */
 }
 
 .custom-companion-chat-page .chat-message-content {
@@ -109,19 +110,19 @@
 }
 
 .custom-companion-chat-page .user-message .chat-message-content {
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%) !important;
-  color: white !important;
+  /* background:  */
+  /* color: white !important; */
   border: none;
 }
 
 /* 输入区域保持固定颜色 */
 .custom-companion-chat-page .chat-input-area {
-  background: rgba(255, 255, 255, 0.95) !important;
-  border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+  background: #bf6363 !important;
+  border-top: 1px solid #bf6363 !important;
   border-radius: 12px;
   margin-top: 20px;
-  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
+  /* box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1); */
+  /* backdrop-filter: blur(10px); */
 }
 
 .custom-companion-chat-page .chat-input-container {

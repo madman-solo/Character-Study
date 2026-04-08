@@ -141,7 +141,7 @@ const CustomCompanionChatPage = () => {
   return (
     <div className="custom-companion-chat-page" style={getBackgroundStyle()}>
       {/* 角色选择器 */}
-      <div className="character-selector-wrapper">
+      {/* <div className="character-selector-wrapper">
         <CharacterSelector
           userId={userId}
           onSelectCharacter={handleSelectCharacter}
@@ -149,7 +149,7 @@ const CustomCompanionChatPage = () => {
           onEditCharacter={handleEditCharacter}
           currentCharacterId={selectedCharacter?.id}
         />
-      </div>
+      </div> */}
 
       {/* 聊天界面 */}
       <ChatInterface

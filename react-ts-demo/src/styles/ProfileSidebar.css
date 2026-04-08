@@ -28,12 +28,12 @@
 .profile-sidebar.open {
   right: 0;
 }
-
-.sidebar-header {
+.sidebar-overlay .sidebar-header {
   display: flex;
   justify-content: flex-end;
   padding: 5px;
   border-bottom: 1px solid #e0e0e0;
+  margin-top: 60px;
 }
 
 .sidebar-header .close-button {
@@ -54,7 +54,7 @@
   flex-direction: column;
   align-items: center;
   padding: 30px 20px;
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
+  background: #b1454e;
   color: white;
 }
 

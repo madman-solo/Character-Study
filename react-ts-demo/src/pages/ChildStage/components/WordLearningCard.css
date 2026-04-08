@@ -1,6 +1,6 @@
 /* 单词学习卡片样式 */
-@import '../../../styles/ChildStageCss/child-variables.css';
-@import '../../../styles/ChildStageCss/child-animations.css';
+@import "../../../styles/ChildStageCss/child-variables.css";
+@import "../../../styles/ChildStageCss/child-animations.css";
 
 .word-learning-card {
   width: 100%;
@@ -118,8 +118,7 @@
   color: var(--child-secondary);
   margin: 0 0 var(--child-spacing-lg) 0;
 }
-
-.word-translation {
+.word-card-back .word-translation {
   font-family: var(--child-font-family);
   font-size: var(--child-font-size-large);
   font-weight: var(--child-font-weight-semibold);
