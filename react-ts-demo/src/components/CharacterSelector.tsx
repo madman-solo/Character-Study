@@ -73,13 +73,13 @@ const CharacterSelector: React.FC<CharacterSelectorProps> = ({
   const currentCharacter = characters.find((c) => c.id === currentCharacterId);
 
   if (loading) {
-    return <div className="character-selector loading">加载中...</div>;
+    return <div className="character-selector loading" role="status" aria-live="polite">加载中...</div>;
   }
 
   return (
     <div className="character-selector">
       {/* 当前角色显示 */}
-      <div className="current-character" onClick={() => setShowMenu(!showMenu)}>
+      <button className="current-character" onClick={() => setShowMenu(!showMenu)} aria-expanded={showMenu} aria-haspopup="listbox">
         <div className="character-avatar">
           {currentCharacter?.avatar ? (
             <img src={currentCharacter.avatar} alt={currentCharacter.name} />
@@ -98,7 +98,7 @@ const CharacterSelector: React.FC<CharacterSelectorProps> = ({
           </div>
         </div>
         <div className="dropdown-icon">{showMenu ? "▲" : "▼"}</div>
-      </div>
+      </button>
 
       {/* 角色列表菜单 */}
       {showMenu && (
@@ -109,7 +109,7 @@ const CharacterSelector: React.FC<CharacterSelectorProps> = ({
                 key={character.id}
                 className={`character-item ${character.id === currentCharacterId ? "active" : ""}`}
               >
-                <div
+                <button
                   className="character-item-main"
                   onClick={() => {
                     onSelectCharacter(character);
@@ -136,7 +136,7 @@ const CharacterSelector: React.FC<CharacterSelectorProps> = ({
                       {character.personality}
                     </div>
                   </div>
-                </div>
+                </button>
                 <div className="character-item-actions">
                   <button
                     className="action-btn edit-btn"
@@ -145,7 +145,7 @@ const CharacterSelector: React.FC<CharacterSelectorProps> = ({
                       onEditCharacter(character);
                       setShowMenu(false);
                     }}
-                    title="编辑"
+                    aria-label="编辑角色"
                   >
                     ✏️
                   </button>
@@ -156,7 +156,7 @@ const CharacterSelector: React.FC<CharacterSelectorProps> = ({
                         e.stopPropagation();
                         handleSetDefault(character.id);
                       }}
-                      title="设为默认"
+                      aria-label="设为默认角色"
                     >
                       ⭐
                     </button>
@@ -167,7 +167,7 @@ const CharacterSelector: React.FC<CharacterSelectorProps> = ({
                       e.stopPropagation();
                       handleDelete(character.id);
                     }}
-                    title="删除"
+                    aria-label="删除角色"
                   >
                     🗑️
                   </button>

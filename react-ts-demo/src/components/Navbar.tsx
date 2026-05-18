@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import '../styles/Navbar.css';
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import "../styles/Navbar.css";
 
 interface NavbarProps {
   onScenarioClick: () => void;
@@ -17,7 +17,7 @@ const Navbar = ({
   onProfileClick,
   selectedScenario,
   selectedVocabulary,
-  showVocabularyButton = false
+  showVocabularyButton = false,
 }: NavbarProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -25,26 +25,34 @@ const Navbar = ({
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="navbar">
+    <nav className="navbar" aria-label="主导航">
       <div className="navbar-container">
         <Link to="/" className="navbar-logo">
           角色互动
         </Link>
-
+        {/* 无障碍汉堡菜单 */}
         <button
           className="mobile-menu-toggle"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label={isMobileMenuOpen ? "关闭菜单" : "打开菜单"}
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="nav-menu"
         >
           <span></span>
           <span></span>
           <span></span>
         </button>
 
-        <ul className={`navbar-menu ${isMobileMenuOpen ? 'active' : ''}`}>
+        <ul
+          className={`navbar-menu ${isMobileMenuOpen ? "active" : ""}`}
+          id="nav-menu"
+          role="list"
+        >
           <li>
             <Link
               to="/"
-              className={isActive('/') ? 'active' : ''}
+              className={isActive("/") ? "active" : ""}
+              aria-current={isActive("/") ? "page" : undefined}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               角色预览
@@ -53,7 +61,7 @@ const Navbar = ({
           <li>
             <Link
               to="/characters"
-              className={isActive('/characters') ? 'active' : ''}
+              className={isActive("/characters") ? "active" : ""}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               在线角色
@@ -61,25 +69,25 @@ const Navbar = ({
           </li>
           <li>
             <button
-              className={`scenario-btn ${selectedScenario ? 'selected' : ''}`}
+              className={`scenario-btn ${selectedScenario ? "selected" : ""}`}
               onClick={() => {
                 onScenarioClick();
                 setIsMobileMenuOpen(false);
               }}
             >
-              {selectedScenario || '情景模式'}
+              {selectedScenario || "情景模式"}
             </button>
           </li>
           {showVocabularyButton && (
             <li>
               <button
-                className={`vocabulary-btn ${selectedVocabulary ? 'selected' : ''}`}
+                className={`vocabulary-btn ${selectedVocabulary ? "selected" : ""}`}
                 onClick={() => {
                   onVocabularyClick?.();
                   setIsMobileMenuOpen(false);
                 }}
               >
-                {selectedVocabulary || '单词本'}
+                {selectedVocabulary || "单词本"}
               </button>
             </li>
           )}

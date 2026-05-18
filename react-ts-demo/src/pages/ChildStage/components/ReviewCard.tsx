@@ -4,7 +4,7 @@
  */
 
 import { useState } from 'react';
-import type { ReviewCardProps } from '../../../types/vocabulary';
+import type { ReviewCardProps, ChildWord } from '../../../types/vocabulary';
 import { getWordImageUrl } from '../../../services/childVocabularyService';
 import { useChildSound } from '../../../hooks/useChildSound';
 import DictationInput from './DictationInput';
@@ -19,7 +19,7 @@ const ReviewCard = ({
 }: ReviewCardProps) => {
   const [showTranslation, setShowTranslation] = useState(false);
   const { speakWord } = useChildSound();
-  const imageUrl = getWordImageUrl(word);
+  const imageUrl = 'grade' in word ? getWordImageUrl(word as ChildWord) : '';
 
   const handleSubmit = (input: string) => {
     const isCorrect = input.toLowerCase() === word.word.toLowerCase();

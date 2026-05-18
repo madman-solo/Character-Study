@@ -1,10 +1,5 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  ReactNode,
-  useEffect,
-} from "react";
+import type { ReactNode } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import type { Character } from "../types";
 import { useAuth } from "./AuthContext";
 import {
@@ -32,7 +27,7 @@ interface CharacterContextType {
 }
 
 const CharacterContext = createContext<CharacterContextType | undefined>(
-  undefined
+  undefined,
 );
 
 export const useCharacter = () => {
@@ -52,7 +47,7 @@ export const CharacterProvider = ({ children }: CharacterProviderProps) => {
   const [myCharacters, setMyCharacters] = useState<Character[]>([]);
   const [myFavorites, setMyFavorites] = useState<Character[]>([]);
   const [currentCharacter, setCurrentCharacter] = useState<Character | null>(
-    null
+    null,
   );
 
   // 加载用户的角色和收藏
@@ -110,7 +105,7 @@ export const CharacterProvider = ({ children }: CharacterProviderProps) => {
 
   const addCharacter = async (
     character: Character,
-    setAsDefault: boolean = false
+    setAsDefault: boolean = false,
   ) => {
     if (!user) {
       alert("请先登录");

@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import ChatInterface from "../components/ChatInterface";
-import CharacterSelector from "../components/CharacterSelector";
-import CharacterForm from "../components/CharacterForm";
 import { useAuth } from "../contexts/AuthContext";
 import type { CustomCharacter } from "../services/characterService";
+import { getUserCharacters } from "../services/characterService";
 import "../styles/CustomCompanionChatPage.css";
 
 interface CustomSetup {
@@ -19,6 +18,7 @@ interface CustomSetup {
   customColor?: string;
   customColor2?: string;
   customImage?: string;
+  character?: CustomCharacter;
 }
 
 const CustomCompanionChatPage = () => {
@@ -28,13 +28,12 @@ const CustomCompanionChatPage = () => {
   const { user } = useAuth();
   const userId = user?.id || "guest";
 
-  // 角色系统状态
+  // 角色系统状态：优先从 location.state 中读取刚创建/编辑的角色
   const [selectedCharacter, setSelectedCharacter] =
-    useState<CustomCharacter | null>(null);
-  const [showCharacterForm, setShowCharacterForm] = useState(false);
-  const [editingCharacter, setEditingCharacter] = useState<
-    CustomCharacter | undefined
-  >(undefined);
+    useState<CustomCharacter | null>(setup?.character || null);
+  const [, setShowCharacterForm] = useState(false);
+  const [, setEditingCharacter] = useState<CustomCharacter | undefined>(undefined);
+  void setShowCharacterForm; void setEditingCharacter;
 
   // 如果没有设置信息，返回设置页面
   useEffect(() => {
@@ -43,36 +42,45 @@ const CustomCompanionChatPage = () => {
     }
   }, [setup, navigate]);
 
+  // 持久化 characterId，刷新时从数据库重新加载
+  useEffect(() => {
+    if (setup?.character?.id) {
+      localStorage.setItem("lastCharacterId", String(setup.character.id));
+    }
+  }, [setup?.character?.id]);
+
+  useEffect(() => {
+    if (selectedCharacter) return; // 已有角色，不需要重新加载
+    const savedId = localStorage.getItem("lastCharacterId");
+    if (!savedId) return;
+    getUserCharacters(userId).then((chars) => {
+      const found = chars.find((c) => c.id === Number(savedId));
+      if (found) setSelectedCharacter(found);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId]); // 只在 userId 变化时执行，selectedCharacter 变化不触发
+
   if (!setup) return null;
 
   // 处理角色选择
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSelectCharacter = (character: CustomCharacter) => {
     setSelectedCharacter(character);
   };
+  void handleSelectCharacter;
 
   // 处理创建新角色
-  const handleCreateNew = () => {
+  const _handleCreateNew = () => {
     setEditingCharacter(undefined);
     navigate("/character-creation", { state: { userId } });
   };
+  void _handleCreateNew;
 
   // 处理编辑角色
-  const handleEditCharacter = (character: CustomCharacter) => {
+  const _handleEditCharacter = (character: CustomCharacter) => {
     navigate("/character-creation", { state: { character } });
   };
-
-  // // 处理表单成功
-  // const handleFormSuccess = () => {
-  //   // setShowCharacterForm(false);
-  //   setEditingCharacter(undefined);
-  //   // 刷新角色列表会由CharacterSelector自动处理
-  // };
-
-  // // 处理表单取消
-  // const handleFormCancel = () => {
-  //   setShowCharacterForm(false);
-  //   setEditingCharacter(undefined);
-  // };
+  void _handleEditCharacter;
 
   // 构建系统提示词
   const getSystemPrompt = () => {
@@ -116,6 +124,28 @@ const CustomCompanionChatPage = () => {
 
   // 获取背景样式
   const getBackgroundStyle = (): React.CSSProperties => {
+    //优先使用角色的背景设置：
+    if (selectedCharacter) {
+      const bg = selectedCharacter.sceneBackground || "default";
+      if (
+        bg === "custom-gradient" &&
+        selectedCharacter.customColor &&
+        selectedCharacter.customColor2
+      ) {
+        return {
+          background: `linear-gradient(135deg, ${selectedCharacter.customColor} 0%, ${selectedCharacter.customColor2} 100%)`,
+          "--bg-style": `linear-gradient(135deg, ${selectedCharacter.customColor} 0%, ${selectedCharacter.customColor2} 100%)`,
+        } as React.CSSProperties;
+      } else if (bg === "custom-image" && selectedCharacter.customImage) {
+        return {
+          backgroundImage: `url(${selectedCharacter.customImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+          "--bg-style": `url(${selectedCharacter.customImage}) center/cover fixed`,
+        } as React.CSSProperties;
+      }
+    }
     if (
       setup.background === "custom-gradient" &&
       setup.customColor &&
@@ -123,18 +153,23 @@ const CustomCompanionChatPage = () => {
     ) {
       return {
         background: `linear-gradient(135deg, ${setup.customColor} 0%, ${setup.customColor2} 100%)`,
-      };
+        "--bg-style": `linear-gradient(135deg, ${setup.customColor} 0%, ${setup.customColor2} 100%)`,
+      } as React.CSSProperties;
     } else if (setup.background === "custom-image" && setup.customImage) {
       return {
         backgroundImage: `url(${setup.customImage})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-      };
+        backgroundAttachment: "fixed",
+        "--bg-style": `url(${setup.customImage}) center/cover fixed`,
+      } as React.CSSProperties;
     } else {
       return {
         background:
           backgroundOptions[setup.background] || backgroundOptions.default,
-      };
+        "--bg-style":
+          backgroundOptions[setup.background] || backgroundOptions.default,
+      } as React.CSSProperties;
     }
   };
 

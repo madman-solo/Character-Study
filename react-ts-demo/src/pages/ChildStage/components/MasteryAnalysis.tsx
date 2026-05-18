@@ -3,18 +3,25 @@
  * 单词掌握度分析组件 - 展示单词掌握度分布和详细分析
  */
 
-import { useState, useMemo } from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
+import { useState, useMemo } from "react";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  Legend,
+  Tooltip,
+} from "recharts";
 import {
   analyzeMasteryDistribution,
   getMasteryPercentage,
   identifyWeakWords,
   calculateAverageMasteryScore,
   getMasteryLevel,
-  type MasteryLevel
-} from '../../../utils/masteryAnalysis';
-import type { WordProgress } from '../../../types/vocabulary';
-import './MasteryAnalysis.css';
+  type MasteryLevel,
+} from "../../../utils/masteryAnalysis";
+import type { WordProgress } from "../../../types/vocabulary";
+import "./MasteryAnalysis.css";
 
 interface MasteryAnalysisProps {
   wordProgressList: WordProgress[];
@@ -23,59 +30,61 @@ interface MasteryAnalysisProps {
 
 // 掌握度级别颜色映射
 const MASTERY_COLORS: Record<MasteryLevel, string> = {
-  mastered: '#4ECDC4',
-  proficient: '#95E1D3',
-  learning: '#FFE66D',
-  needsWork: '#FFA07A',
-  new: '#FF6B6B'
+  mastered: "#4ECDC4",
+  proficient: "#95E1D3",
+  learning: "#FFE66D",
+  needsWork: "#FFA07A",
+  new: "#FF6B6B",
 };
 
 // 掌握度级别标签映射
 const MASTERY_LABELS: Record<MasteryLevel, string> = {
-  mastered: '已掌握',
-  proficient: '熟练',
-  learning: '学习中',
-  needsWork: '需加强',
-  new: '新单词'
+  mastered: "已掌握",
+  proficient: "熟练",
+  learning: "学习中",
+  needsWork: "需加强",
+  new: "新单词",
 };
 
 const MasteryAnalysis: React.FC<MasteryAnalysisProps> = ({
   wordProgressList,
-  onWordClick
+  onWordClick,
 }) => {
   const [expandedLevel, setExpandedLevel] = useState<MasteryLevel | null>(null);
 
   // 分析掌握度分布
   const distribution = useMemo(
     () => analyzeMasteryDistribution(wordProgressList),
-    [wordProgressList]
+    [wordProgressList],
   );
 
   // 计算百分比
   const percentages = useMemo(
     () => getMasteryPercentage(distribution),
-    [distribution]
+    [distribution],
   );
 
   // 识别薄弱单词
   const weakWords = useMemo(
     () => identifyWeakWords(wordProgressList, 50),
-    [wordProgressList]
+    [wordProgressList],
   );
 
   // 计算平均掌握度
   const avgScore = useMemo(
     () => calculateAverageMasteryScore(wordProgressList),
-    [wordProgressList]
+    [wordProgressList],
   );
 
   // 准备饼图数据
   const pieData = useMemo(() => {
-    return Object.entries(distribution).map(([level, words]) => ({
-      name: MASTERY_LABELS[level as MasteryLevel],
-      value: words.length,
-      level: level as MasteryLevel
-    })).filter(item => item.value > 0);
+    return Object.entries(distribution)
+      .map(([level, words]) => ({
+        name: MASTERY_LABELS[level as MasteryLevel],
+        value: words.length,
+        level: level as MasteryLevel,
+      }))
+      .filter((item) => item.value > 0);
   }, [distribution]);
 
   // 切换展开/收起
@@ -189,7 +198,7 @@ const MasteryAnalysis: React.FC<MasteryAnalysisProps> = ({
                     </span>
                   </div>
                   <div className="level-toggle">
-                    {expandedLevel === level ? '▼' : '▶'}
+                    {expandedLevel === level ? "▼" : "▶"}
                   </div>
                 </div>
 
@@ -202,7 +211,9 @@ const MasteryAnalysis: React.FC<MasteryAnalysisProps> = ({
                         onClick={() => onWordClick?.(wordProgress)}
                       >
                         <div className="word-main">
-                          <span className="word-text">{wordProgress.word}</span>
+                          <span className="word-text-masteryanalysis">
+                            {wordProgress.word}
+                          </span>
                           <span className="word-score">
                             {wordProgress.masteryScore}分
                           </span>
@@ -254,7 +265,7 @@ const MasteryAnalysis: React.FC<MasteryAnalysisProps> = ({
                     ✗ {wordProgress.wrongCount}
                   </span>
                   <span className="stat-level">
-                    {MASTERY_LABELS[getMasteryLevel(wordProgress.masteryScore)]}
+                    {MASTERY_LABELS[getMasteryLevel(wordProgress.masteryScore ?? 0)]}
                   </span>
                 </div>
               </div>

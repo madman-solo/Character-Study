@@ -45,3 +45,14 @@ body {
   --warm-transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1); /* 轻柔动效 */
   /* 新增 */
 }
+/* 全局焦点样式 */
+:focus-visible {
+  outline: 2px solid #71b0eb;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* 移除鼠标点击时的焦点环（保留键盘焦点） */
+:focus:not(:focus-visible) {
+  outline: none;
+}

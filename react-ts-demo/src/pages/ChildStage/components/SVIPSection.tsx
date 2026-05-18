@@ -45,10 +45,7 @@ const SVIPSection = () => {
   ];
 
   const svipCategories = [
-    { id: "1", icon: "👑", title: "VIP专属", description: "会员专享内容", path: "/child-vip" },
-    { id: "2", icon: "🎯", title: "精品课程", description: "名师精讲", path: "/child-premium-courses" },
     { id: "3", icon: "🏆", title: "进阶训练", description: "能力提升", path: "/child-advanced-training" },
-    { id: "4", icon: "💎", title: "特色教材", description: "独家资源", path: "/child-special-materials" },
   ];
 
   const handleCategoryClick = (path: string) => {

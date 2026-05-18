@@ -98,7 +98,7 @@ const CharacterDetail = () => {
         <button className="back-button" onClick={() => navigate("/characters")}>
           ← 返回
         </button>
-        <div className="loading-message">加载中...</div>
+        <div className="loading-message" role="status" aria-live="polite">加载中...</div>
       </div>
     );
   }
@@ -110,7 +110,7 @@ const CharacterDetail = () => {
         <button className="back-button" onClick={() => navigate("/characters")}>
           ← 返回
         </button>
-        <div className="error-message">{error || "角色未找到"}</div>
+        <div className="error-message" role="alert">{error || "角色未找到"}</div>
       </div>
     );
   }
@@ -139,6 +139,7 @@ const CharacterDetail = () => {
             }`}
             onClick={handleAddCharacter}
             disabled={isCharacterAdded(character.id)}
+            aria-disabled={isCharacterAdded(character.id)}
           >
             {isCharacterAdded(character.id) ? "✓ 已添加" : "➕ 添加该角色"}
           </button>
@@ -148,7 +149,7 @@ const CharacterDetail = () => {
             }`}
             onClick={handleToggleFavorite}
           >
-            {isCharacterFavorited(character.id) ? "⭐ 已收藏" : "☆ 收藏"}
+            {isCharacterFavorited(character.id) ? <><img src="/src/assets/iconfont/收藏 (1).svg" alt="已收藏" width={16} height={16} style={{marginRight:4,verticalAlign:'middle'}} />已收藏</> : <><img src="/src/assets/iconfont/收藏.svg" alt="收藏" width={16} height={16} style={{marginRight:4,verticalAlign:'middle'}} />收藏</>}
           </button>
         </div>
       </div>

@@ -98,7 +98,7 @@
   text-align: center;
 }
 
-.word-text {
+.word-text-wordlearningcard {
   font-family: var(--child-font-family);
   font-size: var(--child-font-size-xlarge);
   font-weight: var(--child-font-weight-bold);

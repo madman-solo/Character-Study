@@ -45,7 +45,7 @@ function generateBaiduSign(text, appid, salt, secretKey) {
  */
 router.get("/speak", async (req, res) => {
   try {
-    const { word, lang = "en", provider = "baidu" } = req.query;
+    const { word, lang = "en", provider = "youdao-free" } = req.query;
 
     // 参数验证
     if (!word) {
@@ -57,23 +57,16 @@ router.get("/speak", async (req, res) => {
 
     let audioData;
 
-    // 根据提供商选择API
-    if (provider === "baidu" && BAIDU_APPID && BAIDU_SECRET_KEY) {
-      audioData = await getBaiduTTS(word, lang);
+    if (provider === "youdao-free") {
+      // 有道词典免费发音，无需 API key
+      audioData = await getYoudaoFreeTTS(word, lang);
     } else if (provider === "youdao" && YOUDAO_APP_KEY && YOUDAO_APP_SECRET) {
       audioData = await getYoudaoTTS(word, lang);
+    } else if (provider === "baidu" && BAIDU_APPID && BAIDU_SECRET_KEY) {
+      audioData = await getBaiduTTS(word, lang);
     } else {
-      // 默认尝试百度
-      if (BAIDU_APPID && BAIDU_SECRET_KEY) {
-        audioData = await getBaiduTTS(word, lang);
-      } else if (YOUDAO_APP_KEY && YOUDAO_APP_SECRET) {
-        audioData = await getYoudaoTTS(word, lang);
-      } else {
-        return res.status(500).json({
-          success: false,
-          error: "未配置TTS API密钥",
-        });
-      }
+      // 默认走有道词典免费接口
+      audioData = await getYoudaoFreeTTS(word, lang);
     }
 
     // 返回音频数据
@@ -100,6 +93,15 @@ router.get("/speak", async (req, res) => {
     });
   }
 });
+async function getYoudaoFreeTTS(text, lang) {
+  const type = lang === "zh" ? 1 : 2;
+  const url = `https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(text)}&type=${type}`;
+  const response = await axios.get(url, {
+    responseType: "arraybuffer",
+    timeout: 10000,
+  });
+  return response.data;
+}
 
 /**
  * 获取百度TTS音频
@@ -146,7 +148,12 @@ async function getBaiduTTS(text, lang) {
  */
 async function getYoudaoTTS(text, lang) {
   const salt = Date.now().toString();
-  const sign = generateYoudaoSign(YOUDAO_APP_KEY, text, salt, YOUDAO_APP_SECRET);
+  const sign = generateYoudaoSign(
+    YOUDAO_APP_KEY,
+    text,
+    salt,
+    YOUDAO_APP_SECRET,
+  );
 
   const params = {
     q: text,

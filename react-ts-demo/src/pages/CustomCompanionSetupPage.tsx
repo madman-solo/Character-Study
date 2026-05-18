@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../styles/CustomCompanionSetupPage.css';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../styles/CustomCompanionSetupPage.css";
 
 interface CustomSetup {
   userIdentity: string;
@@ -19,35 +19,59 @@ interface CustomSetup {
 const CustomCompanionSetupPage = () => {
   const navigate = useNavigate();
   const [setup, setSetup] = useState<CustomSetup>({
-    userIdentity: '',
-    userName: '',
-    userStory: '',
-    companionIdentity: '',
-    companionName: '',
-    companionStory: '',
-    backgroundStory: '',
-    background: 'default',
-    customColor: '#667eea',
-    customColor2: '#764ba2',
-    customImage: '',
+    userIdentity: "",
+    userName: "",
+    userStory: "",
+    companionIdentity: "",
+    companionName: "",
+    companionStory: "",
+    backgroundStory: "",
+    background: "default",
+    customColor: "#667eea",
+    customColor2: "#764ba2",
+    customImage: "",
   });
   const [showUserModal, setShowUserModal] = useState(false);
   const [showCompanionModal, setShowCompanionModal] = useState(false);
-  const [tempUserIdentity, setTempUserIdentity] = useState('');
-  const [tempUserName, setTempUserName] = useState('');
-  const [tempUserStory, setTempUserStory] = useState('');
-  const [tempCompanionIdentity, setTempCompanionIdentity] = useState('');
-  const [tempCompanionName, setTempCompanionName] = useState('');
-  const [tempCompanionStory, setTempCompanionStory] = useState('');
-  const [tempBackgroundStory, setTempBackgroundStory] = useState('');
+  const [tempUserIdentity, setTempUserIdentity] = useState("");
+  const [tempUserName, setTempUserName] = useState("");
+  const [tempUserStory, setTempUserStory] = useState("");
+  const [tempCompanionIdentity, setTempCompanionIdentity] = useState("");
+  const [tempCompanionName, setTempCompanionName] = useState("");
+  const [tempCompanionStory, setTempCompanionStory] = useState("");
+  const [tempBackgroundStory, setTempBackgroundStory] = useState("");
 
   const backgroundOptions = [
-    { id: 'default', name: '默认背景', preview: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' },
-    { id: 'sunset', name: '日落余晖', preview: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)' },
-    { id: 'ocean', name: '海洋之心', preview: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)' },
-    { id: 'forest', name: '森林绿意', preview: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)' },
-    { id: 'night', name: '星空夜晚', preview: 'linear-gradient(135deg, #4a5568 0%, #2d3748 100%)' },
-    { id: 'cherry', name: '樱花粉', preview: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)' },
+    {
+      id: "default",
+      name: "默认背景",
+      preview: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    },
+    {
+      id: "sunset",
+      name: "日落余晖",
+      preview: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+    },
+    {
+      id: "ocean",
+      name: "海洋之心",
+      preview: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+    },
+    {
+      id: "forest",
+      name: "森林绿意",
+      preview: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+    },
+    {
+      id: "night",
+      name: "星空夜晚",
+      preview: "linear-gradient(135deg, #4a5568 0%, #2d3748 100%)",
+    },
+    {
+      id: "cherry",
+      name: "樱花粉",
+      preview: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+    },
   ];
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,7 +79,11 @@ const CustomCompanionSetupPage = () => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setSetup({ ...setup, background: 'custom-image', customImage: reader.result as string });
+        setSetup({
+          ...setup,
+          background: "custom-image",
+          customImage: reader.result as string,
+        });
       };
       reader.readAsDataURL(file);
     }
@@ -83,7 +111,7 @@ const CustomCompanionSetupPage = () => {
       userIdentity: tempUserIdentity,
       userName: tempUserName,
       userStory: tempUserStory,
-      backgroundStory: tempBackgroundStory
+      backgroundStory: tempBackgroundStory,
     });
     setShowUserModal(false);
   };
@@ -94,7 +122,7 @@ const CustomCompanionSetupPage = () => {
       companionIdentity: tempCompanionIdentity,
       companionName: tempCompanionName,
       companionStory: tempCompanionStory,
-      backgroundStory: tempBackgroundStory
+      backgroundStory: tempBackgroundStory,
     });
     setShowCompanionModal(false);
   };
@@ -106,11 +134,11 @@ const CustomCompanionSetupPage = () => {
 
   const handleStartChat = () => {
     if (!setup.userIdentity || !setup.companionIdentity) {
-      alert('请填写完整的身份信息');
+      alert("请填写完整的身份信息");
       return;
     }
     // 跳转到自定义聊天页面，传递设置信息
-    navigate('/custom-companion-chat', { state: setup });
+    navigate("/custom-companion-chat", { state: setup });
   };
 
   return (
@@ -118,7 +146,7 @@ const CustomCompanionSetupPage = () => {
       <div className="setup-container">
         {/* 头部 */}
         <div className="setup-header">
-          <button className="setup-back-button" onClick={() => navigate('/')}>
+          <button className="setup-back-button" onClick={() => navigate("/")}>
             ← 返回
           </button>
           <h1 className="setup-title">自定义场景设置</h1>
@@ -138,7 +166,7 @@ const CustomCompanionSetupPage = () => {
               className="settings-button"
               onClick={handleOpenUserModal}
             >
-              {setup.userIdentity || '点击设置你的角色信息'}
+              {setup.userIdentity || "点击设置你的角色信息"}
             </button>
           </div>
 
@@ -153,7 +181,7 @@ const CustomCompanionSetupPage = () => {
               className="settings-button"
               onClick={handleOpenCompanionModal}
             >
-              {setup.companionIdentity || '点击设置对方的角色信息'}
+              {setup.companionIdentity || "点击设置对方的角色信息"}
             </button>
           </div>
 
@@ -169,19 +197,31 @@ const CustomCompanionSetupPage = () => {
               <div className="color-picker-container">
                 <div className="color-picker-row">
                   <div className="color-picker-wrapper">
-                    <label className="color-picker-label">颜色1</label>
+                    <label className="color-picker-label" htmlFor="color1">颜色1</label>
                     <div className="color-input-group">
                       <input
+                        id="color1"
                         type="color"
                         className="color-picker-input"
                         value={setup.customColor}
-                        onChange={(e) => setSetup({ ...setup, background: 'custom-gradient', customColor: e.target.value })}
+                        onChange={(e) =>
+                          setSetup({
+                            ...setup,
+                            background: "custom-gradient",
+                            customColor: e.target.value,
+                          })
+                        }
                       />
-                      <div className="color-preview" style={{ background: setup.customColor }}></div>
+                      <div
+                        className="color-preview"
+                        style={{ background: setup.customColor }}
+                      ></div>
                       <span className="color-value">{setup.customColor}</span>
                       <button
                         className="copy-color-btn"
-                        onClick={() => handleCopyColor(setup.customColor || '#667eea')}
+                        onClick={() =>
+                          handleCopyColor(setup.customColor || "#667eea")
+                        }
                         title="复制颜色"
                       >
                         📋
@@ -190,19 +230,31 @@ const CustomCompanionSetupPage = () => {
                   </div>
 
                   <div className="color-picker-wrapper">
-                    <label className="color-picker-label">颜色2（渐变）</label>
+                    <label className="color-picker-label" htmlFor="color2">颜色2（渐变）</label>
                     <div className="color-input-group">
                       <input
+                        id="color2"
                         type="color"
                         className="color-picker-input"
                         value={setup.customColor2}
-                        onChange={(e) => setSetup({ ...setup, background: 'custom-gradient', customColor2: e.target.value })}
+                        onChange={(e) =>
+                          setSetup({
+                            ...setup,
+                            background: "custom-gradient",
+                            customColor2: e.target.value,
+                          })
+                        }
                       />
-                      <div className="color-preview" style={{ background: setup.customColor2 }}></div>
+                      <div
+                        className="color-preview"
+                        style={{ background: setup.customColor2 }}
+                      ></div>
                       <span className="color-value">{setup.customColor2}</span>
                       <button
                         className="copy-color-btn"
-                        onClick={() => handleCopyColor(setup.customColor2 || '#764ba2')}
+                        onClick={() =>
+                          handleCopyColor(setup.customColor2 || "#764ba2")
+                        }
                         title="复制颜色"
                       >
                         📋
@@ -216,7 +268,7 @@ const CustomCompanionSetupPage = () => {
                   <div
                     className="gradient-preview"
                     style={{
-                      background: `linear-gradient(135deg, ${setup.customColor} 0%, ${setup.customColor2} 100%)`
+                      background: `linear-gradient(135deg, ${setup.customColor} 0%, ${setup.customColor2} 100%)`,
                     }}
                   ></div>
                 </div>
@@ -224,8 +276,9 @@ const CustomCompanionSetupPage = () => {
 
               {/* 上传本地图片 */}
               <div className="image-upload-wrapper">
-                <label className="image-upload-label">
+                <label className="image-upload-label" htmlFor="bg-image-upload">
                   <input
+                    id="bg-image-upload"
                     type="file"
                     accept="image/*"
                     className="image-upload-input"
@@ -243,7 +296,7 @@ const CustomCompanionSetupPage = () => {
                 {backgroundOptions.map((bg) => (
                   <div
                     key={bg.id}
-                    className={`background-option ${setup.background === bg.id ? 'selected' : ''}`}
+                    className={`background-option ${setup.background === bg.id ? "selected" : ""}`}
                     onClick={() => setSetup({ ...setup, background: bg.id })}
                   >
                     <div
@@ -270,26 +323,27 @@ const CustomCompanionSetupPage = () => {
             className="preview-box"
             style={{
               background:
-                setup.background === 'custom-gradient'
+                setup.background === "custom-gradient"
                   ? `linear-gradient(135deg, ${setup.customColor} 0%, ${setup.customColor2} 100%)`
-                  : setup.background === 'custom-image' && setup.customImage
-                  ? `url(${setup.customImage})`
-                  : backgroundOptions.find((bg) => bg.id === setup.background)?.preview,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
+                  : setup.background === "custom-image" && setup.customImage
+                    ? `url(${setup.customImage})`
+                    : backgroundOptions.find((bg) => bg.id === setup.background)
+                        ?.preview,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
             }}
           >
             <div className="preview-info">
               <div className="preview-identity">
                 <span className="preview-role">你</span>
                 <span className="preview-text">
-                  {setup.userIdentity || '未设置身份'}
+                  {setup.userIdentity || "未设置身份"}
                 </span>
               </div>
               <div className="preview-identity">
                 <span className="preview-role">对方</span>
                 <span className="preview-text">
-                  {setup.companionIdentity || '未设置身份'}
+                  {setup.companionIdentity || "未设置身份"}
                 </span>
               </div>
             </div>
@@ -299,18 +353,23 @@ const CustomCompanionSetupPage = () => {
 
       {/* 你的设定模态框 */}
       {showUserModal && (
-        <div className="modal-overlay" onClick={() => setShowUserModal(false)}>
+        <div className="modal-overlay" role="button" tabIndex={0} aria-label="关闭" onClick={() => setShowUserModal(false)} onKeyDown={(e) => e.key === 'Enter' && setShowUserModal(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
+            <div className="modal-header-custom">
               <h2 className="modal-title">你的设定</h2>
-              <button className="modal-close" onClick={() => setShowUserModal(false)}>
-                ✕
+              <button
+                className="modal-close"
+                onClick={() => setShowUserModal(false)}
+                aria-label="关闭"
+              >
+                <span aria-hidden="true">✕</span>
               </button>
             </div>
             <div className="modal-body">
               <div className="modal-field">
-                <label className="modal-label">你的身份</label>
+                <label className="modal-label" htmlFor="user-identity">你的身份</label>
                 <input
+                  id="user-identity"
                   type="text"
                   className="modal-input"
                   placeholder="例如：学生、上班族、旅行者..."
@@ -320,8 +379,9 @@ const CustomCompanionSetupPage = () => {
               </div>
 
               <div className="modal-field">
-                <label className="modal-label">你的名字</label>
+                <label className="modal-label" htmlFor="user-name">你的名字</label>
                 <input
+                  id="user-name"
                   type="text"
                   className="modal-input"
                   placeholder="请输入你的名字..."
@@ -331,8 +391,9 @@ const CustomCompanionSetupPage = () => {
               </div>
 
               <div className="modal-field">
-                <label className="modal-label">你的故事</label>
+                <label className="modal-label" htmlFor="user-story">你的故事</label>
                 <textarea
+                  id="user-story"
                   className="modal-textarea"
                   placeholder="描述你的背景故事、性格特点等..."
                   value={tempUserStory}
@@ -342,8 +403,9 @@ const CustomCompanionSetupPage = () => {
               </div>
 
               <div className="modal-field">
-                <label className="modal-label">背景情节设定</label>
+                <label className="modal-label" htmlFor="user-background-story">背景情节设定</label>
                 <textarea
+                  id="user-background-story"
                   className="modal-textarea"
                   placeholder="描述你们相遇的场景、故事背景等..."
                   value={tempBackgroundStory}
@@ -353,10 +415,16 @@ const CustomCompanionSetupPage = () => {
               </div>
             </div>
             <div className="modal-footer">
-              <button className="modal-button cancel" onClick={() => setShowUserModal(false)}>
+              <button
+                className="modal-button cancel"
+                onClick={() => setShowUserModal(false)}
+              >
                 取消
               </button>
-              <button className="modal-button confirm" onClick={handleSaveUserSettings}>
+              <button
+                className="modal-button confirm"
+                onClick={handleSaveUserSettings}
+              >
                 确定
               </button>
             </div>
@@ -366,18 +434,28 @@ const CustomCompanionSetupPage = () => {
 
       {/* 对方的设定模态框 */}
       {showCompanionModal && (
-        <div className="modal-overlay" onClick={() => setShowCompanionModal(false)}>
+        <div
+          className="modal-overlay"
+          role="button" tabIndex={0} aria-label="关闭"
+          onClick={() => setShowCompanionModal(false)}
+          onKeyDown={(e) => e.key === 'Enter' && setShowCompanionModal(false)}
+        >
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
+            <div className="modal-header-custom">
               <h2 className="modal-title">对方的设定</h2>
-              <button className="modal-close" onClick={() => setShowCompanionModal(false)}>
-                ✕
+              <button
+                className="modal-close"
+                onClick={() => setShowCompanionModal(false)}
+                aria-label="关闭"
+              >
+                <span aria-hidden="true">✕</span>
               </button>
             </div>
             <div className="modal-body">
               <div className="modal-field">
-                <label className="modal-label">对方的身份</label>
+                <label className="modal-label" htmlFor="companion-identity">对方的身份</label>
                 <input
+                  id="companion-identity"
                   type="text"
                   className="modal-input"
                   placeholder="例如：好友、导师、知己..."
@@ -387,8 +465,9 @@ const CustomCompanionSetupPage = () => {
               </div>
 
               <div className="modal-field">
-                <label className="modal-label">对方的名字</label>
+                <label className="modal-label" htmlFor="companion-name">对方的名字</label>
                 <input
+                  id="companion-name"
                   type="text"
                   className="modal-input"
                   placeholder="请输入对方的名字..."
@@ -398,8 +477,9 @@ const CustomCompanionSetupPage = () => {
               </div>
 
               <div className="modal-field">
-                <label className="modal-label">对方的故事</label>
+                <label className="modal-label" htmlFor="companion-story">对方的故事</label>
                 <textarea
+                  id="companion-story"
                   className="modal-textarea"
                   placeholder="描述对方的背景故事、性格特点等..."
                   value={tempCompanionStory}
@@ -409,8 +489,9 @@ const CustomCompanionSetupPage = () => {
               </div>
 
               <div className="modal-field">
-                <label className="modal-label">背景情节设定</label>
+                <label className="modal-label" htmlFor="companion-background-story">背景情节设定</label>
                 <textarea
+                  id="companion-background-story"
                   className="modal-textarea"
                   placeholder="描述你们相遇的场景、故事背景等..."
                   value={tempBackgroundStory}
@@ -420,10 +501,16 @@ const CustomCompanionSetupPage = () => {
               </div>
             </div>
             <div className="modal-footer">
-              <button className="modal-button cancel" onClick={() => setShowCompanionModal(false)}>
+              <button
+                className="modal-button cancel"
+                onClick={() => setShowCompanionModal(false)}
+              >
                 取消
               </button>
-              <button className="modal-button confirm" onClick={handleSaveCompanionSettings}>
+              <button
+                className="modal-button confirm"
+                onClick={handleSaveCompanionSettings}
+              >
                 确定
               </button>
             </div>

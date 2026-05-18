@@ -20,7 +20,6 @@ model User {
   createdAt     DateTime @default(now()) // 创建时间
   updatedAt     DateTime @updatedAt // 更新时间
   lastLoginAt   DateTime @default(now()) // 最后登录时间
-
   // 关系
   learningData  UserLearningData[]
   rewardData    UserRewardData[]
@@ -240,6 +239,10 @@ model CustomCharacter {
   isDefault       Boolean  @default(false) // 是否为默认角色
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
+  sceneBackground String?
+  customColor     String?
+  customColor2    String?
+  customImage     String?
 
   // 关系
   conversations   CharacterConversation[]
@@ -280,4 +283,71 @@ model CharacterMemory {
 
   @@index([characterId, importance]) // 角色和重要性索引
   @@index([userId, characterId]) // 用户和角色索引
+}
+
+//听力素材表
+model ListeningMaterial{
+  id              Int      @id @default(autoincrement())
+  title          String   //标题
+  type            String   //extensive(泛听)/intensive(精听)
+  level           String   //初级/中级/高级
+  audioUrl        String   //音频文件路径(本地存储)
+  transcript      String?  //纯文本内容
+  sentence        String?  //JSON数组，存带时间戳的句子[{start,end,text}]
+  duration        String?  //时长(秒)
+  source          String?  //来源
+  createdAt       DateTime @default(now())
+  sentences       String?  //字符串格式，用于时间戳
+  questions       ListeningQuestion[]
+}
+
+//听力题目表
+model ListeningQuestion {
+    id            Int      @id @default(autoincrement())
+    materialId     Int      //关联素材ID
+    questionText  String   //题目
+    options       String   //选项(JSON数组)
+    answer        Int      //正确答案索引(0-3)
+    explanation   String   //解析
+
+    material      ListeningMaterial @relation(fields: [materialId], references: [id], onDelete: Cascade)
+}
+
+//用户听力记录表
+model ListeningRecord{
+  id              Int      @id @default(autoincrement())
+  userId          String   //用户ID
+  materialId       Int      //素材ID
+  score           Int?     //得分
+  completedAt     DateTime @default(now())
+
+  @@index([userId])
+}
+
+model Essay{
+  id              Int      @id @default(autoincrement())
+  userId          String   
+  title           String   @default("无标题")
+  content         String
+  score           Int?
+  feedback        String?  //AI评分反馈(JSON)
+  corrected       String?  //AI纠正后的内容
+  createdAt       DateTime @default(now())
+
+  @@index([userId])
+}
+
+
+//学习时长
+model StudySession {
+  id          Int       @id @default(autoincrement())
+  userId      String
+  startedAt   DateTime  @default(now())
+  endedAt     DateTime?
+  pausedAt    DateTime?
+  totalPause  Int       @default(0)  // 累计暂停秒数
+  realSeconds Int       @default(0)  // 最终真实时长（秒）
+  status      String    @default("active") // active/paused/ended/timeout
+
+  @@index([userId, status])
 }

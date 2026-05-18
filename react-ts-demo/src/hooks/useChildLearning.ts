@@ -71,7 +71,6 @@ export interface LearningData {
 }
 
 const STORAGE_KEY_PREFIX = "child_learning_";
-
 export const useChildLearning = (userId: string) => {
   const [learningData, setLearningData] = useState<LearningData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -180,6 +179,11 @@ export const useChildLearning = (userId: string) => {
       correctAnswers: 0,
       totalAnswers: 0,
       interactionCount: 0,
+      pausedTime: 0,
+      activeTime: 0,
+      lastActivityTime: 0,
+      isActive: false,
+      heartbeats: [],
     };
 
     saveData({
@@ -403,7 +407,9 @@ export const useChildLearning = (userId: string) => {
           );
           return daysAgo <= 30;
         })
-        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        .sort(
+          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+        );
 
       // 计算学习连续天数
       let newStreak = 0;
@@ -436,10 +442,7 @@ export const useChildLearning = (userId: string) => {
       }
 
       // 更新最长连续天数
-      const newLongestStreak = Math.max(
-        learningData.longestStreak,
-        newStreak,
-      );
+      const newLongestStreak = Math.max(learningData.longestStreak, newStreak);
 
       const updatedData = {
         ...learningData,

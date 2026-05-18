@@ -27,14 +27,21 @@ const ChildQuizGame = () => {
       <div className="child-quiz-loading">
         <div className="child-loading-content">
           <h1 className="child-loading-title">答题闯关</h1>
-          <p className="child-loading-subtitle">游戏加载中...</p>
-          <div className="child-progress-bar">
+          <p className="child-loading-subtitle" role="status" aria-live="polite">游戏加载中...</p>
+          <div
+            className="child-progress-bar"
+            role="progressbar"
+            aria-valuenow={progress}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label="游戏加载进度"
+          >
             <div
               className="child-progress-fill"
               style={{ width: `${progress}%` }}
             />
           </div>
-          <p className="child-progress-text">{progress}%</p>
+          <p className="child-progress-text" aria-hidden="true">{progress}%</p>
         </div>
       </div>
     );

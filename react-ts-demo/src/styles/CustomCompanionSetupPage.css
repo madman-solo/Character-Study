@@ -627,7 +627,7 @@
   }
 }
 
-.modal-header {
+.modal-header-custom {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -767,7 +767,7 @@
     max-width: none;
   }
 
-  .modal-header {
+  .modal-header-custom {
     padding: 20px 25px;
   }
 
@@ -790,7 +790,7 @@
 }
 
 @media (max-width: 480px) {
-  .modal-header {
+  .modal-header-custom {
     padding: 18px 20px;
   }
 

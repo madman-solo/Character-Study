@@ -6,8 +6,7 @@
   margin-left: auto;
   margin-right: auto;
 }
-
-.back-button {
+.my-characters-container .back-button {
   padding: 0.8rem 1.5rem;
   background: white;
   border: 2px solid #e0e0e0;
@@ -60,7 +59,7 @@
 
 .browse-button {
   padding: 1rem 2.5rem;
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
+  background: #a5d6eb;
   color: white;
   border: none;
   border-radius: 25px;
@@ -70,13 +69,14 @@
 }
 
 .browse-button:hover {
+  background: #ffebee;
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
 }
 
-.characters-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+.characters-grid-mycharacters {
+  display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
 }
 

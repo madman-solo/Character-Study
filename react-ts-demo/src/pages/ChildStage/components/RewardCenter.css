@@ -1,6 +1,6 @@
 /* 奖励中心样式 */
-@import '../../../styles/ChildStageCss/child-variables.css';
-@import '../../../styles/ChildStageCss/child-animations.css';
+@import "../../../styles/ChildStageCss/child-variables.css";
+@import "../../../styles/ChildStageCss/child-animations.css";
 
 .child-reward-center {
   background: var(--child-white);
@@ -49,11 +49,11 @@
 /* 积分展示 */
 .child-points-section {
   position: relative;
-  background: var(--child-gradient-accent);
+  background: #f1cbcb;
   border-radius: var(--child-radius-medium);
   padding: var(--child-spacing-lg);
   margin-bottom: var(--child-spacing-lg);
-  box-shadow: var(--child-shadow-accent);
+  box-shadow: #f1cbcb;
 }
 
 .child-points-display {

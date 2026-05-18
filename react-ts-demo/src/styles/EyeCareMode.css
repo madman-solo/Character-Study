@@ -6,26 +6,26 @@
 /* ==================== 护眼模式全局变量 ==================== */
 body.eye-care-mode {
   /* 护眼色调：暖黄色系 */
-  --eye-care-bg-primary: #f5f0e8;        /* 主背景 - 米黄色 */
-  --eye-care-bg-secondary: #faf7f2;      /* 次级背景 - 浅米黄 */
-  --eye-care-bg-card: #fdfcf9;           /* 卡片背景 - 极浅米黄 */
+  --eye-care-bg-primary: #f5f0e8; /* 主背景 - 米黄色 */
+  --eye-care-bg-secondary: #faf7f2; /* 次级背景 - 浅米黄 */
+  --eye-care-bg-card: #fdfcf9; /* 卡片背景 - 极浅米黄 */
 
   /* 文本颜色：保持足够对比度 */
-  --eye-care-text-primary: #4a4237;      /* 主文本 - 深棕色 */
-  --eye-care-text-secondary: #6b5d4f;    /* 次级文本 - 中棕色 */
-  --eye-care-text-tertiary: #8b7d6f;     /* 三级文本 - 浅棕色 */
+  --eye-care-text-primary: #4a4237; /* 主文本 - 深棕色 */
+  --eye-care-text-secondary: #6b5d4f; /* 次级文本 - 中棕色 */
+  --eye-care-text-tertiary: #8b7d6f; /* 三级文本 - 浅棕色 */
 
   /* 主题色调整：降低饱和度 */
-  --eye-care-primary: #b89968;           /* 主色 - 暖金色 */
-  --eye-care-primary-light: #d4c4a8;     /* 主色浅色 */
-  --eye-care-primary-dark: #9a7d4f;      /* 主色深色 */
+  --eye-care-primary: #d3b585; /* 主色 - 暖金色 */
+  --eye-care-primary-light: #c9b99d; /* 主色浅色 */
+  --eye-care-primary-dark: #c4a77a; /* 主色深色 */
 
-  --eye-care-accent: #d4a574;            /* 强调色 - 暖橙色 */
-  --eye-care-accent-light: #e8c9a8;      /* 强调色浅色 */
+  --eye-care-accent: #d4a574; /* 强调色 - 暖橙色 */
+  --eye-care-accent-light: #e8c9a8; /* 强调色浅色 */
 
   /* 边框和分割线 */
-  --eye-care-border: #e0d8cc;            /* 边框色 */
-  --eye-care-divider: #ebe5dc;           /* 分割线 */
+  --eye-care-border: #e0d8cc; /* 边框色 */
+  --eye-care-divider: #ebe5dc; /* 分割线 */
 
   /* 阴影：柔和 */
   --eye-care-shadow-sm: 0 2px 8px rgba(139, 125, 111, 0.08);
@@ -41,7 +41,9 @@ body.eye-care-mode {
 body.eye-care-mode {
   background: var(--eye-care-bg-primary) !important;
   color: var(--eye-care-text-primary) !important;
-  transition: background-color 0.5s ease, color 0.5s ease;
+  transition:
+    background-color 0.5s ease,
+    color 0.5s ease;
 }
 
 /* ==================== 通用元素样式 ==================== */
@@ -61,10 +63,19 @@ body.eye-care-mode .panel {
 body.eye-care-mode button,
 body.eye-care-mode .button,
 body.eye-care-mode .btn {
+  border-radius: 15px;
   background: var(--eye-care-primary) !important;
   color: var(--eye-care-bg-card) !important;
   border-color: var(--eye-care-primary-dark) !important;
   box-shadow: var(--eye-care-shadow-sm) !important;
+}
+
+/* 导航栏按钮保持无边框，防止撑高导航栏 */
+body.eye-care-mode .navbar-menu li button {
+  border: none !important;
+  box-shadow: none !important;
+  background: none !important;
+  color: var(--eye-care-text-primary) !important;
 }
 
 body.eye-care-mode button:hover,
@@ -141,7 +152,6 @@ body.eye-care-mode .menu-item:hover {
 /* ==================== 模态框 ==================== */
 body.eye-care-mode .modal,
 body.eye-care-mode .modal-content {
-  background: var(--eye-care-bg-card) !important;
   box-shadow: var(--eye-care-shadow-lg) !important;
 }
 
@@ -251,6 +261,66 @@ body.eye-care-mode ::-webkit-scrollbar-thumb {
 
 body.eye-care-mode ::-webkit-scrollbar-thumb:hover {
   background: var(--eye-care-primary);
+}
+/* 护眼模式：减少蓝光，降低对比度
+
+
+/* 20-20-20 提示：每20分钟提醒休息 */
+.eye-care-reminder {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(90, 70, 40, 0.9);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 24px;
+  font-size: 14px;
+  z-index: 9999;
+  animation: fadeInOut 5s forwards;
+}
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.eye-care-reminder {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(90, 70, 40, 0.9);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 24px;
+  font-size: 14px;
+  z-index: 9999;
+  pointer-events: none;
+  animation: eyeCareReminder 5s forwards;
+}
+
+@keyframes eyeCareReminder {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 /* ==================== 动画和过渡 ==================== */

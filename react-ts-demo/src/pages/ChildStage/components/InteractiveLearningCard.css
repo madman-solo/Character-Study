@@ -11,6 +11,13 @@
   cursor: pointer;
   transition: all var(--child-transition-normal);
   overflow: hidden;
+  /* button reset */
+  border: none;
+  text-align: left;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
 }
 
 .interactive-learning-card:hover {

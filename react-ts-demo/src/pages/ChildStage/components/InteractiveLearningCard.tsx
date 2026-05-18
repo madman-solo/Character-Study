@@ -3,8 +3,8 @@
  * 支持点击学习、获得积分、播放音效
  */
 
-import React, { useState } from 'react';
-import './InteractiveLearningCard.css';
+import React, { useState } from "react";
+import "./InteractiveLearningCard.css";
 
 interface InteractiveLearningCardProps {
   icon: string;
@@ -53,15 +53,19 @@ const InteractiveLearningCard: React.FC<InteractiveLearningCardProps> = ({
   };
 
   return (
-    <div
-      className={`interactive-learning-card ${isCompleted ? 'completed' : ''} ${
-        animationsEnabled ? 'child-animate-bounce-in' : ''
+    <button
+      className={`interactive-learning-card ${isCompleted ? "completed" : ""} ${
+        animationsEnabled ? "child-animate-bounce-in" : ""
       }`}
       onClick={handleClick}
+      aria-label={`${title}：${description}，获得${points}积分${isCompleted ? "，已完成" : ""}`}
+      aria-pressed={isCompleted}
     >
       <div className="card-icon-wrapper">
-        <div className={`card-icon ${isCompleted ? 'child-animate-heartbeat' : ''}`}>
-          {icon}
+        <div
+          className={`card-icon ${isCompleted ? "child-animate-heartbeat" : ""}`}
+        >
+          <img src={icon} alt="" aria-hidden="true" width={37} height={37} />
         </div>
         {isCompleted && (
           <div className="completion-badge child-animate-badge-unlock">✓</div>
@@ -79,11 +83,9 @@ const InteractiveLearningCard: React.FC<InteractiveLearningCardProps> = ({
       </div>
 
       {showPoints && (
-        <div className="points-popup child-animate-point-fly">
-          +{points}
-        </div>
+        <div className="points-popup child-animate-point-fly">+{points}</div>
       )}
-    </div>
+    </button>
   );
 };
 

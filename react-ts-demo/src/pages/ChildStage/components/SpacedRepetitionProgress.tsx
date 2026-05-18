@@ -3,26 +3,30 @@
  * 间隔重复进度组件 - 显示复习统计和进度
  */
 
-import type { SpacedRepetitionProgressProps } from '../../../types/vocabulary';
-import './SpacedRepetitionProgress.css';
+import type { SpacedRepetitionProgressProps } from "../../../types/vocabulary";
+import "./SpacedRepetitionProgress.css";
 
 const SpacedRepetitionProgress = ({
   totalWords,
   reviewedWords,
   correctCount,
   wrongCount,
-  accuracy
+  accuracy,
 }: SpacedRepetitionProgressProps) => {
   const progress = totalWords > 0 ? (reviewedWords / totalWords) * 100 : 0;
-  const calculatedAccuracy = accuracy !== undefined ? accuracy :
-    (correctCount + wrongCount > 0 ? Math.round((correctCount / (correctCount + wrongCount)) * 100) : 0);
+  const calculatedAccuracy =
+    accuracy !== undefined
+      ? accuracy
+      : correctCount + wrongCount > 0
+        ? Math.round((correctCount / (correctCount + wrongCount)) * 100)
+        : 0;
 
   const getMotivationalMessage = () => {
-    if (reviewedWords === 0) return '开始复习吧！';
-    if (calculatedAccuracy >= 90) return '太棒了！继续保持！';
-    if (calculatedAccuracy >= 70) return '做得很好！';
-    if (calculatedAccuracy >= 50) return '继续努力！';
-    return '加油！多练习就会进步！';
+    if (reviewedWords === 0) return "开始复习吧！";
+    if (calculatedAccuracy >= 90) return "太棒了！继续保持！";
+    if (calculatedAccuracy >= 70) return "做得很好！";
+    if (calculatedAccuracy >= 50) return "继续努力！";
+    return "加油！多练习就会进步！";
   };
 
   return (
@@ -33,7 +37,14 @@ const SpacedRepetitionProgress = ({
       </div>
 
       <div className="progress-bar-container">
-        <div className="progress-bar">
+        <div
+          className="progress-bar"
+          role="progressbar"
+          aria-valuenow={Math.round(progress)}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-label="复习进度"
+        >
           <div
             className="progress-bar-fill"
             style={{ width: `${progress}%` }}
@@ -58,7 +69,14 @@ const SpacedRepetitionProgress = ({
         </div>
 
         <div className="stat-item accuracy">
-          <div className="stat-icon">📊</div>
+          <div className="stat-icon">
+            {" "}
+            <img
+              src="/src/assets/iconfont/child/理财统计表.svg"
+              width={66}
+              height={66}
+            ></img>
+          </div>
           <div className="stat-label">准确率</div>
           <div className="stat-value">{calculatedAccuracy}%</div>
         </div>

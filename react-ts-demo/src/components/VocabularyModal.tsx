@@ -1,6 +1,7 @@
 import type { VocabularyBookType } from "../types";
 import "../styles/VocabularyModal.css";
-
+import { useFocusTrap, useEscClose } from "../hooks/useAccessibility";
+import { useRef } from "react";
 interface VocabularyModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -36,17 +37,31 @@ const VocabularyModal = ({
     {} as Record<string, VocabularyBookType[]>,
   );
 
+  const modalRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(modalRef, isOpen);
+  useEscClose(onClose, isOpen);
+
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
+    <div
+      className="modal-overlay"
+      onClick={onClose}
+      role="presentation"
+      aria-hidden="true"
+    >
       <div
         className="modal-content vocabulary-modal"
+        ref={modalRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+        tabIndex={-1}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="modal-header">
-          <h2>选择单词本</h2>
-          <button className="close-button" onClick={onClose}>
+          <h2 id="modal-title"> 选择单词本</h2>
+          <button className="close-button" onClick={onClose} aria-label="关闭">
             ✕
           </button>
         </div>
@@ -60,11 +75,19 @@ const VocabularyModal = ({
                   <div
                     key={book}
                     className="book-card"
-                    onClick={() => {
-                      onSelectBook(book);
-                    }}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => { onSelectBook(book); }}
+                    onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), onSelectBook(book))}
                   >
-                    <div className="book-icon">📖</div>
+                    <div className="book-icon">
+                      <img
+                        src="/src/assets/iconfont/单词本.svg"
+                        alt={book}
+                        width={38}
+                        height={38}
+                      />
+                    </div>
                     <span className="book-name">{book}</span>
                   </div>
                 ))}

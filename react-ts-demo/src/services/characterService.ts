@@ -19,6 +19,10 @@ export interface CustomCharacter {
   isDefault: boolean;
   createdAt: string;
   updatedAt: string;
+  sceneBackground?: string; //背景ID；
+  customColor?: string; //自定义颜色；
+  customColor2?: string;
+  customImage?: string; //自定义图片；
 }
 
 export interface CharacterConversation {
@@ -44,7 +48,7 @@ export interface CharacterMemory {
 
 // 获取用户的所有自定义角色
 export async function getUserCharacters(
-  userId: string
+  userId: string,
 ): Promise<CustomCharacter[]> {
   const response = await fetch(`${API_BASE_URL}/characters/custom/${userId}`);
   const data = await response.json();
@@ -63,7 +67,7 @@ export async function createCharacter(
   characterData: Omit<
     CustomCharacter,
     "id" | "systemPrompt" | "isActive" | "isDefault" | "createdAt" | "updatedAt"
-  >
+  >,
 ): Promise<CustomCharacter> {
   const response = await fetch(`${API_BASE_URL}/characters/custom`, {
     method: "POST",
@@ -84,7 +88,7 @@ export async function createCharacter(
 // 更新角色
 export async function updateCharacter(
   id: number,
-  characterData: Partial<CustomCharacter>
+  characterData: Partial<CustomCharacter>,
 ): Promise<CustomCharacter> {
   const response = await fetch(`${API_BASE_URL}/characters/custom/${id}`, {
     method: "PUT",
@@ -116,7 +120,7 @@ export async function deleteCharacter(id: number): Promise<void> {
 // 设置默认角色
 export async function setDefaultCharacter(
   id: number,
-  userId: string
+  userId: string,
 ): Promise<CustomCharacter> {
   const response = await fetch(
     `${API_BASE_URL}/characters/custom/${id}/set-default`,
@@ -124,7 +128,7 @@ export async function setDefaultCharacter(
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId }),
-    }
+    },
   );
   const data = await response.json();
   if (!data.success) {
@@ -143,7 +147,7 @@ export async function saveConversation(
   userId: string,
   userMessage: string,
   characterReply: string,
-  emotion?: string
+  emotion?: string,
 ): Promise<CharacterConversation> {
   const response = await fetch(`${API_BASE_URL}/characters/conversation`, {
     method: "POST",
@@ -167,10 +171,10 @@ export async function saveConversation(
 export async function getConversationHistory(
   characterId: number,
   userId: string,
-  limit: number = 20
+  limit: number = 20,
 ): Promise<CharacterConversation[]> {
   const response = await fetch(
-    `${API_BASE_URL}/characters/${characterId}/conversations?userId=${userId}&limit=${limit}`
+    `${API_BASE_URL}/characters/${characterId}/conversations?userId=${userId}&limit=${limit}`,
   );
   const data = await response.json();
   if (!data.success) {
@@ -185,7 +189,7 @@ export async function saveMemory(
   userId: string,
   memoryType: "fact" | "preference" | "event",
   content: string,
-  importance: number = 5
+  importance: number = 5,
 ): Promise<CharacterMemory> {
   const response = await fetch(`${API_BASE_URL}/characters/memory`, {
     method: "POST",
@@ -208,10 +212,10 @@ export async function saveMemory(
 // 获取角色记忆
 export async function getCharacterMemories(
   characterId: number,
-  userId: string
+  userId: string,
 ): Promise<CharacterMemory[]> {
   const response = await fetch(
-    `${API_BASE_URL}/characters/${characterId}/memories?userId=${userId}`
+    `${API_BASE_URL}/characters/${characterId}/memories?userId=${userId}`,
   );
   const data = await response.json();
   if (!data.success) {

@@ -12,7 +12,7 @@ const RetryHandler = require("./utils/retryHandler");
 const prisma = new PrismaClient();
 const app = express();
 const PORT = 3001;
-
+const path = require("path");
 // 百度千帆 API 配置
 const QIANFAN_API_KEY = process.env.QIANFAN_API_KEY;
 const QIANFAN_BASE_URL = "https://qianfan.baidubce.com/v2";
@@ -58,6 +58,11 @@ async function qianfanRequest(endpoint, method = "GET", data = null) {
 
 // 中间件
 app.use(cors());
+
+// ASR 路由必须在 express.json() 之前注册，因为它需要 raw body
+const asrRouter = require("./routes/asr");
+app.use("/api/asr", express.raw({ type: "*/*", limit: "10mb" }), asrRouter);
+
 app.use(express.json());
 
 // 情景模式数据（和前端的数据不一致，但是这个变量并不重要）
@@ -66,19 +71,19 @@ const scenarios = [
     id: "1",
     name: "树洞",
     description: "倾诉你的心事",
-    icon: "🌳",
+    icon: "",
   },
   {
     id: "2",
     name: "学习助手",
     description: "帮助你学习成长",
-    icon: "📚",
+    icon: "",
   },
   {
     id: "3",
     name: "专属陪伴",
     description: "贴心的情感陪伴",
-    icon: "💝",
+    icon: "",
   },
 ];
 
@@ -93,7 +98,16 @@ const learningSessionRoutes = require("./routes/learningSession");
 const reportsRoutes = require("./routes/reports");
 const ttsRoutes = require("./routes/tts");
 const audioRoutes = require("./routes/audio");
-
+const uploadRoutes = require("./routes/upload");
+const listeningRouter = require("./routes/listening");
+const writingRouter = require("./routes/writing");
+const speakingRouter = require("./routes/speaking-tts");
+const studyRouter = require("./routes/study");
+app.use("/api/study", studyRouter);
+app.use("/api/speaking-tts", speakingRouter);
+app.use("/api/listening", listeningRouter);
+app.use("/api/writing", writingRouter);
+app.use("/api/upload", uploadRoutes);
 // 注册认证路由
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
@@ -105,11 +119,16 @@ app.use("/api/learning-session", learningSessionRoutes);
 app.use("/api/reports", reportsRoutes);
 app.use("/api/tts", ttsRoutes);
 app.use("/api/audio", audioRoutes);
-
+//上传的图片（静态路由）
+app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
+app.use(
+  "/listening-audio",
+  express.static(path.join(__dirname, "public/listening-audio")),
+);
 // ========== 情感分析和情绪记录 API ==========
 
 // 情感分析接口
-console.log("✅ 注册路由: POST /api/qianfan/emotion");
+console.log(" 注册路由: POST /api/qianfan/emotion");
 app.post("/api/qianfan/emotion", async (req, res) => {
   console.log("\n=== 情感分析请求 ===");
   console.log("请求体:", req.body);
@@ -389,6 +408,10 @@ app.post("/api/characters/custom", async (req, res) => {
       speakingStyle,
       hobbies,
       traits,
+      sceneBackground,
+      customColor,
+      customColor2,
+      customImage,
     } = req.body;
 
     // 生成system prompt
@@ -401,6 +424,10 @@ app.post("/api/characters/custom", async (req, res) => {
       speakingStyle,
       hobbies,
       traits,
+      sceneBackground,
+      customColor,
+      customColor2,
+      customImage,
     });
 
     const character = await prisma.customCharacter.create({
@@ -418,6 +445,10 @@ app.post("/api/characters/custom", async (req, res) => {
         systemPrompt,
         isActive: true,
         isDefault: false,
+        sceneBackground: req.body.sceneBackground,
+        customColor: req.body.customColor,
+        customColor2: req.body.customColor2,
+        customImage: req.body.customImage,
       },
     });
 
@@ -442,6 +473,10 @@ app.put("/api/characters/custom/:id", async (req, res) => {
       speakingStyle,
       hobbies,
       traits,
+      sceneBackground,
+      customColor,
+      customColor2,
+      customImage,
     } = req.body;
 
     // 重新生成system prompt
@@ -454,6 +489,10 @@ app.put("/api/characters/custom/:id", async (req, res) => {
       speakingStyle,
       hobbies,
       traits,
+      sceneBackground,
+      customColor,
+      customColor2,
+      customImage,
     });
 
     const character = await prisma.customCharacter.update({
@@ -469,6 +508,10 @@ app.put("/api/characters/custom/:id", async (req, res) => {
         hobbies: JSON.stringify(hobbies || []),
         traits: JSON.stringify(traits || []),
         systemPrompt,
+        sceneBackground: req.body.sceneBackground,
+        customColor: req.body.customColor,
+        customColor2: req.body.customColor2,
+        customImage: req.body.customImage,
       },
     });
 
@@ -1256,7 +1299,7 @@ app.get("/api/vocabulary/words", async (req, res) => {
 
     // 格式化返回数据
     const formattedWords = words.map((word, index) => ({
-      id: (index + 1).toString(),
+      id: word.id.toString(),
       word: word.word,
       phonetic: word.phonetic || `/${word.word}/`,
       translation: word.translation || "暂无翻译",

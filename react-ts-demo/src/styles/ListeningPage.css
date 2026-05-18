@@ -2,14 +2,14 @@
 .listening-page {
   display: flex;
   height: calc(100vh - 60px);
-  background: #f5f7fa;
+  background: #e0d7c7;
 }
 
 /* 左侧导航栏 */
 .listening-sidebar {
   width: 250px;
-  background: white;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  background: #e0d7c7;
+  box-shadow: 1px 0 2px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease;
@@ -37,7 +37,7 @@
 }
 
 .listening-sidebar .collapse-button {
-  background: #bf6363;
+  background: #98c3c7;
   color: white;
   border: none;
   width: 32px;
@@ -52,7 +52,7 @@
 }
 
 .listening-sidebar .collapse-button:hover {
-  background: #5568d3;
+  background: #8b0d0d;
   transform: scale(1.1);
 }
 
@@ -70,7 +70,7 @@
   align-items: center;
   gap: 12px;
   padding: 15px 20px;
-  background: #f8f9fa;
+  background: #ccc3b4;
   border: none;
   border-radius: 12px;
   cursor: pointer;
@@ -86,9 +86,9 @@
 }
 
 .tab-button.active {
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
+  background: #be9f89;
   color: white;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 12px rgba(141, 159, 238, 0.3);
 }
 
 .tab-icon {
@@ -98,7 +98,7 @@
 .listening-sidebar .back-home-button {
   margin: 20px;
   padding: 12px 20px;
-  background: #bf6363;
+  background: #be9f89;
   color: white;
   border: none;
   border-radius: 8px;
@@ -109,7 +109,7 @@
 }
 
 .listening-sidebar .back-home-button:hover {
-  background: #5568d3;
+  background: #967f6f;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
 }
@@ -130,17 +130,16 @@
 .search-bar {
   display: flex;
   gap: 10px;
-  margin-bottom: 30px;
-  background: white;
-  padding: 10px;
+  margin-bottom: 10px;
+  background: #e0d7c7;
+  padding: 5px;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .search-input {
   flex: 1;
   padding: 12px 20px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid #e0d7c7;
   border-radius: 8px;
   font-size: 16px;
   transition: all 0.3s ease;
@@ -148,13 +147,13 @@
 
 .search-input:focus {
   outline: none;
-  border-color: #bf6363;
+  border-color: #98c3c7;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
 .search-button {
   padding: 12px 24px;
-  background: #bf6363;
+  background: #98c3c7;
   color: white;
   border: none;
   border-radius: 8px;
@@ -164,7 +163,7 @@
 }
 
 .search-button:hover {
-  background: #5568d3;
+  background: #5399a0;
   transform: scale(1.05);
 }
 
@@ -173,12 +172,10 @@
   flex-direction: column;
   gap: 15px;
 }
-
-.material-card {
+.materials-list .material-card {
   display: flex;
   gap: 20px;
-  background: white;
-  padding: 20px;
+  background: #be9f89;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   cursor: pointer;
@@ -194,17 +191,25 @@
 .material-thumbnail {
   width: 120px;
   height: 80px;
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
+  background: #5399a0;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  margin: 5px;
 }
-
-.play-icon {
+.material-thumbnail .play-icon {
   font-size: 32px;
-  color: white;
+  color: #1b2a31;
+  background: #be9f89;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
 }
 
 .material-info {

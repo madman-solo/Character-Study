@@ -126,11 +126,11 @@ export const LearningCharts: React.FC<LearningChartsProps> = ({
     const distribution = analyzeMasteryDistribution(wordProgressList);
 
     return [
-      { name: '已掌握', value: distribution.mastered, color: COLORS.mastered },
-      { name: '熟练', value: distribution.proficient, color: COLORS.proficient },
-      { name: '学习中', value: distribution.learning, color: COLORS.learning },
-      { name: '需加强', value: distribution.struggling, color: COLORS.struggling },
-      { name: '新单词', value: distribution.new, color: COLORS.new }
+      { name: '已掌握', value: distribution.mastered.length, color: COLORS.mastered },
+      { name: '熟练', value: distribution.proficient.length, color: COLORS.proficient },
+      { name: '学习中', value: distribution.learning.length, color: COLORS.learning },
+      { name: '需加强', value: distribution.needsWork.length, color: COLORS.struggling },
+      { name: '新单词', value: distribution.new.length, color: COLORS.new }
     ].filter(item => item.value > 0);
   }, [wordProgressList]);
 
@@ -217,7 +217,7 @@ export const LearningCharts: React.FC<LearningChartsProps> = ({
                 cx="50%"
                 cy="50%"
                 labelLine={false}
-                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                label={({ name, percent }) => `${name} ${((percent ?? 0) * 100).toFixed(0)}%`}
                 outerRadius={80}
                 fill="#8884d8"
                 dataKey="value"

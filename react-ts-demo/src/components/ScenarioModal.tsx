@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import type { ScenarioMode, EnglishLevel } from "../types";
 import "../styles/ScenarioModal.css";
+import { useFocusTrap, useEscClose } from "../hooks/useAccessibility";
 
 interface ScenarioModalProps {
   isOpen: boolean;
@@ -18,6 +19,9 @@ const ScenarioModal = ({
   onShowEnglishModeSelection,
   onNavigateHome,
 }: ScenarioModalProps) => {
+  const modalRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(modalRef, isOpen);
+  useEscClose(onClose, isOpen);
   const navigate = useNavigate();
   const [showLevelSelection, setShowLevelSelection] = useState(false);
   const [selectedScenario, setSelectedScenario] = useState<ScenarioMode | null>(
@@ -31,19 +35,19 @@ const ScenarioModal = ({
       id: "1",
       name: "英语学习",
       description: "通过对话提升英语水平",
-      icon: "📚",
+      icon: "/src/assets/iconfont/笔记.svg",
     },
     {
       id: "2",
       name: "日常对话",
       description: "轻松愉快的日常交流",
-      icon: "💬",
+      icon: "/src/assets/iconfont/对话框.svg",
     },
     {
       id: "3",
       name: "专属陪伴",
       description: "贴心的情感陪伴",
-      icon: "💝",
+      icon: "/src/assets/iconfont/陪伴-copy.svg",
     },
   ];
 
@@ -87,8 +91,8 @@ const ScenarioModal = ({
         setShowTip(true);
         onSelectScenario(selectedScenario, level);
       } else if (level === "7-12") {
-        // 7-12岁：导航到单词本学习中心
-        navigate("/child-vocabulary-hub");
+        // 7-12岁：TODO:暂时没做
+        navigate("");
         setShowLevelSelection(false);
         setSelectedScenario(null);
         onClose();
@@ -134,10 +138,23 @@ const ScenarioModal = ({
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+    <div
+      className="modal-overlay"
+      onClick={onClose}
+      role="presentation"
+      aria-hidden="true"
+    >
+      <div
+        className="modal-content"
+        onClick={(e) => e.stopPropagation()}
+        ref={modalRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+        tabIndex={-1}
+      >
         <div className="modal-header">
-          <h2>
+          <h2 id="modal-title">
             {showTip
               ? "温馨提示"
               : showCompanionSelection
@@ -146,7 +163,11 @@ const ScenarioModal = ({
                   ? "选择对话难度"
                   : "选择情景模式"}
           </h2>
-          <button className="close-button" onClick={onClose}>
+          <button
+            className="close-button-scenario"
+            onClick={onClose}
+            aria-label="关闭"
+          >
             ✕
           </button>
         </div>
@@ -167,17 +188,37 @@ const ScenarioModal = ({
             <div className="companion-grid">
               <div
                 className="companion-card"
+                role="button"
+                tabIndex={0}
                 onClick={() => handleCompanionSelect("tree-hole")}
+                onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), handleCompanionSelect("tree-hole"))}
               >
-                <div className="companion-icon">🌳</div>
+                <div className="companion-icon">
+                  <img
+                    src="/src/assets/iconfont/陪伴.svg"
+                    alt="树洞"
+                    width={44}
+                    height={44}
+                  />
+                </div>
                 <h3 className="companion-name">树洞</h3>
                 <p className="companion-description">倾诉心声，温暖陪伴</p>
               </div>
               <div
                 className="companion-card"
+                role="button"
+                tabIndex={0}
                 onClick={() => handleCompanionSelect("custom")}
+                onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), handleCompanionSelect("custom"))}
               >
-                <div className="companion-icon">✨</div>
+                <div className="companion-icon">
+                  <img
+                    src="/src/assets/iconfont/设置.svg"
+                    alt="自定义"
+                    width={44}
+                    height={44}
+                  />
+                </div>
                 <h3 className="companion-name">自定义</h3>
                 <p className="companion-description">打造专属场景</p>
               </div>
@@ -189,9 +230,19 @@ const ScenarioModal = ({
               <div
                 key={scenario.id}
                 className="scenario-card"
+                role="button"
+                tabIndex={0}
                 onClick={() => handleScenarioClick(scenario)}
+                onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), handleScenarioClick(scenario))}
               >
-                <div className="scenario-icon">{scenario.icon}</div>
+                <div className="scenario-icon">
+                  <img
+                    src={scenario.icon}
+                    alt={scenario.name}
+                    width={24}
+                    height={24}
+                  />
+                </div>
                 <h3 className="scenario-name">{scenario.name}</h3>
                 <p className="scenario-description">{scenario.description}</p>
               </div>
@@ -207,7 +258,10 @@ const ScenarioModal = ({
                 <div
                   key={level.value}
                   className="level-card"
+                  role="button"
+                  tabIndex={0}
                   onClick={() => handleLevelSelect(level.value)}
+                  onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), handleLevelSelect(level.value))}
                 >
                   <h3 className="level-label">{level.label}</h3>
                   <p className="level-description">{level.description}</p>

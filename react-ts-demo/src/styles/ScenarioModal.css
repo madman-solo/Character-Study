@@ -20,8 +20,7 @@
     opacity: 1;
   }
 }
-
-.modal-content {
+.modal-overlay .song-modal .modal-content {
   background: white;
   border-radius: 20px;
   width: 60%;
@@ -43,30 +42,30 @@
     opacity: 1;
   }
 }
-
-.modal-header {
+.modal-content .modal-header {
+  border-radius: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 20px;
 }
 
 .modal-header h2 {
   font-size: 1.8rem;
-  color: #333;
+  color: #baaceb;
 }
 
-.close-button {
+.close-button-scenario {
   background: none;
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: #999;
+  color: #9eb354;
   transition: color 0.3s;
 }
 
-.close-button:hover {
-  color: #333;
+.close-button-scenario:hover {
+  color: #bbb6b6;
 }
 
 .scenarios-grid {
@@ -75,7 +74,8 @@
 }
 
 .scenario-card {
-  background: #f8f9fa;
+  background: #baaceb;
+  color: white;
   border-radius: 15px;
   padding: 1.5rem;
   text-align: center;
@@ -84,7 +84,7 @@
 }
 
 .scenario-card:hover {
-  background: #bf6363;
+  background: #baaceb;
   color: white;
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
@@ -104,14 +104,34 @@
   font-size: 0.9rem;
   opacity: 0.8;
 }
-
+.level-selection .back-button {
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
+  height: 30px;
+  width: 70px;
+  background: #baaceb;
+  color: white;
+  border-radius: 8px;
+}
+.level-selection .back-button:hover {
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
+  height: 30px;
+  width: 70px;
+  background: #95a84e;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(102, 126, 234, 0.5);
+}
 /* 难度选择 */
 .level-selection {
   animation: slideUp 0.3s ease;
 }
-
-.back-button {
-  background: #f8f9fa;
+.companion-selection .back-button {
+  background: #5f5aa5;
   border: none;
   padding: 0.8rem 1.5rem;
   border-radius: 8px;
@@ -122,8 +142,7 @@
   color: #1b1b1b;
   font-weight: 500;
 }
-
-.back-button:hover {
+.companion-selection .back-button:hover {
   background: #e9ecef;
   transform: translateX(-5px);
 }
@@ -134,7 +153,7 @@
 }
 
 .level-card {
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
+  background: #baaceb;
   border-radius: 15px;
   padding: 2rem 1.5rem;
   text-align: center;
@@ -180,8 +199,8 @@
 }
 
 .confirm-button {
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
-  color: white;
+  background: #fcc;
+  color: #333;
   border: none;
   padding: 1rem 3rem;
   border-radius: 12px;
@@ -209,7 +228,7 @@
 }
 
 .companion-card {
-  background: #e09b5a;
+  background: #baaceb;
   border-radius: 15px;
   padding: 2rem 1.5rem;
   text-align: center;

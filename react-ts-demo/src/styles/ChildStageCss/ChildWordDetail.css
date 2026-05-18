@@ -105,7 +105,7 @@
   gap: var(--child-spacing-md);
 }
 
-.word-text {
+.word-text-childworddetail {
   font-size: 4rem;
   font-weight: var(--child-font-weight-bold);
   color: var(--child-primary);

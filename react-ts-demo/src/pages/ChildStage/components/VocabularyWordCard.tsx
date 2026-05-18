@@ -3,16 +3,16 @@
  * 单词卡片组件 - 带虚化背景和悬停效果
  */
 
-import { useState } from 'react';
-import type { VocabularyWordCardProps } from '../../../types/vocabulary';
-import { getWordImageUrl } from '../../../services/childVocabularyService';
-import './VocabularyWordCard.css';
+import { useState } from "react";
+import type { VocabularyWordCardProps } from "../../../types/vocabulary";
+import { getWordImageUrl } from "../../../services/childVocabularyService";
+import "./VocabularyWordCard.css";
 
 const VocabularyWordCard = ({
   word,
   onWordClick,
   showBlurredBackground = true,
-  animationsEnabled = true
+  animationsEnabled = true,
 }: VocabularyWordCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const imageUrl = getWordImageUrl(word);
@@ -23,7 +23,7 @@ const VocabularyWordCard = ({
 
   return (
     <div
-      className={`child-vocab-word-card ${animationsEnabled ? 'child-animate-bounce-in' : ''} ${isHovered ? 'hovered' : ''}`}
+      className={`child-vocab-word-card ${animationsEnabled ? "child-animate-bounce-in" : ""} ${isHovered ? "hovered" : ""}`}
       onClick={handleClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -36,17 +36,16 @@ const VocabularyWordCard = ({
       )}
 
       <div className="child-vocab-card-content">
-        <div className="child-vocab-word-text">
-          {word.word}
-        </div>
-        <div className="child-vocab-word-phonetic">
-          {word.phonetic}
-        </div>
-        <div className="child-vocab-word-translation">
-          {word.translation}
-        </div>
+        <div className="child-vocab-word-text">{word.word}</div>
+        <div className="child-vocab-word-phonetic">{word.phonetic}</div>
+        <div className="child-vocab-word-translation">{word.translation}</div>
         <div className="child-vocab-card-hint">
-          点击查看详情 👆
+          点击查看详情{" "}
+          <img
+            src="/src/assets/iconfont/child/点击.svg"
+            width={40}
+            height={40}
+          ></img>
         </div>
       </div>
     </div>

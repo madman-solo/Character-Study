@@ -26,7 +26,19 @@ const SoundControl: React.FC<SoundControlProps> = ({
         aria-label={config.enabled ? "关闭音效" : "开启音效"}
         title={config.enabled ? "关闭音效" : "开启音效"}
       >
-        {config.enabled ? "🔊" : "🔇"}
+        {config.enabled ? (
+          <img
+            src="/src/assets/iconfont/child/扬声器.svg"
+            width={36}
+            height={36}
+          ></img>
+        ) : (
+          <img
+            src="/src/assets/iconfont/child/静音.svg"
+            width={36}
+            height={36}
+          ></img>
+        )}
       </button>
 
       {config.enabled && (

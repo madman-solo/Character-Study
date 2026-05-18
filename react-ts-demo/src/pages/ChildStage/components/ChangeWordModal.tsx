@@ -3,7 +3,8 @@
  * 更换单词模态框 - 按首字母和长度分类显示单词
  */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useFocusTrap, useEscClose } from "../hooks/useAccessibility";
 import type {
   ChangeWordModalProps,
   ChildWord,
@@ -41,6 +42,9 @@ const ChangeWordModal = ({
   useEffect(() => {
     filterWords();
   }, [words, selectedLength]);
+  const modalRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(modalRef, isOpen);
+  useEscClose(onClose, isOpen);
 
   const loadWords = async () => {
     setIsLoading(true);
@@ -74,14 +78,27 @@ const ChangeWordModal = ({
   if (!isOpen) return null;
 
   return (
-    <div className="child-change-word-modal-overlay" onClick={onClose}>
+    <div
+      className="child-change-word-modal-overlay"
+      onClick={onClose}
+      role="presentation"
+      aria-hidden="true"
+    >
       <div
         className="child-change-word-modal"
         onClick={(e) => e.stopPropagation()}
+        ref={modalRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
       >
-        <div className="modal-header">
-          <h2>选择单词</h2>
-          <button className="modal-close-btn" onClick={onClose}>
+        <div className="modal-header-changeword">
+          <h2 id="modal-title">选择单词</h2>
+          <button
+            className="modal-close-btn"
+            onClick={onClose}
+            aria-label="关闭"
+          >
             ✕
           </button>
         </div>
@@ -144,7 +161,7 @@ const ChangeWordModal = ({
                   className="word-item"
                   onClick={() => handleSelectWord(word)}
                 >
-                  <div className="word-text">{word.word}</div>
+                  <div className="word-text-changeword">{word.word}</div>
                   <div className="word-translation">{word.translation}</div>
                 </div>
               ))}

@@ -43,7 +43,7 @@ interface Story {
 }
 
 const StoryReaderPage = () => {
-  const { slug } = useParams<{ slug: string }>();
+  const { slug: _slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const location = useLocation();
   const storyId = location.state?.storyId;
@@ -418,6 +418,7 @@ const StoryReaderPage = () => {
                 className="translate-btn"
                 onClick={handleTranslateSection}
                 disabled={translationLoading}
+                aria-disabled={translationLoading}
               >
                 {translationLoading ? "翻译中..." : showSectionTranslation ? "隐藏翻译" : "🌐 翻译"}
               </button>
@@ -442,6 +443,7 @@ const StoryReaderPage = () => {
               className="nav-btn"
               onClick={handlePrevSection}
               disabled={currentSection === 0}
+              aria-disabled={currentSection === 0}
             >
               ← 上一段
             </button>
@@ -459,6 +461,7 @@ const StoryReaderPage = () => {
               className="nav-btn"
               onClick={handleNextSection}
               disabled={currentSection === story.sections.length - 1}
+              aria-disabled={currentSection === story.sections.length - 1}
             >
               下一段 →
             </button>

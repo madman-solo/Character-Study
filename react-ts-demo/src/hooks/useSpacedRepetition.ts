@@ -3,7 +3,7 @@
  * 间隔重复学习Hook - 管理单词复习状态和逻辑
  */
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from "react";
 
 /**
  * Retry helper function for network requests
@@ -12,7 +12,7 @@ import { useState, useEffect, useCallback } from 'react';
 async function retryAsync<T>(
   fn: () => Promise<T>,
   maxRetries: number = 3,
-  delay: number = 1000
+  delay: number = 1000,
 ): Promise<T> {
   let lastError: Error | unknown;
 
@@ -24,7 +24,7 @@ async function retryAsync<T>(
       console.warn(`Attempt ${i + 1} failed, retrying...`, error);
 
       if (i < maxRetries - 1) {
-        await new Promise(resolve => setTimeout(resolve, delay * (i + 1)));
+        await new Promise((resolve) => setTimeout(resolve, delay * (i + 1)));
       }
     }
   }
@@ -35,17 +35,15 @@ import type {
   ChildWord,
   Word,
   ReviewWordsResponse,
-  WordProgress,
-  ChildWordProgress,
-  ReviewSession
-} from '../types/vocabulary';
+  ReviewSession,
+} from "../types/vocabulary";
 import {
   getReviewWords,
   getChildReviewWords,
   trackWordProgress,
   trackChildWordProgress,
-  calculateAccuracy
-} from '../services/spacedRepetitionService';
+  calculateAccuracy,
+} from "../services/spacedRepetitionService";
 
 interface UseSpacedRepetitionOptions {
   userId: string;
@@ -63,7 +61,7 @@ interface UseSpacedRepetitionReturn {
   isLoading: boolean;
   error: string | null;
   session: ReviewSession | null;
-  statistics: ReviewWordsResponse['statistics'] | null;
+  statistics: ReviewWordsResponse["statistics"] | null;
 
   // Actions
   loadReviewWords: () => Promise<void>;
@@ -76,7 +74,7 @@ interface UseSpacedRepetitionReturn {
 }
 
 export function useSpacedRepetition(
-  options: UseSpacedRepetitionOptions
+  options: UseSpacedRepetitionOptions,
 ): UseSpacedRepetitionReturn {
   const { userId, isChild = false, bookType, grade, limit = 20 } = options;
 
@@ -86,7 +84,9 @@ export function useSpacedRepetition(
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [session, setSession] = useState<ReviewSession | null>(null);
-  const [statistics, setStatistics] = useState<ReviewWordsResponse['statistics'] | null>(null);
+  const [statistics, setStatistics] = useState<
+    ReviewWordsResponse["statistics"] | null
+  >(null);
 
   // Current word
   const currentWord = words.length > 0 ? words[currentWordIndex] : null;
@@ -109,17 +109,17 @@ export function useSpacedRepetition(
         }
       });
 
-      const reviewWords = response.words.map(item => item.word);
+      const reviewWords = response.words.map((item) => item.word);
       setWords(reviewWords);
       setStatistics(response.statistics);
       setCurrentWordIndex(0);
 
       if (reviewWords.length === 0) {
-        setError('暂无需要复习的单词');
+        setError("暂无需要复习的单词");
       }
     } catch (err) {
-      console.error('Error loading review words:', err);
-      setError('加载复习单词失败，请稍后重试');
+      console.error("Error loading review words:", err);
+      setError("加载复习单词失败，请稍后重试");
     } finally {
       setIsLoading(false);
     }
@@ -129,47 +129,61 @@ export function useSpacedRepetition(
    * Submit answer and track progress
    * 提交答案并跟踪进度
    */
-  const submitAnswer = useCallback(async (correct: boolean) => {
-    if (!currentWord || !session) return;
+  const submitAnswer = useCallback(
+    async (correct: boolean) => {
+      if (!currentWord || !session) return;
 
-    try {
-      // Track progress in backend with retry mechanism
-      await retryAsync(async () => {
-        if (isChild) {
-          return await trackChildWordProgress(userId, currentWord.id, correct);
-        } else {
-          if (!bookType) {
-            throw new Error('Book type is required for adult words');
+      try {
+        // Track progress in backend with retry mechanism
+        await retryAsync(async () => {
+          if (isChild) {
+            return await trackChildWordProgress(
+              userId,
+              currentWord.id,
+              correct,
+            );
+          } else {
+            if (!bookType) {
+              throw new Error("Book type is required for adult words");
+            }
+            return await trackWordProgress(
+              userId,
+              currentWord.id,
+              bookType,
+              correct,
+            );
           }
-          return await trackWordProgress(userId, currentWord.id, bookType, correct);
-        }
-      });
+        });
 
-      // Update session statistics
-      setSession(prev => {
-        if (!prev) return null;
-        return {
-          ...prev,
-          wordsReviewed: prev.wordsReviewed + 1,
-          correctAnswers: correct ? prev.correctAnswers + 1 : prev.correctAnswers,
-          wrongAnswers: correct ? prev.wrongAnswers : prev.wrongAnswers + 1,
-          accuracy: calculateAccuracy(
-            correct ? prev.correctAnswers + 1 : prev.correctAnswers,
-            correct ? prev.wrongAnswers : prev.wrongAnswers + 1
-          )
-        };
-      });
+        // Update session statistics
+        setSession((prev) => {
+          if (!prev) return null;
+          return {
+            ...prev,
+            wordsReviewed: prev.wordsReviewed + 1,
+            correctAnswers: correct
+              ? prev.correctAnswers + 1
+              : prev.correctAnswers,
+            wrongAnswers: correct ? prev.wrongAnswers : prev.wrongAnswers + 1,
+            accuracy: calculateAccuracy(
+              correct ? prev.correctAnswers + 1 : prev.correctAnswers,
+              correct ? prev.wrongAnswers : prev.wrongAnswers + 1,
+            ),
+          };
+        });
 
-      // Auto-advance to next word after a short delay (2 seconds for better feedback)
-      // 答完最后一个单词后也要增加索引，以触发完成判断
-      setTimeout(() => {
-        setCurrentWordIndex(prev => prev + 1);
-      }, 2000);
-    } catch (err) {
-      console.error('Error submitting answer:', err);
-      setError('提交答案失败，请稍后重试');
-    }
-  }, [currentWord, session, userId, isChild, bookType]);
+        // Auto-advance to next word after a short delay (2 seconds for better feedback)
+        // 答完最后一个单词后也要增加索引，以触发完成判断
+        setTimeout(() => {
+          setCurrentWordIndex((prev) => prev + 1);
+        }, 2000);
+      } catch (err) {
+        console.error("Error submitting answer:", err);
+        setError("提交答案失败，请稍后重试");
+      }
+    },
+    [currentWord, session, userId, isChild, bookType],
+  );
 
   /**
    * Move to next word
@@ -177,7 +191,7 @@ export function useSpacedRepetition(
    */
   const nextWord = useCallback(() => {
     if (currentWordIndex < words.length - 1) {
-      setCurrentWordIndex(prev => prev + 1);
+      setCurrentWordIndex((prev) => prev + 1);
     }
   }, [currentWordIndex, words.length]);
 
@@ -187,7 +201,7 @@ export function useSpacedRepetition(
    */
   const previousWord = useCallback(() => {
     if (currentWordIndex > 0) {
-      setCurrentWordIndex(prev => prev - 1);
+      setCurrentWordIndex((prev) => prev - 1);
     }
   }, [currentWordIndex]);
 
@@ -202,7 +216,7 @@ export function useSpacedRepetition(
       wordsReviewed: 0,
       correctAnswers: 0,
       wrongAnswers: 0,
-      accuracy: 0
+      accuracy: 0,
     });
   }, [userId]);
 
@@ -215,7 +229,7 @@ export function useSpacedRepetition(
 
     const endedSession: ReviewSession = {
       ...session,
-      endTime: new Date()
+      endTime: new Date(),
     };
 
     setSession(null);
@@ -258,7 +272,7 @@ export function useSpacedRepetition(
     previousWord,
     startSession,
     endSession,
-    resetSession
+    resetSession,
   };
 }
 

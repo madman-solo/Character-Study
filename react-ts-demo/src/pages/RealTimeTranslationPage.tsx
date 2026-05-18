@@ -11,7 +11,7 @@ const RealTimeTranslationPage = () => {
   const [outputLang, setOutputLang] = useState('zh');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const languages = [
     { code: 'auto', name: '自动检测' },
@@ -213,7 +213,7 @@ const RealTimeTranslationPage = () => {
 
         {/* 错误提示 */}
         {error && (
-          <div className="error-message">
+          <div className="error-message" role="alert">
             ⚠️ {error}
           </div>
         )}

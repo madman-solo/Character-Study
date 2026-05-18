@@ -54,7 +54,7 @@ const ChildWordDetail = () => {
       <div className="child-word-detail-page">
         <div className="loading-container">
           <div className="loading-spinner"></div>
-          <p>加载中...</p>
+          <p role="status" aria-live="polite">加载中...</p>
         </div>
       </div>
     );
@@ -63,7 +63,7 @@ const ChildWordDetail = () => {
   if (error || !word) {
     return (
       <div className="child-word-detail-page">
-        <div className="error-container">
+        <div className="error-container" role="alert">
           <div className="error-icon">😢</div>
           <h2>{error || "未找到单词"}</h2>
           <button className="back-btn" onClick={() => navigate(-1)}>
@@ -106,7 +106,7 @@ const ChildWordDetail = () => {
           </div>
 
           <div className="word-info-container">
-            <h2 className="word-text">{word.word}</h2>
+            <h2 className="word-text-childworddetail">{word.word}</h2>
             <p className="word-phonetic">{word.phonetic}</p>
             <p className="word-translation">{word.translation}</p>
             {word.pos && <p className="word-pos">词性: {word.pos}</p>}

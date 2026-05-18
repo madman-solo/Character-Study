@@ -73,7 +73,7 @@ const ChildVocabularyReview = () => {
         const response = await getAllLearnedChildWords(userId);
         setAllLearnedWords(response.words || []);
       } catch (error) {
-        console.error('Error fetching all learned words:', error);
+        console.error("Error fetching all learned words:", error);
       } finally {
         setIsLoadingAllWords(false);
       }
@@ -145,19 +145,29 @@ const ChildVocabularyReview = () => {
         {/* All Learned Words Section */}
         {allLearnedWords.length > 0 && (
           <div className="all-words-section">
-            <h3 className="section-title">📖 所有已学单词 ({allLearnedWords.length})</h3>
+            <h3 className="section-title">
+              📖 所有已学单词 ({allLearnedWords.length})
+            </h3>
             <div className="words-grid">
               {allLearnedWords.map((item: any) => (
                 <div key={item.word.id} className="word-card">
                   <div className="word-header">
-                    <span className="word-text">{item.word.word}</span>
+                    <span className="word-text-childvocabularyReview">
+                      {item.word.word}
+                    </span>
                     <span className="word-phonetic">{item.word.phonetic}</span>
                   </div>
-                  <div className="word-translation">{item.word.translation}</div>
+                  <div className="word-translation">
+                    {item.word.translation}
+                  </div>
                   <div className="word-progress">
                     <div className="progress-stats">
-                      <span className="stat correct">✓ {item.progress.correctCount}</span>
-                      <span className="stat wrong">✗ {item.progress.wrongCount}</span>
+                      <span className="stat correct">
+                        ✓ {item.progress.correctCount}
+                      </span>
+                      <span className="stat wrong">
+                        ✗ {item.progress.wrongCount}
+                      </span>
                     </div>
                     <div className="next-review">
                       {item.progress.mastered ? (
@@ -166,7 +176,10 @@ const ChildVocabularyReview = () => {
                         <span className="due-badge">🔔 需要复习</span>
                       ) : (
                         <span className="next-review-time">
-                          下次复习: {new Date(item.progress.nextReview).toLocaleDateString()}
+                          下次复习:{" "}
+                          {new Date(
+                            item.progress.nextReview,
+                          ).toLocaleDateString()}
                         </span>
                       )}
                     </div>
@@ -279,9 +292,32 @@ const ChildVocabularyReview = () => {
       {/* Statistics Info */}
       {statistics && (
         <div className="statistics-info">
-          <p>📊 总计 {statistics.total} 个单词</p>
-          <p>✓ 已掌握 {statistics.mastered} 个</p>
-          <p>📝 学习中 {statistics.learning} 个</p>
+          <p>
+            <img
+              src="/src/assets/iconfont/child/理财统计表.svg"
+              width={26}
+              height={26}
+            ></img>
+            总计 {statistics.total} 个单词
+          </p>
+          <p>
+            {" "}
+            <img
+              src="/src/assets/iconfont/child/掌握.svg"
+              width={26}
+              height={26}
+            ></img>
+            已掌握 {statistics.mastered} 个
+          </p>
+          <p>
+            {" "}
+            <img
+              src="/src/assets/iconfont/child/英语.svg"
+              width={36}
+              height={36}
+            ></img>{" "}
+            学习中 {statistics.learning} 个
+          </p>
         </div>
       )}
     </div>

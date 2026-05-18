@@ -3,9 +3,9 @@
  * 展示单词、音标、翻译，支持发音和记忆标记
  */
 
-import React, { useState } from 'react';
-import type { Word } from '../../../hooks/useChildLearning';
-import './WordLearningCard.css';
+import React, { useState } from "react";
+import type { Word } from "../../../hooks/useChildLearning";
+import "./WordLearningCard.css";
 
 interface WordLearningCardProps {
   word: Word;
@@ -46,9 +46,9 @@ const WordLearningCard: React.FC<WordLearningCardProps> = ({
 
   return (
     <div
-      className={`word-learning-card ${isFlipped ? 'flipped' : ''} ${
-        word.mastered ? 'mastered' : ''
-      } ${animationsEnabled ? 'child-animate-bounce-in' : ''}`}
+      className={`word-learning-card ${isFlipped ? "flipped" : ""} ${
+        word.mastered ? "mastered" : ""
+      } ${animationsEnabled ? "child-animate-bounce-in" : ""}`}
       onClick={handleFlip}
     >
       <div className="word-card-inner">
@@ -60,7 +60,11 @@ const WordLearningCard: React.FC<WordLearningCardProps> = ({
               onClick={handleSpeak}
               aria-label="发音"
             >
-              🔊
+              <img
+                src="/src/assets/iconfont/child/扬声器.svg"
+                width={26}
+                height={26}
+              ></img>
             </button>
             {word.mastered && (
               <div className="word-mastered-badge child-animate-badge-unlock">
@@ -70,12 +74,12 @@ const WordLearningCard: React.FC<WordLearningCardProps> = ({
           </div>
 
           <div className="word-content">
-            <h3 className="word-text">
-              {word.word.split('').map((letter, index) => (
+            <h3 className="word-text-wordlearningcard">
+              {word.word.split("").map((letter, index) => (
                 <span
                   key={index}
                   className={`word-letter ${
-                    animationsEnabled ? 'child-animate-letter-bounce' : ''
+                    animationsEnabled ? "child-animate-letter-bounce" : ""
                   }`}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
@@ -87,7 +91,7 @@ const WordLearningCard: React.FC<WordLearningCardProps> = ({
             {word.phonetic && (
               <p
                 className={`word-phonetic ${
-                  animationsEnabled ? 'child-animate-phonetic-blink' : ''
+                  animationsEnabled ? "child-animate-phonetic-blink" : ""
                 }`}
               >
                 {word.phonetic}
@@ -102,15 +106,29 @@ const WordLearningCard: React.FC<WordLearningCardProps> = ({
               className="word-action-btn weak-btn"
               onClick={handleWeak}
               disabled={word.mastered}
+              aria-disabled={word.mastered}
             >
-              😕 薄弱
+              <img
+                src="/src/assets/iconfont/child/薄弱.svg"
+                aria-hidden="true"
+                width={26}
+                height={26}
+              />
+              薄弱
             </button>
             <button
               className="word-action-btn master-btn"
               onClick={handleMastered}
               disabled={word.mastered}
+              aria-disabled={word.mastered}
             >
-              ✨ 掌握
+              <img
+                src="/src/assets/iconfont/child/掌握.svg"
+                aria-hidden="true"
+                width={26}
+                height={26}
+              />
+              掌握
             </button>
           </div>
         </div>
@@ -123,7 +141,11 @@ const WordLearningCard: React.FC<WordLearningCardProps> = ({
               onClick={handleSpeak}
               aria-label="发音"
             >
-              🔊
+              <img
+                src="/src/assets/iconfont/child/扬声器.svg"
+                width={26}
+                height={26}
+              ></img>
             </button>
           </div>
 
@@ -140,13 +162,13 @@ const WordLearningCard: React.FC<WordLearningCardProps> = ({
                     setShowExample(!showExample);
                   }}
                 >
-                  {showExample ? '隐藏例句' : '查看例句'}
+                  {showExample ? "隐藏例句" : "查看例句"}
                 </button>
 
                 {showExample && (
                   <p
                     className={`word-example ${
-                      animationsEnabled ? 'child-animate-bubble' : ''
+                      animationsEnabled ? "child-animate-bubble" : ""
                     }`}
                   >
                     {word.example}
@@ -163,24 +185,36 @@ const WordLearningCard: React.FC<WordLearningCardProps> = ({
               className="word-action-btn weak-btn"
               onClick={handleWeak}
               disabled={word.mastered}
+              aria-disabled={word.mastered}
             >
-              😕 薄弱
+              <img
+                src="/src/assets/iconfont/child/薄弱.svg"
+                aria-hidden="true"
+                width={26}
+                height={26}
+              />
+              薄弱
             </button>
             <button
               className="word-action-btn master-btn"
               onClick={handleMastered}
               disabled={word.mastered}
+              aria-disabled={word.mastered}
             >
-              ✨ 掌握
+              <img
+                src="/src/assets/iconfont/child/掌握.svg"
+                aria-hidden="true"
+                width={26}
+                height={26}
+              />
+              掌握
             </button>
           </div>
         </div>
       </div>
 
       {word.reviewCount > 0 && (
-        <div className="word-review-count">
-          复习次数: {word.reviewCount}
-        </div>
+        <div className="word-review-count">复习次数: {word.reviewCount}</div>
       )}
     </div>
   );

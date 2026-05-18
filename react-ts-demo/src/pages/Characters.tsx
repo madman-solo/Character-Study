@@ -87,18 +87,21 @@ const Characters = () => {
       </div>
 
       {loading ? (
-        <div className="loading-message">加载中...</div>
+        <div className="loading-message" role="status" aria-live="polite">加载中...</div>
       ) : error ? (
-        <div className="error-message">{error}</div>
+        <div className="error-message" role="alert">{error}</div>
       ) : filteredCharacters.length === 0 ? (
         <div className="empty-message">该分类暂无角色</div>
       ) : (
-        <div className="characters-grid">
+        <div className="characters-grid-characters">
           {filteredCharacters.map((character) => (
             <div
               key={character.id}
               className="character-card"
+              role="button"
+              tabIndex={0}
               onClick={() => handleCharacterClick(character.id)}
+              onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), handleCharacterClick(character.id))}
             >
               <div className="character-avatar">{character.avatar}</div>
               <h3 className="character-name">{character.name}</h3>

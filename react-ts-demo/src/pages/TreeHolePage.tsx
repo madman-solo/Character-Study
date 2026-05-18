@@ -63,7 +63,7 @@ const TreeHolePage = () => {
     content: string;
     responseId: number;
   } | null>(null); // 存储待显示的AI回复及其响应ID
-  const autoShowTimerRef = useRef<NodeJS.Timeout | null>(null); // 存储自动显示定时器
+  const autoShowTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null); // 存储自动显示定时器
   const responseIdRef = useRef(0); // 响应ID，用于确保只显示最新的回复
   const currentResponseIdRef = useRef(0); // 当前正在处理的响应ID
 
@@ -487,6 +487,7 @@ const TreeHolePage = () => {
             className="dialogue-submit-button"
             onClick={handleUserSubmit}
             disabled={!userInput.trim()}
+            aria-disabled={!userInput.trim()}
           >
             发送
           </button>

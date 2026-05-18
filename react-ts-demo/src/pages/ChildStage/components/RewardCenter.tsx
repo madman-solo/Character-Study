@@ -28,7 +28,16 @@ const RewardCenter: React.FC<RewardCenterProps> = ({
   return (
     <div className="child-reward-center">
       <div className="child-reward-header">
-        <h3 className="child-reward-title">🎁 奖励中心</h3>
+        <h3 className="child-reward-title">
+          <img
+            src="/src/assets/iconfont/child/手绘花朵.svg"
+            alt=""
+            aria-hidden="true"
+            width={36}
+            height={36}
+          />
+          奖励中心
+        </h3>
         {onClose && (
           <button
             className="child-reward-close"
@@ -43,7 +52,16 @@ const RewardCenter: React.FC<RewardCenterProps> = ({
       {/* 积分展示 */}
       <div className="child-points-section">
         <div className="child-points-display">
-          <div className="child-points-icon">⭐</div>
+          <div className="child-points-icon">
+            {" "}
+            <img
+              src="/src/assets/iconfont/child/手绘小熊.svg"
+              alt=""
+              aria-hidden="true"
+              width={36}
+              height={36}
+            />
+          </div>
           <div className="child-points-info">
             <div className="child-points-label">我的积分</div>
             <div className="child-points-value">{rewardData.totalPoints}</div>
@@ -73,14 +91,15 @@ const RewardCenter: React.FC<RewardCenterProps> = ({
                 className="child-badge-item child-badge-unlocked child-animate-star-twinkle"
                 title={badge.description}
               >
-                <div className="child-badge-icon">{badge.icon}</div>
+                <div className="child-badge-icon">
+                  <img src={badge.icon} alt={badge.name} width={36} height={36} />
+                </div>
                 <div className="child-badge-name">{badge.name}</div>
               </div>
             ))}
           </div>
         )}
 
-        {/* 未解锁勋章 */}
         {lockedBadges.length > 0 && (
           <>
             <h5 className="child-section-subtitle-small">待解锁</h5>
@@ -92,7 +111,7 @@ const RewardCenter: React.FC<RewardCenterProps> = ({
                   title={badge.requirement}
                 >
                   <div className="child-badge-icon child-badge-icon-locked">
-                    {badge.icon}
+                    <img src={badge.icon} alt="" aria-hidden="true" width={36} height={36} />
                   </div>
                   <div className="child-badge-name">{badge.name}</div>
                   {badge.progress !== undefined && badge.progress > 0 && (

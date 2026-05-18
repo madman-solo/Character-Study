@@ -3,26 +3,30 @@ import '../../../styles/ChildStageCss/ChildCarousel.css';
 
 interface ChildCarouselProps {
   items: Array<{ id: string; image: string; title?: string }>;
+  autoPlay?: boolean;
   autoPlayInterval?: number;
+  interval?: number;
   height?: string;
 }
 
 const ChildCarousel = ({
   items,
   autoPlayInterval = 3000,
+  interval,
   height = '400px'
 }: ChildCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const delay = interval ?? autoPlayInterval;
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) =>
         prevIndex === items.length - 1 ? 0 : prevIndex + 1
       );
-    }, autoPlayInterval);
+    }, delay);
 
     return () => clearInterval(timer);
-  }, [items.length, autoPlayInterval]);
+  }, [items.length, delay]);
 
   const goToPrevious = () => {
     setCurrentIndex((prevIndex) =>

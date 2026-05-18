@@ -100,7 +100,9 @@ const AdvancedTrainingPage = () => {
         <button className="back-btn" onClick={handleBack}>
           ← 返回
         </button>
-        <h1 className="page-title">💪 进阶训练</h1>
+        <h1 className="page-title">
+          <img src="/src/assets/iconfont/child/肌肉量.svg" alt="" aria-hidden="true" /> 进阶训练
+        </h1>
         <div className="header-spacer"></div>
       </div>
 

@@ -3,11 +3,11 @@
  * 学习报告组件 - 展示每日、每周、每月学习报告
  */
 
-import { useState, useEffect } from 'react';
-import './LearningReport.css';
+import { useState, useEffect } from "react";
+import "./LearningReport.css";
 
 // 报告类型
-export type ReportType = 'daily' | 'weekly' | 'monthly';
+export type ReportType = "daily" | "weekly" | "monthly";
 
 // 成就接口
 interface Achievement {
@@ -20,7 +20,7 @@ interface Achievement {
 // 建议接口
 interface Suggestion {
   type: string;
-  priority: 'high' | 'medium' | 'low';
+  priority: "high" | "medium" | "low";
   title: string;
   description: string;
   icon: string;
@@ -90,7 +90,9 @@ const LearningReport: React.FC<LearningReportProps> = ({
   onClose,
   onExport,
 }) => {
-  const [report, setReport] = useState<DailyReport | WeeklyReport | MonthlyReport | null>(null);
+  const [report, setReport] = useState<
+    DailyReport | WeeklyReport | MonthlyReport | null
+  >(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -106,12 +108,12 @@ const LearningReport: React.FC<LearningReportProps> = ({
       let url = `http://localhost:3001/api/reports/${reportType}/${userId}`;
       const params = new URLSearchParams();
 
-      if (reportType === 'daily' && date) {
-        params.append('date', date);
-      } else if (reportType === 'weekly' && weekStart) {
-        params.append('weekStart', weekStart);
-      } else if (reportType === 'monthly' && month) {
-        params.append('month', month);
+      if (reportType === "daily" && date) {
+        params.append("date", date);
+      } else if (reportType === "weekly" && weekStart) {
+        params.append("weekStart", weekStart);
+      } else if (reportType === "monthly" && month) {
+        params.append("month", month);
       }
 
       if (params.toString()) {
@@ -124,11 +126,11 @@ const LearningReport: React.FC<LearningReportProps> = ({
       if (data.success) {
         setReport(data.report);
       } else {
-        setError(data.error || '获取报告失败');
+        setError(data.error || "获取报告失败");
       }
     } catch (err) {
-      console.error('Error fetching report:', err);
-      setError('网络错误，请稍后重试');
+      console.error("Error fetching report:", err);
+      setError("网络错误，请稍后重试");
     } finally {
       setLoading(false);
     }
@@ -137,7 +139,15 @@ const LearningReport: React.FC<LearningReportProps> = ({
   const renderDailyReport = (report: DailyReport) => (
     <div className="report-content">
       <div className="report-header">
-        <h3 className="report-title">📅 每日学习报告</h3>
+        <h3 className="report-title">
+          {" "}
+          <img
+            src="/src/assets/iconfont/child/理财统计表.svg"
+            width={35}
+            height={35}
+          ></img>
+          每日学习报告
+        </h3>
         <p className="report-date">{report.date}</p>
       </div>
 
@@ -147,7 +157,13 @@ const LearningReport: React.FC<LearningReportProps> = ({
 
       <div className="report-stats">
         <div className="stat-card">
-          <div className="stat-icon">⏰</div>
+          <div className="stat-icon">
+            <img
+              src="/src/assets/iconfont/闹钟.svg"
+              width={35}
+              height={35}
+            ></img>
+          </div>
           <div className="stat-info">
             <div className="stat-label">学习时长</div>
             <div className="stat-value">{report.studyTime}分钟</div>
@@ -155,7 +171,13 @@ const LearningReport: React.FC<LearningReportProps> = ({
         </div>
 
         <div className="stat-card">
-          <div className="stat-icon">📚</div>
+          <div className="stat-icon">
+            <img
+              src="/src/assets/iconfont/child/英语.svg"
+              width={35}
+              height={35}
+            ></img>
+          </div>
           <div className="stat-info">
             <div className="stat-label">新学单词</div>
             <div className="stat-value">{report.newWords}个</div>
@@ -163,7 +185,13 @@ const LearningReport: React.FC<LearningReportProps> = ({
         </div>
 
         <div className="stat-card">
-          <div className="stat-icon">🎯</div>
+          <div className="stat-icon">
+            <img
+              src="/src/assets/iconfont/child/中标.svg"
+              width={35}
+              height={35}
+            ></img>
+          </div>
           <div className="stat-info">
             <div className="stat-label">答题准确率</div>
             <div className="stat-value">{report.accuracy}%</div>
@@ -171,7 +199,13 @@ const LearningReport: React.FC<LearningReportProps> = ({
         </div>
 
         <div className="stat-card">
-          <div className="stat-icon">🔥</div>
+          <div className="stat-icon">
+            <img
+              src="/src/assets/iconfont/child/火花.svg"
+              width={35}
+              height={35}
+            ></img>
+          </div>
           <div className="stat-info">
             <div className="stat-label">连续打卡</div>
             <div className="stat-value">{report.consecutiveDays}天</div>
@@ -184,7 +218,14 @@ const LearningReport: React.FC<LearningReportProps> = ({
   const renderWeeklyReport = (report: WeeklyReport) => (
     <div className="report-content">
       <div className="report-header">
-        <h3 className="report-title">📊 每周学习报告</h3>
+        <h3 className="report-title">
+          <img
+            src="/src/assets/iconfont/child/理财统计表.svg"
+            width={35}
+            height={35}
+          ></img>{" "}
+          每周学习报告
+        </h3>
         <p className="report-date">
           {report.weekStart} 至 {report.weekEnd}
         </p>
@@ -196,7 +237,13 @@ const LearningReport: React.FC<LearningReportProps> = ({
 
       <div className="report-stats">
         <div className="stat-card">
-          <div className="stat-icon">⏰</div>
+          <div className="stat-icon">
+            <img
+              src="/src/assets/iconfont/child/闹钟 (1).svg"
+              width={35}
+              height={35}
+            ></img>
+          </div>
           <div className="stat-info">
             <div className="stat-label">总学习时长</div>
             <div className="stat-value">{report.totalStudyTime}分钟</div>
@@ -204,7 +251,13 @@ const LearningReport: React.FC<LearningReportProps> = ({
         </div>
 
         <div className="stat-card">
-          <div className="stat-icon">📅</div>
+          <div className="stat-icon">
+            <img
+              src="/src/assets/iconfont/child/日历.svg"
+              width={35}
+              height={35}
+            ></img>
+          </div>
           <div className="stat-info">
             <div className="stat-label">活跃天数</div>
             <div className="stat-value">{report.activeDays}天</div>
@@ -212,7 +265,13 @@ const LearningReport: React.FC<LearningReportProps> = ({
         </div>
 
         <div className="stat-card">
-          <div className="stat-icon">📚</div>
+          <div className="stat-icon">
+            <img
+              src="/src/assets/iconfont/child/英语.svg"
+              width={35}
+              height={35}
+            ></img>
+          </div>
           <div className="stat-info">
             <div className="stat-label">新学单词</div>
             <div className="stat-value">{report.totalNewWords}个</div>
@@ -220,7 +279,13 @@ const LearningReport: React.FC<LearningReportProps> = ({
         </div>
 
         <div className="stat-card">
-          <div className="stat-icon">🎯</div>
+          <div className="stat-icon">
+            <img
+              src="/src/assets/iconfont/child/中标.svg"
+              width={35}
+              height={35}
+            ></img>
+          </div>
           <div className="stat-info">
             <div className="stat-label">平均准确率</div>
             <div className="stat-value">{report.avgAccuracy}%</div>
@@ -228,7 +293,13 @@ const LearningReport: React.FC<LearningReportProps> = ({
         </div>
 
         <div className="stat-card">
-          <div className="stat-icon">✅</div>
+          <div className="stat-icon">
+            <img
+              src="/src/assets/iconfont/child/掌握 (1).svg"
+              width={35}
+              height={35}
+            ></img>
+          </div>
           <div className="stat-info">
             <div className="stat-label">掌握单词</div>
             <div className="stat-value">{report.masteredWordsCount}个</div>
@@ -236,7 +307,13 @@ const LearningReport: React.FC<LearningReportProps> = ({
         </div>
 
         <div className="stat-card">
-          <div className="stat-icon">⚠️</div>
+          <div className="stat-icon">
+            <img
+              src="/src/assets/iconfont/child/薄弱.svg"
+              width={35}
+              height={35}
+            ></img>
+          </div>
           <div className="stat-info">
             <div className="stat-label">薄弱单词</div>
             <div className="stat-value">{report.weakWordsCount}个</div>
@@ -247,14 +324,23 @@ const LearningReport: React.FC<LearningReportProps> = ({
       {/* 成就展示 */}
       {report.achievements && report.achievements.length > 0 && (
         <div className="report-section">
-          <h4 className="section-title">🏆 本周成就</h4>
+          <h4 className="section-title">
+            <img
+              src="/src/assets/iconfont/child/奖杯.svg"
+              width={35}
+              height={35}
+            ></img>
+            本周成就
+          </h4>
           <div className="achievements-list">
             {report.achievements.map((achievement, index) => (
               <div key={index} className="achievement-card">
                 <div className="achievement-icon">{achievement.icon}</div>
                 <div className="achievement-info">
                   <div className="achievement-title">{achievement.title}</div>
-                  <div className="achievement-desc">{achievement.description}</div>
+                  <div className="achievement-desc">
+                    {achievement.description}
+                  </div>
                 </div>
               </div>
             ))}
@@ -265,7 +351,14 @@ const LearningReport: React.FC<LearningReportProps> = ({
       {/* 改进建议 */}
       {report.suggestions && report.suggestions.length > 0 && (
         <div className="report-section">
-          <h4 className="section-title">💡 改进建议</h4>
+          <h4 className="section-title">
+            <img
+              src="/src/assets/iconfont/child/灯泡 (1).svg"
+              width={35}
+              height={35}
+            ></img>
+            改进建议
+          </h4>
           <div className="suggestions-list">
             {report.suggestions.map((suggestion, index) => (
               <div
@@ -275,7 +368,9 @@ const LearningReport: React.FC<LearningReportProps> = ({
                 <div className="suggestion-icon">{suggestion.icon}</div>
                 <div className="suggestion-info">
                   <div className="suggestion-title">{suggestion.title}</div>
-                  <div className="suggestion-desc">{suggestion.description}</div>
+                  <div className="suggestion-desc">
+                    {suggestion.description}
+                  </div>
                 </div>
               </div>
             ))}
@@ -288,7 +383,14 @@ const LearningReport: React.FC<LearningReportProps> = ({
   const renderMonthlyReport = (report: MonthlyReport) => (
     <div className="report-content">
       <div className="report-header">
-        <h3 className="report-title">📈 每月学习报告</h3>
+        <h3 className="report-title">
+          <img
+            src="/src/assets/iconfont/child/理财统计表.svg"
+            width={35}
+            height={35}
+          ></img>
+          每月学习报告
+        </h3>
         <p className="report-date">{report.month}</p>
       </div>
 
@@ -298,7 +400,13 @@ const LearningReport: React.FC<LearningReportProps> = ({
 
       <div className="report-stats">
         <div className="stat-card">
-          <div className="stat-icon">⏰</div>
+          <div className="stat-icon">
+            <img
+              src="/src/assets/iconfont/闹钟.svg"
+              width={35}
+              height={35}
+            ></img>
+          </div>
           <div className="stat-info">
             <div className="stat-label">总学习时长</div>
             <div className="stat-value">{report.totalStudyTime}分钟</div>
@@ -306,7 +414,13 @@ const LearningReport: React.FC<LearningReportProps> = ({
         </div>
 
         <div className="stat-card">
-          <div className="stat-icon">📅</div>
+          <div className="stat-icon">
+            <img
+              src="/src/assets/iconfont/child/日历.svg"
+              width={35}
+              height={35}
+            ></img>
+          </div>
           <div className="stat-info">
             <div className="stat-label">活跃天数</div>
             <div className="stat-value">{report.activeDays}天</div>
@@ -314,7 +428,13 @@ const LearningReport: React.FC<LearningReportProps> = ({
         </div>
 
         <div className="stat-card">
-          <div className="stat-icon">⏱️</div>
+          <div className="stat-icon">
+            <img
+              src="/src/assets/iconfont/闹钟.svg"
+              width={35}
+              height={35}
+            ></img>
+          </div>
           <div className="stat-info">
             <div className="stat-label">平均每日</div>
             <div className="stat-value">{report.avgDailyTime}分钟</div>
@@ -322,7 +442,13 @@ const LearningReport: React.FC<LearningReportProps> = ({
         </div>
 
         <div className="stat-card">
-          <div className="stat-icon">📚</div>
+          <div className="stat-icon">
+            <img
+              src="/src/assets/iconfont/child/我的单词本.svg"
+              width={35}
+              height={35}
+            ></img>
+          </div>
           <div className="stat-info">
             <div className="stat-label">新学单词</div>
             <div className="stat-value">{report.totalNewWords}个</div>
@@ -330,7 +456,13 @@ const LearningReport: React.FC<LearningReportProps> = ({
         </div>
 
         <div className="stat-card">
-          <div className="stat-icon">✅</div>
+          <div className="stat-icon">
+            <img
+              src="/src/assets/iconfont/child/掌握.svg"
+              width={35}
+              height={35}
+            ></img>
+          </div>
           <div className="stat-info">
             <div className="stat-label">掌握单词</div>
             <div className="stat-value">{report.masteredWordsCount}个</div>
@@ -338,7 +470,13 @@ const LearningReport: React.FC<LearningReportProps> = ({
         </div>
 
         <div className="stat-card">
-          <div className="stat-icon">🎯</div>
+          <div className="stat-icon">
+            <img
+              src="/src/assets/iconfont/child/中标.svg"
+              width={35}
+              height={35}
+            ></img>
+          </div>
           <div className="stat-info">
             <div className="stat-label">平均准确率</div>
             <div className="stat-value">{report.avgAccuracy}%</div>
@@ -346,7 +484,13 @@ const LearningReport: React.FC<LearningReportProps> = ({
         </div>
 
         <div className="stat-card">
-          <div className="stat-icon">🔥</div>
+          <div className="stat-icon">
+            <img
+              src="/src/assets/iconfont/child/火花.svg"
+              width={35}
+              height={35}
+            ></img>
+          </div>
           <div className="stat-info">
             <div className="stat-label">最长连续</div>
             <div className="stat-value">{report.longestStreak}天</div>
@@ -354,7 +498,13 @@ const LearningReport: React.FC<LearningReportProps> = ({
         </div>
 
         <div className="stat-card">
-          <div className="stat-icon">⚠️</div>
+          <div className="stat-icon">
+            <img
+              src="/src/assets/iconfont/child/警告.svg"
+              width={35}
+              height={35}
+            ></img>
+          </div>
           <div className="stat-info">
             <div className="stat-label">薄弱单词</div>
             <div className="stat-value">{report.weakWordsCount}个</div>
@@ -365,14 +515,23 @@ const LearningReport: React.FC<LearningReportProps> = ({
       {/* 成就展示 */}
       {report.achievements && report.achievements.length > 0 && (
         <div className="report-section">
-          <h4 className="section-title">🏆 本月成就</h4>
+          <h4 className="section-title">
+            <img
+              src="/src/assets/iconfont/child/奖杯.svg"
+              width={35}
+              height={35}
+            ></img>
+            本月成就
+          </h4>
           <div className="achievements-list">
             {report.achievements.map((achievement, index) => (
               <div key={index} className="achievement-card">
                 <div className="achievement-icon">{achievement.icon}</div>
                 <div className="achievement-info">
                   <div className="achievement-title">{achievement.title}</div>
-                  <div className="achievement-desc">{achievement.description}</div>
+                  <div className="achievement-desc">
+                    {achievement.description}
+                  </div>
                 </div>
               </div>
             ))}
@@ -383,7 +542,14 @@ const LearningReport: React.FC<LearningReportProps> = ({
       {/* 改进建议 */}
       {report.suggestions && report.suggestions.length > 0 && (
         <div className="report-section">
-          <h4 className="section-title">💡 改进建议</h4>
+          <h4 className="section-title">
+            <img
+              src="/src/assets/iconfont/child/灯泡 (1).svg"
+              width={35}
+              height={35}
+            ></img>
+            改进建议
+          </h4>
           <div className="suggestions-list">
             {report.suggestions.map((suggestion, index) => (
               <div
@@ -393,7 +559,9 @@ const LearningReport: React.FC<LearningReportProps> = ({
                 <div className="suggestion-icon">{suggestion.icon}</div>
                 <div className="suggestion-info">
                   <div className="suggestion-title">{suggestion.title}</div>
-                  <div className="suggestion-desc">{suggestion.description}</div>
+                  <div className="suggestion-desc">
+                    {suggestion.description}
+                  </div>
                 </div>
               </div>
             ))}
@@ -418,7 +586,13 @@ const LearningReport: React.FC<LearningReportProps> = ({
     return (
       <div className="learning-report">
         <div className="report-error">
-          <p className="error-icon">⚠️</p>
+          <p className="error-icon">
+            <img
+              src="/src/assets/iconfont/child/警告.svg"
+              width={35}
+              height={35}
+            ></img>
+          </p>
           <p className="error-message">{error}</p>
           <button className="retry-btn" onClick={fetchReport}>
             重试
@@ -440,15 +614,20 @@ const LearningReport: React.FC<LearningReportProps> = ({
 
   return (
     <div className="learning-report">
-      {reportType === 'daily' && renderDailyReport(report as DailyReport)}
-      {reportType === 'weekly' && renderWeeklyReport(report as WeeklyReport)}
-      {reportType === 'monthly' && renderMonthlyReport(report as MonthlyReport)}
+      {reportType === "daily" && renderDailyReport(report as DailyReport)}
+      {reportType === "weekly" && renderWeeklyReport(report as WeeklyReport)}
+      {reportType === "monthly" && renderMonthlyReport(report as MonthlyReport)}
 
       {/* 操作按钮 */}
       <div className="report-actions">
         {onExport && (
           <button className="action-btn export-btn" onClick={onExport}>
-            📤 导出报告
+            <img
+              src="/src/assets/iconfont/child/理财统计表.svg"
+              width={35}
+              height={35}
+            ></img>
+            导出报告
           </button>
         )}
         {onClose && (

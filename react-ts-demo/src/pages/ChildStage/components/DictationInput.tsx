@@ -73,8 +73,10 @@ const DictationInput = ({
             className="child-dictation-clear-btn"
             onClick={handleClear}
             disabled={disabled}
+            aria-disabled={disabled}
+            aria-label="清除输入"
           >
-            ✕
+            <span aria-hidden="true">✕</span>
           </button>
         )}
       </div>
@@ -84,6 +86,7 @@ const DictationInput = ({
           className="child-dictation-submit-btn"
           onClick={handleSubmit}
           disabled={disabled || !input.trim()}
+          aria-disabled={disabled || !input.trim()}
         >
           提交
         </button>

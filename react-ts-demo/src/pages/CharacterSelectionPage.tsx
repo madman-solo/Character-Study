@@ -41,7 +41,7 @@ const CharacterSelectionPage = () => {
         character,
         // 保留原有的setup结构以兼容
         userIdentity: "用户",
-        userName: user?.username || "未设置",
+        userName: user?.name || "未设置",
         userStory: "",
         companionIdentity: character.name,
         companionName: character.name,
@@ -91,7 +91,7 @@ const CharacterSelectionPage = () => {
       <div className="character-selection-page">
         <div className="loading-container">
           <div className="loading-spinner"></div>
-          <p>加载中...</p>
+          <p role="status" aria-live="polite">加载中...</p>
         </div>
       </div>
     );
@@ -108,13 +108,13 @@ const CharacterSelectionPage = () => {
           <p className="subtitle">选择一个角色开始对话，或创建新角色</p>
         </div>
 
-        <div className="characters-grid">
+        <div className="characters-grid-characterSelection">
           {/* 创建新角色卡片 */}
-          <div className="character-card create-card" onClick={handleCreateNew}>
+          <button className="character-card create-card" onClick={handleCreateNew}>
             <div className="create-icon">+</div>
             <h3>创建新角色</h3>
             <p>自定义你的专属AI伙伴</p>
-          </div>
+          </button>
 
           {/* 角色列表 */}
           {characters.map((character) => (
@@ -130,9 +130,14 @@ const CharacterSelectionPage = () => {
                       e.stopPropagation();
                       handleEditCharacter(character);
                     }}
-                    title="编辑"
+                    aria-label="编辑角色"
                   >
-                    ✏️
+                    <img
+                      src="/src/assets/iconfont/书写.svg"
+                      aria-hidden="true"
+                      width={18}
+                      height={18}
+                    />
                   </button>
                   {!character.isDefault && (
                     <button
@@ -141,9 +146,14 @@ const CharacterSelectionPage = () => {
                         e.stopPropagation();
                         handleSetDefault(character);
                       }}
-                      title="设为默认"
+                      aria-label="设为默认角色"
                     >
-                      ⭐
+                      <img
+                        src="/src/assets/iconfont/收藏.svg"
+                        aria-hidden="true"
+                        width={18}
+                        height={18}
+                      />
                     </button>
                   )}
                   <button
@@ -152,9 +162,14 @@ const CharacterSelectionPage = () => {
                       e.stopPropagation();
                       handleDeleteCharacter(character);
                     }}
-                    title="删除"
+                    aria-label="删除角色"
                   >
-                    🗑️
+                    <img
+                      src="/src/assets/iconfont/垃圾桶.svg"
+                      aria-hidden="true"
+                      width={18}
+                      height={18}
+                    />
                   </button>
                 </div>
               </div>

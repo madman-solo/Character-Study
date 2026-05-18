@@ -4,7 +4,7 @@
  * 用于准确追踪学习时长，防止挂机刷时长
  */
 
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef } from "react";
 
 export interface ActivityTrackerState {
   isActive: boolean; // 用户是否活跃
@@ -23,10 +23,10 @@ interface UseActivityTrackerOptions {
 }
 
 export function useActivityTracker(
-  options: UseActivityTrackerOptions = {}
+  options: UseActivityTrackerOptions = {},
 ): ActivityTrackerState {
   const {
-    inactivityTimeout = 3 * 60 * 1000, // 3分钟
+    inactivityTimeout = 10 * 60 * 1000, // 10分钟
     heartbeatInterval = 30 * 1000, // 30秒
     onPause,
     onResume,
@@ -43,8 +43,8 @@ export function useActivityTracker(
   // Refs for tracking
   const sessionStartTime = useRef(Date.now());
   const lastPauseTime = useRef<number | null>(null);
-  const inactivityTimer = useRef<NodeJS.Timeout | null>(null);
-  const heartbeatTimer = useRef<NodeJS.Timeout | null>(null);
+  const inactivityTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const heartbeatTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Refs for callbacks to avoid dependency issues
   const onPauseRef = useRef(onPause);
@@ -67,12 +67,12 @@ export function useActivityTracker(
     setLastActivityTime(now);
 
     // If was inactive, resume
-    setIsActive(prev => {
+    setIsActive((prev) => {
       if (!prev) {
         // Calculate paused duration
         if (lastPauseTime.current) {
           const pauseDuration = now - lastPauseTime.current;
-          setPausedDuration(prevPaused => prevPaused + pauseDuration);
+          setPausedDuration((prevPaused) => prevPaused + pauseDuration);
           lastPauseTime.current = null;
         }
 
@@ -168,24 +168,32 @@ export function useActivityTracker(
   // Setup event listeners
   useEffect(() => {
     // Activity events
-    const events = ['mousemove', 'keydown', 'scroll', 'click', 'touchstart'];
+    const events = ["mousemove", "keydown", "scroll", "click", "touchstart"];
+    const onMediaActivity = () => handleActivity();
+    const mediaEls = Array.from(document.querySelectorAll("audio, video"));
+    mediaEls.forEach((el) =>
+      el.addEventListener("timeupdate", onMediaActivity),
+    );
 
-    events.forEach(event => {
+    events.forEach((event) => {
       window.addEventListener(event, handleActivity);
     });
 
     // Visibility change
-    document.addEventListener('visibilitychange', handleVisibilityChange);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     // Initial activity
     handleActivity();
 
     // Cleanup
     return () => {
-      events.forEach(event => {
+      mediaEls.forEach((el) =>
+        el.removeEventListener("timeupdate", onMediaActivity),
+      );
+      events.forEach((event) => {
         window.removeEventListener(event, handleActivity);
       });
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
 
       if (inactivityTimer.current) {
         clearTimeout(inactivityTimer.current);

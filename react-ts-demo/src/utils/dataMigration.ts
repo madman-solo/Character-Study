@@ -35,7 +35,7 @@ export function needsMigration(): boolean {
 /**
  * 从 localStorage 读取旧的学习数据
  */
-function readOldLearningData(userId: string): Partial<LearningData> | null {
+function readOldLearningData(_userId: string): Partial<LearningData> | null {
   try {
     const data: Partial<LearningData> = {};
 
@@ -96,7 +96,7 @@ function readOldLearningData(userId: string): Partial<LearningData> | null {
 /**
  * 从 localStorage 读取旧的奖励数据
  */
-function readOldRewardData(userId: string): Partial<RewardData> | null {
+function readOldRewardData(_userId: string): Partial<RewardData> | null {
   try {
     const data: Partial<RewardData> = {};
 

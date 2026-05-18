@@ -105,10 +105,22 @@ const VocabularyReview = () => {
     return (
       <div className="vocabulary-review-page">
         <div className="empty-container">
-          <div className="empty-icon">📚</div>
+          <div className="empty-icon">
+            <img
+              src="/src/assets/iconfont/单词本.svg"
+              alt="暂无单词"
+              width={80}
+              height={80}
+              style={{ marginTop: "70%" }}
+            />
+          </div>
           <h2>暂无需要复习的单词</h2>
           <p>{error || "你已经完成了所有单词的复习！"}</p>
-          <button className="back-btn" onClick={handleBackToVocabulary}>
+          <button
+            className="back-btn"
+            onClick={handleBackToVocabulary}
+            style={{ background: "#e0a6a6" }}
+          >
             返回单词本
           </button>
         </div>

@@ -5,7 +5,6 @@
 
 import * as indexedDB from '../utils/indexedDB';
 import * as learningDataService from './learningDataService';
-import type { LearningData, RewardData } from './learningDataService';
 
 // 同步队列项接口
 interface SyncQueueItem {

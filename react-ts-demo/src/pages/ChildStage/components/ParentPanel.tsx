@@ -2,8 +2,8 @@
  * 家长监控面板组件
  * 展示孩子的学习数据、互动数据、奖励数据等
  */
-
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 import type { LearningData } from "../../../hooks/useChildLearning";
 import type { RewardData } from "../../../hooks/useChildRewards";
 import LearningCharts from "./LearningCharts";
@@ -32,14 +32,26 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
   animationsEnabled,
   soundEnabled,
 }) => {
+  const [studyStats, setStudyStats] = useState({
+    totalMinutes: 0,
+    avgDailyMinutes: 0,
+  });
+  useEffect(() => {
+    axios
+      .get("/api/study/stats")
+      .then((r) => setStudyStats(r.data))
+      .catch(() => {});
+  }, []);
   const [activeTab, setActiveTab] = useState<
     "overview" | "guidance" | "settings"
   >("overview");
   const [showPasswordChange, setShowPasswordChange] = useState(false);
-  const [oldPassword, setOldPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [timeRange, setTimeRange] = useState<'7days' | '30days' | '90days'>('7days');
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [timeRange, setTimeRange] = useState<"7days" | "30days" | "90days">(
+    "7days",
+  );
 
   if (!learningData || !rewardData) {
     return null;
@@ -48,41 +60,41 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
   // 处理密码修改
   const handlePasswordChange = () => {
     // 验证旧密码
-    const storedPassword = localStorage.getItem('parent_password') || '1234';
+    const storedPassword = localStorage.getItem("parent_password") || "1234";
     if (oldPassword !== storedPassword) {
-      alert('旧密码错误！');
+      alert("旧密码错误！");
       return;
     }
 
     // 验证新密码
     if (!newPassword || newPassword.length < 4) {
-      alert('新密码至少需要4位！');
+      alert("新密码至少需要4位！");
       return;
     }
 
     if (newPassword !== confirmPassword) {
-      alert('两次输入的新密码不一致！');
+      alert("两次输入的新密码不一致！");
       return;
     }
 
     // 修改密码
     onChangePassword(newPassword);
     setShowPasswordChange(false);
-    setOldPassword('');
-    setNewPassword('');
-    setConfirmPassword('');
+    setOldPassword("");
+    setNewPassword("");
+    setConfirmPassword("");
   };
 
   // 计算统计数据
-  const totalStudyHours = Math.floor(learningData.totalStudyTime / 60);
-  const totalStudyMinutes = learningData.totalStudyTime % 60;
+  const totalStudyHours = Math.floor(studyStats.totalMinutes / 60);
+  const totalStudyMinutes = studyStats.totalMinutes % 60;
   const averageDailyTime =
-    Object.values(learningData.dailyStudyTime).length > 0
+    Object.values(studyStats.avgDailyMinutes).length > 0
       ? Math.round(
-          Object.values(learningData.dailyStudyTime).reduce(
+          Object.values(studyStats.avgDailyMinutes).reduce(
             (sum: number, time: number) => sum + time,
             0,
-          ) / Object.values(learningData.dailyStudyTime).length,
+          ) / Object.values(studyStats.avgDailyMinutes).length,
         )
       : 0;
 
@@ -100,10 +112,23 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
     <div className="parent-panel-content">
       {/* 核心学习数据 */}
       <section className="parent-section">
-        <h3 className="parent-section-title">📊 学习数据</h3>
+        <h3 className="parent-section-title">
+          <img
+            src="/src/assets/iconfont/child/理财统计表.svg"
+            width={36}
+            height={36}
+          ></img>
+          学习数据
+        </h3>
         <div className="parent-stats-grid">
           <div className="parent-stat-card">
-            <div className="parent-stat-icon">⏰</div>
+            <div className="parent-stat-icon">
+              <img
+                src="/src/assets/iconfont/闹钟.svg"
+                width={36}
+                height={36}
+              ></img>
+            </div>
             <div className="parent-stat-info">
               <div className="parent-stat-label">总学习时长</div>
               <div className="parent-stat-value">
@@ -113,7 +138,13 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
           </div>
 
           <div className="parent-stat-card">
-            <div className="parent-stat-icon">📅</div>
+            <div className="parent-stat-icon">
+              <img
+                src="/src/assets/iconfont/child/统计.svg"
+                width={36}
+                height={36}
+              ></img>
+            </div>
             <div className="parent-stat-info">
               <div className="parent-stat-label">平均每日学习</div>
               <div className="parent-stat-value">{averageDailyTime}分钟</div>
@@ -121,7 +152,13 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
           </div>
 
           <div className="parent-stat-card">
-            <div className="parent-stat-icon">📚</div>
+            <div className="parent-stat-icon">
+              <img
+                src="/src/assets/iconfont/child/掌握.svg"
+                width={36}
+                height={36}
+              ></img>
+            </div>
             <div className="parent-stat-info">
               <div className="parent-stat-label">掌握单词数</div>
               <div className="parent-stat-value">{masteredWordsCount}个</div>
@@ -129,7 +166,13 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
           </div>
 
           <div className="parent-stat-card">
-            <div className="parent-stat-icon">🎯</div>
+            <div className="parent-stat-icon">
+              <img
+                src="/src/assets/iconfont/child/中标.svg"
+                width={36}
+                height={36}
+              ></img>
+            </div>
             <div className="parent-stat-info">
               <div className="parent-stat-label">答题正确率</div>
               <div className="parent-stat-value">{accuracy}%</div>
@@ -137,7 +180,13 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
           </div>
 
           <div className="parent-stat-card">
-            <div className="parent-stat-icon">🔥</div>
+            <div className="parent-stat-icon">
+              <img
+                src="/src/assets/iconfont/child/火花.svg"
+                width={36}
+                height={36}
+              ></img>
+            </div>
             <div className="parent-stat-info">
               <div className="parent-stat-label">连续打卡</div>
               <div className="parent-stat-value">
@@ -147,7 +196,13 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
           </div>
 
           <div className="parent-stat-card">
-            <div className="parent-stat-icon">💬</div>
+            <div className="parent-stat-icon">
+              <img
+                src="/src/assets/iconfont/child/气泡图.svg"
+                width={36}
+                height={36}
+              ></img>
+            </div>
             <div className="parent-stat-info">
               <div className="parent-stat-label">互动次数</div>
               <div className="parent-stat-value">
@@ -160,7 +215,14 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
 
       {/* 学习数据分析图表 */}
       <section className="parent-section">
-        <h3 className="parent-section-title">📈 学习数据分析</h3>
+        <h3 className="parent-section-title">
+          <img
+            src="/src/assets/iconfont/child/理财统计表.svg"
+            width={36}
+            height={36}
+          ></img>
+          学习数据分析
+        </h3>
         <LearningCharts
           learningData={learningData}
           wordProgressList={[]}
@@ -172,7 +234,14 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
       {/* 单词本进度 */}
       {Object.keys(learningData.currentBookProgress).length > 0 && (
         <section className="parent-section">
-          <h3 className="parent-section-title">📖 单词本进度</h3>
+          <h3 className="parent-section-title">
+            <img
+              src="/src/assets/iconfont/child/统计.svg"
+              width={36}
+              height={36}
+            ></img>
+            单词本进度
+          </h3>
           <div className="parent-progress-list">
             {Object.entries(learningData.currentBookProgress).map(
               ([bookName, progress]) => (
@@ -197,7 +266,14 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
       {/* 薄弱单词 */}
       {weakWordsCount > 0 && (
         <section className="parent-section">
-          <h3 className="parent-section-title">⚠️ 薄弱单词（需重点辅导）</h3>
+          <h3 className="parent-section-title">
+            <img
+              src="/src/assets/iconfont/child/警告.svg"
+              width={36}
+              height={36}
+            ></img>{" "}
+            薄弱单词（需重点辅导）
+          </h3>
           <div className="parent-weak-words">
             {learningData.weakWords.slice(0, 10).map((word) => (
               <div key={word.id} className="parent-weak-word-item">
@@ -213,10 +289,23 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
 
       {/* 奖励数据 */}
       <section className="parent-section">
-        <h3 className="parent-section-title">🏆 奖励成就</h3>
+        <h3 className="parent-section-title">
+          <img
+            src="/src/assets/iconfont/child/奖杯.svg"
+            width={36}
+            height={36}
+          ></img>{" "}
+          奖励成就
+        </h3>
         <div className="parent-stats-grid">
           <div className="parent-stat-card">
-            <div className="parent-stat-icon">⭐</div>
+            <div className="parent-stat-icon">
+              <img
+                src="/src/assets/iconfont/child/花朵.svg"
+                width={36}
+                height={36}
+              ></img>
+            </div>
             <div className="parent-stat-info">
               <div className="parent-stat-label">当前积分</div>
               <div className="parent-stat-value">{rewardData.totalPoints}</div>
@@ -224,7 +313,13 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
           </div>
 
           <div className="parent-stat-card">
-            <div className="parent-stat-icon">🏅</div>
+            <div className="parent-stat-icon">
+              <img
+                src="/src/assets/iconfont/child/奖杯 (1).svg"
+                width={36}
+                height={36}
+              ></img>
+            </div>
             <div className="parent-stat-info">
               <div className="parent-stat-label">已解锁勋章</div>
               <div className="parent-stat-value">
@@ -255,7 +350,14 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
   const renderGuidance = () => (
     <div className="parent-panel-content">
       <section className="parent-section">
-        <h3 className="parent-section-title">💡 学习计划建议</h3>
+        <h3 className="parent-section-title">
+          <img
+            src="/src/assets/iconfont/child/灯泡 (1).svg"
+            width={36}
+            height={36}
+          ></img>{" "}
+          学习计划建议
+        </h3>
         <div className="parent-guidance-card">
           <p className="parent-guidance-text">根据孩子当前的学习进度，建议：</p>
           <ul className="parent-guidance-list">
@@ -273,7 +375,14 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
       </section>
 
       <section className="parent-section">
-        <h3 className="parent-section-title">🎯 单词记忆技巧</h3>
+        <h3 className="parent-section-title">
+          <img
+            src="/src/assets/iconfont/child/星星.svg"
+            width={36}
+            height={36}
+          ></img>{" "}
+          单词记忆技巧
+        </h3>
         <div className="parent-guidance-card">
           <ul className="parent-guidance-list">
             <li>
@@ -296,7 +405,14 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
       </section>
 
       <section className="parent-section">
-        <h3 className="parent-section-title">📚 少儿英语启蒙知识</h3>
+        <h3 className="parent-section-title">
+          <img
+            src="/src/assets/iconfont/child/189_树-11.svg"
+            width={36}
+            height={36}
+          ></img>{" "}
+          少儿英语启蒙知识
+        </h3>
         <div className="parent-guidance-card">
           <h4 className="parent-guidance-subtitle">基础发音规则</h4>
           <p className="parent-guidance-text">
@@ -323,7 +439,14 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
   const renderSettings = () => (
     <div className="parent-panel-content">
       <section className="parent-section">
-        <h3 className="parent-section-title">🔐 家长密码管理</h3>
+        <h3 className="parent-section-title">
+          <img
+            src="/src/assets/iconfont/child/锁定.svg"
+            width={36}
+            height={36}
+          ></img>{" "}
+          家长密码管理
+        </h3>
 
         {!showPasswordChange ? (
           <div className="parent-setting-item">
@@ -377,9 +500,9 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
                 className="parent-form-btn parent-form-btn-cancel"
                 onClick={() => {
                   setShowPasswordChange(false);
-                  setOldPassword('');
-                  setNewPassword('');
-                  setConfirmPassword('');
+                  setOldPassword("");
+                  setNewPassword("");
+                  setConfirmPassword("");
                 }}
               >
                 取消
@@ -396,8 +519,10 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
       </section>
 
       <section className="parent-section">
-        <h3 className="parent-section-title">⚙️ 学习设置</h3>
-
+        <h3 className="parent-section-title">
+          <img src="/src/assets/iconfont/设置.svg" alt="" aria-hidden="true" width={36} height={36} />
+          学习设置
+        </h3>
         <div className="parent-setting-item">
           <div className="parent-setting-info">
             <div className="parent-setting-label">动画效果</div>
@@ -428,11 +553,23 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
       </section>
 
       <section className="parent-section">
-        <h3 className="parent-section-title">🔄 数据管理</h3>
+        <h3 className="parent-section-title">
+          <img
+            src="/src/assets/iconfont/child/重置.svg"
+            width={26}
+            height={26}
+          ></img>
+          数据管理
+        </h3>
 
         <div className="parent-warning-card">
           <p className="parent-warning-text">
-            ⚠️ 以下操作将清空孩子的学习进度，请谨慎操作！
+            <img
+              src="/src/assets/iconfont/child/警告.svg"
+              width={36}
+              height={36}
+            ></img>
+            以下操作将清空孩子的学习进度，请谨慎操作！
           </p>
           <button
             className="parent-danger-btn"
@@ -453,7 +590,14 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
     <div className="parent-panel-overlay">
       <div className="parent-panel">
         <div className="parent-panel-header">
-          <h2 className="parent-panel-title">👨‍👩‍👧 家长监控面板</h2>
+          <h2 className="parent-panel-title">
+            <img
+              src="/src/assets/iconfont/child/一家人-copy.svg"
+              width={36}
+              height={36}
+            ></img>{" "}
+            家长监控面板
+          </h2>
           <button
             className="parent-panel-close"
             onClick={onClose}

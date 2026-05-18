@@ -303,7 +303,7 @@
   margin-bottom: var(--child-spacing-sm);
 }
 
-.word-text {
+.word-text-childvocabularyReview {
   font-size: var(--child-font-size-large);
   font-weight: var(--child-font-weight-bold);
   color: var(--child-primary);

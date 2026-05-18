@@ -24,6 +24,8 @@ const ColoringPage = () => {
     null,
   );
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  void selectedCategory;
+  void setSelectedCategory;
 
   // 使用图案配置生成涂色图片列表
   const coloringImages: ColoringImage[] = coloringPatterns.map((pattern) => ({
@@ -45,11 +47,11 @@ const ColoringPage = () => {
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case "easy":
-        return "#4CAF50";
+        return "#44a047";
       case "medium":
-        return "#FF9800";
+        return "#f1b457";
       case "hard":
-        return "#F44336";
+        return "#ad3830";
       default:
         return "#999";
     }
@@ -72,29 +74,44 @@ const ColoringPage = () => {
     <div className="coloring-page">
       {/* 顶部导航 */}
       <div className="coloring-header">
-        <button className="back-btn" onClick={handleBack}>
+        <button
+          className="back-btn"
+          onClick={handleBack}
+          role="button"
+          aria-label="返回上一页"
+        >
           ← 返回
         </button>
-        <h1 className="page-title">🎨 趣味涂色</h1>
+        <h1 className="page-title" role="heading">
+          🎨 趣味涂色
+        </h1>
         <div className="header-spacer"></div>
       </div>
 
       {/* 说明 */}
-      <div className="coloring-intro">
+      <div className="coloring-intro" role="region" aria-label="涂色说明">
         <p>选择一张图片开始涂色，边玩边学英语单词！</p>
       </div>
 
       {/* 涂色图片网格 */}
-      <div className="coloring-grid">
+      <div
+        className="coloring-grid"
+        role="list"
+        aria-label="可选择的涂色图片列表"
+      >
         {coloringImages.map((image) => (
           <div
             key={image.id}
             className="coloring-card"
+            role="listitem"
+            tabIndex={0}
+            aria-label={`${image.word}（${image.translation}），难度：${image.difficulty === 'easy' ? '简单' : image.difficulty === 'medium' ? '中等' : '困难'}`}
             onClick={() => handleImageSelect(image)}
+            onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), handleImageSelect(image))}
           >
             <div className="coloring-image">
               <PatternPreview
-                pattern={coloringPatterns.find(p => p.id === image.id)!}
+                pattern={coloringPatterns.find((p) => p.id === image.id)!}
                 width={300}
                 height={250}
               />
@@ -116,10 +133,16 @@ const ColoringPage = () => {
       {/* Canvas 涂色组件 */}
       {selectedImage && (
         <CanvasColoring
-          pattern={coloringPatterns.find(p => p.id === selectedImage.id)}
+          role="region"
+          aria-label="涂色画布，使用方向键移动画笔，空格键切换颜色"
+          width={800}
+          height={600}
+          pattern={coloringPatterns.find((p) => p.id === selectedImage.id)}
           word={selectedImage.word}
           translation={selectedImage.translation}
-          phonetic={coloringPatterns.find(p => p.id === selectedImage.id)?.phonetic}
+          phonetic={
+            coloringPatterns.find((p) => p.id === selectedImage.id)?.phonetic
+          }
           onClose={() => setSelectedImage(null)}
         />
       )}

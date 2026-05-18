@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import type { VocabularyBookType } from '../types';
-import { fetchWordsByBookType } from '../services/vocabularyService';
-import { trackWordProgress } from '../services/spacedRepetitionService';
-import '../styles/VocabularyPage.css';
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import type { VocabularyBookType } from "../types";
+import { fetchWordsByBookType } from "../services/vocabularyService";
+import { trackWordProgress } from "../services/spacedRepetitionService";
+import "../styles/VocabularyPage.css";
 
 // 单词数据接口
 interface Word {
@@ -26,11 +26,13 @@ const VocabularyPage = () => {
   const { bookType: urlBookType } = useParams<{ bookType: string }>();
 
   // 解码 URL 参数并验证
-  const bookType = (urlBookType ? decodeURIComponent(urlBookType) : '初一') as VocabularyBookType;
+  const bookType = (
+    urlBookType ? decodeURIComponent(urlBookType) : "初一"
+  ) as VocabularyBookType;
 
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [userInput, setUserInput] = useState('');
+  const [userInput, setUserInput] = useState("");
   const [showAnswer, setShowAnswer] = useState(false);
   const [words, setWords] = useState<Word[]>([]);
   const [loading, setLoading] = useState(true);
@@ -57,7 +59,7 @@ const VocabularyPage = () => {
   const handleNext = () => {
     if (currentWordIndex < words.length - 1) {
       setCurrentWordIndex(currentWordIndex + 1);
-      setUserInput('');
+      setUserInput("");
       setShowAnswer(false);
       setIsBlurred(false);
     }
@@ -66,7 +68,7 @@ const VocabularyPage = () => {
   const handlePrevious = () => {
     if (currentWordIndex > 0) {
       setCurrentWordIndex(currentWordIndex - 1);
-      setUserInput('');
+      setUserInput("");
       setShowAnswer(false);
       setIsBlurred(false);
     }
@@ -78,12 +80,21 @@ const VocabularyPage = () => {
 
     // 判断答案是否正确
     if (currentWord && user) {
-      const isCorrect = userInput.toLowerCase() === currentWord.word.toLowerCase();
+      const isCorrect =
+        userInput.toLowerCase() === currentWord.word.toLowerCase();
 
       try {
         // 调用后端API保存进度（这样单词会进入艾宾浩斯复习系统）
-        await trackWordProgress(user.id, parseInt(currentWord.id), bookType, isCorrect);
-        console.log(`${isCorrect ? '✅' : '❌'} 单词${isCorrect ? '答对' : '答错'}了，已加入复习系统:`, currentWord.word);
+        await trackWordProgress(
+          user.id,
+          parseInt(currentWord.id),
+          bookType,
+          isCorrect,
+        );
+        console.log(
+          `${isCorrect ? "✅" : "❌"} 单词${isCorrect ? "答对" : "答错"}了，已加入复习系统:`,
+          currentWord.word,
+        );
       } catch (error) {
         console.error("保存单词进度失败:", error);
       }
@@ -97,14 +108,16 @@ const VocabularyPage = () => {
   return (
     <div className="vocabulary-page">
       {/* 左侧导航栏 */}
-      <div className={`sidebar ${isNavCollapsed ? 'collapsed' : ''} ${isBlurred ? 'blurred' : ''}`}>
+      <div
+        className={`sidebar ${isNavCollapsed ? "collapsed" : ""} ${isBlurred ? "blurred" : ""}`}
+      >
         <div className="sidebar-header">
-          <h2>{!isNavCollapsed && '单词本学习'}</h2>
+          <h2>{!isNavCollapsed && "单词本学习"}</h2>
           <button
             className="collapse-button"
             onClick={() => setIsNavCollapsed(!isNavCollapsed)}
           >
-            {isNavCollapsed ? '→' : '←'}
+            {isNavCollapsed ? "→" : "←"}
           </button>
         </div>
 
@@ -114,25 +127,27 @@ const VocabularyPage = () => {
               <div className="book-info">
                 <h3>{bookType}</h3>
                 <p>共 {words.length} 个单词</p>
-                <p>当前进度: {currentWordIndex + 1}/{words.length}</p>
+                <p>
+                  当前进度: {currentWordIndex + 1}/{words.length}
+                </p>
               </div>
 
               {loading ? (
-                <div className="loading-message">加载中...</div>
+                <div className="loading-message" role="status" aria-live="polite">加载中...</div>
               ) : (
                 <div className="word-list">
                   {words.map((word, index) => (
                     <div
                       key={word.id}
-                      className={`word-item ${index === currentWordIndex ? 'active' : ''}`}
+                      className={`word-item ${index === currentWordIndex ? "active" : ""}`}
                       onClick={() => {
                         setCurrentWordIndex(index);
-                        setUserInput('');
+                        setUserInput("");
                         setShowAnswer(false);
                       }}
                     >
                       <span className="word-number">{index + 1}</span>
-                      <span className="word-text">{word.word}</span>
+                      <span className="word-text-vocabulary">{word.word}</span>
                     </div>
                   ))}
                 </div>
@@ -140,10 +155,16 @@ const VocabularyPage = () => {
             </div>
 
             <div className="sidebar-actions">
-              <button className="review-button" onClick={() => navigate(`/vocabulary-review/${bookType}`)}>
-                📝 开始复习
+              <button
+                className="review-button"
+                onClick={() => navigate(`/vocabulary-review/${bookType}`)}
+              >
+                <img src="/src/assets/iconfont/笔记.svg" alt="复习" width={16} height={16} style={{marginRight:6,verticalAlign:'middle'}} />开始复习
               </button>
-              <button className="back-home-button" onClick={() => navigate('/')}>
+              <button
+                className="back-home-button"
+                onClick={() => navigate("/")}
+              >
                 返回首页
               </button>
             </div>
@@ -160,7 +181,7 @@ const VocabularyPage = () => {
         ) : (
           <>
             {/* 左边：单词页 */}
-            <div className={`word-display ${isBlurred ? 'blurred' : ''}`}>
+            <div className={`word-display ${isBlurred ? "blurred" : ""}`}>
               <div className="word-card">
                 <h2 className="word-title">{currentWord?.word}</h2>
                 <p className="word-phonetic">{currentWord?.phonetic}</p>
@@ -174,6 +195,7 @@ const VocabularyPage = () => {
                   <button
                     onClick={handlePrevious}
                     disabled={currentWordIndex === 0}
+                    aria-disabled={currentWordIndex === 0}
                     className="nav-button"
                   >
                     上一个
@@ -184,6 +206,7 @@ const VocabularyPage = () => {
                   <button
                     onClick={handleNext}
                     disabled={currentWordIndex === words.length - 1}
+                    aria-disabled={currentWordIndex === words.length - 1}
                     className="nav-button"
                   >
                     下一个
@@ -198,7 +221,9 @@ const VocabularyPage = () => {
                 <h3>单词默写</h3>
                 <div className="dictation-prompt">
                   <p className="prompt-text">请根据中文意思写出单词：</p>
-                  <p className="prompt-translation">{currentWord?.translation}</p>
+                  <p className="prompt-translation">
+                    {currentWord?.translation}
+                  </p>
                 </div>
 
                 <input
@@ -215,8 +240,11 @@ const VocabularyPage = () => {
                 </button>
 
                 {showAnswer && (
-                  <div className={`answer-feedback ${userInput.toLowerCase() === currentWord?.word.toLowerCase() ? 'correct' : 'incorrect'}`}>
-                    {userInput.toLowerCase() === currentWord?.word.toLowerCase() ? (
+                  <div
+                    className={`answer-feedback ${userInput.toLowerCase() === currentWord?.word.toLowerCase() ? "correct" : "incorrect"}`}
+                  >
+                    {userInput.toLowerCase() ===
+                    currentWord?.word.toLowerCase() ? (
                       <div className="correct-answer">
                         <span className="feedback-icon">✓</span>
                         <span>回答正确！</span>
@@ -225,8 +253,10 @@ const VocabularyPage = () => {
                       <div className="incorrect-answer">
                         <span className="feedback-icon">✗</span>
                         <div>
-                          <p>正确答案是: <strong>{currentWord?.word}</strong></p>
-                          <p>你的答案: {userInput || '(未填写)'}</p>
+                          <p>
+                            正确答案是: <strong>{currentWord?.word}</strong>
+                          </p>
+                          <p>你的答案: {userInput || "(未填写)"}</p>
                         </div>
                       </div>
                     )}

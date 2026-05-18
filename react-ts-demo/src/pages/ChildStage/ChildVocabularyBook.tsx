@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { useChildLearning } from "../../hooks/useChildLearning";
 import { useActivityTracker } from "../../hooks/useActivityTracker";
-import { useChildSound } from "../../hooks/useChildSound";
 import AlphabetAnimation from "./components/AlphabetAnimation";
 import VocabularyWordCard from "./components/VocabularyWordCard";
 import ChangeWordModal from "./components/ChangeWordModal";
@@ -21,13 +20,11 @@ import "../../styles/ChildStageCss/ChildVocabularyBook.css";
 const ChildVocabularyBook = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
-  const userId = user?.id || 'guest';
+  const userId = user?.id || "guest";
 
   // 使用学习时长统计hook
-  const { learningData, startLearningSession, endLearningSession } = useChildLearning(userId);
-
-  // 使用音效hook
-  const { speakWord } = useChildSound();
+  const { learningData, startLearningSession, endLearningSession } =
+    useChildLearning(userId);
 
   // 学习会话ID（从后端API获取）
   const [sessionId, setSessionId] = useState<string | null>(null);
@@ -49,29 +46,33 @@ const ChildVocabularyBook = () => {
     inactivityTimeout: 3 * 60 * 1000, // 3分钟无活动自动暂停
     heartbeatInterval: 30 * 1000, // 30秒心跳间隔
     onPause: () => {
-      console.log('⏸️ 用户暂停学习（页面失焦或无活动）');
+      console.log("⏸️ 用户暂停学习（页面失焦或无活动）");
     },
     onResume: () => {
-      console.log('▶️ 用户恢复学习');
+      console.log("▶️ 用户恢复学习");
     },
     onHeartbeat: async (state) => {
       // 发送心跳到服务器，保持会话活跃
       if (sessionId) {
         try {
-          await fetch('http://localhost:3001/api/learning-session/heartbeat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+          await fetch("http://localhost:3001/api/learning-session/heartbeat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               sessionId,
-              timestamp: Date.now()
-            })
+              timestamp: Date.now(),
+            }),
           });
-          console.log('💓 心跳已发送，活跃时长:', Math.floor(state.activeDuration / 1000 / 60), '分钟');
+          console.log(
+            "💓 心跳已发送，活跃时长:",
+            Math.floor(state.activeDuration / 1000 / 60),
+            "分钟",
+          );
         } catch (error) {
-          console.error('心跳发送失败:', error);
+          console.error("心跳发送失败:", error);
         }
       }
-    }
+    },
   });
 
   useEffect(() => {
@@ -103,22 +104,25 @@ const ChildVocabularyBook = () => {
       // 调用后端API启动学习会话
       const startBackendSession = async () => {
         try {
-          const response = await fetch('http://localhost:3001/api/learning-session/start', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              userId,
-              sessionType: 'vocabulary-book'
-            })
-          });
+          const response = await fetch(
+            "http://localhost:3001/api/learning-session/start",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                userId,
+                sessionType: "vocabulary-book",
+              }),
+            },
+          );
 
           const data = await response.json();
           if (data.success) {
             setSessionId(data.sessionId);
-            console.log('✅ 学习会话已开始，会话ID:', data.sessionId);
+            console.log("✅ 学习会话已开始，会话ID:", data.sessionId);
           }
         } catch (error) {
-          console.error('启动学习会话失败:', error);
+          console.error("启动学习会话失败:", error);
         }
       };
 
@@ -138,25 +142,28 @@ const ChildVocabularyBook = () => {
         const endBackendSession = async () => {
           if (sessionId) {
             try {
-              const response = await fetch('http://localhost:3001/api/learning-session/end', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  sessionId,
-                  activeTime: activityState.activeDuration,
-                  pausedTime: activityState.pausedDuration
-                })
-              });
+              const response = await fetch(
+                "http://localhost:3001/api/learning-session/end",
+                {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    sessionId,
+                    activeTime: activityState.activeDuration,
+                    pausedTime: activityState.pausedDuration,
+                  }),
+                },
+              );
 
               const data = await response.json();
               if (data.success) {
-                console.log('✅ 学习会话已结束');
-                console.log('📊 总时长:', data.totalTime, '分钟');
-                console.log('✅ 有效时长:', data.validTime, '分钟');
-                console.log('⏸️ 暂停时长:', data.pausedTime, '分钟');
+                console.log("✅ 学习会话已结束");
+                console.log("📊 总时长:", data.totalTime, "分钟");
+                console.log("✅ 有效时长:", data.validTime, "分钟");
+                console.log("⏸️ 暂停时长:", data.pausedTime, "分钟");
               }
             } catch (error) {
-              console.error('结束学习会话失败:', error);
+              console.error("结束学习会话失败:", error);
             }
           }
         };
@@ -221,7 +228,13 @@ const ChildVocabularyBook = () => {
 
     try {
       console.log("📡 开始调用API保存进度...");
-      console.log("📡 参数: userId=", user.id, "wordId=", word.id, "correct=true");
+      console.log(
+        "📡 参数: userId=",
+        user.id,
+        "wordId=",
+        word.id,
+        "correct=true",
+      );
 
       // 调用后端API保存进度（这样单词会进入艾宾浩斯复习系统）
       await trackChildWordProgress(user.id, word.id, true);
@@ -230,7 +243,10 @@ const ChildVocabularyBook = () => {
       console.log("✅ API调用成功");
     } catch (error) {
       console.error("❌ 保存单词进度失败:", error);
-      console.error("❌ 错误详情:", error instanceof Error ? error.message : String(error));
+      console.error(
+        "❌ 错误详情:",
+        error instanceof Error ? error.message : String(error),
+      );
 
       // API调用失败时，仍然保存到localStorage作为备份
       const storageKey = `child_word_progress_${user.id}`;
@@ -304,10 +320,24 @@ const ChildVocabularyBook = () => {
             className="nav-btn"
             onClick={() => setIsChangeWordModalOpen(true)}
           >
-            🔄 更换单词
+            <img
+              src="/src/assets/iconfont/child/重置.svg"
+              alt=""
+              aria-hidden="true"
+              width={16}
+              height={16}
+            />{" "}
+            更换单词
           </button>
           <button className="nav-btn primary" onClick={handleReviewClick}>
-            📝 复习单词
+            <img
+              src="/src/assets/iconfont/child/英语.svg"
+              alt=""
+              aria-hidden="true"
+              width={36}
+              height={36}
+            />
+            复习单词
           </button>
         </div>
       </div>
@@ -329,7 +359,16 @@ const ChildVocabularyBook = () => {
                   animationsEnabled={animationComplete}
                 />
                 <div className="word-hint">
-                  <p>👆 点击单词开始学习</p>
+                  <p>
+                    <img
+                      src="/src/assets/iconfont/child/点击.svg"
+                      alt=""
+                      aria-hidden="true"
+                      width={36}
+                      height={36}
+                    />
+                    点击单词开始学习
+                  </p>
                 </div>
               </>
             ) : (
@@ -352,7 +391,17 @@ const ChildVocabularyBook = () => {
               <div className="loading-bar">
                 <div className="loading-bar-fill"></div>
               </div>
-              <p className="loading-text">🎈 正在准备单词本...</p>
+              <p className="loading-text">
+                {" "}
+                <img
+                  src="/src/assets/iconfont/child/迪迦奥特曼.svg"
+                  alt=""
+                  aria-hidden="true"
+                  width={36}
+                  height={36}
+                />
+                正在准备单词本...
+              </p>
             </div>
           )}
         </div>

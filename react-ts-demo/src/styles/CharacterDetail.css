@@ -6,8 +6,7 @@
   margin-left: auto;
   margin-right: auto;
 }
-
-.back-button {
+.character-detail-container .back-button {
   padding: 0.8rem 1.5rem;
   background: white;
   border: 2px solid #e0e0e0;

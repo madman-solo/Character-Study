@@ -34,11 +34,18 @@
   box-shadow: none;
   color: #333 !important;
 }
+.custom-companion-chat-page .chat-interface-header,
+.custom-companion-chat-page .chat-input-area,
+.custom-companion-chat-page .chat-message-wrapper.user-message,
+.custom-companion-chat-page .chat-message-wrapper.assistant-message {
+  background: var(--bg-style, transparent);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
 
 /* 头部保持固定颜色 */
 .custom-companion-chat-page .chat-interface-header {
-  background: #bf6363 !important;
-  border-bottom: 1px solid #bf6363 !important;
   border-radius: 12px;
   margin-top: 43px;
   backdrop-filter: blur(10px);
@@ -86,7 +93,6 @@
 /* 消息气泡保持固定颜色 */
 .custom-companion-chat-page .chat-message-wrapper {
   margin-bottom: 16px;
-  background: #bf6363 !important;
 }
 
 .custom-companion-chat-page .chat-message-avatar {
@@ -117,12 +123,8 @@
 
 /* 输入区域保持固定颜色 */
 .custom-companion-chat-page .chat-input-area {
-  background: #bf6363 !important;
-  border-top: 1px solid #bf6363 !important;
   border-radius: 12px;
   margin-top: 20px;
-  /* box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1); */
-  /* backdrop-filter: blur(10px); */
 }
 
 .custom-companion-chat-page .chat-input-container {

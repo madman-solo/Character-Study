@@ -35,6 +35,8 @@ export interface WordProgress {
   id?: number;
   userId: string;
   wordId: number;
+  word?: string; // Display field
+  masteryScore?: number; // Calculated field
   bookType?: string; // For adult words
   correctCount: number;
   wrongCount: number;

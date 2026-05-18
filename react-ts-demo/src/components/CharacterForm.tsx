@@ -228,7 +228,7 @@ const CharacterForm: React.FC<CharacterFormProps> = ({
                   type="text"
                   value={traitInput}
                   onChange={(e) => setTraitInput(e.target.value)}
-                  onKeyPress={(e) =>
+                  onKeyDown={(e) =>
                     e.key === "Enter" && (e.preventDefault(), addTrait())
                   }
                   placeholder="输入标签后按回车"
@@ -310,7 +310,7 @@ const CharacterForm: React.FC<CharacterFormProps> = ({
                   type="text"
                   value={hobbyInput}
                   onChange={(e) => setHobbyInput(e.target.value)}
-                  onKeyPress={(e) =>
+                  onKeyDown={(e) =>
                     e.key === "Enter" && (e.preventDefault(), addHobby())
                   }
                   placeholder="输入爱好后按回车"
@@ -343,10 +343,11 @@ const CharacterForm: React.FC<CharacterFormProps> = ({
               onClick={onCancel}
               className="cancel-btn"
               disabled={loading}
+              aria-disabled={loading}
             >
               取消
             </button>
-            <button type="submit" className="submit-btn" disabled={loading}>
+            <button type="submit" className="submit-btn" disabled={loading} aria-disabled={loading}>
               {loading ? "保存中..." : character ? "保存修改" : "创建角色"}
             </button>
           </div>

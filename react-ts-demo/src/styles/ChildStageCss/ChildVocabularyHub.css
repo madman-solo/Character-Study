@@ -1,10 +1,10 @@
 /* ChildVocabularyHub Page Styles */
-@import '../../styles/ChildStageCss/child-variables.css';
-@import '../../styles/ChildStageCss/child-animations.css';
+@import "../../styles/ChildStageCss/child-variables.css";
+@import "../../styles/ChildStageCss/child-animations.css";
 
 .child-vocab-hub-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #AA96DA 0%, #6C9BD1 100%);
+  background: #f0f4f8;
   padding-bottom: var(--child-spacing-xl);
 }
 
@@ -41,7 +41,7 @@
 .nav-title {
   font-size: var(--child-font-size-xlarge);
   font-weight: var(--child-font-weight-bold);
-  color: var(--child-primary);
+  color: #313131;
 }
 
 .nav-user-info {
@@ -83,13 +83,13 @@
 .progress-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--child-spacing-md);
+  gap: var(--child-spacing-lg);
 }
 
 .progress-card {
   background: white;
-  padding: var(--child-spacing-lg);
-  border-radius: var(--child-border-radius-large);
+  padding: 10px;
+  border-radius: 10px;
   text-align: center;
   box-shadow: var(--child-shadow-light);
   transition: all var(--child-transition-normal);
@@ -119,9 +119,47 @@
 }
 
 .modules-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--child-spacing-lg);
+  justify-content: space-evenly;
+}
+.time-range-selector {
+  display: flex;
+  gap: var(--child-spacing-sm);
+  margin-bottom: 5px;
+}
+.time-range-selector button {
+  font-size: var(--child-font-size-small);
+  border: 2px solid #ffd7d7;
+  background: #fcdede;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all var(--child-transition-fast);
+}
+.charts-section {
+  margin-bottom: var(--child-spacing-xxl);
+}
+
+.charts-toggle-btn {
+  display: block;
+  width: 100%;
+  padding: var(--child-spacing-md) var(--child-spacing-lg);
+  font-size: var(--child-font-size-medium);
+  font-weight: var(--child-font-weight-semibold);
+  font-family: var(--child-font-family);
+  background: white;
+  border: 2px solid #fcdede;
+  border-radius: var(--child-border-radius-medium);
+  color: #313131;
+  cursor: pointer;
+  transition: all var(--child-transition-fast);
+  margin-bottom: var(--child-spacing-lg);
+}
+
+.charts-toggle-btn:hover {
+  background: #fcdede;
+  color: rgb(65, 63, 63);
 }
 
 /* Mobile responsive */
@@ -142,17 +180,17 @@
   }
 
   .modules-grid {
-    grid-template-columns: repeat(2, 1fr);
+    flex-wrap: wrap;
     gap: var(--child-spacing-md);
   }
 }
 
 @media (max-width: 480px) {
   .progress-cards {
-    grid-template-columns: 1fr;
+    flex-wrap: wrap;
   }
 
   .modules-grid {
-    grid-template-columns: 1fr;
+    flex-wrap: wrap;
   }
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/ListeningPage.css";
 
@@ -13,28 +13,28 @@ interface Material {
   thumbnail?: string;
 }
 
-const mockExtensiveMaterials: Material[] = [
-  {
-    id: "1",
-    title: "Daily English Conversation",
-    duration: "5:30",
-    level: "初级",
-  },
-  {
-    id: "2",
-    title: "Business English Basics",
-    duration: "8:15",
-    level: "中级",
-  },
-  { id: "3", title: "Travel English", duration: "6:45", level: "初级" },
-  { id: "4", title: "Academic English", duration: "10:20", level: "高级" },
-];
+// const mockExtensiveMaterials: Material[] = [
+//   {
+//     id: "1",
+//     title: "Daily English Conversation",
+//     duration: "5:30",
+//     level: "初级",
+//   },
+//   {
+//     id: "2",
+//     title: "Business English Basics",
+//     duration: "8:15",
+//     level: "中级",
+//   },
+//   { id: "3", title: "Travel English", duration: "6:45", level: "初级" },
+//   { id: "4", title: "Academic English", duration: "10:20", level: "高级" },
+// ];
 
-const mockIntensiveMaterials: Material[] = [
-  { id: "1", title: "Pronunciation Practice", duration: "4:20", level: "初级" },
-  { id: "2", title: "Grammar in Context", duration: "7:30", level: "中级" },
-  { id: "3", title: "Idioms and Phrases", duration: "5:50", level: "中级" },
-];
+// const mockIntensiveMaterials: Material[] = [
+//   { id: "1", title: "Pronunciation Practice", duration: "4:20", level: "初级" },
+//   { id: "2", title: "Grammar in Context", duration: "7:30", level: "中级" },
+//   { id: "3", title: "Idioms and Phrases", duration: "5:50", level: "中级" },
+// ];
 
 const ListeningPage = () => {
   const navigate = useNavigate();
@@ -42,19 +42,49 @@ const ListeningPage = () => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [intensiveMode, setIntensiveMode] = useState<"audio" | "textbook">(
-    "audio"
+    "audio",
   );
+  const [intensiveMaterials, setIntensiveMaterials] = useState<Material[]>([]);
+  const [extensiveMaterials, setExtensiveMaterials] = useState<Material[]>([]);
+  const [_loading, setLoading] = useState(false);
+  useEffect(() => {
+    if (activeTab !== "intensive" && activeTab !== "extensive") return;
 
+    const controller = new AbortController();
+
+    const loadMaterials = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch(
+          `http://localhost:3001/api/listening/materials?type=${activeTab}`,
+          { signal: controller.signal },
+        );
+        if (!res.ok) throw new Error(`请求失败：${res.status}`);
+        const data = await res.json();
+        if (activeTab === "intensive") setIntensiveMaterials(data);
+        else setExtensiveMaterials(data);
+      } catch (err) {
+        if ((err as Error).name !== "AbortError") {
+          console.error("加载素材失败：", err);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadMaterials();
+    return () => controller.abort();
+  }, [activeTab]);
   const handleSpeakingClick = () => {
     navigate("/speaking");
   };
 
-  const filteredExtensiveMaterials = mockExtensiveMaterials.filter((material) =>
-    material.title.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredExtensiveMaterials = extensiveMaterials.filter((material) =>
+    material.title.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
-  const filteredIntensiveMaterials = mockIntensiveMaterials.filter((material) =>
-    material.title.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredIntensiveMaterials = intensiveMaterials.filter((material) =>
+    material.title.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
   return (
@@ -80,7 +110,7 @@ const ListeningPage = () => {
                 }`}
                 onClick={() => setActiveTab("extensive")}
               >
-                <span className="tab-icon">🎵</span>
+                <span className="tab-icon"><img src="/src/assets/iconfont/芝士_听力理解.svg" alt="泛听" width={20} height={20} /></span>
                 <span>泛听</span>
               </button>
               <button
@@ -89,7 +119,7 @@ const ListeningPage = () => {
                 }`}
                 onClick={() => setActiveTab("intensive")}
               >
-                <span className="tab-icon">🎯</span>
+                <span className="tab-icon"><img src="/src/assets/iconfont/精听.svg" alt="精听" width={20} height={20} /></span>
                 <span>精听</span>
               </button>
               <button
@@ -98,7 +128,7 @@ const ListeningPage = () => {
                 }`}
                 onClick={handleSpeakingClick}
               >
-                <span className="tab-icon">🎤</span>
+                <span className="tab-icon"><img src="/src/assets/iconfont/口语.svg" alt="口语" width={20} height={20} /></span>
                 <span>口语</span>
               </button>
             </div>
@@ -122,7 +152,7 @@ const ListeningPage = () => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="search-input"
               />
-              <button className="search-button">🔍</button>
+              <button className="search-button"><img src="/src/assets/iconfont/搜索.svg" alt="搜索" width={18} height={18} /></button>
             </div>
 
             <div className="materials-list">
@@ -178,7 +208,14 @@ const ListeningPage = () => {
 
             <div className="materials-list">
               {filteredIntensiveMaterials.map((material) => (
-                <div key={material.id} className="material-card intensive">
+                <div
+                  key={material.id}
+                  className="material-card intensive"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => navigate(`/listening/intensive/${material.id}`)}
+                  onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), navigate(`/listening/intensive/${material.id}`))}
+                >
                   <div className="material-thumbnail">
                     <div className="play-icon">▶</div>
                   </div>

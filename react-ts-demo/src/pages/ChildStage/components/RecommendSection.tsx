@@ -1,9 +1,9 @@
-import { useNavigate } from 'react-router-dom';
-import ChildCard from './ChildCard';
-import DailyTasks from './DailyTasks';
-import type { LearningData } from '../../../hooks/useChildLearning';
-import type { RewardData } from '../../../hooks/useChildRewards';
-import '../../../styles/ChildStageCss/RecommendSection.css';
+import { useNavigate } from "react-router-dom";
+import ChildCard from "./ChildCard";
+import DailyTasks from "./DailyTasks";
+import type { LearningData } from "../../../hooks/useChildLearning";
+import type { RewardData } from "../../../hooks/useChildRewards";
+import "../../../styles/ChildStageCss/RecommendSection.css";
 
 interface RecommendSectionProps {
   learningData?: LearningData | null;
@@ -21,12 +21,34 @@ const RecommendSection: React.FC<RecommendSectionProps> = ({
   const navigate = useNavigate();
 
   const recommendItems = [
-    { id: '1', icon: '🎨', title: '趣味涂色', description: '边涂色边学单词', path: '/child-coloring' },
-    { id: '2', icon: '🎵', title: '英文儿歌', description: '唱歌学英语', path: '/child-songs' },
-    { id: '3', icon: '📖', title: '绘本故事', description: '听故事学英语', path: '/child-stories' },
-    { id: '4', icon: '🎮', title: '互动游戏', description: '玩游戏学英语', path: '/child-games' },
-    { id: '5', icon: '🌟', title: '每日一词', description: '每天学习新单词', path: '/child-daily-word' },
-    { id: '6', icon: '🎭', title: '角色扮演', description: '情景对话练习', path: '/child-role-play' },
+    {
+      id: "1",
+      icon: "/src/assets/iconfont/child/冰淇淋.svg",
+      title: "趣味涂色",
+      description: "边涂色边学单词",
+      path: "/child-coloring",
+    },
+    {
+      id: "2",
+      icon: "/src/assets/iconfont/child/听音乐.svg",
+      title: "英文儿歌",
+      description: "唱歌学英语",
+      path: "/child-songs",
+    },
+    {
+      id: "3",
+      icon: "/src/assets/iconfont/child/044_绘本.svg",
+      title: "绘本故事",
+      description: "听故事学英语",
+      path: "/child-stories",
+    },
+    {
+      id: "5",
+      icon: "/src/assets/iconfont/child/太阳.svg",
+      title: "每日一词",
+      description: "每天学习新单词",
+      path: "/child-daily-word",
+    },
   ];
 
   const handleCardClick = (path: string) => {

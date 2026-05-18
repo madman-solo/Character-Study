@@ -10,7 +10,6 @@ import type { ChatScene, ChatMessage } from "../services/chatService";
 import {
   saveConversation,
   getConversationHistory as getCharacterHistory,
-  getCharacterMemories,
 } from "../services/characterService";
 import type { CharacterConversation } from "../services/characterService";
 import { useChatHistory } from "../hooks/useChatHistory";
@@ -282,7 +281,7 @@ const ChatInterface = ({
       </div>
 
       {/* 消息区域 */}
-      <div className="chat-messages-area">
+      <div className="chat-messages-area" role="log" aria-live="polite" aria-label="聊天记录">
         {messages.length === 0 ? (
           <div className="chat-empty-state">
             <div className="chat-empty-icon">💬</div>
@@ -332,7 +331,7 @@ const ChatInterface = ({
             })}
 
             {isLoading && (
-              <div className="chat-loading-indicator">
+              <div className="chat-loading-indicator" role="status" aria-label="AI正在回复">
                 <div className="chat-message-avatar assistant-avatar">🤖</div>
                 <div className="chat-loading-dots">
                   <div className="chat-loading-dot"></div>
@@ -364,8 +363,10 @@ const ChatInterface = ({
             className="chat-send-button"
             onClick={handleSendMessage}
             disabled={!inputValue.trim() || isLoading}
+            aria-disabled={!inputValue.trim() || isLoading}
+            aria-label="发送消息"
           >
-            ↑
+            <span aria-hidden="true">↑</span>
           </button>
         </div>
       </div>

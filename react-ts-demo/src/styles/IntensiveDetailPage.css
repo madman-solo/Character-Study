@@ -1,0 +1,381 @@
+/* 主色调 */
+:root {
+  --bg: #f3f6f3;
+  --accent-light: #9ebeed;
+  --accent: #4e90f5;
+  --dark: #4b6b03;
+}
+
+.idp-root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg);
+  font-family: "Segoe UI", sans-serif;
+  overflow: hidden;
+}
+
+/* 顶部 */
+.idp-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: #fff;
+  border-bottom: 2px solid var(--accent-light);
+  flex-shrink: 0;
+}
+
+.idp-back {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--dark);
+}
+
+.idp-title-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.idp-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--dark);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 500px;
+}
+
+.idp-level {
+  background: var(--accent-light);
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.idp-toggle-transcript {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* 主内容 */
+.idp-main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 32px;
+}
+
+.idp-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 18px;
+  color: var(--dark);
+}
+
+/* 锁定提示 */
+.idp-locked-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 300px;
+  gap: 12px;
+  color: var(--dark);
+}
+
+.idp-locked-icon {
+  font-size: 64px;
+}
+
+.idp-locked-hint p {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.idp-locked-sub {
+  font-size: 14px !important;
+  color: #888 !important;
+  font-weight: 400 !important;
+}
+
+/* 原文 */
+.idp-transcript {
+  line-height: 2;
+  font-size: 16px;
+  color: #333;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.idp-sentence {
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 1px 2px;
+  transition: background 0.15s;
+}
+
+.idp-sentence:hover {
+  background: #e8f0fe;
+}
+
+.idp-sentence.active {
+  background: #ffe066;
+  color: #333;
+}
+
+/* 底部播放栏 */
+.idp-footer {
+  background: #fff;
+  border-top: 2px solid var(--accent-light);
+  padding: 10px 20px 14px;
+  flex-shrink: 0;
+}
+
+.idp-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.idp-time {
+  font-size: 12px;
+  color: #666;
+  width: 38px;
+  text-align: center;
+}
+
+.idp-progress {
+  flex: 1;
+  height: 4px;
+  accent-color: #9ebeed;
+  cursor: pointer;
+}
+
+.idp-progress:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.idp-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.idp-ctrl-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--dark);
+  padding: 4px 8px;
+}
+
+.idp-play-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #9ebeed;
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(78, 144, 245, 0.4);
+}
+
+.idp-loop-btn {
+  background: none;
+  border: 1.5px solid #9ebeed;
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #888;
+}
+
+.idp-loop-btn.active {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.idp-speed {
+  border: 1.5px solid #9ebeed;
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-size: 13px;
+  color: var(--dark);
+  background: #fff;
+  cursor: pointer;
+}
+
+.idp-quiz-btn {
+  background: var(--dark);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 16px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* 模态框 */
+.idp-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.idp-modal {
+  background: #fff;
+  border-radius: 16px;
+  width: min(680px, 92vw);
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+}
+
+.idp-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1.5px solid var(--accent-light);
+  flex-shrink: 0;
+}
+
+.idp-modal-header h2 {
+  margin: 0;
+  font-size: 18px;
+  color: var(--dark);
+}
+
+.idp-modal-close {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 16px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.idp-modal-body {
+  overflow-y: auto;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.idp-question {
+}
+
+.idp-q-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: #222;
+  margin: 0 0 10px;
+  line-height: 1.5;
+}
+
+.idp-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.idp-option {
+  text-align: left;
+  background: var(--bg);
+  border: 1.5px solid var(--accent-light);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+  color: #333;
+}
+
+.idp-option:hover {
+  background: #e8f0fe;
+}
+
+.idp-option.selected {
+  border-color: var(--accent);
+  background: #ddeeff;
+}
+
+.idp-option.correct {
+  border-color: var(--dark);
+  background: #e8f5d0;
+  color: var(--dark);
+}
+
+.idp-option.wrong {
+  border-color: #e05252;
+  background: #fde8e8;
+  color: #c0392b;
+}
+
+.idp-explanation {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: #555;
+  background: #f9f9e8;
+  border-left: 3px solid var(--dark);
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+.idp-modal-footer {
+  padding: 14px 24px;
+  border-top: 1.5px solid var(--accent-light);
+  display: flex;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+.idp-submit-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 28px;
+  font-size: 15px;
+  cursor: pointer;
+}
+.idp-ctrl-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}

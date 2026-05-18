@@ -53,42 +53,42 @@ const BADGE_DEFINITIONS: Omit<Badge, "unlocked" | "unlockedAt" | "progress">[] =
       id: "consecutive_7days",
       name: "坚持小勇士",
       description: "连续打卡学习7天",
-      icon: "🏆",
+      icon: "/src/assets/iconfont/child/奖杯.svg",
       requirement: "连续学习7天",
     },
     {
       id: "master_50words",
       name: "单词小能手",
       description: "掌握50个单词",
-      icon: "📚",
+      icon: "/src/assets/iconfont/child/我的单词本.svg",
       requirement: "掌握50个单词",
     },
     {
       id: "complete_book",
       name: "单词通关之星",
       description: "完成整本单词本",
-      icon: "⭐",
+      icon: "/src/assets/iconfont/child/星星.svg",
       requirement: "完成一本单词本",
     },
     {
       id: "interaction_20times",
       name: "互动小达人",
       description: "和角色互动20次",
-      icon: "💬",
+      icon: "/src/assets/iconfont/child/气泡图.svg",
       requirement: "互动20次",
     },
     {
       id: "accuracy_90percent",
       name: "答题小天才",
       description: "答题正确率达到90%",
-      icon: "🎯",
+      icon: "/src/assets/iconfont/child/中标.svg",
       requirement: "正确率≥90%",
     },
     {
       id: "study_100hours",
       name: "学习小标兵",
       description: "累计学习100小时",
-      icon: "⏰",
+      icon: "/src/assets/iconfont/闹钟.svg",
       requirement: "学习100小时",
     },
   ];
@@ -165,10 +165,10 @@ export const useChildRewards = (userId: string) => {
             : dataOrUpdater;
 
         const storageKey = `${STORAGE_KEY_PREFIX}${userId}`;
-        console.log("💾 保存数据到 localStorage:", storageKey);
-        console.log("💾 保存的总积分:", newData.totalPoints);
+        console.log("保存数据到 localStorage:", storageKey);
+        console.log("保存的总积分:", newData.totalPoints);
         localStorage.setItem(storageKey, JSON.stringify(newData));
-        console.log("✅ 数据已保存到 localStorage 和 state");
+        console.log("数据已保存到 localStorage 和 state");
 
         return newData;
       });
@@ -179,7 +179,7 @@ export const useChildRewards = (userId: string) => {
   // 添加积分（使用函数式更新）
   const addPoints = useCallback(
     (amount: number, reason: string) => {
-      console.log(`💰 添加积分: +${amount} (${reason})`);
+      console.log(`添加积分: +${amount} (${reason})`);
 
       const record: PointRecord = {
         id: Date.now().toString(),
@@ -189,7 +189,7 @@ export const useChildRewards = (userId: string) => {
       };
 
       saveData((prevData) => {
-        console.log("💰 当前总积分:", prevData.totalPoints);
+        console.log("当前总积分:", prevData.totalPoints);
 
         const updatedData = {
           ...prevData,
@@ -197,7 +197,7 @@ export const useChildRewards = (userId: string) => {
           pointHistory: [record, ...prevData.pointHistory].slice(0, 100),
         };
 
-        console.log("💰 新的总积分:", updatedData.totalPoints);
+        console.log("新的总积分:", updatedData.totalPoints);
         return updatedData;
       });
 
@@ -211,17 +211,17 @@ export const useChildRewards = (userId: string) => {
   // 每日登录奖励（使用函数式更新）
   const claimDailyLoginReward = useCallback(() => {
     if (!rewardData) {
-      console.log("❌ claimDailyLoginReward: rewardData 为空");
+      console.log("claimDailyLoginReward: rewardData 为空");
       return false;
     }
 
     const today = new Date().toISOString().split("T")[0];
-    console.log("📅 今天日期:", today);
-    console.log("📅 上次登录奖励日期:", rewardData.lastDailyLoginReward);
-    console.log("💰 当前总积分:", rewardData.totalPoints);
+    console.log("今天日期:", today);
+    console.log("上次登录奖励日期:", rewardData.lastDailyLoginReward);
+    console.log("当前总积分:", rewardData.totalPoints);
 
     if (rewardData.lastDailyLoginReward === today) {
-      console.log("⚠️ 今天已经领取过登录奖励");
+      console.log("今天已经领取过登录奖励");
       return false;
     }
 
@@ -242,9 +242,9 @@ export const useChildRewards = (userId: string) => {
         lastDailyLoginReward: today,
       };
 
-      console.log("✅ 领取每日登录奖励成功！");
-      console.log("💰 新的总积分:", updatedData.totalPoints);
-      console.log("📝 积分记录:", record);
+      console.log("领取每日登录奖励成功！");
+      console.log("新的总积分:", updatedData.totalPoints);
+      console.log("积分记录:", record);
 
       return updatedData;
     });
@@ -372,7 +372,7 @@ export const useChildRewards = (userId: string) => {
       });
 
       // 学习100小时
-      const studyHours = learningData.totalStudyTime / 60;
+      const studyHours = learningData.totalStudyTime / 60; // 转换为小时
       const studyHoursProgress = Math.min(100, (studyHours / 100) * 100);
       updates.push({
         badgeId: "study_100hours",
@@ -429,7 +429,10 @@ export const useChildRewards = (userId: string) => {
 
       // 使用函数式更新
       saveData((prevData) => {
-        const updatedTasks = [...(prevData.completedDailyTasks[today] || []), taskId];
+        const updatedTasks = [
+          ...(prevData.completedDailyTasks[today] || []),
+          taskId,
+        ];
 
         return {
           ...prevData,
@@ -448,7 +451,7 @@ export const useChildRewards = (userId: string) => {
 
       return true;
     },
-    [rewardData, saveData]
+    [rewardData, saveData],
   );
 
   // 重置奖励数据

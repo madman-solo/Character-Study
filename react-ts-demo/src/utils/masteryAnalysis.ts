@@ -8,27 +8,17 @@
  * - 复习次数（20%权重）
  */
 
-export interface WordProgress {
-  correctCount: number;
-  wrongCount: number;
-  lastStudied: Date | string;
-  mastered?: boolean;
-}
+import type { WordProgress } from '../types/vocabulary';
+export type { WordProgress };
 
-export interface MasteryLevel {
-  level: 'mastered' | 'proficient' | 'learning' | 'struggling' | 'new';
-  label: string;
-  color: string;
-  score: number; // 0-100
-}
+export type MasteryLevel = 'mastered' | 'proficient' | 'learning' | 'needsWork' | 'new';
 
 export interface MasteryDistribution {
-  mastered: number;
-  proficient: number;
-  learning: number;
-  struggling: number;
-  new: number;
-  total: number;
+  mastered: WordProgress[];
+  proficient: WordProgress[];
+  learning: WordProgress[];
+  needsWork: WordProgress[];
+  new: WordProgress[];
 }
 
 /**
@@ -76,48 +66,11 @@ export function calculateMasteryScore(progress: WordProgress): number {
  * @returns Mastery level with label and color
  */
 export function getMasteryLevel(score: number): MasteryLevel {
-  if (score >= 90) {
-    return {
-      level: 'mastered',
-      label: '已掌握',
-      color: '#4ECDC4',
-      score
-    };
-  }
-
-  if (score >= 70) {
-    return {
-      level: 'proficient',
-      label: '熟练',
-      color: '#95E1D3',
-      score
-    };
-  }
-
-  if (score >= 50) {
-    return {
-      level: 'learning',
-      label: '学习中',
-      color: '#FFE66D',
-      score
-    };
-  }
-
-  if (score >= 30) {
-    return {
-      level: 'struggling',
-      label: '需加强',
-      color: '#FFA07A',
-      score
-    };
-  }
-
-  return {
-    level: 'new',
-    label: '新单词',
-    color: '#FF6B6B',
-    score
-  };
+  if (score >= 90) return 'mastered';
+  if (score >= 70) return 'proficient';
+  if (score >= 50) return 'learning';
+  if (score >= 30) return 'needsWork';
+  return 'new';
 }
 
 /**
@@ -131,35 +84,17 @@ export function analyzeMasteryDistribution(
   progressList: WordProgress[]
 ): MasteryDistribution {
   const distribution: MasteryDistribution = {
-    mastered: 0,
-    proficient: 0,
-    learning: 0,
-    struggling: 0,
-    new: 0,
-    total: progressList.length
+    mastered: [],
+    proficient: [],
+    learning: [],
+    needsWork: [],
+    new: [],
   };
 
   progressList.forEach(progress => {
     const score = calculateMasteryScore(progress);
     const level = getMasteryLevel(score);
-
-    switch (level.level) {
-      case 'mastered':
-        distribution.mastered++;
-        break;
-      case 'proficient':
-        distribution.proficient++;
-        break;
-      case 'learning':
-        distribution.learning++;
-        break;
-      case 'struggling':
-        distribution.struggling++;
-        break;
-      case 'new':
-        distribution.new++;
-        break;
-    }
+    distribution[level].push(progress);
   });
 
   return distribution;
@@ -172,11 +107,18 @@ export function analyzeMasteryDistribution(
  * @param distribution - Mastery distribution
  * @returns Percentage of mastered and proficient words
  */
-export function getMasteryPercentage(distribution: MasteryDistribution): number {
-  if (distribution.total === 0) return 0;
-
-  const masteredAndProficient = distribution.mastered + distribution.proficient;
-  return Math.round((masteredAndProficient / distribution.total) * 100);
+export function getMasteryPercentage(distribution: MasteryDistribution): Record<MasteryLevel, number> {
+  const total = Object.values(distribution).reduce((sum, arr) => sum + arr.length, 0);
+  if (total === 0) {
+    return { mastered: 0, proficient: 0, learning: 0, needsWork: 0, new: 0 };
+  }
+  return {
+    mastered: Math.round((distribution.mastered.length / total) * 100),
+    proficient: Math.round((distribution.proficient.length / total) * 100),
+    learning: Math.round((distribution.learning.length / total) * 100),
+    needsWork: Math.round((distribution.needsWork.length / total) * 100),
+    new: Math.round((distribution.new.length / total) * 100),
+  };
 }
 
 /**

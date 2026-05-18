@@ -239,22 +239,22 @@
 }
 
 .child-content-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--child-spacing-lg);
+  justify-content: center;
 }
 
 /* ========== 奖励中心侧边栏 ========== */
 .child-reward-sidebar {
   position: fixed;
-  top: calc(var(--child-navbar-height) + var(--child-category-nav-height));
+  top: calc(1.4 * var(--child-category-nav-height));
   right: 0;
   width: 400px;
-  height: calc(
-    100vh - var(--child-navbar-height) - var(--child-category-nav-height)
-  );
+  height: 86%;
   background: var(--child-white);
   box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
   z-index: var(--child-z-modal);
   overflow-y: auto;
   animation: child-slide-left var(--child-transition-normal)

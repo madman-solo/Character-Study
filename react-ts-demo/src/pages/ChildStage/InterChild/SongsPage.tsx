@@ -171,13 +171,14 @@ const SongsPage = () => {
 
       {/* 播放模态框 */}
       {selectedSong && (
-        <div className="song-modal" onClick={() => setSelectedSong(null)}>
+        <div className="song-modal" role="button" tabIndex={0} aria-label="关闭" onClick={() => setSelectedSong(null)} onKeyDown={(e) => e.key === 'Enter' && setSelectedSong(null)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <button
               className="modal-close"
               onClick={() => setSelectedSong(null)}
+              aria-label="关闭"
             >
-              ✕
+              <span aria-hidden="true">✕</span>
             </button>
             <div className="modal-thumbnail">
               <img src={selectedSong.thumbnail} alt={selectedSong.title} />

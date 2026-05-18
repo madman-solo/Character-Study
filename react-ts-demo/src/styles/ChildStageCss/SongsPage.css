@@ -116,8 +116,7 @@
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-
-.play-icon {
+.song-thumbnail .play-icon {
   width: 60px;
   height: 60px;
   background: white;
@@ -178,8 +177,7 @@
   z-index: 1000;
   padding: 20px;
 }
-
-.modal-content {
+.song-modal .modal-content {
   background: white;
   border-radius: 20px;
   padding: 30px;

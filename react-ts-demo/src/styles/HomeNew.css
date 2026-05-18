@@ -3,7 +3,7 @@
 .home-new-container {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(135deg, #bf6363);
+  background: #fcc;
   display: flex;
   align-items: center;
   justify-content: center;

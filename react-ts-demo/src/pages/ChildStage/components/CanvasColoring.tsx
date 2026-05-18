@@ -58,7 +58,8 @@ const CanvasColoring = ({
   }, [word]);
 
   // 检查涂色完成度
-  const checkColoringProgress = useCallback(() => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const _checkColoringProgress = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return 0;
 
@@ -79,6 +80,7 @@ const CanvasColoring = ({
     const totalPixels = canvas.width * canvas.height;
     return (coloredPixels / totalPixels) * 100;
   }, []);
+  void _checkColoringProgress;
 
   // 触发单词问答
   const triggerQuiz = useCallback(() => {
@@ -366,10 +368,14 @@ const CanvasColoring = ({
         <canvas
           ref={backgroundCanvasRef}
           className="background-canvas"
+          aria-hidden="true"
         />
         <canvas
           ref={canvasRef}
           className="drawing-canvas"
+          role="img"
+          tabIndex={0}
+          aria-label={`涂色画布：${word}（${translation}），使用鼠标或触摸绘制`}
           onMouseDown={startDrawing}
           onMouseMove={onDrawing}
           onMouseUp={stopDrawing}
@@ -487,12 +493,19 @@ const CanvasColoring = ({
 
       {/* 单词问答模态框 */}
       {showQuiz && (
-        <div className={`quiz-modal ${showSuccessAnimation ? 'success' : ''} ${showFailAnimation ? 'fail' : ''}`}>
+        <div
+          className={`quiz-modal ${showSuccessAnimation ? 'success' : ''} ${showFailAnimation ? 'fail' : ''}`}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="quiz-title"
+        >
           <div className="quiz-content">
-            <h2 className="quiz-title">🎯 单词小测试</h2>
+            <h2 className="quiz-title" id="quiz-title">🎯 单词小测试</h2>
             <p className="quiz-question">这个图案的英文单词是什么？</p>
             <p className="quiz-hint">提示：{translation}</p>
+            <label htmlFor="quiz-input" className="visually-hidden">输入英文单词</label>
             <input
+              id="quiz-input"
               type="text"
               className="quiz-input"
               value={quizAnswer}
@@ -525,6 +538,7 @@ const CanvasColoring = ({
             <button
               className="hint-close"
               onClick={() => setShowWordHint(false)}
+              aria-label="关闭单词提示"
             >
               ✕
             </button>

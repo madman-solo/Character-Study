@@ -1,7 +1,7 @@
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import { useEyeCare } from '../contexts/EyeCareContext';
-import '../styles/ProfileSidebar.css';
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { useEyeCare } from "../contexts/EyeCareContext";
+import "../styles/ProfileSidebar.css";
 
 interface ProfileSidebarProps {
   isOpen: boolean;
@@ -14,15 +14,42 @@ const ProfileSidebar = ({ isOpen, onClose }: ProfileSidebarProps) => {
   const { isEyeCareMode, toggleEyeCareMode } = useEyeCare();
 
   const menuItems = [
-    { id: 'settings', label: '设置', icon: '⚙️', path: '/settings' },
-    { id: 'friends', label: '我的好友', icon: '👥', path: '/friends' },
-    { id: 'study-time', label: '学习时长', icon: '⏱️', path: '/study-time' },
-    { id: 'my-characters', label: '我的角色', icon: '🎭', path: '/my-characters' },
-    { id: 'games', label: '益智小游戏', icon: '🎮', path: '/games' },
-    { id: 'notes', label: '我的笔记', icon: '📝', path: '/notes' },
-    { id: 'favorites', label: '我的收藏', icon: '⭐', path: '/favorites' },
-    { id: 'help', label: '帮助与反馈', icon: '❓', path: '/help' },
-    { id: 'share', label: '分享好友', icon: '📤', path: '/share' },
+    {
+      id: "settings",
+      label: "设置",
+      icon: "/src/assets/iconfont/设置.svg",
+      path: "/settings",
+    },
+    {
+      id: "study-time",
+      label: "学习时长",
+      icon: "/src/assets/iconfont/闹钟.svg",
+      path: "/study-time",
+    },
+    {
+      id: "my-characters",
+      label: "我的角色",
+      icon: "/src/assets/iconfont/已加好友.svg",
+      path: "/my-characters",
+    },
+    {
+      id: "favorites",
+      label: "我的收藏",
+      icon: "/src/assets/iconfont/收藏.svg",
+      path: "/favorites",
+    },
+    {
+      id: "help",
+      label: "帮助与反馈",
+      icon: "/src/assets/iconfont/帮助.svg",
+      path: "/help",
+    },
+    {
+      id: "share",
+      label: "分享好友",
+      icon: "/src/assets/iconfont/分享.svg",
+      path: "/share",
+    },
   ];
 
   const handleMenuClick = (path: string) => {
@@ -37,7 +64,7 @@ const ProfileSidebar = ({ isOpen, onClose }: ProfileSidebarProps) => {
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    navigate("/login");
     onClose();
   };
 
@@ -45,11 +72,11 @@ const ProfileSidebar = ({ isOpen, onClose }: ProfileSidebarProps) => {
 
   return (
     <>
-      <div className="sidebar-overlay" onClick={onClose}></div>
-      <div className={`profile-sidebar ${isOpen ? 'open' : ''}`}>
+      <div className="sidebar-overlay" onClick={onClose} role="button" tabIndex={0} aria-label="关闭侧边栏" onKeyDown={(e) => e.key === 'Enter' && onClose()}></div>
+      <div className={`profile-sidebar ${isOpen ? "open" : ""}`}>
         <div className="sidebar-header">
-          <button className="close-button" onClick={onClose}>
-            ✕
+          <button className="close-button" onClick={onClose} aria-label="关闭侧边栏">
+            <span aria-hidden="true">✕</span>
           </button>
         </div>
 
@@ -59,37 +86,49 @@ const ProfileSidebar = ({ isOpen, onClose }: ProfileSidebarProps) => {
               <img src={user.avatar} alt={user.name} />
             ) : (
               <div className="avatar-placeholder">
-                {user?.name?.charAt(0) || '?'}
+                {user?.name?.charAt(0) || "?"}
               </div>
             )}
           </div>
-          <div className="user-name">{user?.name || '未登录'}</div>
+          <div className="user-name">{user?.name || "未登录"}</div>
         </div>
 
         <div className="sidebar-menu">
           {menuItems.map((item) => (
-            <div
+            <button
               key={item.id}
               className="menu-item"
               onClick={() => handleMenuClick(item.path)}
             >
-              <span className="menu-icon">{item.icon}</span>
+              <span className="menu-icon">
+                <img src={item.icon} alt={item.label} width={24} height={24} />
+              </span>
               <span className="menu-label">{item.label}</span>
               <span className="menu-arrow">›</span>
-            </div>
+            </button>
           ))}
 
           {/* 护眼模式切换 */}
-          <div
-            className={`menu-item eye-care-toggle ${isEyeCareMode ? 'active' : ''}`}
+          <button
+            className={`menu-item eye-care-toggle ${isEyeCareMode ? "active" : ""}`}
             onClick={handleEyeCareToggle}
+            aria-pressed={isEyeCareMode}
           >
-            <span className="menu-icon">👁️</span>
+            <span className="menu-icon">
+              <img
+                src="/src/assets/iconfont/护眼.svg"
+                alt="护眼"
+                width={24}
+                height={24}
+              />
+            </span>
             <span className="menu-label">护眼模式</span>
             <div className="toggle-switch">
-              <div className={`toggle-slider ${isEyeCareMode ? 'active' : ''}`}></div>
+              <div
+                className={`toggle-slider ${isEyeCareMode ? "active" : ""}`}
+              ></div>
             </div>
-          </div>
+          </button>
         </div>
 
         <div className="sidebar-footer">
@@ -98,7 +137,13 @@ const ProfileSidebar = ({ isOpen, onClose }: ProfileSidebarProps) => {
               退出登录
             </button>
           ) : (
-            <button className="logout-button" onClick={() => { navigate('/login'); onClose(); }}>
+            <button
+              className="logout-button"
+              onClick={() => {
+                navigate("/login");
+                onClose();
+              }}
+            >
               登录
             </button>
           )}

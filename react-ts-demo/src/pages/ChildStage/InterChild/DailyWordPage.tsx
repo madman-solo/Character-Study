@@ -108,7 +108,7 @@ const DailyWordPage = () => {
       <div className="daily-word-page">
         <div className="daily-word-loading">
           <div className="loading-spinner"></div>
-          <p>加载中...</p>
+          <p role="status" aria-live="polite">加载中...</p>
         </div>
       </div>
     );
@@ -121,16 +121,37 @@ const DailyWordPage = () => {
         <button className="back-btn" onClick={handleBack}>
           ← 返回
         </button>
-        <h1 className="page-title">📖 每日一词</h1>
+        <h1 className="page-title">
+          {" "}
+          <img
+            src="/src/assets/iconfont/child/我的单词本.svg"
+            width={26}
+            height={26}
+          ></img>
+          每日一词
+        </h1>
         <button className="refresh-btn" onClick={handleRefresh}>
-          🔄 换一个
+          <img
+            src="/src/assets/iconfont/child/重置.svg"
+            width={16}
+            height={16}
+          ></img>
+          换一个
         </button>
       </div>
 
       {/* 错误提示 */}
       {error && (
-        <div className="error-banner">
-          <span>⚠️ {error}</span>
+        <div className="error-banner" role="alert">
+          <span>
+            {" "}
+            <img
+              src="/src/assets/iconfont/child/警告.svg"
+              width={36}
+              height={36}
+            ></img>
+            {error}
+          </span>
         </div>
       )}
 
@@ -139,7 +160,14 @@ const DailyWordPage = () => {
         {dailyWord && (
           <div className="daily-word-card-container">
             <div className="daily-word-badge">
-              <span className="badge-icon">⭐</span>
+              <span className="badge-icon">
+                {" "}
+                <img
+                  src="/src/assets/iconfont/child/灯泡.svg"
+                  width={46}
+                  height={46}
+                ></img>
+              </span>
               <span className="badge-text">今日推荐</span>
             </div>
 
@@ -153,12 +181,43 @@ const DailyWordPage = () => {
 
             {/* 学习提示 */}
             <div className="learning-tips">
-              <h3 className="tips-title">💡 学习小贴士</h3>
+              <h3 className="tips-title">
+                <img
+                  src="/src/assets/iconfont/child/灯泡 (1).svg"
+                  width={36}
+                  height={36}
+                ></img>
+                学习小贴士
+              </h3>
               <ul className="tips-list">
-                <li>点击 🔊 按钮听发音</li>
+                <li>
+                  点击
+                  <img
+                    src="/src/assets/iconfont/child/扬声器.svg"
+                    width={26}
+                    height={26}
+                  ></img>
+                  按钮听发音
+                </li>
                 <li>点击卡片翻转查看释义</li>
-                <li>掌握后点击 ✨ 掌握按钮</li>
-                <li>不熟悉点击 😕 薄弱按钮</li>
+                <li>
+                  掌握后点击
+                  <img
+                    src="/src/assets/iconfont/child/掌握.svg"
+                    width={26}
+                    height={26}
+                  ></img>
+                  掌握按钮
+                </li>
+                <li>
+                  不熟悉点击
+                  <img
+                    src="/src/assets/iconfont/child/薄弱.svg"
+                    width={26}
+                    height={26}
+                  ></img>
+                  薄弱按钮
+                </li>
               </ul>
             </div>
           </div>
@@ -169,7 +228,14 @@ const DailyWordPage = () => {
       {learningData && (
         <div className="learning-stats">
           <div className="stat-card">
-            <div className="stat-icon">📚</div>
+            <div className="stat-icon">
+              {" "}
+              <img
+                src="/src/assets/iconfont/child/我的单词本.svg"
+                width={36}
+                height={36}
+              ></img>
+            </div>
             <div className="stat-info">
               <div className="stat-value">
                 {learningData.masteredWords.length}
@@ -178,14 +244,28 @@ const DailyWordPage = () => {
             </div>
           </div>
           <div className="stat-card">
-            <div className="stat-icon">💪</div>
+            <div className="stat-icon">
+              {" "}
+              <img
+                src="/src/assets/iconfont/child/肌肉量.svg"
+                width={36}
+                height={36}
+              ></img>
+            </div>
             <div className="stat-info">
               <div className="stat-value">{learningData.weakWords.length}</div>
               <div className="stat-label">需加强</div>
             </div>
           </div>
           <div className="stat-card">
-            <div className="stat-icon">🔥</div>
+            <div className="stat-icon">
+              {" "}
+              <img
+                src="/src/assets/iconfont/child/火花.svg"
+                width={36}
+                height={36}
+              ></img>
+            </div>
             <div className="stat-info">
               <div className="stat-value">{learningData.consecutiveDays}</div>
               <div className="stat-label">连续天数</div>

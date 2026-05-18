@@ -4,8 +4,12 @@ import "../styles/MyCharacters.css";
 
 const MyCharactersPage = () => {
   const navigate = useNavigate();
-  const { myCharacters, removeCharacter, setAsCurrentCharacter, currentCharacter } =
-    useCharacter();
+  const {
+    myCharacters,
+    removeCharacter,
+    setAsCurrentCharacter,
+    currentCharacter,
+  } = useCharacter();
 
   const handleSetDefault = async (characterId: string) => {
     const character = myCharacters.find((c) => c.id === characterId);
@@ -52,7 +56,7 @@ const MyCharactersPage = () => {
           </button>
         </div>
       ) : (
-        <div className="characters-grid">
+        <div className="characters-grid-mycharacters">
           {myCharacters.map((character) => (
             <div key={character.id} className="character-card">
               <div

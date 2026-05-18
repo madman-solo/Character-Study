@@ -2,6 +2,7 @@
  * ChildVocabularyHub Page
  * 7-12岁单词学习中心 - 完整学习中心布局
  */
+import axios from "axios";
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -15,12 +16,24 @@ import "../../styles/ChildStageCss/ChildVocabularyHub.css";
 const ChildVocabularyHub = () => {
   const navigate = useNavigate();
   const { user, skipLogin } = useAuth();
-  const [timeRange, setTimeRange] = useState<'7days' | '30days' | '90days'>('7days');
+  const [timeRange, setTimeRange] = useState<"7days" | "30days" | "90days">(
+    "7days",
+  );
   const userId = user?.id || "guest";
 
   const { learningData } = useChildLearning(userId);
   const { rewardData } = useChildRewards(userId);
 
+  const [showCharts, setShowCharts] = useState(false);
+  const [studyStats, setStudyStats] = useState({ totalMinutes: 0 });
+  useEffect(() => {
+    if (user?.id) {
+      axios
+        .get("/api/study/stats")
+        .then((r) => setStudyStats(r.data))
+        .catch(() => {});
+    }
+  }, [user?.id]);
   useEffect(() => {
     if (!user) {
       skipLogin();
@@ -75,34 +88,76 @@ const ChildVocabularyHub = () => {
 
         {/* Learning Progress */}
         <div className="progress-section">
-          <h2 className="section-title">学习进度</h2>
+          <h2 className="section-title">
+            <img
+              src="/src/assets/iconfont/child/理财统计表.svg"
+              alt=""
+              aria-hidden="true"
+              width={36}
+              height={36}
+            />
+            学习进度
+          </h2>
           <div className="progress-cards">
             <div className="progress-card">
-              <div className="progress-icon">📚</div>
+              <div className="progress-icon">
+                <img
+                  src="/src/assets/iconfont/child/掌握.svg"
+                  alt=""
+                  aria-hidden="true"
+                  width={36}
+                  height={36}
+                />
+              </div>
               <div className="progress-label">已掌握单词</div>
               <div className="progress-value">
                 {learningData?.masteredWords.length || 0}
               </div>
             </div>
             <div className="progress-card">
-              <div className="progress-icon">📝</div>
+              <div className="progress-icon">
+                <img
+                  src="/src/assets/iconfont/child/薄弱.svg"
+                  alt=""
+                  aria-hidden="true"
+                  width={36}
+                  height={36}
+                />{" "}
+              </div>
               <div className="progress-label">薄弱单词</div>
               <div className="progress-value">
                 {learningData?.weakWords.length || 0}
               </div>
             </div>
             <div className="progress-card">
-              <div className="progress-icon">🔥</div>
+              <div className="progress-icon">
+                {" "}
+                <img
+                  src="/src/assets/iconfont/child/火花.svg"
+                  alt=""
+                  aria-hidden="true"
+                  width={36}
+                  height={36}
+                />
+              </div>
               <div className="progress-label">连续打卡</div>
               <div className="progress-value">
                 {learningData?.consecutiveDays || 0}天
               </div>
             </div>
             <div className="progress-card">
-              <div className="progress-icon">⏱️</div>
+              <div className="progress-icon">
+                <img
+                  src="/src/assets/iconfont/闹钟.svg"
+                  alt=""
+                  aria-hidden="true"
+                  width={36}
+                  height={36}
+                />
+              </div>
               <div className="progress-label">学习时长</div>
               <div className="progress-value">
-                {Math.round((learningData?.totalStudyTime || 0) / 60)}分钟
+                {studyStats.totalMinutes}分钟
               </div>
             </div>
           </div>
@@ -110,8 +165,13 @@ const ChildVocabularyHub = () => {
 
         {/* Learning Charts Section */}
         <div className="charts-section">
-          <h2 className="section-title">学习数据分析</h2>
-          {learningData && (
+          <button
+            className="charts-toggle-btn"
+            onClick={() => setShowCharts((v) => !v)}
+          >
+            {showCharts ? "▲ 收起学习数据统计" : "▼ 点击查看学习数据统计"}
+          </button>
+          {showCharts && learningData && (
             <LearningCharts
               learningData={learningData}
               wordProgressList={[]}

@@ -185,7 +185,7 @@
   align-items: center;
 }
 
-.word-text {
+.word-text-masteryanalysis {
   font-size: 16px;
   font-weight: 500;
   color: #333;
@@ -206,11 +206,11 @@
 }
 
 .stat-correct {
-  color: #4ECDC4;
+  color: #4ecdc4;
 }
 
 .stat-wrong {
-  color: #FF6B6B;
+  color: #ff6b6b;
 }
 
 .word-more {
@@ -327,7 +327,7 @@
 
 .suggestion-item.priority-low {
   background: #f0f9ff;
-  border-left-color: #4ECDC4;
+  border-left-color: #4ecdc4;
 }
 
 .suggestion-icon {

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, lazy, Suspense } from "react";
 import { useCharacter } from "../contexts/CharacterContext";
 import { useAuth } from "../contexts/AuthContext";
 import {
@@ -8,8 +8,9 @@ import {
   deleteConversationHistory,
 } from "../services/chatService";
 import { useTypewriter } from "../hooks/useTypewriter";
-import Live2DModel from "../components/Live2DModel";
 import "../styles/HomeNew.css";
+
+const Live2DModel = lazy(() => import("../components/Live2DModel"));
 
 interface HomeProps {
   englishMode?: string;
@@ -219,6 +220,7 @@ Your goal: Make English learning natural, fun, and confidence-building through a
       <div className="live2d-section">
         <div className="live2d-display">
           <div className="live2d-container">
+            <Suspense fallback={null}>
             <Live2DModel
               modelPath={[
                 "/tororo_hijiki/hijiki/runtime/hijiki.model3.json",
@@ -230,6 +232,7 @@ Your goal: Make English learning natural, fun, and confidence-building through a
               paddingRight={10}
               onModelLoaded={() => setModelLoaded(true)}
             />
+            </Suspense>
             {!modelLoaded && (
               <div className="loading-overlay">
                 <p>加载 Live2D 模型中...</p>
@@ -256,7 +259,14 @@ Your goal: Make English learning natural, fun, and confidence-building through a
               className="history-btn"
               onClick={() => setShowHistory(!showHistory)}
             >
-              📜 历史
+              <img
+                src="/src/assets/iconfont/历史记录.svg"
+                alt="历史"
+                width={16}
+                height={16}
+                style={{ marginRight: 4, verticalAlign: "middle" }}
+              />
+              历史
             </button>
             <button className="clear-btn" onClick={handleClearHistory}>
               清空
@@ -278,14 +288,31 @@ Your goal: Make English learning natural, fun, and confidence-building through a
               className="send-btn"
               onClick={handleSendMessage}
               disabled={!inputValue.trim() || isLoading}
+              aria-disabled={!inputValue.trim() || isLoading}
+              aria-label="发送消息"
             >
-              {isLoading ? "..." : "↑"}
+              {isLoading ? (
+                "..."
+              ) : (
+                <img
+                  src="/src/assets/iconfont/对话框.svg"
+                  alt="发送"
+                  width={18}
+                  height={18}
+                />
+              )}
             </button>
           </div>
 
           {englishMode && (
             <div className="mode-indicator">
-              <span className="mode-icon">🌐</span>
+              {/* <span className="mode-icon">🌐</span> */}
+              <img
+                src="/src/assets/iconfont/语言翻译.svg"
+                alt="语言翻译"
+                width={18}
+                height={18}
+              />
               <span className="mode-text">{englishMode}</span>
             </div>
           )}

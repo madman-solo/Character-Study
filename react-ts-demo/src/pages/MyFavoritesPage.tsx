@@ -36,7 +36,7 @@ const MyFavoritesPage = () => {
       </button>
 
       <div className="page-header">
-        <h1 className="page-title">⭐ 我的收藏</h1>
+        <h1 className="page-title"><img src="/src/assets/iconfont/收藏.svg" alt="收藏" width={28} height={28} style={{marginRight:8,verticalAlign:'middle'}} />我的收藏</h1>
         <p className="page-subtitle">你收藏的所有角色</p>
       </div>
 

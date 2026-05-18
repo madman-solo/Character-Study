@@ -3,9 +3,9 @@
  * 处理用户学习数据的增删改查
  */
 
-const express = require('express');
-const { PrismaClient } = require('@prisma/client');
-const { authMiddleware } = require('../middleware/auth');
+const express = require("express");
+const { PrismaClient } = require("@prisma/client");
+const { authMiddleware } = require("../middleware/auth");
 
 const router = express.Router();
 const prisma = new PrismaClient();
@@ -14,13 +14,13 @@ const prisma = new PrismaClient();
  * 获取用户学习数据
  * GET /api/learning-data/:userId
  */
-router.get('/:userId', authMiddleware, async (req, res) => {
+router.get("/:userId", authMiddleware, async (req, res) => {
   try {
     const { userId } = req.params;
 
     // 验证用户权限
     if (req.user.id !== userId) {
-      return res.status(403).json({ error: '无权访问此数据' });
+      return res.status(403).json({ error: "无权访问此数据" });
     }
 
     const learningData = await prisma.userLearningData.findUnique({
@@ -28,13 +28,13 @@ router.get('/:userId', authMiddleware, async (req, res) => {
     });
 
     if (!learningData) {
-      return res.status(404).json({ error: '学习数据不存在' });
+      return res.status(404).json({ error: "学习数据不存在" });
     }
 
     // 解析 JSON 字段
     const data = {
       userId: learningData.userId,
-      totalStudyTime: learningData.totalStudyTime,
+      totalStudyTime: studyStats.totalMinutes,
       consecutiveDays: learningData.consecutiveDays,
       interactionCount: learningData.interactionCount,
       dailyStudyTime: JSON.parse(learningData.dailyStudyTime),
@@ -47,8 +47,8 @@ router.get('/:userId', authMiddleware, async (req, res) => {
 
     res.json({ success: true, data });
   } catch (error) {
-    console.error('获取学习数据失败:', error);
-    res.status(500).json({ error: '获取学习数据失败' });
+    console.error("获取学习数据失败:", error);
+    res.status(500).json({ error: "获取学习数据失败" });
   }
 });
 
@@ -56,7 +56,7 @@ router.get('/:userId', authMiddleware, async (req, res) => {
  * 创建或更新用户学习数据
  * POST /api/learning-data
  */
-router.post('/', authMiddleware, async (req, res) => {
+router.post("/", authMiddleware, async (req, res) => {
   try {
     const {
       userId,
@@ -72,7 +72,7 @@ router.post('/', authMiddleware, async (req, res) => {
 
     // 验证用户权限
     if (req.user.id !== userId) {
-      return res.status(403).json({ error: '无权修改此数据' });
+      return res.status(403).json({ error: "无权修改此数据" });
     }
 
     // 检查是否已存在
@@ -107,10 +107,10 @@ router.post('/', authMiddleware, async (req, res) => {
       });
     }
 
-    res.json({ success: true, message: '学习数据保存成功' });
+    res.json({ success: true, message: "学习数据保存成功" });
   } catch (error) {
-    console.error('保存学习数据失败:', error);
-    res.status(500).json({ error: '保存学习数据失败' });
+    console.error("保存学习数据失败:", error);
+    res.status(500).json({ error: "保存学习数据失败" });
   }
 });
 

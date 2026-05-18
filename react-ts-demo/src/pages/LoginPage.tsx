@@ -55,6 +55,8 @@ const LoginPage = () => {
               <input
                 type="text"
                 id="name"
+                aria-required="true"
+                aria-describedby="login-error"
                 value={formData.name}
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
@@ -69,6 +71,8 @@ const LoginPage = () => {
               <input
                 type="password"
                 id="password"
+                aria-required="true"
+                aria-describedby="login-error"
                 value={formData.password}
                 onChange={(e) =>
                   setFormData({ ...formData, password: e.target.value })
@@ -84,6 +88,8 @@ const LoginPage = () => {
                 <input
                   type="password"
                   id="confirmPassword"
+                  aria-required="true"
+                  aria-describedby="login-error"
                   value={formData.confirmPassword}
                   onChange={(e) =>
                     setFormData({
@@ -97,7 +103,7 @@ const LoginPage = () => {
               </div>
             )}
 
-            {error && <div className="error-message">{error}</div>}
+            {error && <div id="login-error" className="error-message" role="alert" aria-live="polite">{error}</div>}
 
             <button type="submit" className="submit-button">
               {isLogin ? "登录" : "注册"}

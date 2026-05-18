@@ -1,7 +1,7 @@
 /* RealTimeTranslationPage.css */
 .translation-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #bf6363 0%, #764ba2 100%);
+  background: #f4dfe6;
   padding: 20px;
   display: flex;
   justify-content: center;
@@ -32,12 +32,11 @@
   align-items: center;
   margin-top: 55px;
 }
-
-.back-button {
+.translation-header .back-button {
   padding: 12px 24px;
   background: rgba(255, 255, 255, 0.2);
-  color: #bf6363;
-  border: 2px solid #bf6363;
+  color: #e0a3bb;
+  border: 2px solid #e0a3bb;
   border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
@@ -48,8 +47,8 @@
 
 .back-button:hover {
   background: white;
-  color: #bf6363;
-  transform: translateX(-5px);
+  color: #c48ea4;
+  /* transform: translateX(-5px); */
 }
 
 .translation-title {
@@ -189,7 +188,8 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {

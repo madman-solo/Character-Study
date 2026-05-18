@@ -14,12 +14,7 @@ const AnimationSection = () => {
     { id: '6', icon: '🐼', title: '熊猫胖胖', description: '憨厚的熊猫' },
   ];
 
-  const animationCategories = [
-    { id: '1', icon: '🌈', title: '日常生活', description: '生活场景对话', path: '/child-daily-life' },
-    { id: '2', icon: '🎒', title: '校园故事', description: '学校趣事', path: '/child-school-stories' },
-    { id: '3', icon: '🏡', title: '家庭时光', description: '温馨家庭', path: '/child-family-time' },
-    { id: '4', icon: '🌳', title: '大自然', description: '探索自然', path: '/child-nature' },
-  ];
+  const animationCategories: { id: string; icon: string; title: string; description: string; path: string }[] = [];
 
   const handleStarClick = (id: string) => {
     navigate(`/child-animation-detail/${id}`);
