@@ -3,6 +3,8 @@ require("dotenv").config();
 
 const { PrismaClient } = require("@prisma/client");
 const express = require("express");
+const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 const cors = require("cors");
 const axios = require("axios");
 const { injectDateContext } = require("./utils/dateInjector");
@@ -13,6 +15,30 @@ const prisma = new PrismaClient();
 const app = express();
 const PORT = 3001;
 const path = require("path");
+
+// Swagger 配置
+const swaggerOptions = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "青少年英语学习平台 API",
+      version: "1.3.0",
+      description: "青少年英语学习平台后端接口文档",
+    },
+    servers: [{ url: "http://localhost:3001" }],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
+  },
+  apis: ["./routes/*.js", "./server.js"],
+};
+const swaggerSpec = swaggerJsdoc(swaggerOptions);
 // 百度千帆 API 配置
 const QIANFAN_API_KEY = process.env.QIANFAN_API_KEY;
 const QIANFAN_BASE_URL = "https://qianfan.baidubce.com/v2";
@@ -58,6 +84,7 @@ async function qianfanRequest(endpoint, method = "GET", data = null) {
 
 // 中间件
 app.use(cors());
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // ASR 路由必须在 express.json() 之前注册，因为它需要 raw body
 const asrRouter = require("./routes/asr");
@@ -1536,7 +1563,11 @@ async function initializeDatabase() {
 }
 
 // 启动服务器
-app.listen(PORT, async () => {
-  console.log(`服务器运行在 http://localhost:${PORT}`);
-  await initializeDatabase();
-});
+if (require.main === module) {
+  app.listen(PORT, async () => {
+    console.log(`服务器运行在 http://localhost:${PORT}`);
+    await initializeDatabase();
+  });
+}
+
+module.exports = app;

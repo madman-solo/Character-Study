@@ -2,18 +2,154 @@
  * Word Progress API Routes
  * 单词学习进度API路由 - 支持成人和少儿单词进度跟踪
  */
+/**
+ * @swagger
+ * /api/word-progress:
+ *   post:
+ *     summary: 记录成人单词学习进度
+ *     tags: [单词进度]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [userId, wordId, bookType, correct]
+ *             properties:
+ *               userId:
+ *                 type: string
+ *               wordId:
+ *                 type: integer
+ *               bookType:
+ *                 type: string
+ *                 description: 单词本类型（初一/高一/四级/雅思等）
+ *               correct:
+ *                 type: boolean
+ *     responses:
+ *       200:
+ *         description: 进度更新成功
+ *
+ * /api/word-progress/review/{userId}:
+ *   get:
+ *     summary: 获取待复习的成人单词
+ *     tags: [单词进度]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - in: query
+ *         name: bookType
+ *         schema:
+ *           type: string
+ *         description: 单词本类型筛选
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           default: 20
+ *     responses:
+ *       200:
+ *         description: 返回待复习单词列表
+ *
+ * /api/word-progress/statistics/{userId}:
+ *   get:
+ *     summary: 获取成人单词学习统计
+ *     tags: [单词进度]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - in: query
+ *         name: bookType
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: 返回学习统计数据
+ *
+ * /api/child-word-progress:
+ *   post:
+ *     summary: 记录少儿单词学习进度
+ *     tags: [单词进度]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [userId, wordId, correct]
+ *             properties:
+ *               userId:
+ *                 type: string
+ *               wordId:
+ *                 type: integer
+ *               correct:
+ *                 type: boolean
+ *     responses:
+ *       200:
+ *         description: 进度更新成功
+ *
+ * /api/child-word-progress/review/{userId}:
+ *   get:
+ *     summary: 获取待复习的少儿单词
+ *     tags: [单词进度]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - in: query
+ *         name: grade
+ *         schema:
+ *           type: integer
+ *           minimum: 0
+ *           maximum: 6
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           default: 10
+ *     responses:
+ *       200:
+ *         description: 返回待复习少儿单词列表
+ *
+ * /api/child-word-progress/all/{userId}:
+ *   get:
+ *     summary: 获取所有已学少儿单词
+ *     tags: [单词进度]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - in: query
+ *         name: grade
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: 返回所有已学单词及进度
+ */
 
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const { PrismaClient } = require('@prisma/client');
+const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const {
   calculateNextReview,
   isDueForReview,
   getWordsForReview,
   isMastered,
-  getStatistics
-} = require('../utils/spacedRepetition');
+  getStatistics,
+} = require("../utils/spacedRepetition");
 
 /**
  * POST /api/word-progress
@@ -25,14 +161,14 @@ const {
  * @body {string} bookType - Book type (初一, 初二, etc.)
  * @body {boolean} correct - Whether answer was correct
  */
-router.post('/word-progress', async (req, res) => {
+router.post("/word-progress", async (req, res) => {
   try {
     const { userId, wordId, bookType, correct } = req.body;
 
     // Validate input
     if (!userId || !wordId || !bookType || correct === undefined) {
       return res.status(400).json({
-        error: 'Missing required fields: userId, wordId, bookType, correct'
+        error: "Missing required fields: userId, wordId, bookType, correct",
       });
     }
 
@@ -42,9 +178,9 @@ router.post('/word-progress', async (req, res) => {
         userId_wordId_bookType: {
           userId,
           wordId: parseInt(wordId),
-          bookType
-        }
-      }
+          bookType,
+        },
+      },
     });
 
     const now = new Date();
@@ -53,14 +189,16 @@ router.post('/word-progress', async (req, res) => {
       // Update existing progress
       const updateData = {
         lastStudied: now,
-        correctCount: correct ? progress.correctCount + 1 : progress.correctCount,
-        wrongCount: correct ? progress.wrongCount : progress.wrongCount + 1
+        correctCount: correct
+          ? progress.correctCount + 1
+          : progress.correctCount,
+        wrongCount: correct ? progress.wrongCount : progress.wrongCount + 1,
       };
 
       // Check if mastered
       updateData.mastered = isMastered({
         correctCount: updateData.correctCount,
-        wrongCount: updateData.wrongCount
+        wrongCount: updateData.wrongCount,
       });
 
       progress = await prisma.wordProgress.update({
@@ -68,10 +206,10 @@ router.post('/word-progress', async (req, res) => {
           userId_wordId_bookType: {
             userId,
             wordId: parseInt(wordId),
-            bookType
-          }
+            bookType,
+          },
         },
-        data: updateData
+        data: updateData,
       });
     } else {
       // Create new progress
@@ -83,8 +221,8 @@ router.post('/word-progress', async (req, res) => {
           correctCount: correct ? 1 : 0,
           wrongCount: correct ? 0 : 1,
           lastStudied: now,
-          mastered: false
-        }
+          mastered: false,
+        },
       });
     }
 
@@ -102,12 +240,12 @@ router.post('/word-progress', async (req, res) => {
         wrongCount: progress.wrongCount,
         lastStudied: progress.lastStudied,
         mastered: progress.mastered,
-        nextReview
-      }
+        nextReview,
+      },
     });
   } catch (error) {
-    console.error('Error tracking word progress:', error);
-    res.status(500).json({ error: 'Failed to track progress' });
+    console.error("Error tracking word progress:", error);
+    res.status(500).json({ error: "Failed to track progress" });
   }
 });
 
@@ -120,7 +258,7 @@ router.post('/word-progress', async (req, res) => {
  * @query {string} bookType - Book type filter
  * @query {number} limit - Optional limit (default: 20)
  */
-router.get('/word-progress/review/:userId', async (req, res) => {
+router.get("/word-progress/review/:userId", async (req, res) => {
   try {
     const { userId } = req.params;
     const bookType = req.query.bookType;
@@ -136,19 +274,19 @@ router.get('/word-progress/review/:userId', async (req, res) => {
     const progressRecords = await prisma.wordProgress.findMany({
       where,
       include: {
-        word: true
-      }
+        word: true,
+      },
     });
 
     // Format for spaced repetition algorithm
-    const wordsWithProgress = progressRecords.map(p => ({
+    const wordsWithProgress = progressRecords.map((p) => ({
       word: p.word,
       progress: {
         correctCount: p.correctCount,
         wrongCount: p.wrongCount,
         lastStudied: p.lastStudied,
-        mastered: p.mastered
-      }
+        mastered: p.mastered,
+      },
     }));
 
     // Get words due for review, sorted by priority
@@ -158,43 +296,45 @@ router.get('/word-progress/review/:userId', async (req, res) => {
     const limitedWords = dueWords.slice(0, limit);
 
     // Calculate next review dates
-    const results = limitedWords.map(item => ({
+    const results = limitedWords.map((item) => ({
       word: {
         id: item.word.id,
         word: item.word.word,
         phonetic: item.word.phonetic,
         translation: item.word.translation,
         definition: item.word.definition,
-        pos: item.word.pos
+        pos: item.word.pos,
       },
       progress: {
         correctCount: item.progress.correctCount,
         wrongCount: item.progress.wrongCount,
         lastStudied: item.progress.lastStudied,
         mastered: item.progress.mastered,
-        nextReview: calculateNextReview(item.progress)
-      }
+        nextReview: calculateNextReview(item.progress),
+      },
     }));
 
     // Get statistics
-    const stats = getStatistics(progressRecords.map(p => ({
-      correctCount: p.correctCount,
-      wrongCount: p.wrongCount,
-      lastStudied: p.lastStudied,
-      mastered: p.mastered
-    })));
+    const stats = getStatistics(
+      progressRecords.map((p) => ({
+        correctCount: p.correctCount,
+        wrongCount: p.wrongCount,
+        lastStudied: p.lastStudied,
+        mastered: p.mastered,
+      })),
+    );
 
     res.json({
       userId,
-      bookType: bookType || 'all',
+      bookType: bookType || "all",
       count: results.length,
       totalDue: dueWords.length,
       statistics: stats,
-      words: results
+      words: results,
     });
   } catch (error) {
-    console.error('Error fetching review words:', error);
-    res.status(500).json({ error: 'Failed to fetch review words' });
+    console.error("Error fetching review words:", error);
+    res.status(500).json({ error: "Failed to fetch review words" });
   }
 });
 
@@ -207,14 +347,14 @@ router.get('/word-progress/review/:userId', async (req, res) => {
  * @body {number} wordId - Child word ID
  * @body {boolean} correct - Whether answer was correct
  */
-router.post('/child-word-progress', async (req, res) => {
+router.post("/child-word-progress", async (req, res) => {
   try {
     const { userId, wordId, correct } = req.body;
 
     // Validate input
     if (!userId || !wordId || correct === undefined) {
       return res.status(400).json({
-        error: 'Missing required fields: userId, wordId, correct'
+        error: "Missing required fields: userId, wordId, correct",
       });
     }
 
@@ -223,9 +363,9 @@ router.post('/child-word-progress', async (req, res) => {
       where: {
         userId_wordId: {
           userId,
-          wordId: parseInt(wordId)
-        }
-      }
+          wordId: parseInt(wordId),
+        },
+      },
     });
 
     const now = new Date();
@@ -234,24 +374,26 @@ router.post('/child-word-progress', async (req, res) => {
       // Update existing progress
       const updateData = {
         lastStudied: now,
-        correctCount: correct ? progress.correctCount + 1 : progress.correctCount,
-        wrongCount: correct ? progress.wrongCount : progress.wrongCount + 1
+        correctCount: correct
+          ? progress.correctCount + 1
+          : progress.correctCount,
+        wrongCount: correct ? progress.wrongCount : progress.wrongCount + 1,
       };
 
       // Check if mastered
       updateData.mastered = isMastered({
         correctCount: updateData.correctCount,
-        wrongCount: updateData.wrongCount
+        wrongCount: updateData.wrongCount,
       });
 
       progress = await prisma.childWordProgress.update({
         where: {
           userId_wordId: {
             userId,
-            wordId: parseInt(wordId)
-          }
+            wordId: parseInt(wordId),
+          },
         },
-        data: updateData
+        data: updateData,
       });
     } else {
       // Create new progress
@@ -262,8 +404,8 @@ router.post('/child-word-progress', async (req, res) => {
           correctCount: correct ? 1 : 0,
           wrongCount: correct ? 0 : 1,
           lastStudied: now,
-          mastered: false
-        }
+          mastered: false,
+        },
       });
     }
 
@@ -280,12 +422,12 @@ router.post('/child-word-progress', async (req, res) => {
         wrongCount: progress.wrongCount,
         lastStudied: progress.lastStudied,
         mastered: progress.mastered,
-        nextReview
-      }
+        nextReview,
+      },
     });
   } catch (error) {
-    console.error('Error tracking child word progress:', error);
-    res.status(500).json({ error: 'Failed to track progress' });
+    console.error("Error tracking child word progress:", error);
+    res.status(500).json({ error: "Failed to track progress" });
   }
 });
 
@@ -298,7 +440,7 @@ router.post('/child-word-progress', async (req, res) => {
  * @query {number} grade - Optional grade filter (0-6)
  * @query {number} limit - Optional limit (default: 10)
  */
-router.get('/child-word-progress/review/:userId', async (req, res) => {
+router.get("/child-word-progress/review/:userId", async (req, res) => {
   try {
     const { userId } = req.params;
     const grade = req.query.grade ? parseInt(req.query.grade) : null;
@@ -308,25 +450,25 @@ router.get('/child-word-progress/review/:userId', async (req, res) => {
     const progressRecords = await prisma.childWordProgress.findMany({
       where: { userId },
       include: {
-        word: true
-      }
+        word: true,
+      },
     });
 
     // Filter by grade if specified
     let filteredRecords = progressRecords;
     if (grade !== null && !isNaN(grade)) {
-      filteredRecords = progressRecords.filter(p => p.word.grade === grade);
+      filteredRecords = progressRecords.filter((p) => p.word.grade === grade);
     }
 
     // Format for spaced repetition algorithm
-    const wordsWithProgress = filteredRecords.map(p => ({
+    const wordsWithProgress = filteredRecords.map((p) => ({
       word: p.word,
       progress: {
         correctCount: p.correctCount,
         wrongCount: p.wrongCount,
         lastStudied: p.lastStudied,
-        mastered: p.mastered
-      }
+        mastered: p.mastered,
+      },
     }));
 
     // Get words due for review, sorted by priority
@@ -336,43 +478,45 @@ router.get('/child-word-progress/review/:userId', async (req, res) => {
     const limitedWords = dueWords.slice(0, limit);
 
     // Calculate next review dates
-    const results = limitedWords.map(item => ({
+    const results = limitedWords.map((item) => ({
       word: {
         id: item.word.id,
         word: item.word.word,
         phonetic: item.word.phonetic,
         translation: item.word.translation,
         pos: item.word.pos,
-        grade: item.word.grade
+        grade: item.word.grade,
       },
       progress: {
         correctCount: item.progress.correctCount,
         wrongCount: item.progress.wrongCount,
         lastStudied: item.progress.lastStudied,
         mastered: item.progress.mastered,
-        nextReview: calculateNextReview(item.progress)
-      }
+        nextReview: calculateNextReview(item.progress),
+      },
     }));
 
     // Get statistics
-    const stats = getStatistics(filteredRecords.map(p => ({
-      correctCount: p.correctCount,
-      wrongCount: p.wrongCount,
-      lastStudied: p.lastStudied,
-      mastered: p.mastered
-    })));
+    const stats = getStatistics(
+      filteredRecords.map((p) => ({
+        correctCount: p.correctCount,
+        wrongCount: p.wrongCount,
+        lastStudied: p.lastStudied,
+        mastered: p.mastered,
+      })),
+    );
 
     res.json({
       userId,
-      grade: grade !== null ? grade : 'all',
+      grade: grade !== null ? grade : "all",
       count: results.length,
       totalDue: dueWords.length,
       statistics: stats,
-      words: results
+      words: results,
     });
   } catch (error) {
-    console.error('Error fetching child review words:', error);
-    res.status(500).json({ error: 'Failed to fetch review words' });
+    console.error("Error fetching child review words:", error);
+    res.status(500).json({ error: "Failed to fetch review words" });
   }
 });
 
@@ -384,7 +528,7 @@ router.get('/child-word-progress/review/:userId', async (req, res) => {
  * @param {string} userId - User ID
  * @query {number} grade - Optional grade filter (0-6)
  */
-router.get('/child-word-progress/all/:userId', async (req, res) => {
+router.get("/child-word-progress/all/:userId", async (req, res) => {
   try {
     const { userId } = req.params;
     const grade = req.query.grade ? parseInt(req.query.grade) : null;
@@ -393,26 +537,26 @@ router.get('/child-word-progress/all/:userId', async (req, res) => {
     const progressRecords = await prisma.childWordProgress.findMany({
       where: { userId },
       include: {
-        word: true
+        word: true,
       },
       orderBy: {
-        lastStudied: 'desc' // 最近学习的排在前面
-      }
+        lastStudied: "desc", // 最近学习的排在前面
+      },
     });
 
     // Filter by grade if specified
     let filteredRecords = progressRecords;
     if (grade !== null && !isNaN(grade)) {
-      filteredRecords = progressRecords.filter(p => p.word.grade === grade);
+      filteredRecords = progressRecords.filter((p) => p.word.grade === grade);
     }
 
     // Format for response with next review dates
-    const results = filteredRecords.map(p => {
+    const results = filteredRecords.map((p) => {
       const nextReview = calculateNextReview({
         correctCount: p.correctCount,
         wrongCount: p.wrongCount,
         lastStudied: p.lastStudied,
-        mastered: p.mastered
+        mastered: p.mastered,
       });
 
       return {
@@ -422,7 +566,7 @@ router.get('/child-word-progress/all/:userId', async (req, res) => {
           phonetic: p.word.phonetic,
           translation: p.word.translation,
           pos: p.word.pos,
-          grade: p.word.grade
+          grade: p.word.grade,
         },
         progress: {
           correctCount: p.correctCount,
@@ -434,30 +578,32 @@ router.get('/child-word-progress/all/:userId', async (req, res) => {
             correctCount: p.correctCount,
             wrongCount: p.wrongCount,
             lastStudied: p.lastStudied,
-            mastered: p.mastered
-          })
-        }
+            mastered: p.mastered,
+          }),
+        },
       };
     });
 
     // Get statistics
-    const stats = getStatistics(filteredRecords.map(p => ({
-      correctCount: p.correctCount,
-      wrongCount: p.wrongCount,
-      lastStudied: p.lastStudied,
-      mastered: p.mastered
-    })));
+    const stats = getStatistics(
+      filteredRecords.map((p) => ({
+        correctCount: p.correctCount,
+        wrongCount: p.wrongCount,
+        lastStudied: p.lastStudied,
+        mastered: p.mastered,
+      })),
+    );
 
     res.json({
       userId,
-      grade: grade !== null ? grade : 'all',
+      grade: grade !== null ? grade : "all",
       count: results.length,
       statistics: stats,
-      words: results
+      words: results,
     });
   } catch (error) {
-    console.error('Error fetching all learned child words:', error);
-    res.status(500).json({ error: 'Failed to fetch learned words' });
+    console.error("Error fetching all learned child words:", error);
+    res.status(500).json({ error: "Failed to fetch learned words" });
   }
 });
 
@@ -469,7 +615,7 @@ router.get('/child-word-progress/all/:userId', async (req, res) => {
  * @param {string} userId - User ID
  * @query {string} bookType - Optional book type filter
  */
-router.get('/word-progress/statistics/:userId', async (req, res) => {
+router.get("/word-progress/statistics/:userId", async (req, res) => {
   try {
     const { userId } = req.params;
     const bookType = req.query.bookType;
@@ -481,21 +627,23 @@ router.get('/word-progress/statistics/:userId', async (req, res) => {
 
     const progressRecords = await prisma.wordProgress.findMany({ where });
 
-    const stats = getStatistics(progressRecords.map(p => ({
-      correctCount: p.correctCount,
-      wrongCount: p.wrongCount,
-      lastStudied: p.lastStudied,
-      mastered: p.mastered
-    })));
+    const stats = getStatistics(
+      progressRecords.map((p) => ({
+        correctCount: p.correctCount,
+        wrongCount: p.wrongCount,
+        lastStudied: p.lastStudied,
+        mastered: p.mastered,
+      })),
+    );
 
     res.json({
       userId,
-      bookType: bookType || 'all',
-      statistics: stats
+      bookType: bookType || "all",
+      statistics: stats,
     });
   } catch (error) {
-    console.error('Error fetching statistics:', error);
-    res.status(500).json({ error: 'Failed to fetch statistics' });
+    console.error("Error fetching statistics:", error);
+    res.status(500).json({ error: "Failed to fetch statistics" });
   }
 });
 

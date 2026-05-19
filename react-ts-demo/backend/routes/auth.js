@@ -1,12 +1,45 @@
 /**
  * 用户认证路由
  * 处理用户注册、登录、信息更新等
+ *
+ * @swagger
+ * tags:
+ *   name: 认证
+ *   description: 用户注册与登录
+ *
+ * components:
+ *   schemas:
+ *     AuthResponse:
+ *       type: object
+ *       properties:
+ *         success:
+ *           type: boolean
+ *         token:
+ *           type: string
+ *         user:
+ *           type: object
+ *           properties:
+ *             id:
+ *               type: integer
+ *             username:
+ *               type: string
+ *             email:
+ *               type: string
+ *             nickname:
+ *               type: string
+ *             avatar:
+ *               type: string
+ *             ageGroup:
+ *               type: string
+ *               enum: [child, teen, adult]
+ *             isGuest:
+ *               type: boolean
  */
 
-const express = require('express');
-const bcrypt = require('bcryptjs');
-const { PrismaClient } = require('@prisma/client');
-const { generateToken, authMiddleware } = require('../middleware/auth');
+const express = require("express");
+const bcrypt = require("bcryptjs");
+const { PrismaClient } = require("@prisma/client");
+const { generateToken, authMiddleware } = require("../middleware/auth");
 
 const router = express.Router();
 const prisma = new PrismaClient();
@@ -15,23 +48,61 @@ const prisma = new PrismaClient();
  * 用户注册
  * POST /api/auth/register
  */
-router.post('/register', async (req, res) => {
+/**
+ * @swagger
+ * /api/auth/register:
+ *   post:
+ *     summary: 用户注册
+ *     tags: [认证]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [username, password]
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 minLength: 3
+ *                 maxLength: 20
+ *               password:
+ *                 type: string
+ *                 minLength: 6
+ *               email:
+ *                 type: string
+ *               nickname:
+ *                 type: string
+ *               ageGroup:
+ *                 type: string
+ *                 enum: [child, teen, adult]
+ *     responses:
+ *       200:
+ *         description: 注册成功
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/AuthResponse'
+ *       400:
+ *         description: 参数错误或用户名已存在
+ */
+router.post("/register", async (req, res) => {
   try {
     const { username, password, email, nickname, ageGroup } = req.body;
 
     // 验证必填字段
     if (!username || !password) {
-      return res.status(400).json({ error: '用户名和密码不能为空' });
+      return res.status(400).json({ error: "用户名和密码不能为空" });
     }
 
     // 验证用户名长度
     if (username.length < 3 || username.length > 20) {
-      return res.status(400).json({ error: '用户名长度必须在3-20个字符之间' });
+      return res.status(400).json({ error: "用户名长度必须在3-20个字符之间" });
     }
 
     // 验证密码强度
     if (password.length < 6) {
-      return res.status(400).json({ error: '密码长度至少为6个字符' });
+      return res.status(400).json({ error: "密码长度至少为6个字符" });
     }
 
     // 检查用户名是否已存在
@@ -40,7 +111,7 @@ router.post('/register', async (req, res) => {
     });
 
     if (existingUser) {
-      return res.status(400).json({ error: '用户名已存在' });
+      return res.status(400).json({ error: "用户名已存在" });
     }
 
     // 检查邮箱是否已存在
@@ -50,7 +121,7 @@ router.post('/register', async (req, res) => {
       });
 
       if (existingEmail) {
-        return res.status(400).json({ error: '邮箱已被使用' });
+        return res.status(400).json({ error: "邮箱已被使用" });
       }
     }
 
@@ -102,8 +173,8 @@ router.post('/register', async (req, res) => {
       },
     });
   } catch (error) {
-    console.error('注册失败:', error);
-    res.status(500).json({ error: '注册失败，请稍后重试' });
+    console.error("注册失败:", error);
+    res.status(500).json({ error: "注册失败，请稍后重试" });
   }
 });
 
@@ -111,13 +182,41 @@ router.post('/register', async (req, res) => {
  * 用户登录
  * POST /api/auth/login
  */
-router.post('/login', async (req, res) => {
+/**
+ * @swagger
+ * /api/auth/login:
+ *   post:
+ *     summary: 用户登录
+ *     tags: [认证]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [username, password]
+ *             properties:
+ *               username:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: 登录成功
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/AuthResponse'
+ *       401:
+ *         description: 用户名或密码错误
+ */
+router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
 
     // 验证必填字段
     if (!username || !password) {
-      return res.status(400).json({ error: '用户名和密码不能为空' });
+      return res.status(400).json({ error: "用户名和密码不能为空" });
     }
 
     // 查找用户
@@ -126,14 +225,14 @@ router.post('/login', async (req, res) => {
     });
 
     if (!user) {
-      return res.status(401).json({ error: '用户名或密码错误' });
+      return res.status(401).json({ error: "用户名或密码错误" });
     }
 
     // 验证密码
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-      return res.status(401).json({ error: '用户名或密码错误' });
+      return res.status(401).json({ error: "用户名或密码错误" });
     }
 
     // 更新最后登录时间
@@ -165,8 +264,8 @@ router.post('/login', async (req, res) => {
       },
     });
   } catch (error) {
-    console.error('登录失败:', error);
-    res.status(500).json({ error: '登录失败，请稍后重试' });
+    console.error("登录失败:", error);
+    res.status(500).json({ error: "登录失败，请稍后重试" });
   }
 });
 

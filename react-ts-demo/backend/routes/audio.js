@@ -2,6 +2,42 @@
  * 音频代理路由
  * 代理百度翻译的音频接口，避免前端CORS问题
  */
+/**
+ * @swagger
+ * /api/audio/speak:
+ *   get:
+ *     summary: 代理百度翻译发音（解决前端 CORS）
+ *     tags: [音频代理]
+ *     parameters:
+ *       - in: query
+ *         name: word
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: 要发音的单词
+ *       - in: query
+ *         name: lang
+ *         schema:
+ *           type: string
+ *           default: en
+ *           enum: [en, zh]
+ *         description: 语言（en=英文，zh=中文）
+ *       - in: query
+ *         name: speed
+ *         schema:
+ *           type: integer
+ *           default: 4
+ *           minimum: 1
+ *           maximum: 15
+ *         description: 语速
+ *     responses:
+ *       200:
+ *         description: 返回 audio/mpeg 音频流
+ *       400:
+ *         description: 缺少 word 参数
+ *       504:
+ *         description: 请求百度超时
+ */
 
 const express = require("express");
 const axios = require("axios");
@@ -39,7 +75,8 @@ router.get("/speak", async (req, res) => {
       responseType: "arraybuffer",
       timeout: 10000,
       headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
       },
     });
 

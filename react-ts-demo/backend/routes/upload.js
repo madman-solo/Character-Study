@@ -1,3 +1,27 @@
+/** 上传角色背景图片接口
+ * @swagger
+ * /api/upload/character-bg:
+ *   post:
+ *     summary: 上传角色背景图片
+ *     tags: [上传]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               image:
+ *                 type: string
+ *                 format: binary
+ *                 description: 图片文件
+ *     responses:
+ *       200:
+ *         description: 返回图片 URL
+ */
+
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");

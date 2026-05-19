@@ -1,3 +1,33 @@
+/**
+ * @swagger
+ * /api/asr/recognize:
+ *   post:
+ *     summary: 语音识别（ASR）
+ *     tags: [语音识别]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/octet-stream:
+ *           schema:
+ *             type: string
+ *             format: binary
+ *             description: 16-bit PCM 音频数据（16000Hz，单声道）
+ *     responses:
+ *       200:
+ *         description: 返回识别文本
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 text:
+ *                   type: string
+ *       400:
+ *         description: 未收到音频数据 / 录音太短
+ *       500:
+ *         description: 未配置百度ASR密钥 / 识别失败
+ */
+
 const express = require("express");
 const axios = require("axios");
 const router = express.Router();

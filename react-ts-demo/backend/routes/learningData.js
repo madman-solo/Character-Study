@@ -2,6 +2,59 @@
  * 学习数据管理路由
  * 处理用户学习数据的增删改查
  */
+/**
+ * @swagger
+ * /api/learning-data/{userId}:
+ *   get:
+ *     summary: 获取用户学习数据
+ *     tags: [学习数据]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: 返回学习数据
+ *       403:
+ *         description: 无权访问
+ *
+ * /api/learning-data:
+ *   post:
+ *     summary: 创建或更新学习数据
+ *     tags: [学习数据]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [userId]
+ *             properties:
+ *               userId:
+ *                 type: string
+ *               totalStudyTime:
+ *                 type: integer
+ *                 description: 总学习时长（分钟）
+ *               consecutiveDays:
+ *                 type: integer
+ *               masteredWords:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *               weakWords:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *     responses:
+ *       200:
+ *         description: 学习数据保存成功
+ */
 
 const express = require("express");
 const { PrismaClient } = require("@prisma/client");

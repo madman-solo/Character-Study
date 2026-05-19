@@ -1,3 +1,117 @@
+/**
+ * @swagger
+ * /api/study/start:
+ *   post:
+ *     summary: 开始学习会话
+ *     tags: [学习模式]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               userId:
+ *                 type: integer
+ *               mode:
+ *                 type: string
+ *                 description: 学习模式（vocabulary/listening/writing等）
+ *     responses:
+ *       200:
+ *         description: 返回 sessionId
+ *
+ * /api/study/heartbeat:
+ *   post:
+ *     summary: 学习心跳（防挂机）
+ *     tags: [学习模式]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [sessionId]
+ *             properties:
+ *               sessionId:
+ *                 type: integer
+ *     responses:
+ *       200:
+ *         description: 心跳成功
+ *
+ * /api/study/pause:
+ *   post:
+ *     summary: 暂停学习会话
+ *     tags: [学习模式]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [sessionId]
+ *             properties:
+ *               sessionId:
+ *                 type: integer
+ *     responses:
+ *       200:
+ *         description: 暂停成功
+ *
+ * /api/study/resume:
+ *   post:
+ *     summary: 恢复学习会话
+ *     tags: [学习模式]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [sessionId]
+ *             properties:
+ *               sessionId:
+ *                 type: integer
+ *     responses:
+ *       200:
+ *         description: 恢复成功
+ *
+ * /api/study/end:
+ *   post:
+ *     summary: 结束学习会话并计算有效时长
+ *     tags: [学习模式]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [sessionId]
+ *             properties:
+ *               sessionId:
+ *                 type: integer
+ *     responses:
+ *       200:
+ *         description: 返回有效学习秒数
+ *
+ * /api/study/stats:
+ *   get:
+ *     summary: 获取今日及总学习时长
+ *     tags: [学习模式]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: 返回 totalMinutes / todayMinutes / avgDailyMinutes
+ */
+
 const express = require("express");
 const router = express.Router();
 const { PrismaClient } = require("@prisma/client");
@@ -101,39 +215,7 @@ router.post("/end", authMiddleware, async (req, res) => {
 });
 
 // 查询今日及总学习时长
-// router.get("/stats", authMiddleware, async (req, res) => {
-//   const ld = await prisma.userLearningData.findUnique({
-//     where: { userId: req.user.id },
-//   });
-//   const activeSession = await prisma.studySession.findFirst({
-//     where: { userId: req.user.id, status: "active" },
-//   });
-//   let liveSeconds = 0;
-//   if (activeSession) {
-//     liveSeconds = Math.max(
-//       0,
-//       Math.floor(
-//         (Date.now() - new Date(activeSession.startedAt).getTime()) / 1000,
-//       ) - activeSession.totalPause,
-//     );
-//   }
-//   const liveMinutes = Math.floor(liveSeconds / 60);
 
-//   // 返回时加上 liveMinutes：
-//   res.json({
-//     totalMinutes: (ld?.totalStudyTime || 0) + liveMinutes,
-//     todayMinutes: todayMinutes + liveMinutes,
-//     avgDailyMinutes: avgDailyMinutes,
-//   });
-//   if (!ld)
-//     return res.json({ totalMinutes: 0, todayMinutes: 0, avgDailyMinutes: 0 });
-//   const daily = JSON.parse(ld.dailyStudyTime || "{}");
-//   const today = new Date().toISOString().slice(0, 10);
-//   const todayMinutes = daily[today] || 0;
-//   const days = Object.keys(daily).length || 1;
-//   const avgDailyMinutes = Math.round(ld.totalStudyTime / days);
-//   res.json({ totalMinutes: ld.totalStudyTime, todayMinutes, avgDailyMinutes });
-// });
 router.get("/stats", authMiddleware, async (req, res) => {
   const ld = await prisma.userLearningData.findUnique({
     where: { userId: req.user.id },

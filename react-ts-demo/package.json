@@ -13,7 +13,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:backend": "cross-env DATABASE_URL=file:./backend/prisma/test.db vitest run --config backend/vitest.config.js"
   },
   "dependencies": {
     "axios": "^1.13.2",
@@ -30,6 +31,9 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^24.10.1",
@@ -42,6 +46,8 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
+    "jsdom": "^29.1.1",
+    "supertest": "^7.2.2",
     "terser": "^5.47.1",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",

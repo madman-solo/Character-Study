@@ -2,6 +2,100 @@
  * Learning Reports API
  * 学习报告生成API - 生成每日、每周、每月学习报告
  */
+/**
+ * @swagger
+ * /api/reports/daily/{userId}:
+ *   get:
+ *     summary: 每日学习报告
+ *     tags: [学习报告]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - in: query
+ *         name: date
+ *         schema:
+ *           type: string
+ *           format: date
+ *         description: 日期（默认今天），格式 YYYY-MM-DD
+ *     responses:
+ *       200:
+ *         description: 返回每日报告
+ *
+ * /api/reports/weekly/{userId}:
+ *   get:
+ *     summary: 周学习报告
+ *     tags: [学习报告]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - in: query
+ *         name: weekStart
+ *         schema:
+ *           type: string
+ *           format: date
+ *         description: 周起始日期（默认本周一）
+ *     responses:
+ *       200:
+ *         description: 返回周报告（含成就和建议）
+ *
+ * /api/reports/monthly/{userId}:
+ *   get:
+ *     summary: 月学习报告
+ *     tags: [学习报告]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - in: query
+ *         name: month
+ *         schema:
+ *           type: string
+ *         description: 月份，格式 YYYY-MM（默认当月）
+ *     responses:
+ *       200:
+ *         description: 返回月报告
+ *
+ * /api/reports/generate/{userId}:
+ *   post:
+ *     summary: 手动触发报告生成
+ *     tags: [学习报告]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [reportType]
+ *             properties:
+ *               reportType:
+ *                 type: string
+ *                 enum: [daily, weekly, monthly]
+ *     responses:
+ *       200:
+ *         description: 报告生成成功
+ */
 
 const express = require("express");
 const router = express.Router();

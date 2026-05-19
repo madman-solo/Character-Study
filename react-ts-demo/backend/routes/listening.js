@@ -1,3 +1,36 @@
+/**
+ * @swagger
+ * /api/listening/materials:
+ *   get:
+ *     summary: 获取听力素材列表
+ *     tags: [听力训练]
+ *     parameters:
+ *       - in: query
+ *         name: type
+ *         schema:
+ *           type: string
+ *         description: 素材类型筛选（可选）
+ *     responses:
+ *       200:
+ *         description: 返回素材列表
+ *
+ * /api/listening/material/{id}:
+ *   get:
+ *     summary: 获取单个听力素材及题目
+ *     tags: [听力训练]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: 返回素材详情和题目列表
+ *       404:
+ *         description: 素材不存在
+ */
+
 const express = require("express");
 const router = express.Router(); //创建express路由实例
 const { PrismaClient } = require("@prisma/client"); //导入prisma客户端

@@ -2,6 +2,70 @@
  * TTS（文本转语音）API路由
  * 支持多个TTS服务提供商：百度翻译、有道词典
  */
+/**
+ * @swagger
+ * /api/tts/speak:
+ *   get:
+ *     summary: 获取单词发音音频流
+ *     tags: [TTS]
+ *     parameters:
+ *       - in: query
+ *         name: word
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: 要发音的单词
+ *       - in: query
+ *         name: lang
+ *         schema:
+ *           type: string
+ *           default: en
+ *           enum: [en, zh]
+ *         description: 语言
+ *       - in: query
+ *         name: provider
+ *         schema:
+ *           type: string
+ *           default: youdao-free
+ *           enum: [youdao-free, youdao, baidu]
+ *         description: TTS 服务提供商
+ *     responses:
+ *       200:
+ *         description: 返回 audio/mp3 音频流
+ *       400:
+ *         description: 缺少 word 参数
+ *
+ * /api/tts/url:
+ *   get:
+ *     summary: 获取音频代理 URL（供前端直接播放）
+ *     tags: [TTS]
+ *     parameters:
+ *       - in: query
+ *         name: word
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - in: query
+ *         name: lang
+ *         schema:
+ *           type: string
+ *           default: en
+ *       - in: query
+ *         name: provider
+ *         schema:
+ *           type: string
+ *           default: baidu
+ *     responses:
+ *       200:
+ *         description: 返回音频 URL
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 audioUrl:
+ *                   type: string
+ */
 
 const express = require("express");
 const crypto = require("crypto");

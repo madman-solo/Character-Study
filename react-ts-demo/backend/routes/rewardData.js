@@ -2,10 +2,28 @@
  * 奖励数据管理路由
  * 处理用户奖励数据的增删改查
  */
+/**
+ * @swagger
+ * /api/reward-data/{userId}:
+ *   get:
+ *     summary: 获取用户奖励数据
+ *     tags: [奖励数据]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: 返回积分与勋章数据
+ */
 
-const express = require('express');
-const { PrismaClient } = require('@prisma/client');
-const { authMiddleware } = require('../middleware/auth');
+const express = require("express");
+const { PrismaClient } = require("@prisma/client");
+const { authMiddleware } = require("../middleware/auth");
 
 const router = express.Router();
 const prisma = new PrismaClient();
@@ -14,13 +32,13 @@ const prisma = new PrismaClient();
  * 获取用户奖励数据
  * GET /api/reward-data/:userId
  */
-router.get('/:userId', authMiddleware, async (req, res) => {
+router.get("/:userId", authMiddleware, async (req, res) => {
   try {
     const { userId } = req.params;
 
     // 验证用户权限
     if (req.user.id !== userId) {
-      return res.status(403).json({ error: '无权访问此数据' });
+      return res.status(403).json({ error: "无权访问此数据" });
     }
 
     const rewardData = await prisma.userRewardData.findUnique({
@@ -28,7 +46,7 @@ router.get('/:userId', authMiddleware, async (req, res) => {
     });
 
     if (!rewardData) {
-      return res.status(404).json({ error: '奖励数据不存在' });
+      return res.status(404).json({ error: "奖励数据不存在" });
     }
 
     // 解析 JSON 字段
@@ -42,8 +60,8 @@ router.get('/:userId', authMiddleware, async (req, res) => {
 
     res.json({ success: true, data });
   } catch (error) {
-    console.error('获取奖励数据失败:', error);
-    res.status(500).json({ error: '获取奖励数据失败' });
+    console.error("获取奖励数据失败:", error);
+    res.status(500).json({ error: "获取奖励数据失败" });
   }
 });
 
@@ -51,13 +69,13 @@ router.get('/:userId', authMiddleware, async (req, res) => {
  * 创建或更新用户奖励数据
  * POST /api/reward-data
  */
-router.post('/', authMiddleware, async (req, res) => {
+router.post("/", authMiddleware, async (req, res) => {
   try {
     const { userId, totalPoints, badges, recentPoints } = req.body;
 
     // 验证用户权限
     if (req.user.id !== userId) {
-      return res.status(403).json({ error: '无权修改此数据' });
+      return res.status(403).json({ error: "无权修改此数据" });
     }
 
     // 检查是否已存在
@@ -86,10 +104,10 @@ router.post('/', authMiddleware, async (req, res) => {
       });
     }
 
-    res.json({ success: true, message: '奖励数据保存成功' });
+    res.json({ success: true, message: "奖励数据保存成功" });
   } catch (error) {
-    console.error('保存奖励数据失败:', error);
-    res.status(500).json({ error: '保存奖励数据失败' });
+    console.error("保存奖励数据失败:", error);
+    res.status(500).json({ error: "保存奖励数据失败" });
   }
 });
 

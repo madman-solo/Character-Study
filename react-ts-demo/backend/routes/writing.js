@@ -1,3 +1,94 @@
+/**
+ * @swagger
+ * /api/writing/correct:
+ *   post:
+ *     summary: AI 语法纠错
+ *     tags: [写作练习]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [text]
+ *             properties:
+ *               text:
+ *                 type: string
+ *                 description: 待纠错的英文文本
+ *     responses:
+ *       200:
+ *         description: 返回纠错后的文本
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 corrected:
+ *                   type: string
+ *
+ * /api/writing/submit:
+ *   post:
+ *     summary: 提交作文（AI 打分并保存）
+ *     tags: [写作练习]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [content]
+ *             properties:
+ *               userId:
+ *                 type: string
+ *               title:
+ *                 type: string
+ *                 default: 无标题
+ *               content:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: 返回作文 ID 和 AI 评分反馈
+ *
+ * /api/writing/history/{userId}:
+ *   get:
+ *     summary: 获取用户历史作文
+ *     tags: [写作练习]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: 返回作文列表（含评分）
+ *
+ * /api/writing/continue:
+ *   post:
+ *     summary: AI 续写
+ *     tags: [写作练习]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [text]
+ *             properties:
+ *               text:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: 返回续写后的完整文本
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 continued:
+ *                   type: string
+ */
+
 const express = require("express");
 const router = express.Router();
 const { PrismaClient } = require("@prisma/client");

@@ -2,8 +2,97 @@
  * Learning Session Management API
  * 学习会话管理API - 管理学习会话的生命周期和心跳检测
  */
+/**
+ * @swagger
+ * /api/learning-session/start:
+ *   post:
+ *     summary: 开始学习会话
+ *     tags: [学习会话]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [userId]
+ *             properties:
+ *               userId:
+ *                 type: string
+ *               sessionType:
+ *                 type: string
+ *                 default: learning
+ *     responses:
+ *       200:
+ *         description: 返回 sessionId
+ *
+ * /api/learning-session/heartbeat:
+ *   post:
+ *     summary: 心跳保活
+ *     tags: [学习会话]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [sessionId]
+ *             properties:
+ *               sessionId:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: 心跳成功
+ *       404:
+ *         description: 会话不存在或已过期
+ *
+ * /api/learning-session/end:
+ *   post:
+ *     summary: 结束学习会话
+ *     tags: [学习会话]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [sessionId]
+ *             properties:
+ *               sessionId:
+ *                 type: string
+ *               activeTime:
+ *                 type: integer
+ *                 description: 活跃时长（毫秒）
+ *               pausedTime:
+ *                 type: integer
+ *                 description: 暂停时长（毫秒）
+ *     responses:
+ *       200:
+ *         description: 返回有效学习时长（分钟）
+ *
+ * /api/learning-session/active/{userId}:
+ *   get:
+ *     summary: 获取用户活跃会话
+ *     tags: [学习会话]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: 返回活跃会话列表
+ *
+ * /api/learning-session/stats:
+ *   get:
+ *     summary: 获取会话统计（调试用）
+ *     tags: [学习会话]
+ *     responses:
+ *       200:
+ *         description: 返回所有活跃会话统计
+ */
 
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
 // In-memory session storage (consider using Redis for production)
@@ -21,7 +110,7 @@ const CLEANUP_INTERVAL = 60 * 1000;
  * 会话数据结构
  */
 class LearningSession {
-  constructor(userId, sessionType = 'learning') {
+  constructor(userId, sessionType = "learning") {
     this.sessionId = `${userId}_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
     this.userId = userId;
     this.sessionType = sessionType;
@@ -69,7 +158,9 @@ function cleanupExpiredSessions() {
   }
 
   if (cleanedCount > 0) {
-    console.log(`Cleaned up ${cleanedCount} expired sessions. Active sessions: ${activeSessions.size}`);
+    console.log(
+      `Cleaned up ${cleanedCount} expired sessions. Active sessions: ${activeSessions.size}`,
+    );
   }
 }
 
@@ -81,14 +172,14 @@ setInterval(cleanupExpiredSessions, CLEANUP_INTERVAL);
  * Start a new learning session
  * 开始新的学习会话
  */
-router.post('/start', (req, res) => {
+router.post("/start", (req, res) => {
   try {
     const { userId, sessionType } = req.body;
 
     if (!userId) {
       return res.status(400).json({
         success: false,
-        error: 'User ID is required'
+        error: "User ID is required",
       });
     }
 
@@ -96,19 +187,21 @@ router.post('/start', (req, res) => {
     const session = new LearningSession(userId, sessionType);
     activeSessions.set(session.sessionId, session);
 
-    console.log(`Started session ${session.sessionId} for user ${userId}. Active sessions: ${activeSessions.size}`);
+    console.log(
+      `Started session ${session.sessionId} for user ${userId}. Active sessions: ${activeSessions.size}`,
+    );
 
     res.json({
       success: true,
       sessionId: session.sessionId,
       startTime: session.startTime,
-      message: 'Learning session started successfully'
+      message: "Learning session started successfully",
     });
   } catch (error) {
-    console.error('Error starting learning session:', error);
+    console.error("Error starting learning session:", error);
     res.status(500).json({
       success: false,
-      error: 'Failed to start learning session'
+      error: "Failed to start learning session",
     });
   }
 });
@@ -118,14 +211,14 @@ router.post('/start', (req, res) => {
  * Send heartbeat to keep session alive
  * 发送心跳保持会话活跃
  */
-router.post('/heartbeat', (req, res) => {
+router.post("/heartbeat", (req, res) => {
   try {
     const { sessionId, timestamp } = req.body;
 
     if (!sessionId) {
       return res.status(400).json({
         success: false,
-        error: 'Session ID is required'
+        error: "Session ID is required",
       });
     }
 
@@ -134,8 +227,8 @@ router.post('/heartbeat', (req, res) => {
     if (!session) {
       return res.status(404).json({
         success: false,
-        error: 'Session not found or expired',
-        isValid: false
+        error: "Session not found or expired",
+        isValid: false,
       });
     }
 
@@ -147,13 +240,13 @@ router.post('/heartbeat', (req, res) => {
       isValid: true,
       serverTime: Date.now(),
       sessionDuration: session.calculateDuration(),
-      message: 'Heartbeat received'
+      message: "Heartbeat received",
     });
   } catch (error) {
-    console.error('Error processing heartbeat:', error);
+    console.error("Error processing heartbeat:", error);
     res.status(500).json({
       success: false,
-      error: 'Failed to process heartbeat'
+      error: "Failed to process heartbeat",
     });
   }
 });
@@ -163,14 +256,14 @@ router.post('/heartbeat', (req, res) => {
  * End learning session and calculate valid time
  * 结束学习会话并计算有效时长
  */
-router.post('/end', (req, res) => {
+router.post("/end", (req, res) => {
   try {
     const { sessionId, activeTime, pausedTime } = req.body;
 
     if (!sessionId) {
       return res.status(400).json({
         success: false,
-        error: 'Session ID is required'
+        error: "Session ID is required",
       });
     }
 
@@ -179,7 +272,7 @@ router.post('/end', (req, res) => {
     if (!session) {
       return res.status(404).json({
         success: false,
-        error: 'Session not found or expired'
+        error: "Session not found or expired",
       });
     }
 
@@ -191,7 +284,9 @@ router.post('/end', (req, res) => {
     // Remove session from active sessions
     activeSessions.delete(sessionId);
 
-    console.log(`Ended session ${sessionId}. Total: ${Math.floor(totalTime / 1000 / 60)}min, Valid: ${validTimeMinutes}min. Active sessions: ${activeSessions.size}`);
+    console.log(
+      `Ended session ${sessionId}. Total: ${Math.floor(totalTime / 1000 / 60)}min, Valid: ${validTimeMinutes}min. Active sessions: ${activeSessions.size}`,
+    );
 
     // Calculate points based on valid time (optional)
     const points = Math.floor(validTimeMinutes / 10) * 20; // 20 points per 10 minutes
@@ -203,13 +298,13 @@ router.post('/end', (req, res) => {
       activeTime: Math.floor((activeTime || totalTime) / 1000 / 60), // minutes
       pausedTime: Math.floor((pausedTime || 0) / 1000 / 60), // minutes
       points,
-      message: 'Learning session ended successfully'
+      message: "Learning session ended successfully",
     });
   } catch (error) {
-    console.error('Error ending learning session:', error);
+    console.error("Error ending learning session:", error);
     res.status(500).json({
       success: false,
-      error: 'Failed to end learning session'
+      error: "Failed to end learning session",
     });
   }
 });
@@ -219,14 +314,14 @@ router.post('/end', (req, res) => {
  * Get active sessions for a user
  * 获取用户的活跃会话
  */
-router.get('/active/:userId', (req, res) => {
+router.get("/active/:userId", (req, res) => {
   try {
     const { userId } = req.params;
 
     if (!userId) {
       return res.status(400).json({
         success: false,
-        error: 'User ID is required'
+        error: "User ID is required",
       });
     }
 
@@ -238,7 +333,7 @@ router.get('/active/:userId', (req, res) => {
           sessionType: session.sessionType,
           startTime: session.startTime,
           duration: session.calculateDuration(),
-          lastHeartbeat: session.lastHeartbeat
+          lastHeartbeat: session.lastHeartbeat,
         });
       }
     }
@@ -246,13 +341,13 @@ router.get('/active/:userId', (req, res) => {
     res.json({
       success: true,
       sessions: userSessions,
-      count: userSessions.length
+      count: userSessions.length,
     });
   } catch (error) {
-    console.error('Error getting active sessions:', error);
+    console.error("Error getting active sessions:", error);
     res.status(500).json({
       success: false,
-      error: 'Failed to get active sessions'
+      error: "Failed to get active sessions",
     });
   }
 });
@@ -262,11 +357,11 @@ router.get('/active/:userId', (req, res) => {
  * Get session statistics (for debugging)
  * 获取会话统计信息（用于调试）
  */
-router.get('/stats', (req, res) => {
+router.get("/stats", (req, res) => {
   try {
     const stats = {
       totalActiveSessions: activeSessions.size,
-      sessions: []
+      sessions: [],
     };
 
     for (const [sessionId, session] of activeSessions.entries()) {
@@ -275,19 +370,19 @@ router.get('/stats', (req, res) => {
         userId: session.userId,
         duration: Math.floor(session.calculateDuration() / 1000 / 60), // minutes
         lastHeartbeat: new Date(session.lastHeartbeat).toISOString(),
-        isExpired: session.isExpired()
+        isExpired: session.isExpired(),
       });
     }
 
     res.json({
       success: true,
-      stats
+      stats,
     });
   } catch (error) {
-    console.error('Error getting session stats:', error);
+    console.error("Error getting session stats:", error);
     res.status(500).json({
       success: false,
-      error: 'Failed to get session stats'
+      error: "Failed to get session stats",
     });
   }
 });

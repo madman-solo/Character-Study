@@ -1,3 +1,23 @@
+/** 生成语音文件接口
+ * @swagger
+ * /api/speaking-tts/speak:
+ *   get:
+ *     summary: 文本转语音（TTS）
+ *     tags: [口语练习]
+ *     parameters:
+ *       - in: query
+ *         name: text
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: 要转换的文本内容
+ *     responses:
+ *       200:
+ *         description: 返回音频文件流（audio/mp3）
+ *       400:
+ *         description: 缺少 text 参数
+ */
+
 const express = require("express");
 const axios = require("axios");
 const router = express.Router();
