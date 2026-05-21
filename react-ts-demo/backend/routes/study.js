@@ -199,17 +199,20 @@ router.post("/end", authMiddleware, async (req, res) => {
     const ld = await prisma.userLearningData.findUnique({
       where: { userId: req.user.id },
     });
-    if (ld) {
-      const daily = JSON.parse(ld.dailyStudyTime || "{}");
-      daily[today] = (daily[today] || 0) + realMinutes;
-      await prisma.userLearningData.update({
-        where: { userId: req.user.id },
-        data: {
-          totalStudyTime: { increment: realMinutes },
-          dailyStudyTime: JSON.stringify(daily),
-        },
-      });
-    }
+    const daily = JSON.parse(ld?.dailyStudyTime || "{}");
+    daily[today] = (daily[today] || 0) + realMinutes;
+    await prisma.userLearningData.upsert({
+      where: { userId: req.user.id },
+      update: {
+        totalStudyTime: { increment: realMinutes },
+        dailyStudyTime: JSON.stringify(daily),
+      },
+      create: {
+        userId: req.user.id,
+        totalStudyTime: realMinutes,
+        dailyStudyTime: JSON.stringify(daily),
+      },
+    });
   }
   res.json({ realSeconds });
 });

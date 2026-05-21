@@ -1,18 +1,28 @@
-import axios from 'axios';
-import type { Character, ScenarioMode } from '../types';
+import axios from "axios";
+import type { Character, ScenarioMode } from "../types";
 
-const API_BASE_URL = 'http://localhost:3001/api';
+const API_BASE_URL = "http://localhost:3001/api";
 
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
 });
+//api实例响应拦截器（所有走api实例的接口响应都会先走这里）
+api.interceptors.response.use(
+  (r) => r,
+  (error) => {
+    if (error.response?.status === 401) {
+      window.dispatchEvent(new Event("auth:expired"));
+    }
+    return Promise.reject(error);
+  },
+);
 
 // 获取所有角色
 export const getCharacters = async (category?: string) => {
-  const response = await api.get<Character[]>('/characters', {
+  const response = await api.get<Character[]>("/characters", {
     params: category ? { category } : {},
   });
   return response.data;
@@ -26,7 +36,7 @@ export const getCharacterById = async (id: string) => {
 
 // 获取所有情景模式
 export const getScenarios = async () => {
-  const response = await api.get<ScenarioMode[]>('/scenarios');
+  const response = await api.get<ScenarioMode[]>("/scenarios");
   return response.data;
 };
 
@@ -34,13 +44,16 @@ export const getScenarios = async () => {
 export const sendChatMessage = async (
   characterId: string,
   message: string,
-  scenarioId?: string
+  scenarioId?: string,
 ) => {
-  const response = await api.post<{ reply: string; timestamp: string }>('/chat', {
-    characterId,
-    message,
-    scenarioId,
-  });
+  const response = await api.post<{ reply: string; timestamp: string }>(
+    "/chat",
+    {
+      characterId,
+      message,
+      scenarioId,
+    },
+  );
   return response.data;
 };
 
@@ -60,7 +73,7 @@ export const getUserFavorites = async (userId: string) => {
 export const addUserCharacter = async (
   userId: string,
   characterId: string,
-  setAsDefault: boolean = false
+  setAsDefault: boolean = false,
 ) => {
   const response = await api.post(`/users/${userId}/characters`, {
     characterId,
@@ -70,8 +83,13 @@ export const addUserCharacter = async (
 };
 
 // 从"我的角色"移除角色
-export const removeUserCharacter = async (userId: string, characterId: string) => {
-  const response = await api.delete(`/users/${userId}/characters/${characterId}`);
+export const removeUserCharacter = async (
+  userId: string,
+  characterId: string,
+) => {
+  const response = await api.delete(
+    `/users/${userId}/characters/${characterId}`,
+  );
   return response.data;
 };
 
@@ -84,14 +102,24 @@ export const addUserFavorite = async (userId: string, characterId: string) => {
 };
 
 // 从收藏移除角色
-export const removeUserFavorite = async (userId: string, characterId: string) => {
-  const response = await api.delete(`/users/${userId}/favorites/${characterId}`);
+export const removeUserFavorite = async (
+  userId: string,
+  characterId: string,
+) => {
+  const response = await api.delete(
+    `/users/${userId}/favorites/${characterId}`,
+  );
   return response.data;
 };
 
 // 设置默认角色（首页显示）
-export const setDefaultCharacter = async (userId: string, characterId: string) => {
-  const response = await api.put(`/users/${userId}/characters/${characterId}/default`);
+export const setDefaultCharacter = async (
+  userId: string,
+  characterId: string,
+) => {
+  const response = await api.put(
+    `/users/${userId}/characters/${characterId}/default`,
+  );
   return response.data;
 };
 

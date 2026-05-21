@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 import * as authService from "../services/authService";
-
+import { useEffect } from "react";
 interface User {
   id: string;
   name: string;
@@ -22,7 +22,11 @@ interface AuthContextType {
   logout: () => void;
   updateUser: (userData: Partial<User>) => void;
   skipLogin: () => void;
-  convertGuestToUser: (username: string, password: string, email?: string) => Promise<void>;
+  convertGuestToUser: (
+    username: string,
+    password: string,
+    email?: string,
+  ) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -42,7 +46,7 @@ interface AuthProviderProps {
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   // 从 localStorage 初始化状态
   const [user, setUser] = useState<User | null>(() => {
-    const savedUser = localStorage.getItem('auth_user');
+    const savedUser = localStorage.getItem("auth_user");
     if (savedUser) {
       try {
         const parsed = JSON.parse(savedUser);
@@ -58,23 +62,35 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     return null;
   });
 
+  //Token过期验证和自动清除
   const [token, setToken] = useState<string | null>(() => {
-    return localStorage.getItem('auth_token');
+    const saved = localStorage.getItem("auth_token");
+    if (!saved) return null;
+    try {
+      const payload = JSON.parse(atob(saved.split(".")[1]));
+      if (payload.exp * 1000 < Date.now()) {
+        localStorage.removeItem("auth_token");
+        localStorage.removeItem("auth_user");
+        return null;
+      }
+    } catch {
+      return null;
+    }
+    return saved;
   });
 
+  // 判断是否已认证（非游客且有有效 token）
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    const savedUser = localStorage.getItem('auth_user');
-    const savedToken = localStorage.getItem('auth_token');
-    if (savedUser && savedToken) {
-      try {
-        const parsedUser = JSON.parse(savedUser);
-        // 只有当用户不是游客且有 token 时才认为已认证
-        return !parsedUser.isGuest && !!savedToken;
-      } catch {
-        return false;
-      }
+    const savedUser = localStorage.getItem("auth_user");
+    const savedToken = localStorage.getItem("auth_token");
+    if (!savedUser || !savedToken) return false;
+    try {
+      const payload = JSON.parse(atob(savedToken.split(".")[1]));
+      if (payload.exp * 1000 < Date.now()) return false;
+      return !JSON.parse(savedUser).isGuest;
+    } catch {
+      return false;
     }
-    return false;
   });
 
   const login = async (username: string, password: string) => {
@@ -82,8 +98,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       const response = await authService.login({ username, password });
 
       // 保存 token 和用户信息
-      localStorage.setItem('auth_token', response.token);
-      localStorage.setItem('auth_user', JSON.stringify(response.user));
+      localStorage.setItem("auth_token", response.token);
+      localStorage.setItem("auth_user", JSON.stringify(response.user));
 
       setToken(response.token);
       setUser({
@@ -98,34 +114,47 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       });
       setIsAuthenticated(true);
     } catch (error) {
-      console.error('登录失败:', error);
+      console.error("登录失败:", error);
       throw error;
     }
   };
 
-  const register = async (username: string, password: string, email?: string) => {
+  const register = async (
+    username: string,
+    password: string,
+    email?: string,
+  ) => {
     try {
       await authService.register({ username, password, email });
       // 注册成功后不自动登录，让用户手动登录
     } catch (error) {
-      console.error('注册失败:', error);
+      console.error("注册失败:", error);
       throw error;
     }
   };
 
   const logout = () => {
-    localStorage.removeItem('auth_token');
-    localStorage.removeItem('auth_user');
+    localStorage.removeItem("auth_token");
+    localStorage.removeItem("auth_user");
     setToken(null);
     setUser(null);
     setIsAuthenticated(false);
   };
+  // 监听 token 过期事件
+  useEffect(() => {
+    const handler = () => {
+      logout();
+      window.location.href = "/login";
+    };
+    window.addEventListener("auth:expired", handler);
+    return () => window.removeEventListener("auth:expired", handler);
+  }, []);
 
   const updateUser = (userData: Partial<User>) => {
     if (user) {
       const updatedUser = { ...user, ...userData };
       setUser(updatedUser);
-      localStorage.setItem('auth_user', JSON.stringify(updatedUser));
+      localStorage.setItem("auth_user", JSON.stringify(updatedUser));
     }
   };
 
@@ -142,20 +171,28 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     };
     setUser(guestUser);
     setIsAuthenticated(false);
-    localStorage.setItem('auth_user', JSON.stringify(guestUser));
+    localStorage.setItem("auth_user", JSON.stringify(guestUser));
   };
 
-  const convertGuestToUser = async (username: string, password: string, email?: string) => {
+  const convertGuestToUser = async (
+    username: string,
+    password: string,
+    email?: string,
+  ) => {
     if (!user || !user.isGuest) {
-      throw new Error('当前不是游客模式');
+      throw new Error("当前不是游客模式");
     }
 
     try {
-      const response = await authService.convertGuest(user.id, { username, password, email });
+      const response = await authService.convertGuest(user.id, {
+        username,
+        password,
+        email,
+      });
 
       // 保存新的 token 和用户信息
-      localStorage.setItem('auth_token', response.token);
-      localStorage.setItem('auth_user', JSON.stringify(response.user));
+      localStorage.setItem("auth_token", response.token);
+      localStorage.setItem("auth_user", JSON.stringify(response.user));
 
       setToken(response.token);
       setUser({
@@ -170,7 +207,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       });
       setIsAuthenticated(true);
     } catch (error) {
-      console.error('游客转换失败:', error);
+      console.error("游客转换失败:", error);
       throw error;
     }
   };

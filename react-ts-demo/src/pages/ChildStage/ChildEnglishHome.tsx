@@ -17,7 +17,7 @@ import "../../styles/ChildStageCss/ChildEnglishHome.css";
 
 const ChildEnglishHome = () => {
   const navigate = useNavigate();
-  const { user, skipLogin } = useAuth();
+  const { user, skipLogin, token } = useAuth();
 
   const [showRewardCenter, setShowRewardCenter] = useState(false);
   const [showParentPanel, setShowParentPanel] = useState(false);
@@ -28,6 +28,7 @@ const ChildEnglishHome = () => {
 
   // 学习会话ID（从后端API获取）
   const [sessionId, setSessionId] = useState<string | null>(null);
+  const sessionIdRef = useRef<string | null>(null);
 
   // 使用 ref 跟踪是否已经尝试领取每日奖励
   const hasClaimedDailyReward = useRef(false);
@@ -88,22 +89,14 @@ const ChildEnglishHome = () => {
       console.log("▶️ 用户恢复学习");
     },
     onHeartbeat: async (state) => {
-      // 发送心跳到服务器，保持会话活跃
-      if (sessionId) {
+      if (sessionId && token) {
         try {
-          await fetch("http://localhost:3001/api/learning-session/heartbeat", {
+          await fetch("/api/study/heartbeat", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              sessionId,
-              timestamp: Date.now(),
-            }),
+            headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+            body: JSON.stringify({ sessionId }),
           });
-          console.log(
-            "💓 心跳已发送，活跃时长:",
-            Math.floor(state.activeDuration / 1000 / 60),
-            "分钟",
-          );
+          console.log("💓 心跳已发送，活跃时长:", Math.floor(state.activeDuration / 1000 / 60), "分钟");
         } catch (error) {
           console.error("心跳发送失败:", error);
         }
@@ -169,22 +162,17 @@ const ChildEnglishHome = () => {
 
       // 调用后端API启动学习会话
       const startBackendSession = async () => {
+        if (!token) return;
         try {
-          const response = await fetch(
-            "http://localhost:3001/api/learning-session/start",
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                userId: user.id,
-                sessionType: "child-home",
-              }),
-            },
-          );
-
+          const response = await fetch("/api/study/start", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+            body: JSON.stringify({ mode: "child-home" }),
+          });
           const data = await response.json();
-          if (data.success) {
+          if (data.sessionId) {
             setSessionId(data.sessionId);
+            sessionIdRef.current = data.sessionId;
             console.log("✅ 学习会话已开始，会话ID:", data.sessionId);
           }
         } catch (error) {
@@ -215,27 +203,14 @@ const ChildEnglishHome = () => {
       if (user && learningData) {
         // 调用后端API结束学习会话
         const endBackendSession = async () => {
-          if (sessionId) {
+          if (sessionIdRef.current && token) {
             try {
-              const response = await fetch(
-                "http://localhost:3001/api/learning-session/end",
-                {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({
-                    sessionId,
-                    activeTime: activityState.activeDuration,
-                    pausedTime: activityState.pausedDuration,
-                  }),
-                },
-              );
-
-              const data = await response.json();
-              if (data.success) {
-                console.log(" 学习会话已结束");
-                console.log(" 总时长:", data.totalTime, "分钟");
-                console.log("有效时长:", data.validTime, "分钟");
-              }
+              await fetch("/api/study/end", {
+                method: "POST",
+                headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+                body: JSON.stringify({ sessionId: sessionIdRef.current }),
+              });
+              console.log("学习会话已结束");
             } catch (error) {
               console.error("结束学习会话失败:", error);
             }
@@ -560,6 +535,7 @@ const ChildEnglishHome = () => {
         <ParentPanel
           learningData={learningData}
           rewardData={rewardData}
+          token={token}
           onClose={() => setShowParentPanel(false)}
           onResetProgress={handleResetProgress}
           onToggleAnimations={handleToggleAnimations}

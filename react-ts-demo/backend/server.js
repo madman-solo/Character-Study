@@ -91,6 +91,25 @@ const asrRouter = require("./routes/asr");
 app.use("/api/asr", express.raw({ type: "*/*", limit: "10mb" }), asrRouter);
 
 app.use(express.json());
+// API 响应缓存头中间件
+app.use("/api", (req, res, next) => {
+  if (req.method !== "GET") return next();
+  // 单词表、角色列表等静态数据：缓存5分钟
+  const cacheablePatterns = [
+    /^\/api\/vocabulary\/words/,
+    /^\/api\/characters$/,
+    /^\/api\/characters\/\d+$/,
+    /^\/api\/child-words/,
+    /^\/api\/scenarios$/,
+  ];
+  const shouldCache = cacheablePatterns.some((p) => p.test(req.path));
+  if (shouldCache) {
+    res.set("Cache-Control", "public, max-age=300"); // 5分钟
+  } else {
+    res.set("Cache-Control", "no-store"); // 用户数据不缓存
+  }
+  next();
+});
 
 // 情景模式数据（和前端的数据不一致，但是这个变量并不重要）
 const scenarios = [
@@ -147,10 +166,18 @@ app.use("/api/reports", reportsRoutes);
 app.use("/api/tts", ttsRoutes);
 app.use("/api/audio", audioRoutes);
 //上传的图片（静态路由）
-app.use("/uploads", express.static(path.join(__dirname, "public/uploads")));
+app.use(
+  "/uploads",
+  express.static(path.join(__dirname, "public/uploads"), {
+    maxAge: "7d", //浏览器开强缓存7天
+    immutable: false, //到期后去服务器端检查是否存在更新的文件
+  }),
+);
 app.use(
   "/listening-audio",
-  express.static(path.join(__dirname, "public/listening-audio")),
+  express.static(path.join(__dirname, "public/listening-audio"), {
+    maxAge: "1d",
+  }),
 );
 // ========== 情感分析和情绪记录 API ==========
 

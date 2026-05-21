@@ -55,7 +55,7 @@ export function useStudyTimer(userId: string | undefined, token: string | null) 
   };
 
   useEffect(() => {
-    if (!userId) return;
+    if (!userId || !token) return;
     start();
 
     const onVisibilityChange = () => (document.hidden ? pause() : resume());
@@ -75,5 +75,5 @@ export function useStudyTimer(userId: string | undefined, token: string | null) 
       window.removeEventListener("focus", onFocus);
       window.removeEventListener("beforeunload", onUnload);
     };
-  }, [userId]);
+  }, [userId, token]);
 }

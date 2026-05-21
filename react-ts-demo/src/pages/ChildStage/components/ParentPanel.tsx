@@ -2,16 +2,22 @@
  * 家长监控面板组件
  * 展示孩子的学习数据、互动数据、奖励数据等
  */
-import axios from "axios";
-import React, { useState, useEffect } from "react";
+import api from "../../../api/index";
+import React, { useState, useEffect, useRef } from "react";
 import type { LearningData } from "../../../hooks/useChildLearning";
 import type { RewardData } from "../../../hooks/useChildRewards";
 import LearningCharts from "./LearningCharts";
+import {
+  useFocusTrap,
+  useEscClose,
+  useFocusReturn,
+} from "../../../hooks/useAccessibility";
 import "./ParentPanel.css";
 
 interface ParentPanelProps {
   learningData: LearningData | null;
   rewardData: RewardData | null;
+  token: string | null;
   onClose: () => void;
   onResetProgress: () => void;
   onToggleAnimations: (enabled: boolean) => void;
@@ -24,6 +30,7 @@ interface ParentPanelProps {
 const ParentPanel: React.FC<ParentPanelProps> = ({
   learningData,
   rewardData,
+  token,
   onClose,
   onResetProgress,
   onToggleAnimations,
@@ -37,11 +44,27 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
     avgDailyMinutes: 0,
   });
   useEffect(() => {
-    axios
-      .get("/api/study/stats")
+    if (!token) {
+      // 无 token（游客）：从 learningData 读取
+      if (learningData) {
+        const daily = learningData.dailyStudyTime || {};
+        const days = Object.keys(daily).length || 1;
+        setStudyStats({
+          totalMinutes: learningData.totalStudyTime || 0,
+          avgDailyMinutes: Math.round(
+            (learningData.totalStudyTime || 0) / days,
+          ),
+        });
+      }
+      return;
+    }
+    api
+      .get("/api/study/stats", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((r) => setStudyStats(r.data))
       .catch(() => {});
-  }, []);
+  }, [token, learningData]);
   const [activeTab, setActiveTab] = useState<
     "overview" | "guidance" | "settings"
   >("overview");
@@ -52,6 +75,17 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
   const [timeRange, setTimeRange] = useState<"7days" | "30days" | "90days">(
     "7days",
   );
+
+  const panelRef = useRef<HTMLDivElement>(null);
+  const { save, restore } = useFocusReturn();
+  useEffect(() => {
+    save();
+    return () => {
+      restore();
+    };
+  }, []);
+  useFocusTrap(panelRef, true);
+  useEscClose(onClose, true);
 
   if (!learningData || !rewardData) {
     return null;
@@ -88,15 +122,7 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
   // 计算统计数据
   const totalStudyHours = Math.floor(studyStats.totalMinutes / 60);
   const totalStudyMinutes = studyStats.totalMinutes % 60;
-  const averageDailyTime =
-    Object.values(studyStats.avgDailyMinutes).length > 0
-      ? Math.round(
-          Object.values(studyStats.avgDailyMinutes).reduce(
-            (sum: number, time: number) => sum + time,
-            0,
-          ) / Object.values(studyStats.avgDailyMinutes).length,
-        )
-      : 0;
+  const averageDailyTime = studyStats.avgDailyMinutes;
 
   const masteredWordsCount = learningData.masteredWords.length;
   const weakWordsCount = learningData.weakWords.length;
@@ -520,7 +546,13 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
 
       <section className="parent-section">
         <h3 className="parent-section-title">
-          <img src="/src/assets/iconfont/设置.svg" alt="" aria-hidden="true" width={36} height={36} />
+          <img
+            src="/src/assets/iconfont/设置.svg"
+            alt=""
+            aria-hidden="true"
+            width={36}
+            height={36}
+          />
           学习设置
         </h3>
         <div className="parent-setting-item">
@@ -588,7 +620,13 @@ const ParentPanel: React.FC<ParentPanelProps> = ({
 
   return (
     <div className="parent-panel-overlay">
-      <div className="parent-panel">
+      <div
+        className="parent-panel"
+        ref={panelRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="家长监控面板"
+      >
         <div className="parent-panel-header">
           <h2 className="parent-panel-title">
             <img

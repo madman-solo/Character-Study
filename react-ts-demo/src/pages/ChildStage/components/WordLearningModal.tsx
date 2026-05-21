@@ -8,7 +8,7 @@ import { useChildSound } from "../../../hooks/useChildSound";
 import DictationInput from "./DictationInput";
 import type { WordLearningModalProps } from "../../../types/vocabulary";
 import "./WordLearningModal.css";
-import { useFocusTrap, useEscClose } from "../hooks/useAccessibility";
+import { useFocusTrap, useEscClose, useFocusReturn } from "../../../hooks/useAccessibility";
 
 const WordLearningModal = ({
   isOpen,
@@ -46,6 +46,8 @@ const WordLearningModal = ({
   }, [isOpen, word, speakWord]);
   //无障碍功能 - 键盘焦点管理和ESC键关闭
   const modalRef = useRef<HTMLDivElement>(null);
+  const { save, restore } = useFocusReturn();
+  useEffect(() => { if (isOpen) save(); else restore(); }, [isOpen]);
   useFocusTrap(modalRef, isOpen);
   useEscClose(onClose, isOpen);
 

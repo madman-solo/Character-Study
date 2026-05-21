@@ -15,6 +15,10 @@ export default defineConfig({
           "react-vendor": ["react", "react-dom", "react-router-dom"],
           "chart-vendor": ["recharts"],
         },
+        // 确保 chunk 文件名带 hash（Vite 默认已有，显式写出更清晰）
+        chunkFileNames: "assets/[name]-[hash].js",
+        entryFileNames: "assets/[name]-[hash].js",
+        assetFileNames: "assets/[name]-[hash].[ext]",
       },
     },
   },
@@ -28,9 +32,9 @@ export default defineConfig({
     },
   },
   test: {
-    environment: 'jsdom',
+    environment: "jsdom",
     globals: true,
-    setupFiles: './src/test/setup.ts',
+    setupFiles: "./src/test/setup.ts",
   },
   // resolve: {
   //   alias: {

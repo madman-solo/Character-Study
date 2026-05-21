@@ -1,9 +1,28 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useAuth } from "../contexts/AuthContext";
+import api from "../api/index";
+function getLocalStats(userId: string) {
+  try {
+    const raw = localStorage.getItem(`child_learning_${userId}`);
+    if (!raw) return null;
+    const data = JSON.parse(raw);
+    const daily: Record<string, number> = data.dailyStudyTime || {};
+    const today = new Date().toISOString().slice(0, 10);
+    const todayMinutes = daily[today] || 0;
+    const days = Object.keys(daily).length || 1;
+    const totalMinutes: number = data.totalStudyTime || 0;
+    return {
+      totalMinutes,
+      todayMinutes,
+      avgDailyMinutes: Math.round(totalMinutes / days),
+    };
+  } catch {
+    return null;
+  }
+}
 
 export default function StudyTimePage() {
-  const { token } = useAuth();
+  const { token, user } = useAuth();
   const [stats, setStats] = useState({
     totalMinutes: 0,
     todayMinutes: 0,
@@ -11,17 +30,24 @@ export default function StudyTimePage() {
   });
 
   useEffect(() => {
-    if (!token) return;
+    if (!token) {
+      // 游客：从 localStorage 读取少儿英语学习数据
+      const userId = (user as any)?.id || "guest";
+      const local = getLocalStats(userId);
+      if (local) setStats(local);
+      return;
+    }
     const headers = { Authorization: `Bearer ${token}` };
-    const fetch = () =>
-      axios
+    const doFetch = () =>
+      api
         .get("/api/study/stats", { headers })
         .then((r) => setStats(r.data))
         .catch(() => {});
-    fetch();
-    const timer = setInterval(fetch, 30000);
+
+    doFetch();
+    const timer = setInterval(doFetch, 30000);
     return () => clearInterval(timer);
-  }, [token]);
+  }, [token, user]);
   const fmt = (m: number) => `${Math.floor(m / 60)}h ${m % 60}min`;
 
   return (

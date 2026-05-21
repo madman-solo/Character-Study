@@ -4,7 +4,7 @@
  */
 
 import { useState, useEffect, useRef } from "react";
-import { useFocusTrap, useEscClose } from "../hooks/useAccessibility";
+import { useFocusTrap, useEscClose, useFocusReturn } from "../../../hooks/useAccessibility";
 import type {
   ChangeWordModalProps,
   ChildWord,
@@ -43,6 +43,8 @@ const ChangeWordModal = ({
     filterWords();
   }, [words, selectedLength]);
   const modalRef = useRef<HTMLDivElement>(null);
+  const { save, restore } = useFocusReturn();
+  useEffect(() => { if (isOpen) save(); else restore(); }, [isOpen]);
   useFocusTrap(modalRef, isOpen);
   useEscClose(onClose, isOpen);
 

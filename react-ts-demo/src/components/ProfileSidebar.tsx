@@ -68,12 +68,10 @@ const ProfileSidebar = ({ isOpen, onClose }: ProfileSidebarProps) => {
     onClose();
   };
 
-  if (!isOpen) return null;
-
   return (
     <>
-      <div className="sidebar-overlay" onClick={onClose} role="button" tabIndex={0} aria-label="关闭侧边栏" onKeyDown={(e) => e.key === 'Enter' && onClose()}></div>
-      <div className={`profile-sidebar ${isOpen ? "open" : ""}`}>
+      <div className={`sidebar-overlay${isOpen ? " visible" : ""}`} onClick={onClose} role="button" tabIndex={0} aria-label="关闭侧边栏" onKeyDown={(e) => e.key === 'Enter' && onClose()}></div>
+      <div className={`profile-sidebar${isOpen ? " open" : ""}`}>
         <div className="sidebar-header">
           <button className="close-button" onClick={onClose} aria-label="关闭侧边栏">
             <span aria-hidden="true">✕</span>
